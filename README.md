@@ -1,2 +1,3 @@
-# ProMama
-App do Programa de Aleitamento Materno de Osório-RS
+# Aplicativo Pró-Mamá 
+
+Desenvolvido para Android e iOS utilizando Xamarin
