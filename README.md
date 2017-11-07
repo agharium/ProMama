@@ -12,4 +12,4 @@ Exemplos utilizados:
 
 Colaboradores:
 - [José Paulo Oliveira Filho](https://github.com/agharium/)
-- [Leandro Ramos](https://github.com/)
+- [Leandro Ramos dos Santos](https://github.com/leandrorsant/)
