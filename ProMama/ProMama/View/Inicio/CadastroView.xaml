@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Inicio.CadastroView"
+             Title="Cadastro"
+             Icon="">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="20"
+                Spacing="20">
+                <Entry 
+                    Placeholder="E-mail"
+                    Keyboard="Email" 
+                    Text="{Binding Email}"/>
+                <Entry 
+                    Placeholder="Senha"
+                    IsPassword="True"
+                    Text="{Binding Password}"/>
+                <Entry 
+                    Placeholder="Confirme a senha"
+                    IsPassword="True"
+                    Text="{Binding PasswordConfirmation}"/>
+                <Button 
+                    Style="{StaticResource buttonMain}"
+                    Text="Continuar"
+                    Command="{Binding CadastroCommand}"/>
+                <Button
+                    HorizontalOptions="Fill"
+                    Text="Já tem cadastro?"
+                    Clicked="ChangeToLogin"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

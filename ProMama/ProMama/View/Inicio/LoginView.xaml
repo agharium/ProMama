@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Inicio.LoginView"
+             Title="Login"
+             Icon="">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout 
+                Padding="20" 
+                Spacing="20">
+                <Entry 
+                    Placeholder="E-mail"
+                    Keyboard="Email" />
+                <Entry 
+                    Placeholder="Senha"
+                    IsPassword="True" />
+                <Button 
+                    Style="{StaticResource buttonMain}"
+                    Text="Entrar" />
+                <Button 
+                    Style="{StaticResource buttonFacebook}"
+                    Text="Entrar com o Facebook" />
+                <Button
+                    HorizontalOptions="Fill"
+                    Text="Ainda não tem cadastro? " 
+                    Clicked="ChangeToCadastro"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

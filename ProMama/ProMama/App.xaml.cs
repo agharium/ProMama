@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ProMama
 {
@@ -11,9 +6,12 @@ namespace ProMama
     {
         public App()
         {
+            DependencyService.Register<ViewModel.Services.INavigationService, View.Services.NavigationService>();
+            DependencyService.Register<ViewModel.Services.IMessageService, View.Services.MessageService>();
+
             InitializeComponent();
 
-            MainPage = new ProMama.View.IntroducaoView();
+            MainPage = new View.Inicio.IntroducaoView();
         }
 
         protected override void OnStart()

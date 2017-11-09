@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
 using UIKit;
-using System.Reflection;
-using ImageCircle.Forms.Plugin.iOS;
 
 namespace ProMama.iOS
 {
@@ -24,16 +18,17 @@ namespace ProMama.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+            Xamarin.Forms.Forms.Init();
 
             // CarouselView
             var cv = typeof(Xamarin.Forms.CarouselView);
-            var assembly = Assembly.Load(cv.FullName);
+            var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
             // ImageCircle
-            ImageCircleRenderer.Init();
+            ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
 
-            LoadApplication(new App());
+            // FFImageLoading
+            FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
 
             return base.FinishedLaunching(app, options);
         }

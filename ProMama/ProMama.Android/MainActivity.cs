@@ -1,13 +1,6 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using System.Reflection;
-using ImageCircle.Forms.Plugin.Droid;
 
 namespace ProMama.Droid
 {
@@ -21,14 +14,17 @@ namespace ProMama.Droid
 
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.Forms.Forms.Init(this, bundle);
 
             // CarouselView
             var cv = typeof(Xamarin.Forms.CarouselView);
-            var assembly = Assembly.Load(cv.FullName);
+            var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
             // ImageCircle
-            ImageCircleRenderer.Init();
+            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
+
+            // FFImageLoading
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
 
             LoadApplication(new App());
         }
