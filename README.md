@@ -4,8 +4,9 @@ Desenvolvido para Android e iOS utilizando Xamarin MVVM.
 
 
 Plugins utilizados:
-- [Xamarin.Forms.CarouselView](https://github.com/xamarin/Xamarin.Forms.CarouselView)
-- [Xam.Plugins.Forms.ImageCircle](https://github.com/jamesmontemagno/ImageCirclePlugin/)
+- [CarouselView](https://github.com/xamarin/Xamarin.Forms.CarouselView)
+- [ImageCircle](https://github.com/jamesmontemagno/ImageCirclePlugin/)
+- [FFImageLoading](https://github.com/luberda-molinet/FFImageLoading/)
 
 Exemplos utilizados:
 - [Carousel](https://github.com/tomh4/Carousel/)
