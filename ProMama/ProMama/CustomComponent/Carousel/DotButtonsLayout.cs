@@ -23,7 +23,7 @@ namespace ProMama.CustomComponent.Carousel
                     HeightRequest = dotSize,
                     WidthRequest = dotSize,
                     BorderColor = dotColor,
-                    BorderThickness = dotSize/6,
+                    BorderThickness = dotSize/10,
                     Margin = 5,
                     FillColor = (i == 0) ? Color.FromHex("F44336") : Color.Transparent,
                     //All buttons except the first one will get an opacity

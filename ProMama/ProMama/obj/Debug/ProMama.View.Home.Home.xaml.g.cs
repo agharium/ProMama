@@ -8,15 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProMama.View.Inicio {
+namespace ProMama.View.Home {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Inicio\\CadastroView.xaml")]
-    public partial class CadastroView : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Home\\Home.xaml")]
+    public partial class Home : global::Xamarin.Forms.MasterDetailPage {
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::ProMama.View.Home.HomeMaster MasterPage;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CadastroView));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Home));
+            MasterPage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::ProMama.View.Home.HomeMaster>(this, "MasterPage");
         }
     }
 }

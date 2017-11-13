@@ -11,7 +11,7 @@
 namespace ProMama.View.Inicio {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Programador\\Desktop\\ProMama\\ProMama\\ProMama\\View\\Inicio\\LoginView.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Inicio\\LoginView.xaml")]
     public partial class LoginView : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

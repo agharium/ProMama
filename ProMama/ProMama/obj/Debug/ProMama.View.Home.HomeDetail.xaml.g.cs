@@ -8,15 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProMama.View.Inicio {
+namespace ProMama.View.Home {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Inicio\\CadastroView.xaml")]
-    public partial class CadastroView : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Home\\HomeDetail.xaml")]
+    public partial class HomeDetail : global::Xamarin.Forms.ContentPage {
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        private global::Xamarin.Forms.Label nome_idade;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CadastroView));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(HomeDetail));
+            nome_idade = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "nome_idade");
         }
     }
 }

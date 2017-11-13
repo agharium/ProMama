@@ -92,7 +92,7 @@ namespace ProMama.CustomComponent.Carousel
             AbsoluteLayout.SetLayoutBounds(carousel, new Rectangle(0, 0, 1, 1));
             AbsoluteLayout.SetLayoutFlags(carousel, AbsoluteLayoutFlags.All);
             //Create the button layout with as many buttons as there are pages
-            dotLayout = new DotButtonsLayout(pages.Count, Color.FromHex("F44336"), 10);
+            dotLayout = new DotButtonsLayout(pages.Count, Color.FromHex("F44336"), 20);
             //Subscribe to the click events of the dot buttons to switch to the desired 
             //page
             foreach (DotButton dot in dotLayout.dots)

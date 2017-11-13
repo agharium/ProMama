@@ -1,5 +1,3 @@
-C:\ProMama\ProMama\ProMama.Android\obj\Debug\ProMama.Android.csprojResolveAssemblyReference.cache
-C:\ProMama\ProMama\ProMama.Android\obj\Debug\ProMama.Android.csproj.CoreCompileInputs.cache
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama.Android\bin\Debug\ProMama.Android.dll
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama.Android\bin\Debug\ProMama.Android.pdb
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama.Android\bin\Debug\com.companyname.ProMama.apk

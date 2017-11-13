@@ -11,8 +11,7 @@
 namespace ProMama.View.Extra {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Programador\\Desktop\\ProMama\\ProMama\\ProMama\\View\\Extra\\AddCriancaView.xa" +
-        "ml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Extra\\AddCriancaView.xaml")]
     public partial class AddCriancaView : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

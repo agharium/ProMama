@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.HomeDetail"
+             Title="Pró-Mamá"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:local="clr-namespace:ProMama.CustomComponent;assembly=ProMama">
+    <StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="">
+                <Grid BackgroundColor="#F44336"
+                      HeightRequest="125">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image
+                        Source="arrow_left.png"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        VerticalOptions="Center"
+                        Margin="15">
+                        <!--<Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="ActionLeftArrow" />
+                        </Image.GestureRecognizers>-->
+                    </Image>
+                    <Grid
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <controls:CircleImage
+                            Grid.Column="0" 
+                            Grid.Row="0"
+                            Source="baby.jpeg" 
+                            Aspect="AspectFill"
+                            Margin="0, 15, 0, 0"/>
+                        <Label
+                            x:Name="nome_idade"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Text="Nome do Bebê - Idade"
+                            HorizontalOptions="Center"
+                            FontSize="Small"
+                            TextColor="White"
+                            Margin="0, 0, 0, 10"/>
+                    </Grid>
+                    <Image
+                        Source="arrow_right.png"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        VerticalOptions="Center"
+                        Margin="15">
+                        <!--<Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="ActionRightArrow" />
+                        </Image.GestureRecognizers>-->
+                    </Image>
+                </Grid>
+                <ListView ItemsSource="{Binding InfoItems}"
+                          HasUnevenRows="True"
+                          BackgroundColor="Transparent"
+                          SeparatorVisibility="None" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <local:CardView>
+                                    <Grid RowSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Text="{Binding titulo}"
+                                               FontSize="20"
+                                               TextColor="#212121"
+                                               Grid.Column="0"
+                                               Grid.Row="0"/>
+                                        <Label Text="{Binding texto}"
+                                               TextColor="#757575"
+                                               Grid.Column="0"
+                                               Grid.Row="1"/>
+                                        <Image Source="{Binding imagem}"
+                                               Aspect="AspectFill"
+                                               Grid.Column="0"
+                                               Grid.Row="2"/>
+                                    </Grid>
+                                </local:CardView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

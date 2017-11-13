@@ -8,15 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProMama.View.Inicio {
+namespace ProMama.ViewModel.Home {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\View\\Inicio\\CadastroView.xaml")]
-    public partial class CadastroView : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\ProMama\\ProMama\\ProMama\\ViewModel\\Home\\HomeDetail.xaml")]
+    public partial class HomeDetail : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CadastroView));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(HomeDetail));
         }
     }
 }
