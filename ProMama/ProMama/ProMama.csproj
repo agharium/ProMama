@@ -38,15 +38,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomComponent\CardView.cs" />
     <Compile Include="CustomComponent\Carousel\Carousel.cs" />
     <Compile Include="CustomComponent\Carousel\CarouselContent.cs" />
     <Compile Include="CustomComponent\Carousel\DotButton.cs" />
     <Compile Include="CustomComponent\Carousel\DotButtonsLayout.cs" />
-    <Compile Include="CustomComponent\Info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Extra\AddCriancaViewModel.cs" />
-    <Compile Include="ViewModel\Home\HomeDetailViewModel.cs" />
     <Compile Include="ViewModel\Inicio\CadastroViewModel.cs" />
     <Compile Include="ViewModel\Inicio\IntroducaoViewModel.cs" />
     <Compile Include="ViewModel\Inicio\LoginViewModel.cs" />
@@ -54,16 +51,6 @@
     <Compile Include="View\Extra\AddCriancaView.xaml.cs">
       <DependentUpon>AddCriancaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Home\HomeDetail.xaml.cs">
-      <DependentUpon>HomeDetail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Home\HomeMaster.xaml.cs">
-      <DependentUpon>HomeMaster.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Home\HomeMenuItem.cs" />
     <Compile Include="View\Services\MessageService.cs" />
     <Compile Include="View\Services\NavigationService.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -126,24 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Extra\AddCriancaView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\Home\Home.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\Home\HomeMaster.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\Home\HomeDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

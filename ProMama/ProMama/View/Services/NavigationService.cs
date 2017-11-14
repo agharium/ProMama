@@ -16,7 +16,7 @@ namespace ProMama.View.Services
 
         public void NavigateToHome()
         {
-            Application.Current.MainPage = new Home.Home();
+            //Application.Current.MainPage = new Inicio.HomeView();
         }
     }
 }

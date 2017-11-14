@@ -26,13 +26,3 @@ C:\Users\Programador\Desktop\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Inic
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Extra.AddCriancaView.xaml.g.cs
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama\obj\Debug\ProMama.dll
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama\obj\Debug\ProMama.pdb
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.csproj.CoreCompileInputs.cache
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.App.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Inicio.LoginView.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Inicio.CadastroView.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Extra.AddCriancaView.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Home.Home.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Home.HomeMaster.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.View.Home.HomeDetail.xaml.g.cs
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.dll
-C:\ProMama\ProMama\ProMama\obj\Debug\ProMama.pdb
