@@ -28,11 +28,11 @@ namespace ProMama.View.Home
             {
                 MenuItems = new ObservableCollection<HomeMenuItem>(new[]
                 {
-                    new HomeMenuItem { Id = 0, Title = "Page 1" },
-                    new HomeMenuItem { Id = 1, Title = "Page 2" },
-                    new HomeMenuItem { Id = 2, Title = "Page 3" },
-                    new HomeMenuItem { Id = 3, Title = "Page 4" },
-                    new HomeMenuItem { Id = 4, Title = "Page 5" },
+                    new HomeMenuItem { Id = 0, Title = "Início" },
+                    new HomeMenuItem { Id = 1, Title = "Perfil da Criança", TargetType = typeof(Paginas.PerfilCriancaCreateView) },
+                    new HomeMenuItem { Id = 2, Title = "Perfil da Mãe", TargetType = typeof(Paginas.PerfilMaeCreateView) },
+                    new HomeMenuItem { Id = 3, Title = "Acompanhamento da Criança", TargetType = typeof(Paginas.AcompanhamentoView) },
+                    new HomeMenuItem { Id = 4, Title = "Galeria", TargetType = typeof(Paginas.GaleriaView) },
                 });
             }
 

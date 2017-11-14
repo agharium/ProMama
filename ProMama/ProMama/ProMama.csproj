@@ -48,6 +48,9 @@
     <Compile Include="ViewModel\Inicio\IntroducaoViewModel.cs" />
     <Compile Include="ViewModel\Inicio\LoginViewModel.cs" />
     <Compile Include="ViewModel\Services\IMessageService.cs" />
+    <Compile Include="View\Extra\AddAcompanhamentoView.xaml.cs">
+      <DependentUpon>AddAcompanhamentoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Extra\AddCriancaView.xaml.cs">
       <DependentUpon>AddCriancaView.xaml</DependentUpon>
     </Compile>
@@ -61,6 +64,24 @@
       <DependentUpon>HomeMaster.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\HomeMenuItem.cs" />
+    <Compile Include="View\Home\Paginas\AcompanhamentoView.xaml.cs">
+      <DependentUpon>AcompanhamentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
+      <DependentUpon>GaleriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\PerfilCriancaCreateView.xaml.cs">
+      <DependentUpon>PerfilCriancaCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\PerfilCriancaView.xaml.cs">
+      <DependentUpon>PerfilCriancaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\PerfilMaeCreateView.xaml.cs">
+      <DependentUpon>PerfilMaeCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\PerfilMaeView.xaml.cs">
+      <DependentUpon>PerfilMaeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Services\MessageService.cs" />
     <Compile Include="View\Services\NavigationService.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -147,6 +168,48 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\PerfilMaeCreateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\PerfilMaeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\GaleriaView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Extra\AddAcompanhamentoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\PerfilCriancaCreateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\PerfilCriancaView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\AcompanhamentoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.4.0.38779\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.38779\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
