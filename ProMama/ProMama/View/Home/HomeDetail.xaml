@@ -65,7 +65,7 @@
                 </Grid>
                 <StackLayout Padding="5, 10, 5, 10"
                              Spacing="10">
-                    <Frame Padding="10"
+                    <Frame Padding="0"
                            Margin="10, 5, 10, 5"
                            HeightRequest="250"
                            OutlineColor="#262626">
@@ -81,10 +81,12 @@
                             <Label Text="Título da Informação"
                                    TextColor="#212121"
                                    FontSize="20"
+                                   Margin="10, 10, 10, 0"
                                    Grid.Column="0"
                                    Grid.Row="0"/>
                             <Label Text="Este CardView foi adicionado no XAML de forma programática utilizando o code-behind do C#."
                                    TextColor="#757575"
+                                   Margin="10, 0, 10, 0"
                                    Grid.Column="0"
                                    Grid.Row="1"/>
                             <Image Source="baby.jpeg"
