@@ -4,34 +4,28 @@
              x:Class="ProMama.View.Inicio.CadastroView"
              Title="Cadastro"
              Icon="">
-    
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout
-                Padding="20"
-                Spacing="20">
-                <Entry 
-                    Placeholder="E-mail"
-                    Keyboard="Email" 
-                    Text="{Binding Email}"/>
-                <Entry 
-                    Placeholder="Senha"
-                    IsPassword="True"
-                    Text="{Binding Password}"/>
-                <Entry 
-                    Placeholder="Confirme a senha"
-                    IsPassword="True"
-                    Text="{Binding PasswordConfirmation}"/>
-                <Button 
-                    Style="{StaticResource buttonMain}"
-                    Text="Continuar"
-                    Command="{Binding CadastroCommand}"/>
-                <Button
-                    HorizontalOptions="Fill"
-                    Text="Já tem cadastro?"
-                    Clicked="ChangeToLogin"/>
+
+            <StackLayout Padding="20"
+                         Spacing="20">
+                <Entry Placeholder="E-mail"
+                       Keyboard="Email" 
+                       Text="{Binding Email}"/>
+                <Entry Placeholder="Senha"
+                       IsPassword="True"
+                       Text="{Binding Password}"/>
+                <Entry Placeholder="Confirme a senha"
+                       IsPassword="True"
+                       Text="{Binding PasswordConfirmation}"/>
+                <Button Style="{StaticResource buttonMain}"
+                        Text="Continuar"
+                        Command="{Binding CadastroCommand}"/>
+                <Button Text="Já tem cadastro?"
+                        HorizontalOptions="Fill"
+                        Clicked="ChangeToLogin"/>
             </StackLayout>
+            
         </ScrollView>
     </ContentPage.Content>
-    
 </ContentPage>

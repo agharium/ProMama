@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.HomeDetail"
+             Title="Pró-Mamá"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+    <StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <Grid BackgroundColor="#F44336"
+                      HeightRequest="125">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="arrow_left.png"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           VerticalOptions="Center"
+                           Margin="15"
+                           Grid.Column="0"
+                           Grid.Row="0">
+                        <!--<Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ActionLeftArrow" />
+                        </Image.GestureRecognizers>-->
+                    </Image>
+                    <Grid RowSpacing="10" 
+                          Grid.Column="1"
+                          Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <controls:CircleImage Source="baby.jpeg"
+                                              Aspect="AspectFill"
+                                              Margin="0, 15, 0, 0"
+                                              Grid.Column="0" 
+                                              Grid.Row="0"/>
+                        <Label Text="Nome do Bebê - Idade"   
+                               TextColor="White"
+                               FontSize="Small"
+                               HorizontalOptions="Center"
+                               Margin="0, 0, 0, 10"
+                               Grid.Column="0"
+                               Grid.Row="1"/>
+                    </Grid>
+                    <Image Source="arrow_right.png"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           VerticalOptions="Center"
+                           Margin="15"
+                           Grid.Column="2"
+                           Grid.Row="0">
+                        <!--<Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ActionRightArrow" />
+                        </Image.GestureRecognizers>-->
+                    </Image>
+                </Grid>
+                <StackLayout Padding="5, 10, 5, 10"
+                             Spacing="10">
+                    <Frame Padding="10"
+                           Margin="10, 5, 10, 5"
+                           HeightRequest="250"
+                           OutlineColor="#262626">
+                        <Grid RowSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Título da Informação"
+                                   TextColor="#212121"
+                                   FontSize="20"
+                                   Grid.Column="0"
+                                   Grid.Row="0"/>
+                            <Label Text="Este CardView foi adicionado no XAML de forma programática utilizando o code-behind do C#."
+                                   TextColor="#757575"
+                                   Grid.Column="0"
+                                   Grid.Row="1"/>
+                            <Image Source="baby.jpeg"
+                                   Aspect="AspectFill"
+                                   Grid.Column="0"
+                                   Grid.Row="2"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
