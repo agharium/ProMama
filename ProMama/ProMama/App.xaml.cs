@@ -11,11 +11,7 @@ namespace ProMama
 
             InitializeComponent();
 
-            // correto
-            //MainPage = new View.Inicio.IntroducaoView();
-
-            // testes
-            MainPage = new View.Home.Home();
+            MainPage = new View.Inicio.IntroducaoView();
         }
 
         protected override void OnStart()

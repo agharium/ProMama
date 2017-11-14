@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ProMama.ViewModel.Services
 {
@@ -9,5 +10,9 @@ namespace ProMama.ViewModel.Services
         void NavigateToAddCrianca();
 
         void NavigateToHome();
+
+        Task NavigateToPerfilCrianca(NavigationPage navigation);
+
+        Task NavigateToPerfilMae(NavigationPage navigation);
     }
 }

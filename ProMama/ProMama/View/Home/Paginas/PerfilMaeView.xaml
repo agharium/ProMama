@@ -1,12 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProMama.View.Home.Paginas.PerfilMaeView">
+             x:Class="ProMama.View.Home.Paginas.PerfilMaeView"
+             Title="Perfil da Mãe">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="225" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Source="mother.jpeg" 
+                               Aspect="AspectFill"
+                               Grid.Column="0"
+                               Grid.Row="0" />
+                        <StackLayout Padding="60, 25, 60, 25"
+                                     Spacing="25"
+                                     Grid.Column="0"
+                                     Grid.Row="1">
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Nome" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Renata da Silva" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Tipo de parto" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Normal" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Idade gestacional no momento do parto" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="42 semanas" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Bairro" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Bairro 3" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Posto de saúde de referência" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Posto 5" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

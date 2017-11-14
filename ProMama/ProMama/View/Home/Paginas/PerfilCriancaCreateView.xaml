@@ -1,12 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProMama.View.Home.Paginas.PerfilCriancaCreateView">
+             x:Class="ProMama.View.Home.Paginas.PerfilCriancaCreateView"
+             Title="Perfil da Criança">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <StackLayout Padding="20"
+                             Spacing="20">
+                    <Entry Placeholder="Nome da criança"/>
+                    <Entry Placeholder="Data de nascimento da criança"/>
+                    <Picker Title="Sexo da criança">
+                        <Picker.Items>
+                            <x:String>Masculino</x:String>
+                            <x:String>Feminino</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Placeholder="Peso ao nascer"
+                           Keyboard="Numeric"/>
+                    <Entry Placeholder="Altura ao nascer"
+                           Keyboard="Numeric"/>
+                    <Label Text="Outras informações:"
+                           HorizontalOptions="Center"/>
+                    <Editor/>
+                    <Button Style="{StaticResource buttonMain}"
+                            Text="Salvar"
+                            Command="{Binding NavigationCommand}"/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,12 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProMama.View.Home.Paginas.PerfilCriancaView">
+             x:Class="ProMama.View.Home.Paginas.PerfilCriancaView"
+             Title="Perfil da Criança">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="225" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Source="baby.jpeg" 
+                               Aspect="AspectFill" 
+                               Grid.Column="0"
+                               Grid.Row="0"/>
+                        <StackLayout Padding="60, 25, 60, 25"
+                                     Spacing="25" 
+                                     Grid.Column="0"
+                                     Grid.Row="1">
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Nome" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Joaquim Santos da Silva" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Data de nascimento" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="18/11/2016" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Sexo" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Menino" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Peso ao nascer" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="3.5kg" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Altura ao nascer" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="45cm" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource labelSubtitle}"
+                                       Text="Outras informações" />
+                                <Label Style="{StaticResource labelTitle}"
+                                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in lectus at neque porttitor vestibulum vitae quis felis. In vitae." />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,12 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProMama.View.Home.Paginas.PerfilMaeCreateView">
+             x:Class="ProMama.View.Home.Paginas.PerfilMaeCreateView"
+             Title="Perfil da Mãe">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <StackLayout Padding="20"
+                             Spacing="20">
+                    <Entry Placeholder="Nome" />
+                    <Picker Title="Tipo de parto">
+                        <Picker.Items>
+                            <x:String>Normal</x:String>
+                            <x:String>Cesária</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker Title="Idade gestacional no momento do parto"
+                            x:Name="idadeGestacionalPicker"></Picker>
+                    <Picker Title="Bairro">
+                        <Picker.Items>
+                            <x:String>Bairro 1</x:String>
+                            <x:String>Bairro 2</x:String>
+                            <x:String>Bairro 3</x:String>
+                            <x:String>Bairro 4</x:String>
+                            <x:String>Bairro 5</x:String>
+                            <x:String>Outro</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker Title="Posto de saúde de referência">
+                        <Picker.Items>
+                            <x:String>Posto 1</x:String>
+                            <x:String>Posto 2</x:String>
+                            <x:String>Posto 3</x:String>
+                            <x:String>Posto 4</x:String>
+                            <x:String>Posto 5</x:String>
+                            <x:String>Não utilizo</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Button Style="{StaticResource buttonMain}"
+                            Text="Salvar"
+                            Command="{Binding NavigationCommand}"/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

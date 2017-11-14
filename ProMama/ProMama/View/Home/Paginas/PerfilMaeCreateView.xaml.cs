@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ProMama.View.Home.Paginas
@@ -15,6 +9,13 @@ namespace ProMama.View.Home.Paginas
         public PerfilMaeCreateView()
         {
             InitializeComponent();
+
+            BindingContext = new ViewModel.Home.Paginas.PerfilMaeCreateViewModel();
+
+            for (int i = 20; i <= 42; i++)
+            {
+                idadeGestacionalPicker.Items.Add(i + " semanas");
+            }
         }
     }
 }

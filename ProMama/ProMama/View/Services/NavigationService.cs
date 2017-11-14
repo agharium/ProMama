@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ProMama.View.Services
 {
@@ -17,6 +18,16 @@ namespace ProMama.View.Services
         public void NavigateToHome()
         {
             Application.Current.MainPage = new Home.Home();
+        }
+
+        public async Task NavigateToPerfilCrianca(NavigationPage navigation)
+        {
+            await navigation.PushAsync(new Home.Paginas.PerfilCriancaView());
+        }
+
+        public async Task NavigateToPerfilMae(NavigationPage navigation)
+        {
+            await navigation.PushAsync(new Home.Paginas.PerfilMaeView());
         }
     }
 }
