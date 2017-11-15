@@ -11,8 +11,8 @@ namespace ProMama.ViewModel.Services
 
         void NavigateToHome();
 
-        Task NavigateToPerfilCrianca(NavigationPage navigation);
+        Task NavigateToPerfilCrianca(INavigation Navigation);
 
-        Task NavigateToPerfilMae(NavigationPage navigation);
+        Task NavigateToPerfilMae(INavigation Navigation);
     }
 }

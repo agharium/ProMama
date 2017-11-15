@@ -5,12 +5,14 @@ namespace ProMama.ViewModel.Home.Paginas
 {
     class PerfilCriancaCreateViewModel : ViewModelBase
     {
+        private INavigation Navigation { get; set; }
         public ICommand NavigationCommand { get; set; }
 
         private readonly Services.INavigationService _navigationService;
 
-        public PerfilCriancaCreateViewModel()
+        public PerfilCriancaCreateViewModel(INavigation Navigation)
         {
+            this.Navigation = Navigation;
             this.NavigationCommand = new Command(this.NavigateToPerfilCrianca);
 
             this._navigationService = DependencyService.Get<Services.INavigationService>();
@@ -18,7 +20,7 @@ namespace ProMama.ViewModel.Home.Paginas
 
         private async void NavigateToPerfilCrianca()
         {
-            await this._navigationService.NavigateToPerfilCrianca();
+            await this._navigationService.NavigateToPerfilCrianca(Navigation);
         }
     }
 }

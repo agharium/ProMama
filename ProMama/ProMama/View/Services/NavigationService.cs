@@ -20,14 +20,14 @@ namespace ProMama.View.Services
             Application.Current.MainPage = new Home.Home();
         }
 
-        public async Task NavigateToPerfilCrianca(NavigationPage navigation)
+        public async Task NavigateToPerfilCrianca(INavigation Navigation)
         {
-            await navigation.PushAsync(new Home.Paginas.PerfilCriancaView());
+            await Navigation.PushAsync(new Home.Paginas.PerfilCriancaView());
         }
 
-        public async Task NavigateToPerfilMae(NavigationPage navigation)
+        public async Task NavigateToPerfilMae(INavigation Navigation)
         {
-            await navigation.PushAsync(new Home.Paginas.PerfilMaeView());
+            await Navigation.PushAsync(new Home.Paginas.PerfilMaeView());
         }
     }
 }

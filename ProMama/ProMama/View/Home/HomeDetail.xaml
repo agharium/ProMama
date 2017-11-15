@@ -43,7 +43,7 @@
                                               Margin="0, 15, 0, 0"
                                               Grid.Column="0" 
                                               Grid.Row="0"/>
-                        <Label Text="Nome do Bebê - Idade"   
+                        <Label Text="Nome da criança - Idade"   
                                TextColor="White"
                                FontSize="Small"
                                HorizontalOptions="Center"
@@ -67,8 +67,7 @@
                              Spacing="10">
                     <Frame Padding="0"
                            Margin="10, 5, 10, 5"
-                           HeightRequest="250"
-                           OutlineColor="#262626">
+                           HeightRequest="250">
                         <Grid RowSpacing="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -84,7 +83,7 @@
                                    Margin="10, 10, 10, 0"
                                    Grid.Column="0"
                                    Grid.Row="0"/>
-                            <Label Text="Este CardView foi adicionado no XAML de forma programática utilizando o code-behind do C#."
+                            <Label Text="Aenean vitae diam in nisl hendrerit dapibus eu id ante. Sed vestibulum varius nunc, ac venenatis ligula interdum et."
                                    TextColor="#757575"
                                    Margin="10, 0, 10, 0"
                                    Grid.Column="0"

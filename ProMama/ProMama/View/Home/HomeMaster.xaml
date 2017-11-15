@@ -27,7 +27,7 @@
                                           Aspect="AspectFill"
                                           Grid.Column="1" 
                                           Grid.Row="1"/>
-                    <Label Text="Nome do bebê - Idade"
+                    <Label Text="Nome da criança - Idade"
                            TextColor="White"
                            Style="{DynamicResource SubtitleStyle}"
                            Grid.Column="1"
