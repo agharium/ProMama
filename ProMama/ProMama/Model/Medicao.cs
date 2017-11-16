@@ -9,12 +9,12 @@ namespace ProMama.Model
         public String Altura { get; set; }
         public String Alimentacao { get; set; }
 
-        public Medicao(String Data, String Peso, String Altura, String Alimentacao)
+        public Medicao(string data, string peso, string altura, string alimentacao)
         {
-            this.Data = Data;
-            this.Peso = Peso;
-            this.Altura = Altura;
-            this.Alimentacao = Alimentacao;
+            Data = data;
+            Peso = peso;
+            Altura = altura;
+            Alimentacao = alimentacao;
         }
     }
 }

@@ -14,5 +14,7 @@ namespace ProMama.ViewModel.Services
         Task NavigateToPerfilCrianca(INavigation Navigation);
 
         Task NavigateToPerfilMae(INavigation Navigation);
+
+        Task NavigateToAddAcompanhamento(INavigation Navigation);
     }
 }

@@ -29,5 +29,10 @@ namespace ProMama.View.Services
         {
             await Navigation.PushAsync(new Home.Paginas.PerfilMaeView());
         }
+
+        public async Task NavigateToAddAcompanhamento(INavigation Navigation)
+        {
+            await Navigation.PushAsync(new Home.Paginas.AddAcompanhamentoView());
+        }
     }
 }

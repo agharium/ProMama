@@ -1,5 +1,7 @@
 ﻿using ProMama.Model;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ProMama.ViewModel.Home.Paginas
 {
@@ -16,8 +18,18 @@ namespace ProMama.ViewModel.Home.Paginas
 
         }
 
-        public AcompanhamentoViewModel()
+        private INavigation Navigation { get; set; }
+        public ICommand NavigationCommand { get; set; }
+
+        private readonly Services.INavigationService _navigationService;
+
+        public AcompanhamentoViewModel(INavigation Navigation)
         {
+            this.Navigation = Navigation;
+            this.NavigationCommand = new Command(this.NavigateToAddAcompanhamento);
+
+            this._navigationService = DependencyService.Get<Services.INavigationService>();
+
             Medicoes = new ObservableCollection<Medicao>();
 
             Medicao teste1 = new Medicao("07/01/17", "4,5kg", "60cm", "Tipo 1");
@@ -28,6 +40,11 @@ namespace ProMama.ViewModel.Home.Paginas
 
             Medicao teste3 = new Medicao("27/02/17", "6,5kg", "80cm", "Tipo 3");
             Medicoes.Add(teste3);
+        }
+
+        private async void NavigateToAddAcompanhamento()
+        {
+            await this._navigationService.NavigateToAddAcompanhamento(Navigation);
         }
     }
 }

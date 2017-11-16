@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.Paginas.AddAcompanhamentoView"
+             Title="Adicionar Medição">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout Padding="20"
+                             Spacing="20">
+                    
+                    <Label Text="Selecione a data em que a medição foi realizada:" 
+                           HorizontalOptions="Center"/>
+                    
+                    <DatePicker Format="dd/MM/yyyy"
+                                HorizontalOptions="Center" />
+                    
+                    <Entry Placeholder="Peso da criança (kg)"
+                           Keyboard="Numeric"/>
+                    
+                    <Entry Placeholder="Altura da criança (cm)"
+                           Keyboard="Numerica"/>
+                    
+                    <Picker Title="Alimentação da criança">
+                        <Picker.Items>
+                            <x:String>Tipo 1</x:String>
+                            <x:String>Tipo 2</x:String>
+                            <x:String>Tipo 3</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    
+                    <Button Style="{StaticResource buttonMain}"
+                            Text="Salvar medição"/>
+                    
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

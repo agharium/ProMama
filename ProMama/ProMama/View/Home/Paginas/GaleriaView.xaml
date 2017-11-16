@@ -4,10 +4,47 @@
              x:Class="ProMama.View.Home.Paginas.GaleriaView"
              Title="Galeria">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20"
+                     Spacing="20">
+
+            <ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="0"
+                                   Margin="10, 5, 10, 5"
+                                   HeightRequest="250">
+                                <Grid RowSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Título da Informação"
+                                           TextColor="#212121"
+                                           FontSize="20"
+                                           Margin="10, 10, 10, 0"
+                                           Grid.Column="0"
+                                           Grid.Row="0"/>
+                                    <Label Text="Aenean vitae diam in nisl hendrerit dapibus eu id ante. Sed vestibulum varius nunc, ac venenatis ligula interdum et."
+                                           TextColor="#757575"
+                                           Margin="10, 0, 10, 0"
+                                           Grid.Column="0"
+                                           Grid.Row="1"/>
+                                    <Image Source="baby.jpeg"
+                                           Aspect="AspectFill"
+                                           Grid.Column="0"
+                                           Grid.Row="2"/>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

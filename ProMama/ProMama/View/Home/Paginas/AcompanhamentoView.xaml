@@ -9,6 +9,10 @@
                 <StackLayout Padding="20"
                              Spacing="20">
 
+                    <Button Style="{StaticResource buttonMain}"
+                            Text="Adicionar nova medição"
+                            Command="{Binding NavigationCommand}"/>
+
                     <Label Text="Medições anteriores:" 
                            FontSize="Medium"
                            HorizontalOptions="Center"/>
@@ -208,8 +212,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <Button Style="{StaticResource buttonMain}"
-                            Text="Adicionar nova medição"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
