@@ -20,7 +20,7 @@
                     <DatePicker Format="dd/MM/yyyy"
                                 HorizontalOptions="Center" />
                     <Button Style="{StaticResource buttonMain}"
-                            Text="Continuar"
+                            Text="Começar"
                             Command="{Binding NavigationCommand}"/>
                 </StackLayout>
             </ScrollView>

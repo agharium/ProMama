@@ -4,16 +4,16 @@
              x:Class="ProMama.View.Home.Paginas.GaleriaView"
              Title="Galeria">
     <ContentPage.Content>
-        <StackLayout Padding="20"
-                     Spacing="20">
-
-            <ListView>
+        <StackLayout>
+            <ListView SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding Fotos}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame Padding="0"
-                                   Margin="10, 5, 10, 5"
-                                   HeightRequest="250">
+                                   HeightRequest="250"
+                                   Margin="20, 20, 20, 0">
                                 <Grid RowSpacing="10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -23,18 +23,20 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Label Text="Título da Informação"
+                                    <Label Text="{Binding Mes, StringFormat='{0}º Mês'}"
                                            TextColor="#212121"
                                            FontSize="20"
                                            Margin="10, 10, 10, 0"
+                                           HorizontalTextAlignment="Center"
                                            Grid.Column="0"
                                            Grid.Row="0"/>
-                                    <Label Text="Aenean vitae diam in nisl hendrerit dapibus eu id ante. Sed vestibulum varius nunc, ac venenatis ligula interdum et."
+                                    <Label Text="{Binding Data, StringFormat='Adicionado em {0}'}"
                                            TextColor="#757575"
                                            Margin="10, 0, 10, 0"
+                                           HorizontalTextAlignment="Center"
                                            Grid.Column="0"
                                            Grid.Row="1"/>
-                                    <Image Source="baby.jpeg"
+                                    <Image Source="{Binding Imagem}"
                                            Aspect="AspectFill"
                                            Grid.Column="0"
                                            Grid.Row="2"/>
@@ -43,8 +45,10 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout Margin="0, 0, 0, 20" />
+                </ListView.Footer>
             </ListView>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

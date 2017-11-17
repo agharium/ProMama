@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace ProMama.Model
+﻿namespace ProMama.Model
 {
     class Medicao
     {
-        public String Data { get; set; }
-        public String Peso { get; set; }
-        public String Altura { get; set; }
-        public String Alimentacao { get; set; }
+        public string Data { get; set; }
+        public string Peso { get; set; }
+        public string Altura { get; set; }
+        public string Alimentacao { get; set; }
 
         public Medicao(string data, string peso, string altura, string alimentacao)
         {

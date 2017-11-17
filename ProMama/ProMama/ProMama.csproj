@@ -42,11 +42,15 @@
     <Compile Include="CustomComponent\Carousel\CarouselContent.cs" />
     <Compile Include="CustomComponent\Carousel\DotButton.cs" />
     <Compile Include="CustomComponent\Carousel\DotButtonsLayout.cs" />
+    <Compile Include="Model\Crianca.cs" />
     <Compile Include="Model\Foto.cs" />
+    <Compile Include="Model\Informacao.cs" />
     <Compile Include="Model\Medicao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Extra\AddCriancaViewModel.cs" />
+    <Compile Include="ViewModel\Home\HomeDetailViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\AcompanhamentoViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaCreateViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilMaeCreateViewModel.cs" />
     <Compile Include="ViewModel\Inicio\CadastroViewModel.cs" />

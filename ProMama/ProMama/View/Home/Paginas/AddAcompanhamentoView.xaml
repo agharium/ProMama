@@ -19,7 +19,7 @@
                            Keyboard="Numeric"/>
                     
                     <Entry Placeholder="Altura da criança (cm)"
-                           Keyboard="Numerica"/>
+                           Keyboard="Numeric"/>
                     
                     <Picker Title="Alimentação da criança">
                         <Picker.Items>

@@ -38,7 +38,7 @@ namespace ProMama.ViewModel.Home.Paginas
             Medicao teste2 = new Medicao("17/02/17", "5,5kg", "70cm", "Tipo 2");
             Medicoes.Add(teste2);
 
-            Medicao teste3 = new Medicao("27/02/17", "6,5kg", "80cm", "Tipo 3");
+            Medicao teste3 = new Medicao("27/03/17", "6,5kg", "80cm", "Tipo 3");
             Medicoes.Add(teste3);
         }
 

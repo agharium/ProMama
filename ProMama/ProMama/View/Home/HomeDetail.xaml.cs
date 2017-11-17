@@ -9,6 +9,8 @@ namespace ProMama.View.Home
         public HomeDetail()
         {
             InitializeComponent();
+
+            BindingContext = new ViewModel.Home.HomeDetailViewModel();
         }
     }
 }
