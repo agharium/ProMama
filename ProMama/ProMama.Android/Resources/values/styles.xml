@@ -34,7 +34,17 @@
   <color name="ListViewSelected">#00000000</color>
   <color name="ListViewHighlighted">#00000000</color>
 
+  <!-- NÃO SEI -->
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#F44336</item>
   </style>
+
+  <!-- SPLASH SCREEN -->
+  <style name="MainTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+  </style>
+
+  <color name="splash_background">#FFF</color>
 </resources>
