@@ -30,6 +30,7 @@ namespace ProMama.iOS
             // FFImageLoading
             FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
 
+            LoadApplication(new ProMama.App());
             return base.FinishedLaunching(app, options);
         }
     }

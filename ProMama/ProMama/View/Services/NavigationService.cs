@@ -34,5 +34,10 @@ namespace ProMama.View.Services
         {
             await Navigation.PushAsync(new Home.Paginas.AddAcompanhamentoView());
         }
+
+        public async Task NavigateToInfoPage(INavigation Navigation, Model.Informacao info)
+        {
+            await Navigation.PushAsync(new Home.Paginas.InformacaoView(info));
+        }
     }
 }

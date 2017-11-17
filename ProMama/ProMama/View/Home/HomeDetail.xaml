@@ -104,6 +104,10 @@
                                            Grid.Column="0"
                                            Grid.Row="2"/>
                                 </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.InfoPageCommand}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

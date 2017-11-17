@@ -10,7 +10,7 @@ namespace ProMama.View.Home
         {
             InitializeComponent();
 
-            BindingContext = new ViewModel.Home.HomeDetailViewModel();
+            BindingContext = new ViewModel.Home.HomeDetailViewModel(this.Navigation);
         }
     }
 }

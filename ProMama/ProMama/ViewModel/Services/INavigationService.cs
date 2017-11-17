@@ -16,5 +16,7 @@ namespace ProMama.ViewModel.Services
         Task NavigateToPerfilMae(INavigation Navigation);
 
         Task NavigateToAddAcompanhamento(INavigation Navigation);
+
+        Task NavigateToInfoPage(INavigation Navigation, Model.Informacao info);
     }
 }

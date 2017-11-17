@@ -2,7 +2,7 @@
 
 namespace ProMama.Model
 {
-    class Informacao
+    public class Informacao
     {
         public int IdadeInicio { get; set; }
         public int IdadeFim { get; set; }

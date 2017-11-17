@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -43,14 +44,19 @@ namespace ProMama.ViewModel.Home
 
         }
 
-        public List<Informacao> InformacoesAux = new List<Informacao>();
+        private List<Informacao> InformacoesAux = new List<Informacao>();
 
         // Commands
         public ICommand MenosIdadeCommand { get; set; }
         public ICommand MaisIdadeCommand { get; set; }
+        public ICommand InfoPageCommand { get; set; }
+
+        // Navigation
+        private INavigation Navigation { get; set; }
+        private readonly Services.INavigationService _navigationService;
 
         // Construtor
-        public HomeDetailViewModel()
+        public HomeDetailViewModel(INavigation Navigation)
         {
             // Informações
             Informacoes = new ObservableCollection<Informacao>();
@@ -114,6 +120,11 @@ namespace ProMama.ViewModel.Home
             // Commands
             this.MenosIdadeCommand = new Command(this.MenosIdade);
             this.MaisIdadeCommand = new Command(this.MaisIdade);
+            this.InfoPageCommand = new Command<Informacao>(this.InfoPage);
+
+            // Navigation
+            this.Navigation = Navigation;
+            this._navigationService = DependencyService.Get<Services.INavigationService>();
         }
 
         // Botão da seta pra direita
@@ -199,5 +210,10 @@ namespace ProMama.ViewModel.Home
             }
         }
         
+        // Abre pagina de informação
+        private async void InfoPage(Informacao info)
+        {
+            await this._navigationService.NavigateToInfoPage(this.Navigation, info);
+        }
     }
 }

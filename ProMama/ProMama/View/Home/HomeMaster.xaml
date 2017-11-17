@@ -10,7 +10,7 @@
                   HasUnevenRows="true"
                   ItemsSource="{Binding MenuItems}">
             <ListView.Header>
-                <Grid BackgroundColor="#F44336">
+                <Grid BackgroundColor="#E53935">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
@@ -21,17 +21,23 @@
                         <RowDefinition Height="100"/>
                         <RowDefinition Height="5"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
                     <controls:CircleImage Source="baby.jpeg" 
                                           Aspect="AspectFill"
                                           Grid.Column="1" 
                                           Grid.Row="1"/>
-                    <Label Text="Nome da criança - Idade"
+                    <Label Text="Joaquim Santos da Silva"
                            TextColor="White"
-                           Style="{DynamicResource SubtitleStyle}"
+                           FontSize="Medium"
                            Grid.Column="1"
                            Grid.Row="3"/>
+                    <Label Text="7 meses"
+                           TextColor="White"
+                           FontSize="Small"
+                           Grid.Column="1"
+                           Grid.Row="4"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>

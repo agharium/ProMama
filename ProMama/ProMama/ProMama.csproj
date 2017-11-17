@@ -51,6 +51,7 @@
     <Compile Include="ViewModel\Home\HomeDetailViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\AcompanhamentoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\InformacaoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaCreateViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilMaeCreateViewModel.cs" />
     <Compile Include="ViewModel\Inicio\CadastroViewModel.cs" />
@@ -78,6 +79,9 @@
     </Compile>
     <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
       <DependentUpon>GaleriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\InformacaoView.xaml.cs">
+      <DependentUpon>InformacaoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\PerfilCriancaCreateView.xaml.cs">
       <DependentUpon>PerfilCriancaCreateView.xaml</DependentUpon>
@@ -213,6 +217,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Home\Paginas\AcompanhamentoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\InformacaoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

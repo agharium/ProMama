@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.Paginas.InformacaoView"
+             Title="{Binding Titulo}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20"
+                         Spacing="20">
+                <Label Text="{Binding Titulo}"
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       TextColor="Black"/>
+                <Image Source="{Binding Imagem}"
+                       HorizontalOptions="Center"
+                       Aspect="AspectFill"/>
+                <Label Text="{Binding Texto}"
+                       TextColor="#262626"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
