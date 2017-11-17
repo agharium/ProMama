@@ -9,8 +9,10 @@
                 <StackLayout Padding="20"
                              Spacing="20">
                     
-                    <Entry Placeholder="Nome da criança"/>
-                    
+                    <Entry Placeholder="Primeiro nome da criança"/>
+
+                    <Entry Placeholder="Sobrenome da criança"/>
+
                     <Entry Placeholder="Data de nascimento da criança"/>
                     
                     <Picker Title="Sexo da criança">

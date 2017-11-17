@@ -8,13 +8,7 @@
             <ScrollView>
                 <StackLayout Spacing="20"
                              Padding="20">
-                    <Entry Placeholder="Nome da criança" />
-                    <Picker Title="Sexo da criança">
-                        <Picker.Items>
-                            <x:String>Masculino</x:String>
-                            <x:String>Feminino</x:String>
-                        </Picker.Items>
-                    </Picker>
+                    <Entry Placeholder="Primeiro nome da criança" />
                     <Label Text="Selecione a data de nascimento da criança:" 
                            HorizontalOptions="Center"/>
                     <DatePicker Format="dd/MM/yyyy"
