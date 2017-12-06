@@ -77,11 +77,17 @@
     <Compile Include="View\Home\Paginas\AddAcompanhamentoView.xaml.cs">
       <DependentUpon>AddAcompanhamentoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Home\Paginas\DuvidasFrequentesView.xaml.cs">
+      <DependentUpon>DuvidasFrequentesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
       <DependentUpon>GaleriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\InformacaoView.xaml.cs">
       <DependentUpon>InformacaoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\MarcosCriancaView.xaml.cs">
+      <DependentUpon>MarcosCriancaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\PerfilCriancaCreateView.xaml.cs">
       <DependentUpon>PerfilCriancaCreateView.xaml</DependentUpon>
@@ -223,6 +229,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Home\Paginas\InformacaoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\DuvidasFrequentesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\MarcosCriancaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

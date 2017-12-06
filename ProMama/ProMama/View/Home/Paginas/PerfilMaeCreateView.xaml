@@ -9,14 +9,12 @@
                 <StackLayout Padding="20"
                              Spacing="20">
                     <Entry Placeholder="Nome" />
-                    <Picker Title="Tipo de parto">
-                        <Picker.Items>
-                            <x:String>Normal</x:String>
-                            <x:String>Cesária</x:String>
-                        </Picker.Items>
-                    </Picker>
-                    <Picker Title="Idade gestacional no momento do parto"
-                            x:Name="idadeGestacionalPicker"></Picker>
+
+                    <Label Text="Data de nascimento:" 
+                           HorizontalOptions="Center"/>
+                    <DatePicker Format="dd/MM/yyyy"
+                                HorizontalOptions="Center" />
+
                     <Picker Title="Bairro">
                         <Picker.Items>
                             <x:String>Bairro 1</x:String>
@@ -27,6 +25,7 @@
                             <x:String>Outro</x:String>
                         </Picker.Items>
                     </Picker>
+
                     <Picker Title="Posto de saúde de referência">
                         <Picker.Items>
                             <x:String>Posto 1</x:String>
@@ -37,6 +36,7 @@
                             <x:String>Não utilizo</x:String>
                         </Picker.Items>
                     </Picker>
+
                     <Button Style="{StaticResource buttonMain}"
                             Text="Salvar"
                             Command="{Binding NavigationCommand}"/>

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -18,7 +17,8 @@ namespace ProMama.ViewModel.Home
         public int IdadeAux
         {
             get { return _idadeAux; }
-            set {
+            set
+            {
                 _idadeAux = value;
                 DefineIdadeExtenso();
                 OrganizaInformacoes();
@@ -29,7 +29,8 @@ namespace ProMama.ViewModel.Home
         public string IdadeExtenso
         {
             get { return _idadeExtenso; }
-            set {
+            set
+            {
                 _idadeExtenso = value;
                 this.Notify("IdadeExtenso");
             }
@@ -46,9 +47,18 @@ namespace ProMama.ViewModel.Home
 
         private List<Informacao> InformacoesAux = new List<Informacao>();
 
+        // Picker
+        private List<string> _idadesPickerLista;
+        public List<string> IdadesPickerLista
+        {
+            get { return _idadesPickerLista; }
+            set { _idadesPickerLista = value; }
+        }
+
         // Commands
         public ICommand MenosIdadeCommand { get; set; }
         public ICommand MaisIdadeCommand { get; set; }
+        public ICommand IdadePickerCommand { get; set; }
         public ICommand InfoPageCommand { get; set; }
 
         // Navigation
@@ -67,7 +77,7 @@ namespace ProMama.ViewModel.Home
                 "Informação nº 1",
                 "Fusce sagittis non ante nec tristique. Nullam at turpis et augue interdum dictum non sit amet diam. Aenean sit amet mauris tortor. Sed dui est, luctus egestas elit vitae, sodales mollis ex. Aliquam a tortor ipsum. Praesent ac condimentum dolor, in porta tellus. Vivamus viverra ac dolor ac mattis. Vestibulum a hendrerit orci. Etiam tempus libero ut vestibulum interdum. Vestibulum viverra imperdiet consequat." + Environment.NewLine +
                     "Proin dignissim posuere tincidunt. Fusce a libero id enim fermentum aliquam. Donec ligula lacus, posuere sed tempor ut, rutrum at elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent porttitor hendrerit lacinia. Aenean mattis dapibus viverra. Morbi mollis eget leo quis egestas .Nulla facilisi.Mauris elementum urna a lacus volutpat, in rutrum augue iaculis. Mauris quis dui sit amet ligula tincidunt rhoncus cursus in eros." + Environment.NewLine +
-                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.", 
+                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.",
                 "baby.jpeg");
             InformacoesAux.Add(teste1);
 
@@ -75,9 +85,7 @@ namespace ProMama.ViewModel.Home
                 4,
                 12,
                 "Informação nº 2",
-                "Fusce sagittis non ante nec tristique. Nullam at turpis et augue interdum dictum non sit amet diam. Aenean sit amet mauris tortor. Sed dui est, luctus egestas elit vitae, sodales mollis ex. Aliquam a tortor ipsum. Praesent ac condimentum dolor, in porta tellus. Vivamus viverra ac dolor ac mattis. Vestibulum a hendrerit orci. Etiam tempus libero ut vestibulum interdum. Vestibulum viverra imperdiet consequat." + Environment.NewLine +
-                    "Proin dignissim posuere tincidunt. Fusce a libero id enim fermentum aliquam. Donec ligula lacus, posuere sed tempor ut, rutrum at elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent porttitor hendrerit lacinia. Aenean mattis dapibus viverra. Morbi mollis eget leo quis egestas .Nulla facilisi.Mauris elementum urna a lacus volutpat, in rutrum augue iaculis. Mauris quis dui sit amet ligula tincidunt rhoncus cursus in eros." + Environment.NewLine +
-                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.",
+                teste1.Texto,
                 "baby.jpeg");
             InformacoesAux.Add(teste2);
 
@@ -85,9 +93,7 @@ namespace ProMama.ViewModel.Home
                 8,
                 16,
                 "Informação nº 3",
-                "Fusce sagittis non ante nec tristique. Nullam at turpis et augue interdum dictum non sit amet diam. Aenean sit amet mauris tortor. Sed dui est, luctus egestas elit vitae, sodales mollis ex. Aliquam a tortor ipsum. Praesent ac condimentum dolor, in porta tellus. Vivamus viverra ac dolor ac mattis. Vestibulum a hendrerit orci. Etiam tempus libero ut vestibulum interdum. Vestibulum viverra imperdiet consequat." + Environment.NewLine +
-                    "Proin dignissim posuere tincidunt. Fusce a libero id enim fermentum aliquam. Donec ligula lacus, posuere sed tempor ut, rutrum at elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent porttitor hendrerit lacinia. Aenean mattis dapibus viverra. Morbi mollis eget leo quis egestas .Nulla facilisi.Mauris elementum urna a lacus volutpat, in rutrum augue iaculis. Mauris quis dui sit amet ligula tincidunt rhoncus cursus in eros." + Environment.NewLine +
-                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.",
+                teste1.Texto,
                 "baby.jpeg");
             InformacoesAux.Add(teste3);
 
@@ -95,9 +101,7 @@ namespace ProMama.ViewModel.Home
                 12,
                 20,
                 "Informação nº 4",
-                "Fusce sagittis non ante nec tristique. Nullam at turpis et augue interdum dictum non sit amet diam. Aenean sit amet mauris tortor. Sed dui est, luctus egestas elit vitae, sodales mollis ex. Aliquam a tortor ipsum. Praesent ac condimentum dolor, in porta tellus. Vivamus viverra ac dolor ac mattis. Vestibulum a hendrerit orci. Etiam tempus libero ut vestibulum interdum. Vestibulum viverra imperdiet consequat." + Environment.NewLine +
-                    "Proin dignissim posuere tincidunt. Fusce a libero id enim fermentum aliquam. Donec ligula lacus, posuere sed tempor ut, rutrum at elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent porttitor hendrerit lacinia. Aenean mattis dapibus viverra. Morbi mollis eget leo quis egestas .Nulla facilisi.Mauris elementum urna a lacus volutpat, in rutrum augue iaculis. Mauris quis dui sit amet ligula tincidunt rhoncus cursus in eros." + Environment.NewLine +
-                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.",
+                teste1.Texto,
                 "baby.jpeg");
             InformacoesAux.Add(teste4);
 
@@ -105,9 +109,7 @@ namespace ProMama.ViewModel.Home
                 16,
                 24,
                 "Informação nº 5",
-                "Fusce sagittis non ante nec tristique. Nullam at turpis et augue interdum dictum non sit amet diam. Aenean sit amet mauris tortor. Sed dui est, luctus egestas elit vitae, sodales mollis ex. Aliquam a tortor ipsum. Praesent ac condimentum dolor, in porta tellus. Vivamus viverra ac dolor ac mattis. Vestibulum a hendrerit orci. Etiam tempus libero ut vestibulum interdum. Vestibulum viverra imperdiet consequat." + Environment.NewLine +
-                    "Proin dignissim posuere tincidunt. Fusce a libero id enim fermentum aliquam. Donec ligula lacus, posuere sed tempor ut, rutrum at elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent porttitor hendrerit lacinia. Aenean mattis dapibus viverra. Morbi mollis eget leo quis egestas .Nulla facilisi.Mauris elementum urna a lacus volutpat, in rutrum augue iaculis. Mauris quis dui sit amet ligula tincidunt rhoncus cursus in eros." + Environment.NewLine +
-                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.",
+                teste1.Texto,
                 "baby.jpeg");
             InformacoesAux.Add(teste5);
 
@@ -120,17 +122,26 @@ namespace ProMama.ViewModel.Home
             // Commands
             this.MenosIdadeCommand = new Command(this.MenosIdade);
             this.MaisIdadeCommand = new Command(this.MaisIdade);
+            this.IdadePickerCommand = new Command<Picker>(this.IdadePicker);
             this.InfoPageCommand = new Command<Informacao>(this.InfoPage);
 
             // Navigation
             this.Navigation = Navigation;
             this._navigationService = DependencyService.Get<Services.INavigationService>();
+
+            // Idades picker
+            IdadesPickerLista = new List<string>() { "2 semanas" };
+
+            for (int i = 1; i <= Crianca.IdadeMeses; i++)
+            {
+                IdadesPickerLista.Add(i + " meses");
+            }
         }
 
         // Botão da seta pra direita
         private void MaisIdade()
         {
-            if (IdadeAux != 24)
+            if (IdadeAux < 24 && IdadeAux < Crianca.IdadeMeses)
             {
                 IdadeAux++;
             }
@@ -139,10 +150,17 @@ namespace ProMama.ViewModel.Home
         // Botão da seta pra esquerda
         private void MenosIdade()
         {
-            if (IdadeAux != 0)
+            if (IdadeAux > 0)
             {
                 IdadeAux--;
             }
+        }
+
+        // Mostra picker de idades
+        private void IdadePicker(Picker p)
+        {
+            p.Focus();
+            System.Diagnostics.Debug.WriteLine("focou(?)");
         }
 
         // Define string da idade para mostrar na tela
@@ -194,13 +212,14 @@ namespace ProMama.ViewModel.Home
             foreach (var informacao in InformacoesAux)
             {
                 // se a idade da criança é compatível com a informação
-                if(informacao.IdadeInicio <= IdadeAux && informacao.IdadeFim >= IdadeAux)
+                if (informacao.IdadeInicio <= IdadeAux && informacao.IdadeFim >= IdadeAux)
                 {
                     if (!Informacoes.Contains(informacao))
                     {
                         Informacoes.Add(informacao);
                     }
-                } else
+                }
+                else
                 {
                     if (Informacoes.Contains(informacao))
                     {
@@ -209,7 +228,7 @@ namespace ProMama.ViewModel.Home
                 }
             }
         }
-        
+
         // Abre pagina de informação
         private async void InfoPage(Informacao info)
         {

@@ -31,15 +31,9 @@
                             </StackLayout>
                             <StackLayout>
                                 <Label Style="{StaticResource labelSubtitle}"
-                                       Text="Tipo de parto" />
+                                       Text="Idade" />
                                 <Label Style="{StaticResource labelTitle}"
-                                       Text="Normal" />
-                            </StackLayout>
-                            <StackLayout>
-                                <Label Style="{StaticResource labelSubtitle}"
-                                       Text="Idade gestacional no momento do parto" />
-                                <Label Style="{StaticResource labelTitle}"
-                                       Text="42 semanas" />
+                                       Text="27 anos" />
                             </StackLayout>
                             <StackLayout>
                                 <Label Style="{StaticResource labelSubtitle}"

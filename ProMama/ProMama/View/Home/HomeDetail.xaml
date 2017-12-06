@@ -7,6 +7,13 @@
              Title="Início">
     <ContentPage.Content>
         <StackLayout>
+            <Picker Title="Selecione a idade a qual deseja visualizar informações:"
+                    VerticalOptions="CenterAndExpand"
+                    x:Name="IdadePicker"
+                    IsEnabled="True"
+                    IsVisible="False"
+                    ItemsSource="{Binding IdadesPickerLista}"
+                    SelectedIndex="{Binding IdadeAux}"/>
             <ListView SeparatorVisibility="None"
                       HasUnevenRows="true"
                       ItemsSource="{Binding Informacoes}">
@@ -29,7 +36,9 @@
                                Grid.Column="0"
                                Grid.Row="0">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.MenosIdadeCommand}" />
+                                <!--<TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.MenosIdadeCommand}" />-->
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.IdadePickerCommand}"
+                                                      CommandParameter="{x:Reference IdadePicker}"/>
                             </Image.GestureRecognizers>
                         </Image>
                         <Grid RowSpacing="10" 

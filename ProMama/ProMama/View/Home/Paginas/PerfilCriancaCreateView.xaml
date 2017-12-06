@@ -8,34 +8,44 @@
             <ScrollView>
                 <StackLayout Padding="20"
                              Spacing="20">
-                    
+
                     <Entry Placeholder="Primeiro nome da criança"/>
 
                     <Entry Placeholder="Sobrenome da criança"/>
 
                     <Entry Placeholder="Data de nascimento da criança"/>
-                    
+
                     <Picker Title="Sexo da criança">
                         <Picker.Items>
                             <x:String>Masculino</x:String>
                             <x:String>Feminino</x:String>
                         </Picker.Items>
                     </Picker>
-                    
+
                     <Entry Placeholder="Peso ao nascer (kg)"
                            Keyboard="Numeric"/>
-                    
+
                     <Entry Placeholder="Altura ao nascer (cm)"
                            Keyboard="Numeric"/>
-                    
+
+                    <Picker Title="Tipo de parto">
+                        <Picker.Items>
+                            <x:String>Normal</x:String>
+                            <x:String>Cesária</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Picker Title="Idade gestacional no momento do parto"
+                            x:Name="idadeGestacionalPicker"></Picker>
+
                     <Label Text="Outras informações:"
                            HorizontalOptions="Center"/>
                     <Editor/>
-                    
+
                     <Button Style="{StaticResource buttonMain}"
                             Text="Salvar"
                             Command="{Binding NavigationCommand}"/>
-                    
+
                 </StackLayout>
             </ScrollView>
         </StackLayout>
