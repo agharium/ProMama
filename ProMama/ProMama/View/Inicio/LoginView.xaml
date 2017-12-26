@@ -10,11 +10,14 @@
             <StackLayout Padding="20" 
                          Spacing="20">
                 <Entry Placeholder="E-mail"
-                       Keyboard="Email"/>
+                       Keyboard="Email"
+                       Text="{Binding Email}"/>
                 <Entry Placeholder="Senha"
-                       IsPassword="True"/>
+                       IsPassword="True"
+                       Text="{Binding Password}"/>
                 <Button Style="{StaticResource buttonMain}"
-                        Text="Entrar"/>
+                        Text="Entrar"
+                        Command="{Binding LoginCommand}"/>
                 <Button Style="{StaticResource buttonFacebook}"
                         Text="Entrar com o Facebook"/>
                 <Button Text="Ainda não tem cadastro?"

@@ -2,9 +2,9 @@
 {
     class Foto
     {
-        public int Mes { get; set; }
-        public string Data { get; set; }
-        public string Imagem { get; set; }
+        public int Mes { get; private set; }
+        public string Data { get; private set; }
+        public string Imagem { get; private set; }
 
         public Foto(int mes, string data, string imagem)
         {

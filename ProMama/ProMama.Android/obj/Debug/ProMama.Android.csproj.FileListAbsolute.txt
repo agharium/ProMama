@@ -94,3 +94,4 @@ C:\Users\Programador\Desktop\ProMama\ProMama\ProMama.Android\obj\Debug\res\drawa
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama.Android\obj\Debug\res\drawable-xhdpi\splash.png
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama.Android\obj\Debug\res\drawable-xxhdpi\ifrs_logo.png
 C:\Users\Programador\Desktop\ProMama\ProMama\ProMama\bin\Debug\ProMama.dll
+C:\ProMama\ProMama\ProMama\bin\Debug\ProMama.dll

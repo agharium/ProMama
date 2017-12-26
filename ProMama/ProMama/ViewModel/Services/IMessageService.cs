@@ -4,6 +4,8 @@ namespace ProMama.ViewModel.Services
 {
     interface IMessageService
     {
-        Task ShowAsync(string message);
+        Task AlertDialog(string message);
+
+        Task<bool> ConfirmationDialog(string message);
     }
 }

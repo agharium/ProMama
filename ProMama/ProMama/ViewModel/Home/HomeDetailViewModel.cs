@@ -20,7 +20,7 @@ namespace ProMama.ViewModel.Home
             set
             {
                 _idadeAux = value;
-                DefineIdadeExtenso();
+                IdadeExtenso = DefineIdadeExtenso();
                 OrganizaInformacoes();
             }
         }
@@ -117,7 +117,7 @@ namespace ProMama.ViewModel.Home
             Crianca = new Crianca("Joaquim", 28);
             Nome = Crianca.PrimeiroNome;
             IdadeAux = (Crianca.IdadeMeses >= 24) ? 24 : Crianca.IdadeMeses;
-            IdadeExtenso = Crianca.IdadeExtenso;
+            IdadeExtenso = DefineIdadeExtenso();
 
             // Commands
             this.MenosIdadeCommand = new Command(this.MenosIdade);
@@ -164,31 +164,31 @@ namespace ProMama.ViewModel.Home
         }
 
         // Define string da idade para mostrar na tela
-        private void DefineIdadeExtenso()
+        private string DefineIdadeExtenso()
         {
             if (IdadeAux == 0)
             {
-                IdadeExtenso = "2 semanas";
+                return "2 semanas";
             }
             else if (IdadeAux >= 12)
             {
                 if (IdadeAux == 12)
                 {
-                    IdadeExtenso = "1 ano";
+                    return "1 ano";
                 }
                 else if (IdadeAux >= 24)
                 {
-                    IdadeExtenso = "2 anos";
+                    return "2 anos";
                 }
                 else
                 {
                     if (IdadeAux - 12 == 1)
                     {
-                        IdadeExtenso = "1 ano e 1 mês";
+                        return "1 ano e 1 mês";
                     }
                     else
                     {
-                        IdadeExtenso = "1 ano e " + (IdadeAux - 12) + " meses";
+                        return "1 ano e " + (IdadeAux - 12) + " meses";
                     }
                 }
             }
@@ -196,11 +196,11 @@ namespace ProMama.ViewModel.Home
             {
                 if (IdadeAux == 1)
                 {
-                    IdadeExtenso = "1 mês";
+                   return "1 mês";
                 }
                 else
                 {
-                    IdadeExtenso = IdadeAux + " meses";
+                    return IdadeAux + " meses";
                 }
 
             }

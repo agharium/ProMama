@@ -6,10 +6,11 @@ namespace ProMama.View.Inicio
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginView : ContentPage
     {
-
         public LoginView()
         {
             InitializeComponent();
+
+            BindingContext = new ViewModel.Inicio.LoginViewModel();
         }
 
         private void ChangeToCadastro()

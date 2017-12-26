@@ -1,4 +1,6 @@
-﻿using ProMama.ViewModel.Services;
+﻿using ProMama.Model;
+using ProMama.ViewModel.Services;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -6,6 +8,8 @@ namespace ProMama.ViewModel.Inicio
 {
     class CadastroViewModel : ViewModelBase
     {
+        private Aplicativo app = Aplicativo.Instance;
+
         private string _email = "";
         public string Email {
             get
@@ -51,6 +55,7 @@ namespace ProMama.ViewModel.Inicio
 
         private readonly INavigationService _navigationService;
         private readonly IMessageService _messageService;
+        private readonly IRestService _restService;
 
         public CadastroViewModel()
         {
@@ -58,17 +63,34 @@ namespace ProMama.ViewModel.Inicio
 
             this._navigationService = DependencyService.Get<INavigationService>();
             this._messageService = DependencyService.Get<IMessageService>();
+            this._restService = DependencyService.Get<IRestService>();
         }
 
         public async void Cadastro()
         {
-            /*if (this.Email.Equals(string.Empty) && !this.Email.Contains("@")){
-                await this._messageService.ShowAsync("E-mail inválido!");
-            } else*/ if (!this.Password.Equals(PasswordConfirmation)){
-                await this._messageService.ShowAsync("As senhas não coincidem!");
-            } else
+            if (!this.Password.Equals(PasswordConfirmation)){
+                await this._messageService.AlertDialog("As senhas não são iguais.");
+            }
+            else if (this.Email.Equals(string.Empty) || this.Password.Equals(string.Empty) || this.PasswordConfirmation.Equals(string.Empty))
             {
-                this._navigationService.NavigateToAddCrianca();
+                await this._messageService.AlertDialog("Nenhum campo pode estar vazio.");
+            }
+            else
+            {
+                var u = new Usuario(this.Email, this.Password);
+                var result = await _restService.UsuarioCreate(u);
+
+                if (result.Equals("false"))
+                {
+                    await this._messageService.AlertDialog("Este e-mail já foi cadastrado.");
+                }
+                else
+                {
+                    u.Id = Int32.Parse(result);
+                    app._usuario = u;
+
+                    this._navigationService.NavigateToAddCrianca();
+                }
             }
         }
     }

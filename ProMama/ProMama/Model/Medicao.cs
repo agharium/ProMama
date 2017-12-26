@@ -2,10 +2,10 @@
 {
     class Medicao
     {
-        public string Data { get; set; }
-        public string Peso { get; set; }
-        public string Altura { get; set; }
-        public string Alimentacao { get; set; }
+        public string Data { get; private set; }
+        public string Peso { get; private set; }
+        public string Altura { get; private set; }
+        public string Alimentacao { get; private set; }
 
         public Medicao(string data, string peso, string altura, string alimentacao)
         {

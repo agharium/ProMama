@@ -8,6 +8,7 @@ namespace ProMama
         {
             DependencyService.Register<ViewModel.Services.INavigationService, View.Services.NavigationService>();
             DependencyService.Register<ViewModel.Services.IMessageService, View.Services.MessageService>();
+            DependencyService.Register<ViewModel.Services.IRestService, View.Services.RestService>();
 
             InitializeComponent();
 
