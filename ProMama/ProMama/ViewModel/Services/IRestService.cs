@@ -5,10 +5,12 @@ namespace ProMama.ViewModel.Services
 {
     public interface IRestService
     {
-        Task<string> UsuarioCreate(Usuario u);
+        Task<JsonMessage> UsuarioCreate(Usuario u);
 
-        Task<string> UsuarioLogin(Usuario u);
+        Task<JsonMessage> UsuarioLogin(Usuario u);
 
-        Task<string> CriancaCreate(Crianca c);
+        Task<JsonMessage> UsuarioGet(JsonMessage msg);
+
+        Task<JsonMessage> CriancaCreate(Crianca c);
     }
 }

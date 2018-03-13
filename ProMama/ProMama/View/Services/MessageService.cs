@@ -10,9 +10,9 @@ namespace ProMama.View.Services
             await Application.Current.MainPage.DisplayAlert("Erro", message, "Voltar");
         }
 
-        public async Task<bool> ConfirmationDialog(string message)
+        public async Task<bool> ConfirmationDialog(string message, string negacao, string confirmacao)
         {
-            return await Application.Current.MainPage.DisplayAlert("Confirmação", message, "Sim", "Não");
+            return await Application.Current.MainPage.DisplayAlert("Confirmação", message, negacao, confirmacao);
         }
     }
 }

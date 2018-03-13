@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using ProMama.Model;
+using ProMama.ViewModel.Services;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ProMama.ViewModel.Inicio
@@ -6,19 +8,17 @@ namespace ProMama.ViewModel.Inicio
     class IntroducaoViewModel : ViewModelBase
     {
         public ICommand NavigationCommand { get; set; }
-
-        private readonly Services.INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
         public IntroducaoViewModel()
         {
-            this.NavigationCommand = new Command(this.NavigateToCadastroLogin);
-
-            this._navigationService = DependencyService.Get<Services.INavigationService>();
+            NavigationCommand = new Command(NavigateToCadastroLogin);
+            _navigationService = DependencyService.Get<INavigationService>();
         }
 
         private void NavigateToCadastroLogin()
         {
-            this._navigationService.NavigateToCadastroLogin();
+            _navigationService.NavigateToCadastroLogin();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace ProMama.Droid
             ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
 
             // FFImageLoading
-            FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
 
             LoadApplication(new App());
         }

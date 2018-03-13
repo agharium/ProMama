@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>Android_5.0.1_API-21</SelectedDevice>
-    <DefaultDevice>Android_5.0.1_API-21</DefaultDevice>
+    <SelectedDevice>API-22_Android-5.1</SelectedDevice>
+    <DefaultDevice>API-22_Android-5.1</DefaultDevice>
   </PropertyGroup>
 </Project>

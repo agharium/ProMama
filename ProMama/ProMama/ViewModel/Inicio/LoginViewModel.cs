@@ -1,6 +1,5 @@
 ﻿using ProMama.Model;
 using ProMama.ViewModel.Services;
-using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -46,33 +45,48 @@ namespace ProMama.ViewModel.Inicio
 
         public LoginViewModel()
         {
-            this.LoginCommand = new Command(this.Login);
+            LoginCommand = new Command(Login);
 
-            this._navigationService = DependencyService.Get<INavigationService>();
-            this._messageService = DependencyService.Get<IMessageService>();
-            this._restService = DependencyService.Get<IRestService>();
+            _navigationService = DependencyService.Get<INavigationService>();
+            _messageService = DependencyService.Get<IMessageService>();
+            _restService = DependencyService.Get<IRestService>();
         }
 
         public async void Login()
         {
-            if (this.Email.Equals(string.Empty) || this.Password.Equals(string.Empty))
+            if (Email.Equals(string.Empty) || Password.Equals(string.Empty))
             {
-                await this._messageService.AlertDialog("Nenhum campo pode estar vazio.");
+                await _messageService.AlertDialog("Nenhum campo pode estar vazio.");
             }
             else
             {
-                var u = new Usuario(this.Email, this.Password);
+                var u = new Usuario(Email, Password);
                 var result = await _restService.UsuarioLogin(u);
-                
-                if (result.Equals("false"))
+
+                if (!result.success)
                 {
-                    await this._messageService.AlertDialog("Usuário ou senha incorretos.");
+                    await _messageService.AlertDialog(result.message);
                 } else
                 {
-                    u.Id = Int32.Parse(result);
-                    app._usuario = u;
+                    var resultAux = await _restService.UsuarioGet(result);
+                    if (!resultAux.success)
+                    {
+                        await _messageService.AlertDialog(result.message);
+                    } else
+                    {
+                        app._usuario = resultAux.user;
+                        App.UsuarioDatabase.SaveUsuario(app._usuario);
 
-                    this._navigationService.NavigateToAddCrianca();
+                        if (app._usuario.usuario_criancas.Count == 0)
+                        {
+                            _navigationService.NavigateToAddCrianca();
+                        }
+                        else
+                        {
+                            app._crianca = app._usuario.usuario_criancas[app._usuario.usuario_criancas.Count - 1];
+                            _navigationService.NavigateToHome();
+                        }
+                    }
                 }
             }
         }

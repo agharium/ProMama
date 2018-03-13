@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using ProMama.View.Home.Paginas;
+using ProMama.View.Inicio;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ProMama.View.Services
@@ -7,12 +9,17 @@ namespace ProMama.View.Services
     {
         public void NavigateToCadastroLogin()
         {
-            Application.Current.MainPage = new NavigationPage(new Inicio.LoginCadastroTabbedView());
+            Application.Current.MainPage = new NavigationPage(new LoginCadastroTabbedView());
         }
 
         public void NavigateToAddCrianca()
         {
-            Application.Current.MainPage = new NavigationPage(new Extra.AddCriancaView());
+            Application.Current.MainPage = new NavigationPage(new AddCriancaView());
+        }
+
+        public async Task NavigateToAddCriancaPush(INavigation Navigation)
+        {
+            await Navigation.PushAsync(new AddCriancaView());
         }
 
         public void NavigateToHome()
@@ -22,22 +29,22 @@ namespace ProMama.View.Services
 
         public async Task NavigateToPerfilCrianca(INavigation Navigation)
         {
-            await Navigation.PushAsync(new Home.Paginas.PerfilCriancaView());
+            await Navigation.PushAsync(new PerfilCriancaView());
         }
 
         public async Task NavigateToPerfilMae(INavigation Navigation)
         {
-            await Navigation.PushAsync(new Home.Paginas.PerfilMaeView());
+            await Navigation.PushAsync(new PerfilMaeView());
         }
 
         public async Task NavigateToAddAcompanhamento(INavigation Navigation)
         {
-            await Navigation.PushAsync(new Home.Paginas.AddAcompanhamentoView());
+            await Navigation.PushAsync(new AddAcompanhamentoView());
         }
 
         public async Task NavigateToInfoPage(INavigation Navigation, Model.Informacao info)
         {
-            await Navigation.PushAsync(new Home.Paginas.InformacaoView(info));
+            await Navigation.PushAsync(new InformacaoView(info));
         }
     }
 }

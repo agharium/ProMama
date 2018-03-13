@@ -33,20 +33,23 @@ namespace ProMama.CustomComponent.Carousel
                 // Create the second label 
                 var lab = new Label()
                 {
-                    FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
+                     FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                     FontAttributes = FontAttributes.Bold,
+                     HorizontalOptions = LayoutOptions.Center,
+                     VerticalOptions = LayoutOptions.Center
                 };
                 //lab.TextColor = Color.White;
-                lab.HorizontalOptions = LayoutOptions.Center;
-                lab.VerticalOptions = LayoutOptions.Center;
                 //Bind its conteent to the Content1-attribute
                 lab.SetBinding(Label.TextProperty, "Content1");
                 var lab2 = new Label()
                 {
-                    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label))
+                    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    Margin = new Thickness(15, 0, 15, 0)
                 };
                 //lab2.TextColor = Color.White;
-                lab2.HorizontalOptions = LayoutOptions.Center;
-                lab2.VerticalOptions = LayoutOptions.Center;
                 //And finally bind the last label.
                 lab2.SetBinding(Label.TextProperty, "Content2");
 

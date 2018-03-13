@@ -28,12 +28,12 @@
                                           Aspect="AspectFill"
                                           Grid.Column="1" 
                                           Grid.Row="1"/>
-                    <Label Text="Joaquim Santos da Silva"
+                    <Label Text="{Binding Nome}"
                            TextColor="White"
                            FontSize="Medium"
                            Grid.Column="1"
                            Grid.Row="3"/>
-                    <Label Text="7 meses"
+                    <Label Text="{Binding Idade}"
                            TextColor="White"
                            FontSize="Small"
                            Grid.Column="1"

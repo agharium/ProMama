@@ -6,6 +6,6 @@ namespace ProMama.ViewModel.Services
     {
         Task AlertDialog(string message);
 
-        Task<bool> ConfirmationDialog(string message);
+        Task<bool> ConfirmationDialog(string message, string negacao, string confirmacao);
     }
 }

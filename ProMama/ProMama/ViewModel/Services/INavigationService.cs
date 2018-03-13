@@ -9,6 +9,8 @@ namespace ProMama.ViewModel.Services
 
         void NavigateToAddCrianca();
 
+        Task NavigateToAddCriancaPush(INavigation Navigation);
+
         void NavigateToHome();
 
         Task NavigateToPerfilCrianca(INavigation Navigation);

@@ -2,10 +2,9 @@
 {
     class Aplicativo
     {
-        private static Aplicativo _instance;
-
         private Aplicativo() { }
 
+        private static Aplicativo _instance;
         public static Aplicativo Instance
         {
             get

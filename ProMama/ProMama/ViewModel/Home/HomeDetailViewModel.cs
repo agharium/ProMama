@@ -9,6 +9,8 @@ namespace ProMama.ViewModel.Home
 {
     class HomeDetailViewModel : ViewModelBase
     {
+        private Aplicativo app = Aplicativo.Instance;
+
         // Criança
         public Crianca Crianca { get; set; }
         public string Nome { get; set; }
@@ -68,6 +70,9 @@ namespace ProMama.ViewModel.Home
         // Construtor
         public HomeDetailViewModel(INavigation Navigation)
         {
+            Config cfg = new Config(app._usuario, app._crianca);
+            App.ConfigDatabase.SaveConfig(cfg);
+
             // Informações
             Informacoes = new ObservableCollection<Informacao>();
 
@@ -114,8 +119,9 @@ namespace ProMama.ViewModel.Home
             InformacoesAux.Add(teste5);
 
             // Criança
-            Crianca = new Crianca("Joaquim", 28);
-            Nome = Crianca.PrimeiroNome;
+            Crianca = app._crianca;
+            //Crianca = new Crianca("Zézinho", 24);
+            Nome = Crianca.crianca_primeiro_nome;
             IdadeAux = (Crianca.IdadeMeses >= 24) ? 24 : Crianca.IdadeMeses;
             IdadeExtenso = DefineIdadeExtenso();
 
@@ -160,7 +166,6 @@ namespace ProMama.ViewModel.Home
         private void IdadePicker(Picker p)
         {
             p.Focus();
-            System.Diagnostics.Debug.WriteLine("focou(?)");
         }
 
         // Define string da idade para mostrar na tela
@@ -202,7 +207,6 @@ namespace ProMama.ViewModel.Home
                 {
                     return IdadeAux + " meses";
                 }
-
             }
         }
 
