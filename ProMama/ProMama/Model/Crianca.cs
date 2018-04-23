@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using Xamarin.Forms;
 
 namespace ProMama.Model
 {
@@ -19,78 +20,72 @@ namespace ProMama.Model
 
         // variáveis auxiliares
         [JsonIgnore]
-        public int IdadeSemanas { get; private set; }
+        public double IdadeSemanas { get { return (DateTime.Now - crianca_dataNascimento).Days * 0.1551871428571429; } set { } }
         [JsonIgnore]
-        public int IdadeMeses { get; private set; }
+        public double IdadeMeses { get { return (DateTime.Now - crianca_dataNascimento).Days / 30.4167; } set { } }
         [JsonIgnore]
         public string IdadeExtenso { get { return DefineIdadeExtenso(); } set { } }
-
+        [JsonIgnore]
+        public ImageSource Foto { get; set; }
 
         public Crianca(Usuario usuario, string primeiroNome, DateTime dataNascimento)
         {
             crianca_usuario = usuario;
             crianca_primeiro_nome = primeiroNome;
             crianca_dataNascimento = dataNascimento;
-
-            IdadeSemanas = (DateTime.Now - dataNascimento).Days / 7;
-            IdadeMeses = IdadeSemanas / 4;
-        }
-
-        public Crianca(string primeiroNome, int idadeSemanas)
-        {
-            crianca_primeiro_nome = primeiroNome;
-            
-            IdadeSemanas = idadeSemanas;
-            IdadeMeses = idadeSemanas / 4;
         }
 
         public Crianca() { }
 
-        public void CalculaIdadeAtual()
-        {
-            IdadeSemanas = (DateTime.Now - crianca_dataNascimento).Days / 7;
-            IdadeMeses = IdadeSemanas / 4;
-        }
-
         public string DefineIdadeExtenso()
         {
-            if (IdadeMeses == 0)
+            if (IdadeSemanas < 4)
             {
-                return "2 semanas";
+                return SemanasToString();
             }
-            else if (IdadeMeses >= 12)
+            else if (IdadeMeses < 12)
             {
-                if (IdadeMeses == 12)
+                return MesesToString();// + " e " + SemanasToString();
+            }
+            else
+            {   if (IdadeMeses > 12 && IdadeMeses < 13)
                 {
                     return "1 ano";
                 }
-                else if (IdadeMeses >= 24)
+                else if (IdadeMeses > 24)
                 {
                     return "2 anos";
-                }
-                else
+                } else
                 {
-                    if (IdadeMeses - 12 == 1)
-                    {
-                        return "1 ano e 1 mês";
-                    }
-                    else
-                    {
-                        return "1 ano e " + (IdadeMeses - 12) + " meses";
-                    }
+                    return "1 ano e " + MesesToString();
                 }
+            }
+        }
+
+        private string SemanasToString()
+        {
+            double semanas = IdadeSemanas;
+            while (semanas > 4.34524)
+            {
+                semanas -= 4.34524;
+            }
+
+            int semanasAux = Convert.ToInt32(semanas);
+
+            if (IdadeSemanas < 1)
+            {
+                return "recém-nascido";
             }
             else
             {
-                if (IdadeMeses == 1)
-                {
-                    return "1 mês";
-                }
-                else
-                {
-                    return IdadeMeses + " meses";
-                }
+                return semanasAux + " semanas";
             }
+        }
+
+        private string MesesToString()
+        {
+            int m = (IdadeMeses > 12) ? (int)Math.Floor(IdadeMeses - 12) : (int)Math.Floor(IdadeMeses);
+            return m == 1 ? m + " mês" : m + " meses";
         }
     }
 }

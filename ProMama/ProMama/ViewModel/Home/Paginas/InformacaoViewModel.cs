@@ -10,9 +10,9 @@ namespace ProMama.ViewModel.Home.Paginas
 
         public InformacaoViewModel(Informacao info)
         {
-            this.Titulo = info.Titulo;
-            this.Imagem = info.Imagem;
-            this.Texto = info.Texto;
+            this.Titulo = info.informacao_titulo;
+            this.Imagem = info.informacao_imagem;
+            this.Texto = info.informacao_corpo;
         }
     }
 }

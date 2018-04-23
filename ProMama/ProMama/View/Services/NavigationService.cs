@@ -46,5 +46,10 @@ namespace ProMama.View.Services
         {
             await Navigation.PushAsync(new InformacaoView(info));
         }
+
+        public async Task NavigateToFotoPage(INavigation Navigation, ImageSource foto)
+        {
+            await Navigation.PushAsync(new FotoView(foto));
+        }
     }
 }

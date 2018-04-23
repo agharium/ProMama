@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ProMama.View.Home.HomeMaster"
              Title="Menu"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
@@ -24,10 +25,17 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <controls:CircleImage Source="baby.jpeg" 
-                                          Aspect="AspectFill"
-                                          Grid.Column="1" 
-                                          Grid.Row="1"/>
+                    <controls:CircleImage
+                        x:Name="Avatar"
+                        Source="{Binding Foto}"
+                        Grid.Column="1" 
+                        Grid.Row="1">
+                        <!--<controls:CircleImage.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={x:Reference this}, Path=BindingContext.FotoPageCommand}"
+                                CommandParameter="{x:Reference Avatar}"/>
+                        </controls:CircleImage.GestureRecognizers>-->
+                    </controls:CircleImage>
                     <Label Text="{Binding Nome}"
                            TextColor="White"
                            FontSize="Medium"
@@ -43,12 +51,26 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,10"
-                                     HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Title}"
-                                   FontSize="Medium"
-                                   VerticalOptions="FillAndExpand"
-                                   VerticalTextAlignment="Center"/>
+                        <StackLayout 
+                            Padding="10"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <StackLayout
+                                HorizontalOptions="Start"
+                                WidthRequest="25">
+                                <iconize:IconLabel 
+                                    Text="{Binding Icone}"
+                                    FontSize="Medium"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                            <Label
+                                Text="{Binding Titulo}"
+                                FontSize="Medium"
+                                HorizontalOptions="Center"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

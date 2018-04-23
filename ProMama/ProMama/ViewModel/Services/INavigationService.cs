@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using ProMama.Model;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ProMama.ViewModel.Services
@@ -19,6 +20,8 @@ namespace ProMama.ViewModel.Services
 
         Task NavigateToAddAcompanhamento(INavigation Navigation);
 
-        Task NavigateToInfoPage(INavigation Navigation, Model.Informacao info);
+        Task NavigateToInfoPage(INavigation Navigation, Informacao info);
+
+        Task NavigateToFotoPage(INavigation Navigation, ImageSource foto);
     }
 }

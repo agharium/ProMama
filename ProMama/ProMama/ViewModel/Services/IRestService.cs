@@ -1,4 +1,5 @@
 ﻿using ProMama.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProMama.ViewModel.Services
@@ -12,5 +13,7 @@ namespace ProMama.ViewModel.Services
         Task<JsonMessage> UsuarioGet(JsonMessage msg);
 
         Task<JsonMessage> CriancaCreate(Crianca c);
+
+        Task<List<Informacao>> InformacaoGet(string token);
     }
 }

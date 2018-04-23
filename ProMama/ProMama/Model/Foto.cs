@@ -1,16 +1,18 @@
-﻿namespace ProMama.Model
+﻿using Xamarin.Forms;
+
+namespace ProMama.Model
 {
     class Foto
     {
         public int Mes { get; private set; }
-        public string Data { get; private set; }
-        public string Imagem { get; private set; }
+        public ImageSource Imagem { get; set; }
 
-        public Foto(int mes, string data, string imagem)
+        public Foto(int mes, ImageSource imagem)
         {
             Mes = mes;
-            Data = data;
             Imagem = imagem;
         }
+
+        public Foto() { }
     }
 }

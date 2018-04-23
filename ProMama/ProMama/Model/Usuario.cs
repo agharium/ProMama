@@ -12,6 +12,7 @@ namespace ProMama.Model
         public Posto usuario_postoSaude { get; set; }
         public string usuario_dataNascimento { get; set; }
         public List<Crianca> usuario_criancas { get; set; }
+        //public string usuario_token { get; set; }
 
         public Usuario(int usuario_id, string usuario_email, string usuario_senha, string usuario_nome, Bairro usuario_bairro, Posto usuario_postoSaude, string usuario_dataNascimento)
         {

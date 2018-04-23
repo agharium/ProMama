@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -76,6 +77,19 @@ namespace ProMama.View.Services
             catch (JsonReaderException e)
             {
                 return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
+
+        public async Task<List<Informacao>> InformacaoGet(string token)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync("http://jpfilho.com.br/promama/api/informacao/get.php");
+                //var result = await client.GetAsync("http://promama.cf/api/informacoes?api_token=" + token);
+                var obj = await result.Content.ReadAsStringAsync();
+                System.Diagnostics.Debug.WriteLine("API: LEITURA DE INFORMAÇÕES");
+                System.Diagnostics.Debug.WriteLine(obj.ToString());
+                return JsonConvert.DeserializeObject<List<Informacao>>(obj);
             }
         }
 

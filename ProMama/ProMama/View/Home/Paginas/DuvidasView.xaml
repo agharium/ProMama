@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.Paginas.DuvidasView"
+             Title="Dúvidas">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView 
+                SeparatorVisibility="None"
+                HasUnevenRows="true"
+                ItemsSource="{Binding Duvidas}">
+                <ListView.Header>
+                    <StackLayout 
+                        Padding="20"
+                        Spacing="20">
+                        <Label
+                            Text="Envie sua dúvida para nós respondermos!"
+                            HorizontalOptions="CenterAndExpand"/>
+                        <Frame
+                            Padding="5">
+                            <Editor 
+                                HeightRequest = "85"
+                                BackgroundColor="White"/>
+                        </Frame>
+                        <Button 
+                            Style="{StaticResource buttonMain}"
+                            Text="Enviar dúvida"/>
+                        <!--Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"/>-->
+                        <Label
+                            Text="Minhas dúvidas"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Medium"/>
+                        <Label
+                            Text="Dúvidas de outros usuários"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Medium"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="20, 10, 20, 10">
+                                <StackLayout>
+                                    <Label Text="{Binding Pergunta}"
+                                           TextColor="#262626"
+                                           FontSize="Medium"/>
+                                    <Label Text="{Binding Resposta}"
+                                           FontSize="Small"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

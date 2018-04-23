@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,8 +19,8 @@ namespace ProMama.View.Home
             if (item == null)
                 return;
 
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+            var page = (Page)Activator.CreateInstance(item.Pagina);
+            page.Title = item.Titulo;
 
             Detail = new NavigationPage(page);
             IsPresented = false;

@@ -1,6 +1,10 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
+// Media
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace ProMama.Droid
 {
@@ -26,7 +30,16 @@ namespace ProMama.Droid
             // FFImageLoading
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
 
-            LoadApplication(new App());
+            // Iconize
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+
+            LoadApplication(new ProMama.App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
