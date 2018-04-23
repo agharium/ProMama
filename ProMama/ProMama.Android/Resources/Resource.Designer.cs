@@ -1266,7 +1266,6 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0d004c
 			public const int abc_background_cache_hint_selector_material_dark = 2131558476;
 			
-			// aapt resource value: 0x7f0d004b
 			// aapt resource value: 0x7f0d004d
 			public const int abc_background_cache_hint_selector_material_light = 2131558477;
 			
