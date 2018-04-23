@@ -5,18 +5,30 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <!-- BOTÕES -->
+            <Style x:Key="GrayButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="#CCC" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HeightRequest" Value="40" />
+            </Style>
+            
             <Style x:Key="buttonMain" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="BackgroundColor" Value="#E53935" />
                 <Setter Property="TextColor" Value="White" />
+                <Setter Property="HeightRequest" Value="40" />
             </Style>
 
-            <Style x:Key="buttonFacebook" TargetType="Button">
+            <Style x:Key="FacebookButton" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="BackgroundColor" Value="#3b5998" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="Text" Value="Entrar com Facebook" />
+                <Setter Property="HeightRequest" Value="40" />
             </Style>
+            
+            <!-- LABELS -->
 
             <Style x:Key="labelTitle" TargetType="Label">
                 <Setter Property="TextColor" Value="#212121" />

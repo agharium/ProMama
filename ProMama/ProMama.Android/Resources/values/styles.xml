@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
-  <style name="MainTheme" parent="MainTheme.Base">
-  </style>
+  <style name="MainTheme" parent="MainTheme.Base"></style>
+  
   <!-- Base theme applied no matter what API -->
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
@@ -21,23 +21,23 @@
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
 
-    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    <!--<item name="android:datepickerdialogtheme">@style/appcompatdialogstyle</item>-->
 
     <!-- LISTVIEW COLORS-->
-    <item name="android:colorPressedHighlight">@color/ListViewSelected</item>
+    <!--<item name="android:colorPressedHighlight">@color/ListViewSelected</item>
     <item name="android:colorLongPressedHighlight">@color/ListViewHighlighted</item>
     <item name="android:colorFocusedHighlight">@color/ListViewSelected</item>
-    <item name="android:colorActivatedHighlight">@color/ListViewSelected</item>
+    <item name="android:colorActivatedHighlight">@color/ListViewSelected</item>-->
   </style>
   
   <!-- LISTVIEW COLORS -->
-  <color name="ListViewSelected">#00000000</color>
-  <color name="ListViewHighlighted">#00000000</color>
+  <!--<color name="ListViewSelected">#00000000</color>
+  <color name="ListViewHighlighted">#00000000</color>-->
 
   <!-- NÃO SEI -->
-  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+  <!--<style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#F44336</item>
-  </style>
+  </style>-->
 
   <!-- SPLASH SCREEN -->
   <style name="MainTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">

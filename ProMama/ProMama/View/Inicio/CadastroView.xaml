@@ -21,8 +21,8 @@
                 <Button Style="{StaticResource buttonMain}"
                         Text="Continuar"
                         Command="{Binding CadastroCommand}"/>
-                <Button Text="Já tem cadastro?"
-                        HorizontalOptions="Fill"
+                <Button Style="{StaticResource GrayButton}"
+                        Text="Já tem cadastro?"
                         Clicked="ChangeToLogin"/>
             </StackLayout>
             

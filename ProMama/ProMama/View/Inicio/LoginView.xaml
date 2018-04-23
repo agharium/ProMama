@@ -18,10 +18,10 @@
                 <Button Style="{StaticResource buttonMain}"
                         Text="Entrar"
                         Command="{Binding LoginCommand}"/>
-                <Button Style="{StaticResource buttonFacebook}"
+                <Button Style="{StaticResource FacebookButton}"
                         Text="Entrar com o Facebook"/>
-                <Button Text="Ainda não tem cadastro?"
-                        HorizontalOptions="Fill"
+                <Button Style="{StaticResource GrayButton}"
+                        Text="Ainda não tem cadastro?"
                         Clicked="ChangeToCadastro"/>
             </StackLayout>
             
