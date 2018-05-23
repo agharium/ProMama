@@ -12,6 +12,8 @@ namespace ProMama.ViewModel.Home.Paginas
 {
     class GaleriaViewModel : ViewModelBase
     {
+        private Aplicativo app = Aplicativo.Instance;
+
         private ObservableCollection<Imagem> _fotos;
         public ObservableCollection<Imagem> Fotos
         {
@@ -38,13 +40,44 @@ namespace ProMama.ViewModel.Home.Paginas
             Navigation = _navigation;
             NavigationService = DependencyService.Get<Services.INavigationService>();
 
-            Fotos = new ObservableCollection<Imagem>
+            var meses = Math.Floor(app._crianca.IdadeMeses) + 1;
+
+            Fotos = new ObservableCollection<Imagem>();
+
+            IdadesExtensoLista = new List<string>() {
+                "recém-nascido",
+                "1 semana",
+                "2 semanas",
+                "3 semanas",
+                "1 mês",
+                "2 meses",
+                "3 meses",
+                "4 meses",
+                "5 meses",
+                "6 meses",
+                "7 meses",
+                "8 meses",
+                "9 meses",
+                "10 meses",
+                "11 meses",
+                "1 ano",
+                "1 ano e 1 mês",
+                "1 ano e 2 meses",
+                "1 ano e 3 meses",
+                "1 ano e 4 meses",
+                "1 ano e 5 meses",
+                "1 ano e 6 meses",
+                "1 ano e 7 meses",
+                "1 ano e 8 meses",
+                "1 ano e 9 meses",
+                "1 ano e 10 meses",
+                "1 ano e 11 meses",
+                "2 anos"
+            };
+
+            for (int i = 0; i < meses; i++)
             {
-                new Imagem(0, "recém-nascido", "baby.jpeg"),
-                new Imagem(1, "1º mês", "baby.jpeg"),
-                new Imagem(2, "2º mês", "baby.jpeg"),
-                new Imagem(2, "3º mês", "baby.jpeg"),
-                new Imagem(2, "4º mês", "baby.jpeg")
+                new Imagem(i, IdadesExtensoLista[i], "baby.jpeg"),
             };
 
             PickPhotoCommand = new Command(PickPhoto);
