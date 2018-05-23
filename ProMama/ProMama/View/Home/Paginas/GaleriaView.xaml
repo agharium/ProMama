@@ -53,6 +53,7 @@
                                         Grid.Row="0"/>
                                     <Label 
                                         Text="{Binding Texto}"
+                                        FontSize="Small"
                                         Margin="5"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
