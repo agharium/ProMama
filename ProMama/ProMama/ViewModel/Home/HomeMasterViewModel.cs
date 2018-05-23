@@ -56,6 +56,10 @@ namespace ProMama.ViewModel.Home
 
         public HomeMasterViewModel()
         {
+            loadMaster();
+        }
+
+        public loadMaster(){
             Nome = app._crianca.crianca_primeiro_nome;
             Idade = app._crianca.IdadeExtenso;
             Foto = app._crianca.Foto == null ? "avatar_default.jpg" : app._crianca.Foto;
@@ -79,8 +83,6 @@ namespace ProMama.ViewModel.Home
                     new HomeMenuItem(10, "Sair",                     "fa-sign-out", typeof(LogoutView))
                 }
             );
-
-            
         }
     }
 }

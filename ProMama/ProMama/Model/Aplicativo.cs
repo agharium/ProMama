@@ -19,5 +19,6 @@
 
         public Usuario _usuario { get; set; }
         public Crianca _crianca { get; set; }
+        public HomeMasterViewModel _master { get; set; }
     }
 }
