@@ -5,10 +5,5 @@
         public string bairro_nome { get; set; }
 
         public Bairro() {}
-
-        public Bairro(string bairro_nome)
-        {
-            this.bairro_nome = bairro_nome;
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ProMama.ViewModel.Home.Paginas;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ProMama.View.Home.Paginas
@@ -9,6 +10,14 @@ namespace ProMama.View.Home.Paginas
         public PerfilMaeView()
         {
             InitializeComponent();
+
+            BindingContext = new PerfilMaeViewModel(Navigation);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new PerfilMaeViewModel(Navigation);
         }
     }
 }

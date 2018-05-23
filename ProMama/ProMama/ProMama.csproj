@@ -43,10 +43,13 @@
     <Compile Include="CustomComponent\Carousel\DotButton.cs" />
     <Compile Include="CustomComponent\Carousel\DotButtonsLayout.cs" />
     <Compile Include="CustomComponent\LongPressedEffect.cs" />
+    <Compile Include="CustomComponent\TextChangedBehavior.cs" />
     <Compile Include="Data\BairroDatabaseController.cs" />
     <Compile Include="Data\ConfigDatabaseController.cs" />
     <Compile Include="Data\CriancaDatabaseController.cs" />
+    <Compile Include="Data\DuvidaDatabaseController.cs" />
     <Compile Include="Data\IMarcelloDB.cs" />
+    <Compile Include="Data\InformacaoDatabaseController.cs" />
     <Compile Include="Data\PostoDatabaseController.cs" />
     <Compile Include="Data\UsuarioDatabaseController.cs" />
     <Compile Include="Model\Bairro.cs" />
@@ -54,7 +57,7 @@
     <Compile Include="Model\Crianca.cs" />
     <Compile Include="Model\Duvida.cs" />
     <Compile Include="Model\Aplicativo.cs" />
-    <Compile Include="Model\Foto.cs" />
+    <Compile Include="Model\Imagem.cs" />
     <Compile Include="Model\Informacao.cs" />
     <Compile Include="Model\JsonMessage.cs" />
     <Compile Include="Model\Medicao.cs" />
@@ -65,13 +68,16 @@
     <Compile Include="ViewModel\Home\Paginas\AddCriancaViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeDetailViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\AcompanhamentoViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\DuvidasOutrosViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\DuvidasViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\FotoViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\ImagemViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\InformacaoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\LogoutViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\PerfilCriancaCreateViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\PerfilMaeCreateViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\PerfilCriancaEditViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\PerfilCriancaViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\PerfilMaeEditViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\PerfilMaeViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\SelecionarCriancaViewModel.cs" />
     <Compile Include="ViewModel\Inicio\CadastroViewModel.cs" />
     <Compile Include="ViewModel\Inicio\IntroducaoViewModel.cs" />
@@ -97,11 +103,14 @@
     <Compile Include="View\Home\Paginas\AddAcompanhamentoView.xaml.cs">
       <DependentUpon>AddAcompanhamentoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Home\Paginas\DuvidasOutrosView.xaml.cs">
+      <DependentUpon>DuvidasOutrosView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home\Paginas\DuvidasView.xaml.cs">
       <DependentUpon>DuvidasView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\FotoView.xaml.cs">
-      <DependentUpon>FotoView.xaml</DependentUpon>
+    <Compile Include="View\Home\Paginas\ImagemView.xaml.cs">
+      <DependentUpon>ImagemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
       <DependentUpon>GaleriaView.xaml</DependentUpon>
@@ -115,14 +124,14 @@
     <Compile Include="View\Home\Paginas\MarcosCriancaView.xaml.cs">
       <DependentUpon>MarcosCriancaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\PerfilCriancaCreateView.xaml.cs">
-      <DependentUpon>PerfilCriancaCreateView.xaml</DependentUpon>
+    <Compile Include="View\Home\Paginas\PerfilCriancaEditView.xaml.cs">
+      <DependentUpon>PerfilCriancaEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\PerfilCriancaView.xaml.cs">
       <DependentUpon>PerfilCriancaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\PerfilMaeCreateView.xaml.cs">
-      <DependentUpon>PerfilMaeCreateView.xaml</DependentUpon>
+    <Compile Include="View\Home\Paginas\PerfilMaeEditView.xaml.cs">
+      <DependentUpon>PerfilMaeEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\PerfilMaeView.xaml.cs">
       <DependentUpon>PerfilMaeView.xaml</DependentUpon>
@@ -151,6 +160,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="DLToolkit.Forms.Controls.FlowListView, Version=1.0.6542.36915, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DLToolkit.Forms.Controls.FlowListView.2.0.10\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+netstandard1.0\DLToolkit.Forms.Controls.FlowListView.dll</HintPath>
+    </Reference>
     <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.6\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.dll</HintPath>
     </Reference>
@@ -163,11 +181,17 @@
     <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\netstandard1.0\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="MarcelloDB, Version=1.0.5.22940, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MarcelloDB.1.0.5\lib\netstandard1.1\MarcelloDB.dll</HintPath>
+    <Reference Include="MarcelloDB, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\netstandard1.1\MarcelloDB.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.3.1.1\lib\netstandard1.0\Plugin.Connectivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.3.1.1\lib\netstandard1.0\Plugin.Connectivity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Iconize, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Iconize.2.0.0.37-beta\lib\netstandard1.0\Plugin.Iconize.dll</HintPath>
@@ -189,6 +213,9 @@
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.2.0.0\lib\netstandard1.1\Splat.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Extensions.dll</HintPath>
@@ -259,7 +286,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\PerfilMaeCreateView.xaml">
+    <EmbeddedResource Include="View\Home\Paginas\PerfilMaeEditView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -277,7 +304,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\PerfilCriancaCreateView.xaml">
+    <EmbeddedResource Include="View\Home\Paginas\PerfilCriancaEditView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -325,7 +352,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\FotoView.xaml">
+    <EmbeddedResource Include="View\Home\Paginas\ImagemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\DuvidasOutrosView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

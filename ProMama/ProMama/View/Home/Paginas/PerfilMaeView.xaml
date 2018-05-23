@@ -4,7 +4,7 @@
              x:Class="ProMama.View.Home.Paginas.PerfilMaeView"
              Title="Perfil da Mãe">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Editar" Command="{Binding EditarCommand}"></ToolbarItem>
+        <ToolbarItem Name="Editar" Command="{Binding EditarCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -18,37 +18,47 @@
                             <RowDefinition Height="225" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image Source="mother.jpeg" 
-                               Aspect="AspectFill"
-                               Grid.Column="0"
-                               Grid.Row="0" />
-                        <StackLayout Padding="60, 25, 60, 25"
-                                     Spacing="25"
-                                     Grid.Column="0"
-                                     Grid.Row="1">
+                        <Image 
+                            Source="mother.jpeg" 
+                            Aspect="AspectFill"
+                            Grid.Column="0"
+                            Grid.Row="0" />
+                        <StackLayout 
+                            Padding="60, 25, 60, 25"
+                            Spacing="25"
+                            Grid.Column="0"
+                            Grid.Row="1">
                             <StackLayout>
-                                <Label Style="{StaticResource labelSubtitle}"
-                                       Text="Nome" />
-                                <Label Style="{StaticResource labelTitle}"
-                                       Text="Renata da Silva" />
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Nome" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Nome}" />
                             </StackLayout>
                             <StackLayout>
-                                <Label Style="{StaticResource labelSubtitle}"
-                                       Text="Idade" />
-                                <Label Style="{StaticResource labelTitle}"
-                                       Text="27 anos" />
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Idade" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Idade}" />
                             </StackLayout>
                             <StackLayout>
-                                <Label Style="{StaticResource labelSubtitle}"
-                                       Text="Bairro" />
-                                <Label Style="{StaticResource labelTitle}"
-                                       Text="Bairro 3" />
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Bairro" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Bairro}" />
                             </StackLayout>
                             <StackLayout>
-                                <Label Style="{StaticResource labelSubtitle}"
-                                       Text="Posto de saúde de referência" />
-                                <Label Style="{StaticResource labelTitle}"
-                                       Text="Posto 5" />
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Posto de saúde de referência" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding PostoSaude}" />
                             </StackLayout>
                         </StackLayout>
                     </Grid>

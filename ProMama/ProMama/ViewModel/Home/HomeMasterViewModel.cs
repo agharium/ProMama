@@ -20,6 +20,7 @@ namespace ProMama.ViewModel.Home
             set
             {
                 _nome = value;
+                Notify("Nome");
             }
         }
 
@@ -33,6 +34,7 @@ namespace ProMama.ViewModel.Home
             set
             {
                 _idade = value;
+                Notify("Idade");
             }
         }
 
@@ -58,11 +60,15 @@ namespace ProMama.ViewModel.Home
             Idade = app._crianca.IdadeExtenso;
             Foto = app._crianca.Foto == null ? "avatar_default.jpg" : app._crianca.Foto;
 
+            var duvidaType = typeof(DuvidasView);
+            if (App.BairroDatabase.FindBairro(app._usuario.bairro).bairro_nome.Equals("Não moro em Osório-RS"))
+                duvidaType = typeof(DuvidasOutrosView);
+
             MenuItems = new ObservableCollection<HomeMenuItem>(new[]
             {
                     new HomeMenuItem(0, "Início",                    "fa-home",     typeof(HomeDetail)),
-                    new HomeMenuItem(1, "Perfil da Criança",         "fa-child",    typeof(PerfilCriancaCreateView)),
-                    new HomeMenuItem(2, "Perfil da Mãe",             "fa-user",     typeof(PerfilMaeCreateView)),
+                    new HomeMenuItem(1, "Perfil da Criança",         "fa-child",    typeof(PerfilCriancaView)),
+                    new HomeMenuItem(2, "Perfil da Mãe",             "fa-user",     typeof(PerfilMaeView)),
                     new HomeMenuItem(3, "Galeria",                   "fa-image",    typeof(GaleriaView)),
                     new HomeMenuItem(4, "Acompanhamento da Criança", "fa-table",    typeof(AcompanhamentoView)),
                     new HomeMenuItem(5, "Marcos do Desenvolvimento", "fa-trophy",   typeof(MarcosCriancaView)),
@@ -73,6 +79,8 @@ namespace ProMama.ViewModel.Home
                     new HomeMenuItem(10, "Sair",                     "fa-sign-out", typeof(LogoutView))
                 }
             );
+
+            
         }
     }
 }

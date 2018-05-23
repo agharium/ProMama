@@ -1,4 +1,5 @@
-﻿using ProMama.Data;
+﻿using DLToolkit.Forms.Controls;
+using ProMama.Data;
 using ProMama.Model;
 using Xamarin.Forms;
 
@@ -7,11 +8,15 @@ namespace ProMama
     public partial class App : Application
     {
         static MarcelloDB.Session _db;
+
         static ConfigDatabaseController _configDatabase;
         static UsuarioDatabaseController _usuarioDatabase;
         static CriancaDatabaseController _criancaDatabase;
         static BairroDatabaseController _bairroDatabase;
         static PostoDatabaseController _postoDatabase;
+        static DuvidaDatabaseController _duvidaDatabase;
+        static InformacaoDatabaseController _informacaoDatabase;
+
         private Aplicativo app = Aplicativo.Instance;
 
         public App()
@@ -24,6 +29,9 @@ namespace ProMama
             DependencyService.Register<ViewModel.Services.IRestService, View.Services.RestService>();
 
             InitializeComponent();
+
+            // FlowListView
+            FlowListView.Init();
 
             // verifica se usuário já está logado
             var cfg = ConfigDatabase.FindConfig();
@@ -123,6 +131,30 @@ namespace ProMama
                     _postoDatabase = new PostoDatabaseController();
                 }
                 return _postoDatabase;
+            }
+        }
+
+        public static DuvidaDatabaseController DuvidaDatabase
+        {
+            get
+            {
+                if (_duvidaDatabase == null)
+                {
+                    _duvidaDatabase = new DuvidaDatabaseController();
+                }
+                return _duvidaDatabase;
+            }
+        }
+
+        public static InformacaoDatabaseController InformacaoDatabase
+        {
+            get
+            {
+                if (_informacaoDatabase == null)
+                {
+                    _informacaoDatabase = new InformacaoDatabaseController();
+                }
+                return _informacaoDatabase;
             }
         }
     }

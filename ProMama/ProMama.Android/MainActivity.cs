@@ -1,7 +1,11 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using FFImageLoading.Forms.Droid;
+using ImageCircle.Forms.Plugin.Droid;
+using Plugin.Iconize;
 // Media
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
@@ -25,13 +29,16 @@ namespace ProMama.Droid
             var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
             // ImageCircle
-            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
+            ImageCircleRenderer.Init();
 
             // FFImageLoading
-            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
+            CachedImageRenderer.Init(true);
 
             // Iconize
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+
+            // Acr.UserDialogs
+            UserDialogs.Init(this);
 
             LoadApplication(new ProMama.App());
         }

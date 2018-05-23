@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProMama.View.Home.Paginas.DuvidasView"
-             Title="Dúvidas">
+             Title="Minhas dúvidas">
     <ContentPage.Content>
         <StackLayout>
             <ListView 
@@ -10,30 +10,53 @@
                 HasUnevenRows="true"
                 ItemsSource="{Binding Duvidas}">
                 <ListView.Header>
-                    <StackLayout 
-                        Padding="20"
-                        Spacing="20">
-                        <Label
-                            Text="Envie sua dúvida para nós respondermos!"
-                            HorizontalOptions="CenterAndExpand"/>
-                        <Frame
-                            Padding="5">
-                            <Editor 
-                                HeightRequest = "85"
-                                BackgroundColor="White"/>
-                        </Frame>
-                        <Button 
-                            Style="{StaticResource buttonMain}"
-                            Text="Enviar dúvida"/>
-                        <!--Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"/>-->
-                        <Label
-                            Text="Minhas dúvidas"
-                            HorizontalOptions="CenterAndExpand"
-                            FontSize="Medium"/>
-                        <Label
-                            Text="Dúvidas de outros usuários"
-                            HorizontalOptions="CenterAndExpand"
-                            FontSize="Medium"/>
+                    <StackLayout>
+                        <StackLayout 
+                            Padding="20"
+                            BackgroundColor="#F44336">
+                            <Button 
+                                Style="{StaticResource ClearButton}"
+                                Text="Ver dúvidas já respondidas"
+                                Command="{Binding OutrasDuvidasCommand}"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Padding="20"
+                            Spacing="20">
+                            <Label
+                                Text="Envie sua dúvida para nós respondermos!"
+                                HorizontalOptions="CenterAndExpand"/>
+                            <Frame Padding="5">
+                                <Editor
+                                    HeightRequest = "85"
+                                    BackgroundColor="White"
+                                    Text="{Binding DuvidaTexto}"/>
+                            </Frame>
+                            <Button 
+                                Style="{StaticResource buttonMain}"
+                                Text="Enviar dúvida"
+                                Command="{Binding EnviarDuvidaCommand}"/>
+                        </StackLayout>
+                        <StackLayout
+                            Margin="20"
+                            Padding="20"
+                            IsVisible="{Binding AvisoListaVazia}">
+                            <Label 
+                                Text="Você não tem dúvidas para mostrar."
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="{Binding AvisoListaVazia}"/>
+                        </StackLayout>
+                        <StackLayout
+                            Padding="0, 25, 0, 0"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill"
+                            IsVisible="{Binding IndicadorLoading}">
+                            <ActivityIndicator
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                IsEnabled="{Binding IndicadorLoading}"
+                                IsRunning="{Binding IndicadorLoading}"
+                                IsVisible="{Binding IndicadorLoading}" />
+                        </StackLayout>
                     </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -41,11 +64,13 @@
                         <ViewCell>
                             <Frame Margin="20, 10, 20, 10">
                                 <StackLayout>
-                                    <Label Text="{Binding Pergunta}"
-                                           TextColor="#262626"
-                                           FontSize="Medium"/>
-                                    <Label Text="{Binding Resposta}"
-                                           FontSize="Small"/>
+                                    <Label 
+                                        Text="{Binding duvida_pergunta}"
+                                        TextColor="#262626"
+                                        FontSize="Medium"/>
+                                    <Label
+                                        Text="{Binding duvida_resposta}"
+                                        FontSize="Small"/>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

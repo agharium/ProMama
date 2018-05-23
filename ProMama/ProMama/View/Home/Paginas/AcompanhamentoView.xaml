@@ -209,7 +209,7 @@
                         </ListView.ItemTemplate>
                         <ListView.Footer>
 
-                            <Button Style="{StaticResource buttonMain}"
+                            <Button Style="{StaticResource MainButton}"
                                     Text="Adicionar nova medição"
                                     Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"
                                     Margin="0, 20, 0, 0"/>

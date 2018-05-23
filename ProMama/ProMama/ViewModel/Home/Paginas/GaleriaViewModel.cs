@@ -12,45 +12,44 @@ namespace ProMama.ViewModel.Home.Paginas
 {
     class GaleriaViewModel : ViewModelBase
     {
-        private ObservableCollection<Foto> _fotos;
-        public ObservableCollection<Foto> Fotos
+        private ObservableCollection<Imagem> _fotos;
+        public ObservableCollection<Imagem> Fotos
         {
             get { return _fotos; }
             set
             {
                 _fotos = value;
+                Notify("Fotos");
             }
 
         }
 
         public ICommand PickPhotoCommand { get; set; }
         public ICommand TakePhotoCommand { get; set; }
+        public ICommand VisualizarCommand { get; set; }
 
-        //private INavigation Navigation { get; set; }
-        //public ICommand NavigationCommand { get; set; }
+        private INavigation Navigation { get; set; }
+        public ICommand NavigationCommand { get; set; }
 
-        //private readonly Services.INavigationService _navigationService;
+        private readonly Services.INavigationService NavigationService;
 
-        public GaleriaViewModel()
+        public GaleriaViewModel(INavigation _navigation)
         {
-            //this.Navigation = Navigation;
-            //this.NavigationCommand = new Command(this.NavigateToAddAcompanhamento);
+            Navigation = _navigation;
+            NavigationService = DependencyService.Get<Services.INavigationService>();
 
-            //this._navigationService = DependencyService.Get<Services.INavigationService>();
-
-            Fotos = new ObservableCollection<Foto>();
-
-            Foto teste1 = new Foto(1, "baby.jpeg");
-            Fotos.Add(teste1);
-
-            Foto teste2 = new Foto(2, "baby.jpeg");
-            Fotos.Add(teste2);
-
-            Foto teste3 = new Foto(3, "baby.jpeg");
-            Fotos.Add(teste3);
+            Fotos = new ObservableCollection<Imagem>
+            {
+                new Imagem(0, "recém-nascido", "baby.jpeg"),
+                new Imagem(1, "1º mês", "baby.jpeg"),
+                new Imagem(2, "2º mês", "baby.jpeg"),
+                new Imagem(2, "3º mês", "baby.jpeg"),
+                new Imagem(2, "4º mês", "baby.jpeg")
+            };
 
             PickPhotoCommand = new Command(PickPhoto);
             TakePhotoCommand = new Command(TakePhoto);
+            VisualizarCommand = new Command<Imagem>(Visualizar);
         }
 
         private async void PickPhoto()
@@ -110,7 +109,7 @@ namespace ProMama.ViewModel.Home.Paginas
                 return;
             }
 
-            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
             {
                 //AllowCropping = true,
                 PhotoSize = PhotoSize.Medium,
@@ -124,8 +123,8 @@ namespace ProMama.ViewModel.Home.Paginas
 
             Debug.WriteLine("File Location", file.Path, "OK");
 
-            Foto f = new Foto(4, "teste");
-            f.Imagem = ImageSource.FromStream(() =>
+            Imagem f = new Imagem(4, "teste", "teste");
+            f.Caminho = ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();
                 return stream;
@@ -157,8 +156,8 @@ namespace ProMama.ViewModel.Home.Paginas
 
             Debug.WriteLine("File Location", file.Path, "OK");
 
-            Foto f = new Foto(4, "teste");
-            f.Imagem = ImageSource.FromStream(() =>
+            Imagem f = new Imagem(4, "teste", "teste");
+            f.Caminho = ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();
                 return stream;
@@ -166,5 +165,9 @@ namespace ProMama.ViewModel.Home.Paginas
             Fotos.Add(f);
         }
 
+        private async void Visualizar(Imagem imagem)
+        {
+            await NavigationService.NavigateImagem(Navigation, imagem);
+        }
     }
 }

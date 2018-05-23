@@ -15,7 +15,7 @@ namespace ProMama.View.Inicio
             var btn = new Button();
             btn.SetBinding(Button.CommandProperty, new Binding("NavigationCommand"));
             btn.Text = "Vamos lá!";
-            btn.Style = (Style)Application.Current.Resources["buttonMain"];
+            btn.Style = (Style)Application.Current.Resources["MainButton"];
 
             // carousel da página
             var Carousel = CreateCarousel();

@@ -1,4 +1,6 @@
-﻿using ProMama.Model;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
+using ProMama.Model;
 using ProMama.ViewModel.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,86 +11,91 @@ namespace ProMama.ViewModel.Inicio
     {
         private Aplicativo app = Aplicativo.Instance;
 
-        private string _email = "";
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-                //this.Notify("Email");
-            }
-        }
+        public string Email { get; set; }
 
-        private string _password = "";
-        public string Password
-        {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = value;
-                //this.Notify("Email");
-            }
-        }
+        public string Senha { get; set; }
 
         public ICommand LoginCommand { get; set; }
 
-        private readonly INavigationService _navigationService;
-        private readonly IMessageService _messageService;
-        private readonly IRestService _restService;
+        private readonly INavigationService NavigationService;
+        private readonly IMessageService MessageService;
+        private readonly IRestService RestService;
+
+        private bool LoginClicado = false;
 
         public LoginViewModel()
         {
             LoginCommand = new Command(Login);
 
-            _navigationService = DependencyService.Get<INavigationService>();
-            _messageService = DependencyService.Get<IMessageService>();
-            _restService = DependencyService.Get<IRestService>();
+            NavigationService = DependencyService.Get<INavigationService>();
+            MessageService = DependencyService.Get<IMessageService>();
+            RestService = DependencyService.Get<IRestService>();
         }
 
         public async void Login()
         {
-            if (Email.Equals(string.Empty) || Password.Equals(string.Empty))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                await _messageService.AlertDialog("Nenhum campo pode estar vazio.");
-            }
-            else
-            {
-                var u = new Usuario(Email, Password);
-                var result = await _restService.UsuarioLogin(u);
-
-                if (!result.success)
+                if (!LoginClicado)
                 {
-                    await _messageService.AlertDialog(result.message);
-                } else
-                {
-                    var resultAux = await _restService.UsuarioGet(result);
-                    if (!resultAux.success)
-                    {
-                        await _messageService.AlertDialog(result.message);
-                    } else
-                    {
-                        app._usuario = resultAux.user;
-                        App.UsuarioDatabase.SaveUsuario(app._usuario);
+                    LoginClicado = true;
 
-                        if (app._usuario.usuario_criancas.Count == 0)
+                    if (Email.Equals(string.Empty) || Senha.Equals(string.Empty))
+                    {
+                        await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
+                        LoginClicado = false;
+                    }
+                    else
+                    {
+                        var u = new Usuario(Email, Senha);
+                        var result = await RestService.UsuarioLogin(u);
+
+                        if (!result.success)
                         {
-                            _navigationService.NavigateToAddCrianca();
+                            await MessageService.AlertDialog(result.message);
+                            LoginClicado = false;
                         }
                         else
                         {
-                            app._crianca = app._usuario.usuario_criancas[app._usuario.usuario_criancas.Count - 1];
-                            _navigationService.NavigateToHome();
+                            System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(u));
+
+                            u = await RestService.UsuarioRead(result);
+                            if (u == null)
+                            {
+                                await MessageService.AlertDialog("Algo de errado não está certo.");
+                                LoginClicado = false;
+                            }
+                            else
+                            {
+                                using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
+                                {
+                                    app._usuario = u;
+                                    App.UsuarioDatabase.SaveUsuario(app._usuario);
+
+                                    // Popula banco
+                                    App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
+                                    App.PostoDatabase.SavePostoList(await RestService.PostosRead());
+                                    App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
+                                    App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+                                }
+
+                                if (app._usuario.criancas.Count == 0)
+                                {
+                                    NavigationService.NavigateAddCrianca();
+                                }
+                                else
+                                {
+                                    app._crianca = app._usuario.criancas[app._usuario.criancas.Count - 1];
+                                    NavigationService.NavigateHome();
+                                }
+                            }
                         }
                     }
                 }
+            } else{
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para fazer login no aplicativo.");
             }
+            
         }
 
     }

@@ -31,7 +31,7 @@ namespace ProMama.ViewModel.Home.Paginas
                 app._crianca = null;
                 app._usuario = null;
 
-                _navigationService.NavigateToCadastroLogin();
+                _navigationService.NavigateCadastroLogin();
             }
             else
             {

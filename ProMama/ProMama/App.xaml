@@ -13,10 +13,17 @@
                 <Setter Property="HeightRequest" Value="40" />
             </Style>
             
-            <Style x:Key="buttonMain" TargetType="Button">
+            <Style x:Key="MainButton" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="BackgroundColor" Value="#E53935" />
                 <Setter Property="TextColor" Value="White" />
+                <Setter Property="HeightRequest" Value="40" />
+            </Style>
+
+            <Style x:Key="ClearButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="#E53935" />
                 <Setter Property="HeightRequest" Value="40" />
             </Style>
 

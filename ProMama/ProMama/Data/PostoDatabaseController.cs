@@ -2,6 +2,8 @@
 using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProMama.Data
 {
@@ -23,9 +25,22 @@ namespace ProMama.Data
             PostoCollection.Persist(p);
         }
 
+        public void SavePostoList(List<Posto> postos)
+        {
+            foreach (var p in postos)
+            {
+                SavePosto(p);
+            }
+        }
+
         public Posto FindPosto(int id)
         {
             return PostoCollection.Find(id);
+        }
+
+        public List<Posto> GetAllPosto()
+        {
+            return PostoCollection.All.ToList();
         }
 
         public void DeletePosto(int id)

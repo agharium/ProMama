@@ -1,11 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              x:Class="ProMama.View.Home.Paginas.GaleriaView"
+             x:Name="this"
              Title="Galeria">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView SeparatorVisibility="None"
+        <StackLayout
+            Padding="10">
+            <flv:FlowListView 
+                x:Name="List"
+                SeparatorVisibility="None" 
+                HasUnevenRows="true"
+                FlowColumnCount="2"
+                FlowItemsSource="{Binding Fotos}">
+                <!--FlowItemTappedCommand="{Binding ItemTappedCommand}"
+                FlowLastTappedItem="{Binding LastTappedItem}">-->
+
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <Grid Padding="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--<ffimageloading:CachedImage HeightRequest="100" Aspect="AspectFill"
+							DownsampleHeight="100" DownsampleUseDipUnits="false" 
+							LoadingPlaceholder="image_loading.png" ErrorPlaceholder="image_error.png"
+							Source="{Binding ImageUrl}"/>-->
+                            
+                            <Frame
+                                x:Name="Imagem"
+                                Padding="0"
+                                Margin="10, 10, 10, 10"
+                                HeightRequest="150">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70*"/>
+                                        <RowDefinition Height="30*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image
+                                        Source="{Binding Caminho}"
+                                        Aspect="AspectFill"
+                                        Grid.Column="0"
+                                        Grid.Row="0"/>
+                                    <Label 
+                                        Text="{Binding Texto}"
+                                        Margin="5"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        Grid.Column="0"
+                                        Grid.Row="1"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.VisualizarCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <!--<Label 
+                                x:Name="Label" 
+                                HorizontalOptions="Fill" 
+                                HorizontalTextAlignment="Center" 
+                                VerticalOptions="End"
+							    BackgroundColor="Silver" 
+                                Opacity="0.5" 
+                                Text="{Binding FileName}"/>-->
+                        </Grid>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+
+            </flv:FlowListView>
+
+            <!--<ListView SeparatorVisibility="None"
                       HasUnevenRows="true"
                       ItemsSource="{Binding Fotos}">
                 <ListView.Header>
@@ -50,7 +127,7 @@
                 <ListView.Footer>
                     <StackLayout Margin="0, 0, 0, 10" />
                 </ListView.Footer>
-            </ListView>
+            </ListView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

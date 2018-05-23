@@ -21,14 +21,14 @@ namespace ProMama.ViewModel.Home.Paginas
         private INavigation Navigation { get; set; }
         public ICommand NavigationCommand { get; set; }
 
-        private readonly Services.INavigationService _navigationService;
+        private readonly Services.INavigationService NavigationService;
 
         public AcompanhamentoViewModel(INavigation Navigation)
         {
             this.Navigation = Navigation;
-            this.NavigationCommand = new Command(this.NavigateToAddAcompanhamento);
+            NavigationCommand = new Command(this.NavigateToAddAcompanhamento);
 
-            this._navigationService = DependencyService.Get<Services.INavigationService>();
+            NavigationService = DependencyService.Get<Services.INavigationService>();
 
             Medicoes = new ObservableCollection<Medicao>();
 
@@ -44,7 +44,7 @@ namespace ProMama.ViewModel.Home.Paginas
 
         private async void NavigateToAddAcompanhamento()
         {
-            await this._navigationService.NavigateToAddAcompanhamento(Navigation);
+            await NavigationService.NavigateAddAcompanhamento(Navigation);
         }
     }
 }

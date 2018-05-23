@@ -14,11 +14,16 @@
                        Text="{Binding Email}"/>
                 <Entry Placeholder="Senha"
                        IsPassword="True"
-                       Text="{Binding Password}"/>
+                       Text="{Binding Senha}"/>
                 <Entry Placeholder="Confirme a senha"
                        IsPassword="True"
-                       Text="{Binding PasswordConfirmation}"/>
-                <Button Style="{StaticResource buttonMain}"
+                       Text="{Binding SenhaConfirmacao}"/>
+                <Picker 
+                    Title="Em qual bairro de Osório você mora?"
+                    ItemsSource="{Binding Bairros}"
+                    ItemDisplayBinding="{Binding bairro_nome}"
+                    SelectedItem="{Binding BairroSelecionado}" />
+                <Button Style="{StaticResource MainButton}"
                         Text="Continuar"
                         Command="{Binding CadastroCommand}"/>
                 <Button Style="{StaticResource GrayButton}"

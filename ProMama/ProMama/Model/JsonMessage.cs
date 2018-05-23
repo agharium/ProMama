@@ -26,9 +26,9 @@
             this.id = id;
         }
 
-        public JsonMessage(int id)
+        public JsonMessage(string message)
         {
-            this.id = id;
+            this.message = message;
         }
 
         public JsonMessage() { }

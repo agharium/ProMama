@@ -2,6 +2,8 @@
 using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProMama.Data
 {
@@ -23,9 +25,22 @@ namespace ProMama.Data
             BairroCollection.Persist(b);
         }
 
+        public void SaveBairroList(List<Bairro> bairros)
+        {
+            foreach (var b in bairros)
+            {
+                SaveBairro(b);
+            }
+        }
+
         public Bairro FindBairro(int id)
         {
             return BairroCollection.Find(id);
+        }
+
+        public List<Bairro> GetAllBairro()
+        {
+            return BairroCollection.All.ToList();
         }
 
         public void DeleteBairro(int id)

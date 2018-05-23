@@ -1,6 +1,8 @@
 ﻿using ProMama.Model;
 using ProMama.ViewModel.Services;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -10,103 +12,132 @@ namespace ProMama.ViewModel.Home.Paginas
     {
         private Aplicativo app = Aplicativo.Instance;
 
-        private string _primeiroNome = "";
-        public string PrimeiroNome
+        public string PrimeiroNome { get; set; }
+
+        private DateTime _dataMinima;
+        public DateTime DataMinima
         {
             get
             {
-                return _primeiroNome;
+                return _dataMinima;
             }
             set
             {
-                _primeiroNome = value;
+                _dataMinima = value;
+                Notify("DataMinima");
             }
         }
 
-        private DateTime _minimumDate;
-        public DateTime MinimumDate
+        private DateTime _dataMaxima;
+        public DateTime DataMaxima
         {
             get
             {
-                return _minimumDate;
+                return _dataMaxima;
             }
             set
             {
-                _minimumDate = value;
-                this.Notify("MinimumDate");
+                _dataMaxima = value;
+                Notify("DataMaxima");
             }
         }
 
-        private DateTime _maximumDate;
-        public DateTime MaximumDate
+        private DateTime _dataSelecionada;
+        public DateTime DataSelecionada
         {
             get
             {
-                return _maximumDate;
+                return _dataSelecionada;
             }
             set
             {
-                _maximumDate = value;
-                this.Notify("MaximumDate");
+                _dataSelecionada = value;
+                Notify("DataSelecionada");
             }
         }
 
-        private DateTime _currentDate;
-        public DateTime CurrentDate
+        private List<string> _sexos;
+        public List<string> Sexos
         {
             get
             {
-                return _currentDate;
+                return _sexos;
             }
             set
             {
-                _currentDate = value;
-                this.Notify("CurrentDate");
+                _sexos = value;
+                Notify("Sexos");
+            }
+        }
+
+        private int _sexoSelecionado;
+        public int SexoSelecionado
+        {
+            get
+            {
+                return _sexoSelecionado;
+            }
+            set
+            {
+                _sexoSelecionado = value;
+                Notify("SexoSelecionado");
             }
         }
 
         public ICommand AddCriancaCommand { get; set; }
 
-        private readonly INavigationService _navigationService;
-        private readonly IMessageService _messageService;
-        private readonly IRestService _restService;
+        private readonly INavigationService NavigationService;
+        private readonly IMessageService MessageService;
+        private readonly IRestService RestService;
 
         public AddCriancaViewModel()
         {
-            this.AddCriancaCommand = new Command(this.AddCrianca);
+            AddCriancaCommand = new Command(AddCrianca);
 
-            this._navigationService = DependencyService.Get<INavigationService>();
-            this._messageService = DependencyService.Get<IMessageService>();
-            this._restService = DependencyService.Get<IRestService>();
+            NavigationService = DependencyService.Get<INavigationService>();
+            MessageService = DependencyService.Get<IMessageService>();
+            RestService = DependencyService.Get<IRestService>();
 
-            this.MinimumDate = DateTime.Now.AddYears(-2);
-            this.MaximumDate = DateTime.Now;
-            this.CurrentDate = DateTime.Now;
+            DataMinima = DateTime.Now.AddYears(-2);
+            DataMaxima = DateTime.Now;
+            DataSelecionada = DateTime.Now;
+            Sexos = new List<string>
+            {
+                "Menino",
+                "Menina"
+            };
+            SexoSelecionado = -1;
         }
 
         private async void AddCrianca()
         {
-            if (PrimeiroNome.Equals(string.Empty))
+            if (PrimeiroNome.Equals(string.Empty) || SexoSelecionado == -1)
             {
-                await this._messageService.AlertDialog("Nenhum campo pode estar vazio.");
+                await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
             }
             else
             {
-                if (await _messageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
-                    var c = new Crianca(app._usuario, PrimeiroNome, CurrentDate);
-                    var result = await _restService.CriancaCreate(c);
+                if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
+                    var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
+                    c.crianca_tipo_parto = -1;
+                    c.crianca_idade_gestacional = -1;
+                    var result = await RestService.CriancaCreate(c, app._usuario.api_token);
 
                     if (result.success)
                     {
                         c.crianca_id = result.id;
                         App.CriancaDatabase.SaveCrianca(c);
+                        if (app._usuario.criancas == null)
+                            app._usuario.criancas = new List<Crianca>();
+                        app._usuario.criancas.Add(c);
+                        App.UsuarioDatabase.SaveUsuario(app._usuario);
                         app._crianca = c;
 
-                        _navigationService.NavigateToHome();
+                        NavigationService.NavigateHome();
                     }
                     else
                     {
-                        await _messageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                        await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
                     }
                 }
             }

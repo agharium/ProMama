@@ -8,12 +8,26 @@ namespace ProMama.ViewModel.Services
     {
         Task<JsonMessage> UsuarioCreate(Usuario u);
 
+        Task<JsonMessage> UsuarioUpdate(Usuario u);
+
         Task<JsonMessage> UsuarioLogin(Usuario u);
 
-        Task<JsonMessage> UsuarioGet(JsonMessage msg);
+        Task<Usuario> UsuarioRead(JsonMessage msg);
 
-        Task<JsonMessage> CriancaCreate(Crianca c);
+        Task<JsonMessage> CriancaCreate(Crianca c, string token);
 
-        Task<List<Informacao>> InformacaoGet(string token);
+        Task<JsonMessage> CriancaUpdate(Crianca c, string token);
+
+        Task<List<Informacao>> InformacoesRead(string token);
+
+        Task<JsonMessage> DuvidaCreate(JsonMessage pergunta, string token);
+
+        Task<List<Duvida>> DuvidasRead(string token);
+
+        Task<List<Duvida>> DuvidasUsuarioRead(string token);
+
+        Task<List<Bairro>> BairrosRead();
+
+        Task<List<Posto>> PostosRead();
     }
 }

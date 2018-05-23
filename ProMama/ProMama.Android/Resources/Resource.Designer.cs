@@ -26,6 +26,44 @@ namespace ProMama.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::AndroidHUD.Resource.Attribute.ahBarColor = global::ProMama.Droid.Resource.Attribute.ahBarColor;
+			global::AndroidHUD.Resource.Attribute.ahBarLength = global::ProMama.Droid.Resource.Attribute.ahBarLength;
+			global::AndroidHUD.Resource.Attribute.ahBarWidth = global::ProMama.Droid.Resource.Attribute.ahBarWidth;
+			global::AndroidHUD.Resource.Attribute.ahCircleColor = global::ProMama.Droid.Resource.Attribute.ahCircleColor;
+			global::AndroidHUD.Resource.Attribute.ahDelayMillis = global::ProMama.Droid.Resource.Attribute.ahDelayMillis;
+			global::AndroidHUD.Resource.Attribute.ahRadius = global::ProMama.Droid.Resource.Attribute.ahRadius;
+			global::AndroidHUD.Resource.Attribute.ahRimColor = global::ProMama.Droid.Resource.Attribute.ahRimColor;
+			global::AndroidHUD.Resource.Attribute.ahRimWidth = global::ProMama.Droid.Resource.Attribute.ahRimWidth;
+			global::AndroidHUD.Resource.Attribute.ahSpinSpeed = global::ProMama.Droid.Resource.Attribute.ahSpinSpeed;
+			global::AndroidHUD.Resource.Attribute.ahText = global::ProMama.Droid.Resource.Attribute.ahText;
+			global::AndroidHUD.Resource.Attribute.ahTextColor = global::ProMama.Droid.Resource.Attribute.ahTextColor;
+			global::AndroidHUD.Resource.Attribute.ahTextSize = global::ProMama.Droid.Resource.Attribute.ahTextSize;
+			global::AndroidHUD.Resource.Drawable.ic_errorstatus = global::ProMama.Droid.Resource.Drawable.ic_errorstatus;
+			global::AndroidHUD.Resource.Drawable.ic_successstatus = global::ProMama.Droid.Resource.Drawable.ic_successstatus;
+			global::AndroidHUD.Resource.Drawable.roundedbg = global::ProMama.Droid.Resource.Drawable.roundedbg;
+			global::AndroidHUD.Resource.Drawable.roundedbgdark = global::ProMama.Droid.Resource.Drawable.roundedbgdark;
+			global::AndroidHUD.Resource.Id.loadingImage = global::ProMama.Droid.Resource.Id.loadingImage;
+			global::AndroidHUD.Resource.Id.loadingProgressBar = global::ProMama.Droid.Resource.Id.loadingProgressBar;
+			global::AndroidHUD.Resource.Id.loadingProgressWheel = global::ProMama.Droid.Resource.Id.loadingProgressWheel;
+			global::AndroidHUD.Resource.Id.textViewStatus = global::ProMama.Droid.Resource.Id.textViewStatus;
+			global::AndroidHUD.Resource.Layout.loading = global::ProMama.Droid.Resource.Layout.loading;
+			global::AndroidHUD.Resource.Layout.loadingimage = global::ProMama.Droid.Resource.Layout.loadingimage;
+			global::AndroidHUD.Resource.Layout.loadingprogress = global::ProMama.Droid.Resource.Layout.loadingprogress;
+			global::AndroidHUD.Resource.String.library_name = global::ProMama.Droid.Resource.String.library_name;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel = global::ProMama.Droid.Resource.Styleable.ProgressWheel;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarColor = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahBarColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarLength = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahBarLength;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarWidth = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahBarWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahCircleColor = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahCircleColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahDelayMillis = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahDelayMillis;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRadius = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahRadius;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimColor = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahRimColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimWidth = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahRimWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahSpinSpeed = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahSpinSpeed;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahText;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Splat.Resource.String.library_name = global::ProMama.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::ProMama.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -210,6 +248,42 @@ namespace ProMama.Droid
 			
 			// aapt resource value: 0x7f01008e
 			public const int activityChooserViewStyle = 2130772110;
+			
+			// aapt resource value: 0x7f010176
+			public const int ahBarColor = 2130772342;
+			
+			// aapt resource value: 0x7f01017e
+			public const int ahBarLength = 2130772350;
+			
+			// aapt resource value: 0x7f01017d
+			public const int ahBarWidth = 2130772349;
+			
+			// aapt resource value: 0x7f01017b
+			public const int ahCircleColor = 2130772347;
+			
+			// aapt resource value: 0x7f01017a
+			public const int ahDelayMillis = 2130772346;
+			
+			// aapt resource value: 0x7f01017c
+			public const int ahRadius = 2130772348;
+			
+			// aapt resource value: 0x7f010177
+			public const int ahRimColor = 2130772343;
+			
+			// aapt resource value: 0x7f010178
+			public const int ahRimWidth = 2130772344;
+			
+			// aapt resource value: 0x7f010179
+			public const int ahSpinSpeed = 2130772345;
+			
+			// aapt resource value: 0x7f010173
+			public const int ahText = 2130772339;
+			
+			// aapt resource value: 0x7f010174
+			public const int ahTextColor = 2130772340;
+			
+			// aapt resource value: 0x7f010175
+			public const int ahTextSize = 2130772341;
 			
 			// aapt resource value: 0x7f0100b3
 			public const int alertDialogButtonGroupStyle = 2130772147;
@@ -1264,43 +1338,49 @@ namespace ProMama.Droid
 		{
 			
 			// aapt resource value: 0x7f0d004c
-			public const int abc_background_cache_hint_selector_material_dark = 2131558476;
+			public const int ListViewHighlighted = 2131558476;
 			
-			// aapt resource value: 0x7f0d004d
-			public const int abc_background_cache_hint_selector_material_light = 2131558477;
+			// aapt resource value: 0x7f0d004b
+			public const int ListViewSelected = 2131558475;
 			
 			// aapt resource value: 0x7f0d004e
-			public const int abc_btn_colored_borderless_text_material = 2131558478;
+			public const int abc_background_cache_hint_selector_material_dark = 2131558478;
 			
 			// aapt resource value: 0x7f0d004f
-			public const int abc_btn_colored_text_material = 2131558479;
+			public const int abc_background_cache_hint_selector_material_light = 2131558479;
 			
 			// aapt resource value: 0x7f0d0050
-			public const int abc_color_highlight_material = 2131558480;
+			public const int abc_btn_colored_borderless_text_material = 2131558480;
 			
 			// aapt resource value: 0x7f0d0051
-			public const int abc_hint_foreground_material_dark = 2131558481;
+			public const int abc_btn_colored_text_material = 2131558481;
 			
 			// aapt resource value: 0x7f0d0052
-			public const int abc_hint_foreground_material_light = 2131558482;
+			public const int abc_color_highlight_material = 2131558482;
+			
+			// aapt resource value: 0x7f0d0053
+			public const int abc_hint_foreground_material_dark = 2131558483;
+			
+			// aapt resource value: 0x7f0d0054
+			public const int abc_hint_foreground_material_light = 2131558484;
 			
 			// aapt resource value: 0x7f0d0004
 			public const int abc_input_method_navigation_guard = 2131558404;
 			
-			// aapt resource value: 0x7f0d0053
-			public const int abc_primary_text_disable_only_material_dark = 2131558483;
-			
-			// aapt resource value: 0x7f0d0054
-			public const int abc_primary_text_disable_only_material_light = 2131558484;
-			
 			// aapt resource value: 0x7f0d0055
-			public const int abc_primary_text_material_dark = 2131558485;
+			public const int abc_primary_text_disable_only_material_dark = 2131558485;
 			
 			// aapt resource value: 0x7f0d0056
-			public const int abc_primary_text_material_light = 2131558486;
+			public const int abc_primary_text_disable_only_material_light = 2131558486;
 			
 			// aapt resource value: 0x7f0d0057
-			public const int abc_search_url_text = 2131558487;
+			public const int abc_primary_text_material_dark = 2131558487;
+			
+			// aapt resource value: 0x7f0d0058
+			public const int abc_primary_text_material_light = 2131558488;
+			
+			// aapt resource value: 0x7f0d0059
+			public const int abc_search_url_text = 2131558489;
 			
 			// aapt resource value: 0x7f0d0005
 			public const int abc_search_url_text_normal = 2131558405;
@@ -1311,29 +1391,29 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0d0007
 			public const int abc_search_url_text_selected = 2131558407;
 			
-			// aapt resource value: 0x7f0d0058
-			public const int abc_secondary_text_material_dark = 2131558488;
-			
-			// aapt resource value: 0x7f0d0059
-			public const int abc_secondary_text_material_light = 2131558489;
-			
 			// aapt resource value: 0x7f0d005a
-			public const int abc_tint_btn_checkable = 2131558490;
+			public const int abc_secondary_text_material_dark = 2131558490;
 			
 			// aapt resource value: 0x7f0d005b
-			public const int abc_tint_default = 2131558491;
+			public const int abc_secondary_text_material_light = 2131558491;
 			
 			// aapt resource value: 0x7f0d005c
-			public const int abc_tint_edittext = 2131558492;
+			public const int abc_tint_btn_checkable = 2131558492;
 			
 			// aapt resource value: 0x7f0d005d
-			public const int abc_tint_seek_thumb = 2131558493;
+			public const int abc_tint_default = 2131558493;
 			
 			// aapt resource value: 0x7f0d005e
-			public const int abc_tint_spinner = 2131558494;
+			public const int abc_tint_edittext = 2131558494;
 			
 			// aapt resource value: 0x7f0d005f
-			public const int abc_tint_switch_track = 2131558495;
+			public const int abc_tint_seek_thumb = 2131558495;
+			
+			// aapt resource value: 0x7f0d0060
+			public const int abc_tint_spinner = 2131558496;
+			
+			// aapt resource value: 0x7f0d0061
+			public const int abc_tint_switch_track = 2131558497;
 			
 			// aapt resource value: 0x7f0d0008
 			public const int accent_material_dark = 2131558408;
@@ -1392,8 +1472,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0d0040
 			public const int design_bottom_navigation_shadow_color = 2131558464;
 			
-			// aapt resource value: 0x7f0d0060
-			public const int design_error = 2131558496;
+			// aapt resource value: 0x7f0d0062
+			public const int design_error = 2131558498;
 			
 			// aapt resource value: 0x7f0d0041
 			public const int design_fab_shadow_end_color = 2131558465;
@@ -1419,8 +1499,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0d0048
 			public const int design_snackbar_background_color = 2131558472;
 			
-			// aapt resource value: 0x7f0d0061
-			public const int design_tint_password_toggle = 2131558497;
+			// aapt resource value: 0x7f0d0063
+			public const int design_tint_password_toggle = 2131558499;
 			
 			// aapt resource value: 0x7f0d0016
 			public const int dim_foreground_disabled_material_dark = 2131558422;
@@ -1536,8 +1616,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0d0038
 			public const int secondary_text_disabled_material_light = 2131558456;
 			
-			// aapt resource value: 0x7f0d004b
-			public const int splash_background = 2131558475;
+			// aapt resource value: 0x7f0d004d
+			public const int splash_background = 2131558477;
 			
 			// aapt resource value: 0x7f0d0039
 			public const int switch_thumb_disabled_material_dark = 2131558457;
@@ -1545,11 +1625,11 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0d003a
 			public const int switch_thumb_disabled_material_light = 2131558458;
 			
-			// aapt resource value: 0x7f0d0062
-			public const int switch_thumb_material_dark = 2131558498;
+			// aapt resource value: 0x7f0d0064
+			public const int switch_thumb_material_dark = 2131558500;
 			
-			// aapt resource value: 0x7f0d0063
-			public const int switch_thumb_material_light = 2131558499;
+			// aapt resource value: 0x7f0d0065
+			public const int switch_thumb_material_light = 2131558501;
 			
 			// aapt resource value: 0x7f0d003b
 			public const int switch_thumb_normal_material_dark = 2131558459;
@@ -2342,62 +2422,62 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f020056
 			public const int avd_hide_password = 2130837590;
 			
-			// aapt resource value: 0x7f02013d
-			public const int avd_hide_password_1 = 2130837821;
+			// aapt resource value: 0x7f020140
+			public const int avd_hide_password_1 = 2130837824;
 			
-			// aapt resource value: 0x7f02013e
-			public const int avd_hide_password_2 = 2130837822;
+			// aapt resource value: 0x7f020141
+			public const int avd_hide_password_2 = 2130837825;
 			
-			// aapt resource value: 0x7f02013f
-			public const int avd_hide_password_3 = 2130837823;
+			// aapt resource value: 0x7f020142
+			public const int avd_hide_password_3 = 2130837826;
 			
 			// aapt resource value: 0x7f020057
 			public const int avd_show_password = 2130837591;
 			
-			// aapt resource value: 0x7f020140
-			public const int avd_show_password_1 = 2130837824;
+			// aapt resource value: 0x7f020143
+			public const int avd_show_password_1 = 2130837827;
 			
-			// aapt resource value: 0x7f020141
-			public const int avd_show_password_2 = 2130837825;
+			// aapt resource value: 0x7f020144
+			public const int avd_show_password_2 = 2130837828;
 			
-			// aapt resource value: 0x7f020142
-			public const int avd_show_password_3 = 2130837826;
+			// aapt resource value: 0x7f020145
+			public const int avd_show_password_3 = 2130837829;
 			
 			// aapt resource value: 0x7f020058
 			public const int baby = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int babyAvatar = 2130837593;
+			public const int design_bottom_navigation_item_background = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int design_bottom_navigation_item_background = 2130837594;
+			public const int design_fab_background = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int design_fab_background = 2130837595;
+			public const int design_ic_visibility = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int design_ic_visibility = 2130837596;
+			public const int design_ic_visibility_off = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int design_ic_visibility_off = 2130837597;
+			public const int design_password_eye = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int design_password_eye = 2130837598;
+			public const int design_snackbar_background = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int design_snackbar_background = 2130837599;
+			public const int ic_audiotrack_dark = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_audiotrack_dark = 2130837600;
+			public const int ic_audiotrack_light = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_audiotrack_light = 2130837601;
+			public const int ic_dialog_close_dark = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_dialog_close_dark = 2130837602;
+			public const int ic_dialog_close_light = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_dialog_close_light = 2130837603;
+			public const int ic_errorstatus = 2130837603;
 			
 			// aapt resource value: 0x7f020064
 			public const int ic_group_collapse_00 = 2130837604;
@@ -2901,154 +2981,163 @@ namespace ProMama.Droid
 			public const int ic_mr_button_grey = 2130837770;
 			
 			// aapt resource value: 0x7f02010b
-			public const int ic_vol_type_speaker_dark = 2130837771;
+			public const int ic_successstatus = 2130837771;
 			
 			// aapt resource value: 0x7f02010c
-			public const int ic_vol_type_speaker_group_dark = 2130837772;
+			public const int ic_vol_type_speaker_dark = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-			public const int ic_vol_type_speaker_group_light = 2130837773;
+			public const int ic_vol_type_speaker_group_dark = 2130837773;
 			
 			// aapt resource value: 0x7f02010e
-			public const int ic_vol_type_speaker_light = 2130837774;
+			public const int ic_vol_type_speaker_group_light = 2130837774;
 			
 			// aapt resource value: 0x7f02010f
-			public const int ic_vol_type_tv_dark = 2130837775;
+			public const int ic_vol_type_speaker_light = 2130837775;
 			
 			// aapt resource value: 0x7f020110
-			public const int ic_vol_type_tv_light = 2130837776;
+			public const int ic_vol_type_tv_dark = 2130837776;
 			
 			// aapt resource value: 0x7f020111
-			public const int icon = 2130837777;
+			public const int ic_vol_type_tv_light = 2130837777;
 			
 			// aapt resource value: 0x7f020112
-			public const int ifrs_logo = 2130837778;
+			public const int icon = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int intro_bebe1 = 2130837779;
+			public const int ifrs_logo = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int intro_bebe2 = 2130837780;
+			public const int intro_bebe1 = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int intro_bebe3 = 2130837781;
+			public const int intro_bebe2 = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int intro_bebe4 = 2130837782;
+			public const int intro_bebe3 = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int mother = 2130837783;
+			public const int intro_bebe4 = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int mr_button_connected_dark = 2130837784;
+			public const int mother = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int mr_button_connected_light = 2130837785;
+			public const int mr_button_connected_dark = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
-			public const int mr_button_connecting_dark = 2130837786;
+			public const int mr_button_connected_light = 2130837786;
 			
 			// aapt resource value: 0x7f02011b
-			public const int mr_button_connecting_light = 2130837787;
+			public const int mr_button_connecting_dark = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int mr_button_dark = 2130837788;
+			public const int mr_button_connecting_light = 2130837788;
 			
 			// aapt resource value: 0x7f02011d
-			public const int mr_button_light = 2130837789;
+			public const int mr_button_dark = 2130837789;
 			
 			// aapt resource value: 0x7f02011e
-			public const int mr_dialog_close_dark = 2130837790;
+			public const int mr_button_light = 2130837790;
 			
 			// aapt resource value: 0x7f02011f
-			public const int mr_dialog_close_light = 2130837791;
+			public const int mr_dialog_close_dark = 2130837791;
 			
 			// aapt resource value: 0x7f020120
-			public const int mr_dialog_material_background_dark = 2130837792;
+			public const int mr_dialog_close_light = 2130837792;
 			
 			// aapt resource value: 0x7f020121
-			public const int mr_dialog_material_background_light = 2130837793;
+			public const int mr_dialog_material_background_dark = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int mr_group_collapse = 2130837794;
+			public const int mr_dialog_material_background_light = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int mr_group_expand = 2130837795;
+			public const int mr_group_collapse = 2130837795;
 			
 			// aapt resource value: 0x7f020124
-			public const int mr_media_pause_dark = 2130837796;
+			public const int mr_group_expand = 2130837796;
 			
 			// aapt resource value: 0x7f020125
-			public const int mr_media_pause_light = 2130837797;
+			public const int mr_media_pause_dark = 2130837797;
 			
 			// aapt resource value: 0x7f020126
-			public const int mr_media_play_dark = 2130837798;
+			public const int mr_media_pause_light = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int mr_media_play_light = 2130837799;
+			public const int mr_media_play_dark = 2130837799;
 			
 			// aapt resource value: 0x7f020128
-			public const int mr_media_stop_dark = 2130837800;
+			public const int mr_media_play_light = 2130837800;
 			
 			// aapt resource value: 0x7f020129
-			public const int mr_media_stop_light = 2130837801;
+			public const int mr_media_stop_dark = 2130837801;
 			
 			// aapt resource value: 0x7f02012a
-			public const int mr_vol_type_audiotrack_dark = 2130837802;
+			public const int mr_media_stop_light = 2130837802;
 			
 			// aapt resource value: 0x7f02012b
-			public const int mr_vol_type_audiotrack_light = 2130837803;
+			public const int mr_vol_type_audiotrack_dark = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int navigation_empty_icon = 2130837804;
+			public const int mr_vol_type_audiotrack_light = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int notification_action_background = 2130837805;
+			public const int navigation_empty_icon = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int notification_bg = 2130837806;
+			public const int notification_action_background = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int notification_bg_low = 2130837807;
+			public const int notification_bg = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int notification_bg_low_normal = 2130837808;
+			public const int notification_bg_low = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int notification_bg_low_pressed = 2130837809;
+			public const int notification_bg_low_normal = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int notification_bg_normal = 2130837810;
+			public const int notification_bg_low_pressed = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int notification_bg_normal_pressed = 2130837811;
+			public const int notification_bg_normal = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int notification_icon_background = 2130837812;
-			
-			// aapt resource value: 0x7f02013b
-			public const int notification_template_icon_bg = 2130837819;
-			
-			// aapt resource value: 0x7f02013c
-			public const int notification_template_icon_low_bg = 2130837820;
+			public const int notification_bg_normal_pressed = 2130837812;
 			
 			// aapt resource value: 0x7f020135
-			public const int notification_tile_bg = 2130837813;
+			public const int notification_icon_background = 2130837813;
+			
+			// aapt resource value: 0x7f02013e
+			public const int notification_template_icon_bg = 2130837822;
+			
+			// aapt resource value: 0x7f02013f
+			public const int notification_template_icon_low_bg = 2130837823;
 			
 			// aapt resource value: 0x7f020136
-			public const int notify_panel_notification_icon_bg = 2130837814;
+			public const int notification_tile_bg = 2130837814;
 			
 			// aapt resource value: 0x7f020137
-			public const int splash = 2130837815;
+			public const int notify_panel_notification_icon_bg = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int splash_screen = 2130837816;
+			public const int roundedbg = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int tooltip_frame_dark = 2130837817;
+			public const int roundedbgdark = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int tooltip_frame_light = 2130837818;
+			public const int splash = 2130837818;
+			
+			// aapt resource value: 0x7f02013b
+			public const int splash_screen = 2130837819;
+			
+			// aapt resource value: 0x7f02013c
+			public const int tooltip_frame_dark = 2130837820;
+			
+			// aapt resource value: 0x7f02013d
+			public const int tooltip_frame_light = 2130837821;
 			
 			static Drawable()
 			{
@@ -3081,8 +3170,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090037
 			public const int SYM = 2131296311;
 			
-			// aapt resource value: 0x7f0900b6
-			public const int action0 = 2131296438;
+			// aapt resource value: 0x7f0900ba
+			public const int action0 = 2131296442;
 			
 			// aapt resource value: 0x7f09007c
 			public const int action_bar = 2131296380;
@@ -3105,17 +3194,17 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09005a
 			public const int action_bar_title = 2131296346;
 			
-			// aapt resource value: 0x7f0900b3
-			public const int action_container = 2131296435;
+			// aapt resource value: 0x7f0900b7
+			public const int action_container = 2131296439;
 			
 			// aapt resource value: 0x7f09007d
 			public const int action_context_bar = 2131296381;
 			
-			// aapt resource value: 0x7f0900ba
-			public const int action_divider = 2131296442;
+			// aapt resource value: 0x7f0900be
+			public const int action_divider = 2131296446;
 			
-			// aapt resource value: 0x7f0900b4
-			public const int action_image = 2131296436;
+			// aapt resource value: 0x7f0900b8
+			public const int action_image = 2131296440;
 			
 			// aapt resource value: 0x7f090003
 			public const int action_menu_divider = 2131296259;
@@ -3132,11 +3221,11 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09005c
 			public const int action_mode_close_button = 2131296348;
 			
-			// aapt resource value: 0x7f0900b5
-			public const int action_text = 2131296437;
+			// aapt resource value: 0x7f0900b9
+			public const int action_text = 2131296441;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int actions = 2131296451;
+			// aapt resource value: 0x7f0900c7
+			public const int actions = 2131296455;
 			
 			// aapt resource value: 0x7f09005d
 			public const int activity_chooser_view_content = 2131296349;
@@ -3171,8 +3260,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090063
 			public const int buttonPanel = 2131296355;
 			
-			// aapt resource value: 0x7f0900b7
-			public const int cancel_action = 2131296439;
+			// aapt resource value: 0x7f0900bb
+			public const int cancel_action = 2131296443;
 			
 			// aapt resource value: 0x7f090045
 			public const int center = 2131296325;
@@ -3186,8 +3275,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090073
 			public const int checkbox = 2131296371;
 			
-			// aapt resource value: 0x7f0900bf
-			public const int chronometer = 2131296447;
+			// aapt resource value: 0x7f0900c3
+			public const int chronometer = 2131296451;
 			
 			// aapt resource value: 0x7f09004e
 			public const int clip_horizontal = 2131296334;
@@ -3243,8 +3332,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090030
 			public const int end = 2131296304;
 			
-			// aapt resource value: 0x7f0900c5
-			public const int end_padder = 2131296453;
+			// aapt resource value: 0x7f0900c9
+			public const int end_padder = 2131296457;
 			
 			// aapt resource value: 0x7f09003f
 			public const int enterAlways = 2131296319;
@@ -3288,8 +3377,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090062
 			public const int icon = 2131296354;
 			
-			// aapt resource value: 0x7f0900c4
-			public const int icon_group = 2131296452;
+			// aapt resource value: 0x7f0900c8
+			public const int icon_group = 2131296456;
 			
 			// aapt resource value: 0x7f09003a
 			public const int ifRoom = 2131296314;
@@ -3297,8 +3386,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09005f
 			public const int image = 2131296351;
 			
-			// aapt resource value: 0x7f0900c0
-			public const int info = 2131296448;
+			// aapt resource value: 0x7f0900c4
+			public const int info = 2131296452;
 			
 			// aapt resource value: 0x7f090059
 			public const int italic = 2131296345;
@@ -3324,14 +3413,23 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090061
 			public const int list_item = 2131296353;
 			
-			// aapt resource value: 0x7f0900ca
-			public const int masked = 2131296458;
+			// aapt resource value: 0x7f09009b
+			public const int loadingImage = 2131296411;
 			
-			// aapt resource value: 0x7f0900b9
-			public const int media_actions = 2131296441;
+			// aapt resource value: 0x7f090099
+			public const int loadingProgressBar = 2131296409;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int message = 2131296456;
+			// aapt resource value: 0x7f09009c
+			public const int loadingProgressWheel = 2131296412;
+			
+			// aapt resource value: 0x7f0900ce
+			public const int masked = 2131296462;
+			
+			// aapt resource value: 0x7f0900bd
+			public const int media_actions = 2131296445;
+			
+			// aapt resource value: 0x7f0900cc
+			public const int message = 2131296460;
 			
 			// aapt resource value: 0x7f090031
 			public const int middle = 2131296305;
@@ -3339,80 +3437,80 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090053
 			public const int mini = 2131296339;
 			
-			// aapt resource value: 0x7f0900a5
-			public const int mr_art = 2131296421;
-			
-			// aapt resource value: 0x7f09009a
-			public const int mr_chooser_list = 2131296410;
-			
-			// aapt resource value: 0x7f09009d
-			public const int mr_chooser_route_desc = 2131296413;
-			
-			// aapt resource value: 0x7f09009b
-			public const int mr_chooser_route_icon = 2131296411;
-			
-			// aapt resource value: 0x7f09009c
-			public const int mr_chooser_route_name = 2131296412;
-			
-			// aapt resource value: 0x7f090099
-			public const int mr_chooser_title = 2131296409;
-			
-			// aapt resource value: 0x7f0900a2
-			public const int mr_close = 2131296418;
-			
-			// aapt resource value: 0x7f0900a8
-			public const int mr_control_divider = 2131296424;
-			
-			// aapt resource value: 0x7f0900ae
-			public const int mr_control_playback_ctrl = 2131296430;
-			
-			// aapt resource value: 0x7f0900b1
-			public const int mr_control_subtitle = 2131296433;
-			
-			// aapt resource value: 0x7f0900b0
-			public const int mr_control_title = 2131296432;
-			
-			// aapt resource value: 0x7f0900af
-			public const int mr_control_title_container = 2131296431;
-			
-			// aapt resource value: 0x7f0900a3
-			public const int mr_custom_control = 2131296419;
-			
-			// aapt resource value: 0x7f0900a4
-			public const int mr_default_control = 2131296420;
-			
-			// aapt resource value: 0x7f09009f
-			public const int mr_dialog_area = 2131296415;
+			// aapt resource value: 0x7f0900a9
+			public const int mr_art = 2131296425;
 			
 			// aapt resource value: 0x7f09009e
-			public const int mr_expandable_area = 2131296414;
-			
-			// aapt resource value: 0x7f0900b2
-			public const int mr_group_expand_collapse = 2131296434;
-			
-			// aapt resource value: 0x7f0900a6
-			public const int mr_media_main_control = 2131296422;
+			public const int mr_chooser_list = 2131296414;
 			
 			// aapt resource value: 0x7f0900a1
-			public const int mr_name = 2131296417;
+			public const int mr_chooser_route_desc = 2131296417;
 			
-			// aapt resource value: 0x7f0900a7
-			public const int mr_playback_control = 2131296423;
+			// aapt resource value: 0x7f09009f
+			public const int mr_chooser_route_icon = 2131296415;
 			
 			// aapt resource value: 0x7f0900a0
-			public const int mr_title_bar = 2131296416;
+			public const int mr_chooser_route_name = 2131296416;
 			
-			// aapt resource value: 0x7f0900a9
-			public const int mr_volume_control = 2131296425;
+			// aapt resource value: 0x7f09009d
+			public const int mr_chooser_title = 2131296413;
 			
-			// aapt resource value: 0x7f0900aa
-			public const int mr_volume_group_list = 2131296426;
+			// aapt resource value: 0x7f0900a6
+			public const int mr_close = 2131296422;
 			
 			// aapt resource value: 0x7f0900ac
-			public const int mr_volume_item_icon = 2131296428;
+			public const int mr_control_divider = 2131296428;
+			
+			// aapt resource value: 0x7f0900b2
+			public const int mr_control_playback_ctrl = 2131296434;
+			
+			// aapt resource value: 0x7f0900b5
+			public const int mr_control_subtitle = 2131296437;
+			
+			// aapt resource value: 0x7f0900b4
+			public const int mr_control_title = 2131296436;
+			
+			// aapt resource value: 0x7f0900b3
+			public const int mr_control_title_container = 2131296435;
+			
+			// aapt resource value: 0x7f0900a7
+			public const int mr_custom_control = 2131296423;
+			
+			// aapt resource value: 0x7f0900a8
+			public const int mr_default_control = 2131296424;
+			
+			// aapt resource value: 0x7f0900a3
+			public const int mr_dialog_area = 2131296419;
+			
+			// aapt resource value: 0x7f0900a2
+			public const int mr_expandable_area = 2131296418;
+			
+			// aapt resource value: 0x7f0900b6
+			public const int mr_group_expand_collapse = 2131296438;
+			
+			// aapt resource value: 0x7f0900aa
+			public const int mr_media_main_control = 2131296426;
+			
+			// aapt resource value: 0x7f0900a5
+			public const int mr_name = 2131296421;
+			
+			// aapt resource value: 0x7f0900ab
+			public const int mr_playback_control = 2131296427;
+			
+			// aapt resource value: 0x7f0900a4
+			public const int mr_title_bar = 2131296420;
 			
 			// aapt resource value: 0x7f0900ad
-			public const int mr_volume_slider = 2131296429;
+			public const int mr_volume_control = 2131296429;
+			
+			// aapt resource value: 0x7f0900ae
+			public const int mr_volume_group_list = 2131296430;
+			
+			// aapt resource value: 0x7f0900b0
+			public const int mr_volume_item_icon = 2131296432;
+			
+			// aapt resource value: 0x7f0900b1
+			public const int mr_volume_slider = 2131296433;
 			
 			// aapt resource value: 0x7f090028
 			public const int multiply = 2131296296;
@@ -3429,14 +3527,14 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09001e
 			public const int normal = 2131296286;
 			
-			// aapt resource value: 0x7f0900c2
-			public const int notification_background = 2131296450;
+			// aapt resource value: 0x7f0900c6
+			public const int notification_background = 2131296454;
 			
-			// aapt resource value: 0x7f0900bc
-			public const int notification_main_column = 2131296444;
+			// aapt resource value: 0x7f0900c0
+			public const int notification_main_column = 2131296448;
 			
-			// aapt resource value: 0x7f0900bb
-			public const int notification_main_column_container = 2131296443;
+			// aapt resource value: 0x7f0900bf
+			public const int notification_main_column_container = 2131296447;
 			
 			// aapt resource value: 0x7f09004c
 			public const int parallax = 2131296332;
@@ -3462,11 +3560,11 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09004a
 			public const int right = 2131296330;
 			
-			// aapt resource value: 0x7f0900c1
-			public const int right_icon = 2131296449;
+			// aapt resource value: 0x7f0900c5
+			public const int right_icon = 2131296453;
 			
-			// aapt resource value: 0x7f0900bd
-			public const int right_side = 2131296445;
+			// aapt resource value: 0x7f0900c1
+			public const int right_side = 2131296449;
 			
 			// aapt resource value: 0x7f09000c
 			public const int save_image_matrix = 2131296268;
@@ -3540,8 +3638,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090025
 			public const int showTitle = 2131296293;
 			
-			// aapt resource value: 0x7f0900c6
-			public const int sliding_tabs = 2131296454;
+			// aapt resource value: 0x7f0900ca
+			public const int sliding_tabs = 2131296458;
 			
 			// aapt resource value: 0x7f09008b
 			public const int smallLabel = 2131296395;
@@ -3573,8 +3671,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09004b
 			public const int start = 2131296331;
 			
-			// aapt resource value: 0x7f0900b8
-			public const int status_bar_latest_event_content = 2131296440;
+			// aapt resource value: 0x7f0900bc
+			public const int status_bar_latest_event_content = 2131296444;
 			
 			// aapt resource value: 0x7f090076
 			public const int submenuarrow = 2131296374;
@@ -3600,6 +3698,9 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090069
 			public const int textSpacerNoTitle = 2131296361;
 			
+			// aapt resource value: 0x7f09009a
+			public const int textViewStatus = 2131296410;
+			
 			// aapt resource value: 0x7f090098
 			public const int text_input_password_toggle = 2131296408;
 			
@@ -3609,8 +3710,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090015
 			public const int textinput_error = 2131296277;
 			
-			// aapt resource value: 0x7f0900be
-			public const int time = 2131296446;
+			// aapt resource value: 0x7f0900c2
+			public const int time = 2131296450;
 			
 			// aapt resource value: 0x7f09001c
 			public const int title = 2131296284;
@@ -3621,8 +3722,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f09006f
 			public const int title_template = 2131296367;
 			
-			// aapt resource value: 0x7f0900c7
-			public const int toolbar = 2131296455;
+			// aapt resource value: 0x7f0900cb
+			public const int toolbar = 2131296459;
 			
 			// aapt resource value: 0x7f09003e
 			public const int top = 2131296318;
@@ -3660,11 +3761,11 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900c9
-			public const int visible = 2131296457;
+			// aapt resource value: 0x7f0900cd
+			public const int visible = 2131296461;
 			
-			// aapt resource value: 0x7f0900ab
-			public const int volume_item_container = 2131296427;
+			// aapt resource value: 0x7f0900af
+			public const int volume_item_container = 2131296431;
 			
 			// aapt resource value: 0x7f09003c
 			public const int withText = 2131296316;
@@ -3877,88 +3978,97 @@ namespace ProMama.Droid
 			public const int design_text_input_password_icon = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int mr_chooser_dialog = 2130903080;
+			public const int loading = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int mr_chooser_list_item = 2130903081;
+			public const int loadingimage = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int mr_controller_material_dialog_b = 2130903082;
+			public const int loadingprogress = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int mr_controller_volume_item = 2130903083;
+			public const int mr_chooser_dialog = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int mr_playback_control = 2130903084;
+			public const int mr_chooser_list_item = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int mr_volume_control = 2130903085;
+			public const int mr_controller_material_dialog_b = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int notification_action = 2130903086;
+			public const int mr_controller_volume_item = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int notification_action_tombstone = 2130903087;
+			public const int mr_playback_control = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_media_action = 2130903088;
+			public const int mr_volume_control = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_media_cancel_action = 2130903089;
+			public const int notification_action = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_template_big_media = 2130903090;
+			public const int notification_action_tombstone = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_template_big_media_custom = 2130903091;
+			public const int notification_media_action = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_big_media_narrow = 2130903092;
+			public const int notification_media_cancel_action = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_big_media_narrow_custom = 2130903093;
+			public const int notification_template_big_media = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_template_custom_big = 2130903094;
+			public const int notification_template_big_media_custom = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_icon_group = 2130903095;
+			public const int notification_template_big_media_narrow = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_lines_media = 2130903096;
+			public const int notification_template_big_media_narrow_custom = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_media = 2130903097;
+			public const int notification_template_custom_big = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int notification_template_media_custom = 2130903098;
+			public const int notification_template_icon_group = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int notification_template_part_chronometer = 2130903099;
+			public const int notification_template_lines_media = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int notification_template_part_time = 2130903100;
+			public const int notification_template_media = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_item_material = 2130903101;
+			public const int notification_template_media_custom = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int select_dialog_multichoice_material = 2130903102;
+			public const int notification_template_part_chronometer = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int select_dialog_singlechoice_material = 2130903103;
+			public const int notification_template_part_time = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int support_simple_spinner_dropdown_item = 2130903104;
+			public const int select_dialog_item_material = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int Tabbar = 2130903105;
+			public const int select_dialog_multichoice_material = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int Toolbar = 2130903106;
+			public const int select_dialog_singlechoice_material = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int tooltip = 2130903107;
+			public const int support_simple_spinner_dropdown_item = 2130903107;
+			
+			// aapt resource value: 0x7f030044
+			public const int Tabbar = 2130903108;
+			
+			// aapt resource value: 0x7f030045
+			public const int Toolbar = 2130903109;
+			
+			// aapt resource value: 0x7f030046
+			public const int tooltip = 2130903110;
 			
 			static Layout()
 			{
@@ -4068,6 +4178,9 @@ namespace ProMama.Droid
 			
 			// aapt resource value: 0x7f0a0035
 			public const int character_counter_pattern = 2131361845;
+			
+			// aapt resource value: 0x7f0a003c
+			public const int library_name = 2131361852;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int mr_button_content_description = 2131361792;
@@ -4183,6 +4296,9 @@ namespace ProMama.Droid
 			
 			// aapt resource value: 0x7f0c016e
 			public const int Animation_Design_BottomSheetDialog = 2131493230;
+			
+			// aapt resource value: 0x7f0c0191
+			public const int AppCompatDialogStyle = 2131493265;
 			
 			// aapt resource value: 0x7f0c00a9
 			public const int Base_AlertDialog_AppCompat = 2131493033;
@@ -4691,8 +4807,8 @@ namespace ProMama.Droid
 			// aapt resource value: 0x7f0c0190
 			public const int MainTheme_Base = 2131493264;
 			
-			// aapt resource value: 0x7f0c0191
-			public const int MainTheme_Splash = 2131493265;
+			// aapt resource value: 0x7f0c0192
+			public const int MainTheme_Splash = 2131493266;
 			
 			// aapt resource value: 0x7f0c002d
 			public const int Platform_AppCompat = 2131492909;
@@ -6916,6 +7032,56 @@ namespace ProMama.Droid
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
+			
+			public static int[] ProgressWheel = new int[] {
+					2130772339,
+					2130772340,
+					2130772341,
+					2130772342,
+					2130772343,
+					2130772344,
+					2130772345,
+					2130772346,
+					2130772347,
+					2130772348,
+					2130772349,
+					2130772350};
+			
+			// aapt resource value: 3
+			public const int ProgressWheel_ahBarColor = 3;
+			
+			// aapt resource value: 11
+			public const int ProgressWheel_ahBarLength = 11;
+			
+			// aapt resource value: 10
+			public const int ProgressWheel_ahBarWidth = 10;
+			
+			// aapt resource value: 8
+			public const int ProgressWheel_ahCircleColor = 8;
+			
+			// aapt resource value: 7
+			public const int ProgressWheel_ahDelayMillis = 7;
+			
+			// aapt resource value: 9
+			public const int ProgressWheel_ahRadius = 9;
+			
+			// aapt resource value: 4
+			public const int ProgressWheel_ahRimColor = 4;
+			
+			// aapt resource value: 5
+			public const int ProgressWheel_ahRimWidth = 5;
+			
+			// aapt resource value: 6
+			public const int ProgressWheel_ahSpinSpeed = 6;
+			
+			// aapt resource value: 0
+			public const int ProgressWheel_ahText = 0;
+			
+			// aapt resource value: 1
+			public const int ProgressWheel_ahTextColor = 1;
+			
+			// aapt resource value: 2
+			public const int ProgressWheel_ahTextSize = 2;
 			
 			public static int[] RecycleListView = new int[] {
 					2130772200,

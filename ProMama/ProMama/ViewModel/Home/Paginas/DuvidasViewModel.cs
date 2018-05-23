@@ -1,43 +1,137 @@
 ﻿using ProMama.Model;
+using ProMama.ViewModel.Services;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ProMama.ViewModel.Home.Paginas
 {
     class DuvidasViewModel : ViewModelBase
     {
-        private ObservableCollection<Duvida> _duvidas;
-        public ObservableCollection<Duvida> Duvidas
+        private Aplicativo app = Aplicativo.Instance;
+
+        private string _duvidaTexto;
+        public string DuvidaTexto
         {
-            get { return _duvidas; }
+            get
+            {
+                return _duvidaTexto;
+            }
             set
             {
-                _duvidas = value;
+                _duvidaTexto = value;
+                Notify("DuvidaTexto");
             }
-
         }
 
-        //private INavigation Navigation { get; set; }
-        //public ICommand NavigationCommand { get; set; }
-
-        //private readonly Services.INavigationService _navigationService;
-
-        public DuvidasViewModel()
+        private string _indicadorLoading;
+        public string IndicadorLoading
         {
-            //this.Navigation = Navigation;
-            //this.NavigationCommand = new Command(this.NavigateToAddAcompanhamento);
+            get
+            {
+                return _indicadorLoading;
+            }
+            set
+            {
+                _indicadorLoading = value;
+                Notify("IndicadorLoading");
+            }
+        }
 
-            //this._navigationService = DependencyService.Get<Services.INavigationService>();
+        private string _avisoListaVazia;
+        public string AvisoListaVazia
+        {
+            get
+            {
+                return _avisoListaVazia;
+            }
+            set
+            {
+                _avisoListaVazia = value;
+                Notify("AvisoListaVazia");
+            }
+        }
 
-            Duvidas = new ObservableCollection<Duvida>();
+        private ObservableCollection<Duvida> _Duvidas;
+        public ObservableCollection<Duvida> Duvidas
+        {
+            get { return _Duvidas; }
+            set
+            {
+                _Duvidas = value;
+                Notify("Duvidas");
+            }
+        }
 
-            Duvida teste1 = new Duvida("Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? Pergunta longa? ", "Resposta curta");
-            Duvidas.Add(teste1);
+        private INavigation Navigation { get; set; }
 
-            Duvida teste2 = new Duvida("Pergunta curta?", "Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa Resposta longa ");
-            Duvidas.Add(teste2);
+        public ICommand EnviarDuvidaCommand { get; set; }
+        public ICommand OutrasDuvidasCommand { get; set; }
 
-            Duvida teste3 = new Duvida("Pergunta curta?", "Resposta curta.");
-            Duvidas.Add(teste3);
+        private readonly IMessageService MessageService;
+        private readonly IRestService RestService;
+        private readonly INavigationService NavigationService;
+
+        public DuvidasViewModel(INavigation _navigation)
+        {
+            DuvidaTexto = "";
+            Navigation = _navigation;
+
+            EnviarDuvidaCommand = new Command(EnviarDuvida);
+            OutrasDuvidasCommand = new Command(OutrasDuvidas);
+
+            RestService = DependencyService.Get<IRestService>();
+            MessageService = DependencyService.Get<IMessageService>();
+            NavigationService = DependencyService.Get<INavigationService>();
+
+            DuvidasRead();
+        }
+
+        public async void EnviarDuvida()
+        {
+            if (DuvidaTexto.Equals(string.Empty))
+            {
+                await MessageService.AlertDialog("Você deve preencher o campo de dúvida.");
+            }
+            else
+            {
+                var result = await RestService.DuvidaCreate(new JsonMessage(DuvidaTexto), app._usuario.api_token);
+                if (!result.success)
+                {
+                    await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                }
+                else
+                {
+                    Duvida d = new Duvida(DuvidaTexto, "Aguardando resposta.");
+                    Duvidas.Insert(0, d);
+                    DuvidaTexto = string.Empty;
+                    IndicadorLoading = "False";
+                }
+            }
+        }
+
+        public async void DuvidasRead()
+        {
+            IndicadorLoading = "True";
+            AvisoListaVazia = "False";
+
+            var duvidas = await RestService.DuvidasUsuarioRead(app._usuario.api_token);
+            foreach (var d in duvidas)
+            {
+                if (d.duvida_resposta == null)
+                {
+                    d.duvida_resposta = "Aguardando resposta.";
+                }
+            }
+            Duvidas = new ObservableCollection<Duvida>(duvidas);
+
+            IndicadorLoading = "False";
+            if (Duvidas.Count == 0) AvisoListaVazia = "True";
+        }
+
+        public async void OutrasDuvidas()
+        {
+            await NavigationService.NavigateOutrasDuvidas(Navigation);
         }
     }
 }

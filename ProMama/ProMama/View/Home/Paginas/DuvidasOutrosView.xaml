@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.Paginas.DuvidasOutrosView"
+             xmlns:local="clr-namespace:ProMama.CustomComponent;assembly=ProMama"
+             Title="Dúvidas respondidas">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Buscar" 
+            Command="{Binding BuscarCommand}" />
+    </ContentPage.ToolbarItems>-->
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="0, 0, 10, 0">
+                <SearchBar 
+                    x:Name="SearchBar"
+                    HeightRequest="50"
+                    SearchCommand="{Binding BuscarCommand}" 
+                    SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                    Placeholder="Busca">
+                    <SearchBar.Behaviors>
+                        <local:TextChangedBehavior />
+                    </SearchBar.Behaviors>
+                </SearchBar>
+            </StackLayout>
+            <ListView 
+                SeparatorVisibility="None"
+                HasUnevenRows="true"
+                ItemsSource="{Binding Duvidas}">
+                <ListView.Header>
+                    <StackLayout>
+                        <StackLayout 
+                            Padding="20"
+                            IsVisible="{Binding AvisoListaVazia}">
+                            <Label 
+                                Text="Não há nenhuma dúvida para ser mostrada."
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="{Binding AvisoListaVazia}"/>
+                        </StackLayout>
+                        <StackLayout
+                            Padding="0, 75, 0, 0"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill"
+                            IsVisible="{Binding IndicadorLoading}">
+                            <ActivityIndicator
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                IsEnabled="{Binding IndicadorLoading}"
+                                IsRunning="{Binding IndicadorLoading}"
+                                IsVisible="{Binding IndicadorLoading}" />
+                        </StackLayout>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="20, 10, 20, 10">
+                                <StackLayout>
+                                    <Label 
+                                        Text="{Binding duvida_pergunta}"
+                                        TextColor="#262626"
+                                        FontSize="Medium"/>
+                                    <Label 
+                                        Text="{Binding duvida_resposta}"
+                                        FontSize="Small"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

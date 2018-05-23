@@ -1,7 +1,6 @@
 ﻿using ProMama.Model;
 using ProMama.ViewModel.Services;
-using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -11,12 +10,7 @@ namespace ProMama.ViewModel.Home.Paginas
     {
         private Aplicativo app = Aplicativo.Instance;
 
-        private ObservableCollection<Crianca> _criancas;
-        public ObservableCollection<Crianca> Criancas
-        {
-            get { return _criancas; }
-            set { _criancas = value; }
-        }
+        public List<Crianca> Criancas { get; set; }
 
         // Commands
         public ICommand SelecionarCriancaCommand { get; set; }
@@ -24,14 +18,14 @@ namespace ProMama.ViewModel.Home.Paginas
 
         // Navigation
         private INavigation Navigation { get; set; }
-        private readonly INavigationService _navigationService;
+        private readonly INavigationService NavigationService;
 
-        public SelecionarCriancaViewModel(INavigation Navigation)
+        public SelecionarCriancaViewModel(INavigation _navigation)
         {
-            Criancas = new ObservableCollection<Crianca>(app._usuario.usuario_criancas);
+            Criancas = app._usuario.criancas;
 
-            this.Navigation = Navigation;
-            _navigationService = DependencyService.Get<INavigationService>();
+            Navigation = _navigation;
+            NavigationService = DependencyService.Get<INavigationService>();
 
             SelecionarCriancaCommand = new Command<Crianca>(SelecionarCrianca);
             AddCriancaCommand = new Command(AddCrianca);
@@ -41,12 +35,12 @@ namespace ProMama.ViewModel.Home.Paginas
         private void SelecionarCrianca(Crianca c)
         {
             app._crianca = c;
-            _navigationService.NavigateToHome();
+            NavigationService.NavigateHome();
         }
 
         private async void AddCrianca()
         {
-            await _navigationService.NavigateToAddCriancaPush(Navigation);
+            await NavigationService.NavigateAddCriancaPush(Navigation);
         }
     }
 }

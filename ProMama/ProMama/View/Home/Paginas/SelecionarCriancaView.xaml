@@ -9,18 +9,20 @@
             <ListView ItemsSource="{Binding Criancas}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding crianca_primeiro_nome}"
-                                  Detail="{Binding IdadeExtenso}"
-                                  Command="{Binding Source={x:Reference this}, Path=BindingContext.SelecionarCriancaCommand}"
-                                  CommandParameter="{Binding .}">
+                        <TextCell 
+                            Text="{Binding crianca_primeiro_nome}"
+                            Detail="{Binding IdadeExtenso}"
+                            Command="{Binding Source={x:Reference this}, Path=BindingContext.SelecionarCriancaCommand}"
+                            CommandParameter="{Binding .}">
                         </TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <Button Style="{StaticResource buttonMain}"
-                            Text="Adicionar uma criança"
-                            Command="{Binding AddCriancaCommand}"
-                            Margin="20"/>
+                    <Button 
+                        Style="{StaticResource MainButton}"
+                        Text="Adicionar uma criança"
+                        Command="{Binding AddCriancaCommand}"
+                        Margin="20"/>
                 </ListView.Footer>
             </ListView>
         </StackLayout>

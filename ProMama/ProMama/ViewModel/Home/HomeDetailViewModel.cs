@@ -20,7 +20,7 @@ namespace ProMama.ViewModel.Home
 
         // Foto da Criança
         private ImageSource _foto { get; set; }
-        public ImageSource Foto
+        public  ImageSource Foto
         {
             get
             {
@@ -37,7 +37,7 @@ namespace ProMama.ViewModel.Home
         private List<string> IdadesExtensoLista { get; set; }
 
         private int _idadeAux;
-        public int IdadeAux
+        public  int IdadeAux
         {
             get { return _idadeAux; }
             set
@@ -104,76 +104,76 @@ namespace ProMama.ViewModel.Home
         }
 
         // Informações
-        private ObservableCollection<Informacao> _informacoes;
-        public  ObservableCollection<Informacao> Informacoes
-        {
-            get { return _informacoes; }
-            set { _informacoes = value; }
-
-        }
+        public  ObservableCollection<Informacao> Informacoes { get; set; }
 
         private List<Informacao> InformacoesAux = new List<Informacao>();
 
         // Picker
-        private List<string> _idadesPickerLista;
-        public  List<string> IdadesPickerLista
-        {
-            get { return _idadesPickerLista; }
-            set { _idadesPickerLista = value; }
-        }
+        public  List<string> IdadesPickerLista { get; set; }
 
         // Commands
         public ICommand MenosIdadeCommand   { get; set; }
         public ICommand MaisIdadeCommand    { get; set; }
         public ICommand IdadePickerCommand  { get; set; }
-        public ICommand InfoPageCommand     { get; set; }
-        public ICommand FotoPageCommand     { get; set; }
+        public ICommand InformacaoCommand   { get; set; }
+        public ICommand FotoCommand         { get; set; }
 
         // Navigation
         private INavigation Navigation { get; set; }
-        private readonly INavigationService _navigationService;
+        private readonly INavigationService NavigationService;
 
         // Rest
-        private readonly IRestService _restService;
+        private readonly IRestService RestService;
 
         // Construtor
-        public HomeDetailViewModel(INavigation Navigation)
+        public HomeDetailViewModel(INavigation _navigation)
         {
+            // Salva o login
             Config cfg = new Config(app._usuario, app._crianca);
             App.ConfigDatabase.SaveConfig(cfg);
 
-            /*app._crianca.IdadeSemanas = (DateTime.Now - app._crianca.crianca_dataNascimento).Days / 7;
-            app._crianca.IdadeMeses = app._crianca.IdadeSemanas / 4;*/
-
             // Informações
-            _restService = DependencyService.Get<IRestService>();
+            RestService = DependencyService.Get<IRestService>();
             Informacoes = new ObservableCollection<Informacao>();
-
-            IndicadorLoading = "True";
-            InformacaoGet();
-            IndicadorLoading = "False";
-
-            /*Informacao teste1 = new Informacao(
-                0,
-                8,
-                "Informação nº 1",
-                "Fusce sagittis non ante nec tristique. Nullam at turpis et augue interdum dictum non sit amet diam. Aenean sit amet mauris tortor. Sed dui est, luctus egestas elit vitae, sodales mollis ex. Aliquam a tortor ipsum. Praesent ac condimentum dolor, in porta tellus. Vivamus viverra ac dolor ac mattis. Vestibulum a hendrerit orci. Etiam tempus libero ut vestibulum interdum. Vestibulum viverra imperdiet consequat." + Environment.NewLine +
-                    "Proin dignissim posuere tincidunt. Fusce a libero id enim fermentum aliquam. Donec ligula lacus, posuere sed tempor ut, rutrum at elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent porttitor hendrerit lacinia. Aenean mattis dapibus viverra. Morbi mollis eget leo quis egestas .Nulla facilisi.Mauris elementum urna a lacus volutpat, in rutrum augue iaculis. Mauris quis dui sit amet ligula tincidunt rhoncus cursus in eros." + Environment.NewLine +
-                    "Integer a dapibus dolor. Vivamus venenatis sem est, a feugiat erat volutpat id. Vestibulum sit amet purus lectus.Nullam velit elit, mollis sed cursus a, sagittis non ex. Proin accumsan augue nec est bibendum semper. Curabitur efficitur orci ut turpis tincidunt, at tempus diam vehicula.Sed placerat congue dolor ac aliquam.",
-                "baby.jpeg");
-            InformacoesAux.Add(teste1);*/
+            InformacaoRead();
 
             // Lista de idades por extenso
-            IdadesExtensoLista = new List<string>() { "recém-nascido", "1 semana", "2 semanas", "3 semanas", "1 mês" };
-            for (int i = 2; i <= 11; i++) { IdadesExtensoLista.Add(i + " meses"); }
-            IdadesExtensoLista.AddRange(new string[] { "1 ano", "1 ano e 1 mês" });
-            for (int i = 2; i <= 11; i++) { IdadesExtensoLista.Add("1 ano e " + i + " meses"); }
-            IdadesExtensoLista.Add("2 anos");
+            IdadesExtensoLista = new List<string>() {
+                // TO-DO: Crianca.crianca_sexo == 0 ? "recém-nascida"  : "recém-nascido",
+                "recém-nascido",
+                "1 semana",
+                "2 semanas",
+                "3 semanas",
+                "1 mês",
+                "2 meses",
+                "3 meses",
+                "4 meses",
+                "5 meses",
+                "6 meses",
+                "7 meses",
+                "8 meses",
+                "9 meses",
+                "10 meses",
+                "11 meses",
+                "1 ano",
+                "1 ano e 1 mês",
+                "1 ano e 2 meses",
+                "1 ano e 3 meses",
+                "1 ano e 4 meses",
+                "1 ano e 5 meses",
+                "1 ano e 6 meses",
+                "1 ano e 7 meses",
+                "1 ano e 8 meses",
+                "1 ano e 9 meses",
+                "1 ano e 10 meses",
+                "1 ano e 11 meses",
+                "2 anos"
+            };
 
             // Criança
             Crianca = app._crianca;
             Nome = Crianca.crianca_primeiro_nome;
-            Foto = Crianca.Foto == null ? "avatar_default.jpg" : Crianca.Foto; 
+            Foto = Crianca.Foto == null ? "avatar_default.png" : Crianca.Foto; 
             IdadeAux = IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso);
             IdadeExtenso = IdadesExtensoLista[IdadeAux];
 
@@ -191,18 +191,18 @@ namespace ProMama.ViewModel.Home
             MenosIdadeCommand   = new Command(MenosIdade);
             MaisIdadeCommand    = new Command(MaisIdade);
             IdadePickerCommand  = new Command<Picker>(IdadePicker);
-            InfoPageCommand     = new Command<Informacao>(InfoPage);
-            FotoPageCommand     = new Command<CircleImage>(FotoPage);
+            InformacaoCommand   = new Command<Informacao>(NavigateInformacao);
+            FotoCommand         = new Command<CircleImage>(NavigateFoto);
 
             // Navigation
-            this.Navigation = Navigation;
-            _navigationService = DependencyService.Get<INavigationService>();
+            Navigation = _navigation;
+            NavigationService = DependencyService.Get<INavigationService>();
         }
 
         // Botão da seta pra direita
         private void MaisIdade()
         {
-            if (IdadeAux < 27 && IdadeAux < Crianca.IdadeMeses + 2)
+            if (IdadeAux < 27 && IdadeAux < Crianca.IdadeMeses + 2 && IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso) != 0)
             {
                 IdadeAux++;
             }
@@ -211,7 +211,7 @@ namespace ProMama.ViewModel.Home
         // Botão da seta pra esquerda
         private void MenosIdade()
         {
-            if (IdadeAux > 0)
+            if (IdadeAux > 0 && IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso) != 0)
             {
                 IdadeAux--;
             }
@@ -226,20 +226,27 @@ namespace ProMama.ViewModel.Home
         // Organiza o display as setas
         private void OrganizaSetas()
         {
-            if (IdadeAux == 0)
+            if (IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso) == 0)
             {
                 SetaEsquerdaCor = "#FF8A80";
-                SetaDireitaCor = "#EEEEEE";
-            }
-            else if (IdadeAux == 27 || IdadeAux == IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso))
-            {
-                SetaEsquerdaCor = "#EEEEEE";
                 SetaDireitaCor = "#FF8A80";
-            }
-            else
+            } else
             {
-                SetaEsquerdaCor = "#EEEEEE";
-                SetaDireitaCor = "#EEEEEE";
+                if (IdadeAux == 0)
+                {
+                    SetaEsquerdaCor = "#FF8A80";
+                    SetaDireitaCor = "#EEEEEE";
+                }
+                else if (IdadeAux == 27 || IdadeAux == IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso))
+                {
+                    SetaEsquerdaCor = "#EEEEEE";
+                    SetaDireitaCor = "#FF8A80";
+                }
+                else
+                {
+                    SetaEsquerdaCor = "#EEEEEE";
+                    SetaDireitaCor = "#EEEEEE";
+                }
             }
         }
 
@@ -267,22 +274,24 @@ namespace ProMama.ViewModel.Home
         }
         
         // Abre pagina de informação
-        private async void InfoPage(Informacao info)
+        private async void NavigateInformacao(Informacao informacao)
         {
-            await _navigationService.NavigateToInfoPage(Navigation, info);
+            await NavigationService.NavigateInformacao(Navigation, informacao);
         }
 
-        private async void FotoPage(CircleImage foto)
+        private async void NavigateFoto(CircleImage foto)
         {
-            Debug.WriteLine("CHEGOU");
-            await _navigationService.NavigateToFotoPage(Navigation, foto.Source);
+            Imagem imagem = new Imagem(-1, "Visualização", foto.Source);
+            await NavigationService.NavigateImagem(Navigation, imagem);
         }
 
-        private async void InformacaoGet()
+        private void InformacaoRead()
         {
+            IndicadorLoading = "True";
+
             var count = 0;
-            var infos = await _restService.InformacaoGet("token2");
-            foreach (var i in infos)
+            var informacoes = App.InformacaoDatabase.GetAllInformacao();
+            foreach (var i in informacoes)
             {
                 i.informacao_imagem = count % 2 == 0 ? "baby.jpeg" : null;
                 i.informacao_imagem_altura = i.informacao_imagem == null ? 0 : 150;
@@ -291,6 +300,8 @@ namespace ProMama.ViewModel.Home
                 count++;
             }
             OrganizaInformacoes();
+
+            IndicadorLoading = "False";
         }
     }
 }

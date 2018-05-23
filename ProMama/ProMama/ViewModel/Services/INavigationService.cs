@@ -6,22 +6,24 @@ namespace ProMama.ViewModel.Services
 {
     interface INavigationService
     {
-        void NavigateToCadastroLogin();
+        void NavigateCadastroLogin();
 
-        void NavigateToAddCrianca();
+        void NavigateAddCrianca();
 
-        Task NavigateToAddCriancaPush(INavigation Navigation);
+        Task NavigateAddCriancaPush(INavigation Navigation);
 
-        void NavigateToHome();
+        void NavigateHome();
 
-        Task NavigateToPerfilCrianca(INavigation Navigation);
+        Task NavigatePerfilCriancaEdit(INavigation Navigation);
 
-        Task NavigateToPerfilMae(INavigation Navigation);
+        Task NavigatePerfilMaeEdit(INavigation Navigation);
 
-        Task NavigateToAddAcompanhamento(INavigation Navigation);
+        Task NavigateAddAcompanhamento(INavigation Navigation);
 
-        Task NavigateToInfoPage(INavigation Navigation, Informacao info);
+        Task NavigateInformacao(INavigation Navigation, Informacao informacao);
 
-        Task NavigateToFotoPage(INavigation Navigation, ImageSource foto);
+        Task NavigateImagem(INavigation Navigation, Imagem imagem);
+
+        Task NavigateOutrasDuvidas(INavigation Navigation);
     }
 }

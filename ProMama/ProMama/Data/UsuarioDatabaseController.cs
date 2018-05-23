@@ -15,7 +15,7 @@ namespace ProMama.Data
         public UsuarioDatabaseController()
         {
             UsuarioFile = session["usuarios.dat"];
-            UsuarioCollection = UsuarioFile.Collection<Usuario, int>("usuarios", u => u.usuario_id);
+            UsuarioCollection = UsuarioFile.Collection<Usuario, int>("usuarios", u => u.id);
         }
 
         public void SaveUsuario(Usuario u)

@@ -1,14 +1,18 @@
 ﻿namespace ProMama.Model
 {
-    class Duvida
+    public class Duvida
     {
-        public string Pergunta { get; private set; }
-        public string Resposta { get; private set; }
+        public int duvida_id { get; set; }
+        public int duvida_user { get; set; }
+        public string duvida_pergunta { get; set; }
+        public string duvida_resposta { get; set; }
 
         public Duvida(string pergunta, string resposta)
         {
-            Pergunta = pergunta;
-            Resposta = resposta;
+            duvida_pergunta = pergunta;
+            duvida_resposta = resposta;
         }
+
+        public Duvida() { }
     }
 }

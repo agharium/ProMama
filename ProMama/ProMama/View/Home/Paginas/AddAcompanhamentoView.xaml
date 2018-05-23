@@ -29,7 +29,7 @@
                         </Picker.Items>
                     </Picker>
                     
-                    <Button Style="{StaticResource buttonMain}"
+                    <Button Style="{StaticResource MainButton}"
                             Text="Salvar medição"/>
                     
                 </StackLayout>

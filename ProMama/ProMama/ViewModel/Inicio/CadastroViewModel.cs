@@ -1,5 +1,9 @@
-﻿using ProMama.Model;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
+using ProMama.Model;
 using ProMama.ViewModel.Services;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -9,89 +13,115 @@ namespace ProMama.ViewModel.Inicio
     {
         private Aplicativo app = Aplicativo.Instance;
 
-        private string _email = "";
-        public string Email {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-                //this.Notify("Email");
-            }
-        }
+        public string Email { get; set; }
 
-        private string _password = "";
-        public string Password
+        public string Senha { get; set; }
+
+        public string SenhaConfirmacao { get; set; }
+
+        private List<Bairro> _bairros;
+        public List<Bairro> Bairros
         {
             get
             {
-                return _password;
+                return _bairros;
             }
             set
             {
-                _password = value;
-                //this.Notify("Email");
+                _bairros = value;
+                Notify("Bairros");
             }
         }
 
-        private string _passwordConfirmation = "";
-        public string PasswordConfirmation
-        {
-            get
-            {
-                return _passwordConfirmation;
-            }
-            set
-            {
-                _passwordConfirmation = value;
-                //this.Notify("Email");
-            }
-        }
+        public Bairro BairroSelecionado { get; set; }
 
         public ICommand CadastroCommand { get; set; }
 
-        private readonly INavigationService _navigationService;
-        private readonly IMessageService _messageService;
-        private readonly IRestService _restService;
+        private readonly INavigationService NavigationService;
+        private readonly IMessageService MessageService;
+        private readonly IRestService RestService;
+
+        private bool CadastroClicado = false;
 
         public CadastroViewModel()
         {
             CadastroCommand = new Command(Cadastro);
 
-            _navigationService = DependencyService.Get<INavigationService>();
-            _messageService = DependencyService.Get<IMessageService>();
-            _restService = DependencyService.Get<IRestService>();
+            NavigationService = DependencyService.Get<INavigationService>();
+            MessageService = DependencyService.Get<IMessageService>();
+            RestService = DependencyService.Get<IRestService>();
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                BairrosRead();
+            }
         }
 
-        public async void Cadastro()
+        private async void Cadastro()
+        {   
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (!CadastroClicado)
+                {
+                    CadastroClicado = true;
+
+                    if (!Senha.Equals(SenhaConfirmacao))
+                    {
+                        await MessageService.AlertDialog("As senhas não são iguais.");
+                        CadastroClicado = false;
+                    }
+                    else if (Email.Equals(string.Empty) || Senha.Equals(string.Empty) || SenhaConfirmacao.Equals(string.Empty))
+                    {
+                        await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
+                        CadastroClicado = false;
+                    }
+                    else if (BairroSelecionado == null)
+                    {
+                        await MessageService.AlertDialog("Você precisa selecionar um bairro.");
+                        CadastroClicado = false;
+                    }
+                    else
+                    {
+                        Debug.WriteLine(BairroSelecionado.bairro_id);
+                        var u = new Usuario(Email, Senha, BairroSelecionado.bairro_id);
+                        var result = await RestService.UsuarioCreate(u);
+
+                        if (!result.success)
+                        {
+                            await MessageService.AlertDialog(result.message);
+                            CadastroClicado = false;
+                        }
+                        else
+                        {
+                            using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
+                            {
+                                u.id = result.id;
+                                u.api_token = result.message;
+                                u.posto_saude = -1;
+
+                                App.UsuarioDatabase.SaveUsuario(u);
+                                app._usuario = u;
+
+                                // Popula banco
+                                App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
+                                App.PostoDatabase.SavePostoList(await RestService.PostosRead());
+                                App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
+                                App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+                            }
+
+                            NavigationService.NavigateAddCrianca();
+                        }
+                    }
+                }
+            } else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para poder realizar o cadastro no aplicativo.");
+            }
+        }
+
+        private async void BairrosRead()
         {
-            if (!Password.Equals(PasswordConfirmation)){
-                await _messageService.AlertDialog("As senhas não são iguais.");
-            }
-            else if (Email.Equals(string.Empty) || Password.Equals(string.Empty) || PasswordConfirmation.Equals(string.Empty))
-            {
-                await _messageService.AlertDialog("Nenhum campo pode estar vazio.");
-            }
-            else
-            {
-                var u = new Usuario(Email, Password);
-                var result = await _restService.UsuarioCreate(u);
-
-                if (!result.success)
-                {
-                    await _messageService.AlertDialog(result.message);
-                }
-                else
-                {
-                    u.usuario_id = result.id;
-                    App.UsuarioDatabase.SaveUsuario(u);
-                    app._usuario = u;
-
-                    _navigationService.NavigateToAddCrianca();
-                }
-            }
+            Bairros = await RestService.BairrosRead();
         }
     }
 }

@@ -6,17 +6,16 @@ namespace ProMama.Model
 {
     public class Crianca
     {
-        public int              crianca_id { get; set; }
-        public Usuario          crianca_usuario { get; set; }
-        public string           crianca_primeiro_nome { get; set; }
-        public string           crianca_sobrenome { get; set; }
-        public DateTime         crianca_dataNascimento { get; set; }
-        public int              crianca_sexo { get; set; }
-        public double           crianca_pesoAoNascer { get; set; }
-        public double           crianca_alturaAoNascer { get; set; }
-        public string           crianca_outrasInformacoes { get; set; }
-        public int              crianca_idade_gestacional { get; set; }
-        public int              crianca_tipo_parto { get; set; }
+        public int      crianca_id { get; set; }
+        public string   crianca_primeiro_nome { get; set; }
+        public string   crianca_sobrenome { get; set; }
+        public DateTime crianca_dataNascimento { get; set; }
+        public int      crianca_sexo { get; set; }
+        public double   crianca_pesoAoNascer { get; set; }
+        public double   crianca_alturaAoNascer { get; set; }
+        public string   crianca_outrasInformacoes { get; set; }
+        public int      crianca_idade_gestacional { get; set; }
+        public int      crianca_tipo_parto { get; set; }
 
         // variáveis auxiliares
         [JsonIgnore]
@@ -28,14 +27,14 @@ namespace ProMama.Model
         [JsonIgnore]
         public ImageSource Foto { get; set; }
 
-        public Crianca(Usuario usuario, string primeiroNome, DateTime dataNascimento)
+        public Crianca(string primeiro_nome, DateTime data_nascimento, int sexo)
         {
-            crianca_usuario = usuario;
-            crianca_primeiro_nome = primeiroNome;
-            crianca_dataNascimento = dataNascimento;
+            crianca_primeiro_nome = primeiro_nome;
+            crianca_dataNascimento = data_nascimento;
+            crianca_sexo = sexo;
         }
 
-        public Crianca() { }
+        public Crianca() {}
 
         public string DefineIdadeExtenso()
         {
@@ -75,10 +74,15 @@ namespace ProMama.Model
             if (IdadeSemanas < 1)
             {
                 return "recém-nascido";
-            }
-            else
+            } else if (IdadeSemanas >= 1 && IdadeSemanas < 2)
             {
-                return semanasAux + " semanas";
+                return "1 semana";
+            } else if (IdadeSemanas >= 2 && IdadeSemanas < 3)
+            {
+                return "2 semanas";
+            } else
+            {
+                return "3 semanas";
             }
         }
 

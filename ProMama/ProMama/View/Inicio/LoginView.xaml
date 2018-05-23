@@ -14,8 +14,8 @@
                        Text="{Binding Email}"/>
                 <Entry Placeholder="Senha"
                        IsPassword="True"
-                       Text="{Binding Password}"/>
-                <Button Style="{StaticResource buttonMain}"
+                       Text="{Binding Senha}"/>
+                <Button Style="{StaticResource MainButton}"
                         Text="Entrar"
                         Command="{Binding LoginCommand}"/>
                 <Button Style="{StaticResource FacebookButton}"
