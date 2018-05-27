@@ -32,7 +32,7 @@
                                     Text="{Binding DuvidaTexto}"/>
                             </Frame>
                             <Button 
-                                Style="{StaticResource buttonMain}"
+                                Style="{StaticResource MainButton}"
                                 Text="Enviar dúvida"
                                 Command="{Binding EnviarDuvidaCommand}"/>
                         </StackLayout>

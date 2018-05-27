@@ -60,6 +60,7 @@
     <Compile Include="Model\Imagem.cs" />
     <Compile Include="Model\Informacao.cs" />
     <Compile Include="Model\JsonMessage.cs" />
+    <Compile Include="Model\Marco.cs" />
     <Compile Include="Model\Medicao.cs" />
     <Compile Include="Model\Posto.cs" />
     <Compile Include="Model\Usuario.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\InformacaoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\LogoutViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\MarcosViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaEditViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilMaeEditViewModel.cs" />
@@ -121,8 +123,8 @@
     <Compile Include="View\Home\Paginas\LogoutView.xaml.cs">
       <DependentUpon>LogoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\MarcosCriancaView.xaml.cs">
-      <DependentUpon>MarcosCriancaView.xaml</DependentUpon>
+    <Compile Include="View\Home\Paginas\MarcosView.xaml.cs">
+      <DependentUpon>MarcosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\PerfilCriancaEditView.xaml.cs">
       <DependentUpon>PerfilCriancaEditView.xaml</DependentUpon>
@@ -334,12 +336,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\MarcosCriancaView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="View\Home\Paginas\SelecionarCriancaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -359,6 +355,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Home\Paginas\DuvidasOutrosView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\MarcosView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -3,6 +3,8 @@ using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using ProMama.Model;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -23,8 +25,9 @@ namespace ProMama.ViewModel.Home.Paginas
                 _fotos = value;
                 Notify("Fotos");
             }
-
         }
+
+        private List<string> IdadesExtensoLista { get; set; }
 
         public ICommand PickPhotoCommand { get; set; }
         public ICommand TakePhotoCommand { get; set; }
@@ -77,8 +80,8 @@ namespace ProMama.ViewModel.Home.Paginas
 
             for (int i = 0; i < meses; i++)
             {
-                new Imagem(i, IdadesExtensoLista[i], "baby.jpeg"),
-            };
+                new Imagem(i, IdadesExtensoLista[i], "baby.jpeg");
+            }
 
             PickPhotoCommand = new Command(PickPhoto);
             TakePhotoCommand = new Command(TakePhoto);

@@ -124,7 +124,8 @@ namespace ProMama.ViewModel.Home.Paginas
             Nome = app._usuario.name;
 
             DataMaxima = DateTime.Now;
-            DataSelecionada = (DateTime.Now.Year - app._usuario.data_nascimento.Year) < 10 ? DateTime.Now : app._usuario.data_nascimento;
+            var aux = DateTime.Now.Year - app._usuario.data_nascimento.Year;
+            DataSelecionada = (aux < 10 || aux > 100) ? DateTime.Now : app._usuario.data_nascimento;
 
             Bairros = App.BairroDatabase.GetAllBairro();
             foreach (var b in Bairros)
@@ -170,13 +171,20 @@ namespace ProMama.ViewModel.Home.Paginas
                     u.name = Nome;
                     u.data_nascimento = DataSelecionada;
                     u.bairro = Bairros[BairroSelecionado].bairro_id;
-                    u.posto_saude = Postos[PostoSelecionado].posto_id;
+                    if (PostoSelecionado != -1)
+                    {
+                        u.posto_saude = Postos[PostoSelecionado].posto_id;
+                    } else
+                    {
+                        u.posto_saude = -1;
+                    }
 
                     var result = await RestService.UsuarioUpdate(u);
                     if (result.success)
                     {
                         app._usuario = u;
                         App.UsuarioDatabase.SaveUsuario(u);
+                        app._master.Load();
                         await Navigation.PopAsync();
                     }
                     else

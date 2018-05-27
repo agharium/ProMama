@@ -46,6 +46,8 @@ namespace ProMama.View.Services
                     var content = new StringContent(JsonConvert.SerializeObject(u), Encoding.UTF8, "application/json");
                     var result = await client.PostAsync(ApiUrl + "/user/" + u.id + "/editar?api_token=" + u.api_token, content);
                     var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: ENVIO DE USUÁRIO P/ ATUALIZAÇÃO");
+                    Debug.WriteLine(JsonConvert.SerializeObject(u));
                     Debug.WriteLine("API: ATUALIZAR USUÁRIO");
                     Debug.WriteLine(obj);
                     return JsonConvert.DeserializeObject<JsonMessage>(obj);
@@ -114,7 +116,7 @@ namespace ProMama.View.Services
                     var content = new StringContent(JsonConvert.SerializeObject(c), Encoding.UTF8, "application/json");
                     var result = await client.PostAsync(ApiUrl + "/criancas?api_token=" + token, content);
                     var obj = await result.Content.ReadAsStringAsync();
-                    Debug.WriteLine("API: ENVIO DE USUÁRIO P/ CRIAÇÃO");
+                    Debug.WriteLine("API: ENVIO DE CRIANÇA P/ CRIAÇÃO");
                     Debug.WriteLine(JsonConvert.SerializeObject(c));
                     Debug.WriteLine("API: CRIAÇÃO DE CRIANÇA");
                     Debug.WriteLine(obj.ToString());

@@ -157,6 +157,7 @@ namespace ProMama.ViewModel.Home.Paginas
                 {
                     app._crianca = c;
                     App.CriancaDatabase.SaveCrianca(c);
+                    app._master.Load();
                     await Navigation.PopAsync();
                 }
                 else

@@ -16,11 +16,5 @@ namespace ProMama.View.Home
             BindingContext = new HomeMasterViewModel();
             ListView = MenuItemsListView;
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            BindingContext = new HomeMasterViewModel();
-        }
     }
 }

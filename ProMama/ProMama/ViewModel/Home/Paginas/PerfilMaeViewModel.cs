@@ -76,9 +76,10 @@ namespace ProMama.ViewModel.Home.Paginas
         public PerfilMaeViewModel(INavigation _navigation)
         {
             Nome = app._usuario.name;
-            Idade = (DateTime.Now.Year - app._usuario.data_nascimento.Year) < 10 ? "" : (DateTime.Now.Year - app._usuario.data_nascimento.Year) + " anos";
+            var aux = (DateTime.Now.Year - app._usuario.data_nascimento.Year);
+            Idade = (aux < 10 || aux > 100) ? "" : aux + " anos";
             Bairro = App.BairroDatabase.FindBairro(app._usuario.bairro).bairro_nome;
-            PostoSaude = app._usuario.posto_saude == -1 ? "" : App.PostoDatabase.FindPosto(app._usuario.posto_saude).posto_nome;
+            PostoSaude = app._usuario.posto_saude < 1 ? "" : App.PostoDatabase.FindPosto(app._usuario.posto_saude).posto_nome;
 
             Navigation = _navigation;
             EditarCommand = new Command(Editar);

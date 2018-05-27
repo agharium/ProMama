@@ -3,7 +3,6 @@ using ProMama.Model;
 using ProMama.ViewModel.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;

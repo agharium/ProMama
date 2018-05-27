@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.Paginas.MarcosView"
+             x:Name="this"
+             Title="Marcos do Desenvolvimento">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView 
+                ItemsSource="{Binding Marcos}"
+                SeparatorVisibility="None"
+                HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame 
+                                Padding="0"
+                                Margin="20, 20, 20, 0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        BackgroundColor="{Binding TituloBackgroundColor}"
+                                        Padding="10">
+                                        <Label
+                                            Text="{Binding Titulo}"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalOptions="Fill"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="20"/>
+                                    </StackLayout>
+                                    <Image
+                                        Source="{Binding Imagem}"
+                                        Aspect="AspectFill"
+                                        HeightRequest="150"
+                                        Grid.Column="0"
+                                        Grid.Row="1"/>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        Grid.Row="2"
+                                        BackgroundColor="{Binding TextoBackgroundColor}"
+                                        Padding="10">
+                                        <Label
+                                            Text="{Binding Texto}"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalOptions="Fill"
+                                            VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                                <!--<Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AAAAAAA}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>-->
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout Margin="0, 0, 0, 20" />
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,6 @@
-﻿namespace ProMama.Model
+﻿using ProMama.ViewModel.Home;
+
+namespace ProMama.Model
 {
     class Aplicativo
     {

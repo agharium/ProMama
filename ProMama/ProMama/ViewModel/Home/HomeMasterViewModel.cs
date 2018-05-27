@@ -1,6 +1,7 @@
 ﻿using ProMama.Model;
 using ProMama.View.Home;
 using ProMama.View.Home.Paginas;
+using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
@@ -52,21 +53,39 @@ namespace ProMama.ViewModel.Home
             }
         }
 
-        public ObservableCollection<HomeMenuItem> MenuItems { get; set; }
+        private ObservableCollection<HomeMenuItem> _menuItems;
+        public ObservableCollection<HomeMenuItem> MenuItems
+        {
+            get
+            {
+                return _menuItems;
+            }
+            set
+            {
+                _menuItems = value;
+                Notify("MenuItems");
+            }
+        }
 
         public HomeMasterViewModel()
         {
-            loadMaster();
+            app._master = this;
+            Load();
         }
 
-        public loadMaster(){
+        public void Load(){
             Nome = app._crianca.crianca_primeiro_nome;
             Idade = app._crianca.IdadeExtenso;
             Foto = app._crianca.Foto == null ? "avatar_default.jpg" : app._crianca.Foto;
 
-            var duvidaType = typeof(DuvidasView);
-            if (App.BairroDatabase.FindBairro(app._usuario.bairro).bairro_nome.Equals("Não moro em Osório-RS"))
+            Type duvidaType = null;
+            if (App.BairroDatabase.FindBairro(app._usuario.bairro).bairro_nome.Equals("Outro"))
+            {
                 duvidaType = typeof(DuvidasOutrosView);
+            } else
+            {
+                duvidaType = typeof(DuvidasView);
+            }
 
             MenuItems = new ObservableCollection<HomeMenuItem>(new[]
             {
@@ -75,8 +94,8 @@ namespace ProMama.ViewModel.Home
                     new HomeMenuItem(2, "Perfil da Mãe",             "fa-user",     typeof(PerfilMaeView)),
                     new HomeMenuItem(3, "Galeria",                   "fa-image",    typeof(GaleriaView)),
                     new HomeMenuItem(4, "Acompanhamento da Criança", "fa-table",    typeof(AcompanhamentoView)),
-                    new HomeMenuItem(5, "Marcos do Desenvolvimento", "fa-trophy",   typeof(MarcosCriancaView)),
-                    new HomeMenuItem(6, "Dúvidas",                   "fa-comments", typeof(DuvidasView)),
+                    new HomeMenuItem(5, "Marcos do Desenvolvimento", "fa-trophy",   typeof(MarcosView)),
+                    new HomeMenuItem(6, "Dúvidas",                   "fa-comments", duvidaType),
                     new HomeMenuItem(7, "Postos de Saúde",           "fa-map",      typeof(HomeDetail)),
                     new HomeMenuItem(8, "Redes Sociais",             "fa-globe",    typeof(HomeDetail)),
                     new HomeMenuItem(9, "Selecionar Criança",        "fa-exchange", typeof(SelecionarCriancaView)),
