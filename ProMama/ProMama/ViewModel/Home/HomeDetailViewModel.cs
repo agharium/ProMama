@@ -1,5 +1,4 @@
 ﻿using ImageCircle.Forms.Plugin.Abstractions;
-using Plugin.Notifications;
 using ProMama.Model;
 using ProMama.ViewModel.Services;
 using System;
@@ -292,7 +291,6 @@ namespace ProMama.ViewModel.Home
                     }
                 } else
                 {
-                    Debug.WriteLine("CHEGUEI AQUI");
                     if (inicio-5 <= IdadeAux && fim-5 >= IdadeAux)
                     {
                         if (!Informacoes.Contains(info))
