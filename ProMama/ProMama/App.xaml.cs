@@ -17,6 +17,7 @@ namespace ProMama
         static DuvidaDatabaseController _duvidaDatabase;
         static InformacaoDatabaseController _informacaoDatabase;
         static SincronizacaoDatabaseController _sincronizacaoDatabase;
+        static NotificacaoDatabaseController _notificacaoDatabase;
 
         private Aplicativo app = Aplicativo.Instance;
 
@@ -175,6 +176,18 @@ namespace ProMama
                     _sincronizacaoDatabase = new SincronizacaoDatabaseController();
                 }
                 return _sincronizacaoDatabase;
+            }
+        }
+
+        public static NotificacaoDatabaseController NotificacaoDatabase
+        {
+            get
+            {
+                if (_notificacaoDatabase == null)
+                {
+                    _notificacaoDatabase = new NotificacaoDatabaseController();
+                }
+                return _notificacaoDatabase;
             }
         }
     }

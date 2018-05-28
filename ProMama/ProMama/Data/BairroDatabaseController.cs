@@ -48,6 +48,14 @@ namespace ProMama.Data
             BairroCollection.Destroy(id);
         }
 
+        public void WipeTable()
+        {
+            foreach (var b in GetAllBairro())
+            {
+                DeleteBairro(b.bairro_id);
+            }
+        }
+
         public void DumpTable()
         {
             System.Diagnostics.Debug.WriteLine(JsonConvert.SerializeObject(BairroCollection.All, Formatting.Indented));

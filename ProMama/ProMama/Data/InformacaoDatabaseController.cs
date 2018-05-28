@@ -48,6 +48,13 @@ namespace ProMama.Data
             InformacaoCollection.Destroy(id);
         }
 
+        public void WipeTable()
+        {
+            foreach (var i in GetAllInformacao())
+            {
+                DeleteInformacao(i.informacao_id);
+            }
+        }
 
         public void DumpTable()
         {

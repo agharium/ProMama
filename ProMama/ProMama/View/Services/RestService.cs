@@ -270,5 +270,18 @@ namespace ProMama.View.Services
                 return null;
             }
         }
+
+        public async Task<List<Notificacao>> NotificacoesRead(string token)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync(ApiUrl + "/notificacao?api_token=" + token);
+                var obj = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine("API: LEITURA DE NOTIFICAÇÕES");
+                Debug.WriteLine(obj.ToString());
+
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Notificacao>() : JsonConvert.DeserializeObject<List<Notificacao>>(obj);
+            }
+        }
     }
 }

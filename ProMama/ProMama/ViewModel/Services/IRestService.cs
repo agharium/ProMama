@@ -31,5 +31,7 @@ namespace ProMama.ViewModel.Services
         Task<List<Posto>> PostosRead(string token);
 
         Task<Sincronizacao> SincronizacaoRead(string token);
+
+        Task<List<Notificacao>> NotificacoesRead(string token);
     }
 }

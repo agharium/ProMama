@@ -3,6 +3,7 @@ using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProMama.Data
 {
@@ -40,6 +41,19 @@ namespace ProMama.Data
         public void DeleteDuvida(int id)
         {
             DuvidaCollection.Destroy(id);
+        }
+
+        public List<Duvida> GetAllDuvida()
+        {
+            return DuvidaCollection.All.ToList();
+        }
+
+        public void WipeTable()
+        {
+            foreach (var d in GetAllDuvida())
+            {
+                DeleteDuvida(d.duvida_id);
+            }
         }
 
         public void DumpTable()

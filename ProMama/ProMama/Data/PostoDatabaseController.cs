@@ -48,6 +48,14 @@ namespace ProMama.Data
             PostoCollection.Destroy(id);
         }
 
+        public void WipeTable()
+        {
+            foreach (var p in GetAllPosto())
+            {
+                DeletePosto(p.posto_id);
+            }
+        }
+
         public void DumpTable()
         {
             System.Diagnostics.Debug.WriteLine(JsonConvert.SerializeObject(PostoCollection.All, Formatting.Indented));

@@ -50,6 +50,7 @@
     <Compile Include="Data\DuvidaDatabaseController.cs" />
     <Compile Include="Data\IMarcelloDB.cs" />
     <Compile Include="Data\InformacaoDatabaseController.cs" />
+    <Compile Include="Data\NotificacaoDatabaseController.cs" />
     <Compile Include="Data\PostoDatabaseController.cs" />
     <Compile Include="Data\SincronizacaoDatabaseController.cs" />
     <Compile Include="Data\UsuarioDatabaseController.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Model\JsonMessage.cs" />
     <Compile Include="Model\Marco.cs" />
     <Compile Include="Model\Medicao.cs" />
+    <Compile Include="Model\Notificacao.cs" />
     <Compile Include="Model\Posto.cs" />
     <Compile Include="Model\Sincronizacao.cs" />
     <Compile Include="Model\Usuario.cs" />

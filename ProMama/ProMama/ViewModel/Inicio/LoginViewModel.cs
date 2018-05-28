@@ -79,13 +79,34 @@ namespace ProMama.ViewModel.Inicio
                                     
                                     // Popula banco
                                     if (app._sync.bairro != syncAux.bairro)
+                                    {
+                                        App.BairroDatabase.WipeTable();
                                         App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
+                                    }
+                                        
                                     if (app._sync.posto != syncAux.posto)
+                                    {
+                                        App.PostoDatabase.WipeTable();
                                         App.PostoDatabase.SavePostoList(await RestService.PostosRead(app._usuario.api_token));
+                                    }
+                                        
                                     if (app._sync.informacao != syncAux.informacao)
+                                    {
+                                        App.InformacaoDatabase.WipeTable();
                                         App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
+                                    }
+
                                     if (app._sync.duvidas != syncAux.duvidas)
+                                    {
+                                        App.DuvidaDatabase.WipeTable();
                                         App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+                                    }
+
+                                    /*if (app._sync.notificacao != syncAux.notificacao)
+                                    {
+                                        App.NotificacaoDatabase.WipeTable();
+                                        App.NotificacaoDatabase.SaveNotificacaoList(await RestService.NotificacoesRead(app._usuario.api_token));
+                                    }*/
 
                                     app._sync = syncAux;
                                     App.SincronizacaoDatabase.SaveSincronizacao(app._sync);
@@ -104,7 +125,7 @@ namespace ProMama.ViewModel.Inicio
                         }
                     }
                 }
-            } else{
+            } else {
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para fazer login no aplicativo.");
             }
             
