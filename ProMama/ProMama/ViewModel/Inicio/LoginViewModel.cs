@@ -71,12 +71,24 @@ namespace ProMama.ViewModel.Inicio
                                 {
                                     app._usuario = u;
                                     App.UsuarioDatabase.SaveUsuario(app._usuario);
+                                    
+                                    var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
 
+                                    if (app._sync == null)
+                                        app._sync = new Sincronizacao(1);
+                                    
                                     // Popula banco
-                                    App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
-                                    App.PostoDatabase.SavePostoList(await RestService.PostosRead());
-                                    App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
-                                    App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+                                    if (app._sync.bairro != syncAux.bairro)
+                                        App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
+                                    if (app._sync.posto != syncAux.posto)
+                                        App.PostoDatabase.SavePostoList(await RestService.PostosRead(app._usuario.api_token));
+                                    if (app._sync.informacao != syncAux.informacao)
+                                        App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
+                                    if (app._sync.duvidas != syncAux.duvidas)
+                                        App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+
+                                    app._sync = syncAux;
+                                    App.SincronizacaoDatabase.SaveSincronizacao(app._sync);
                                 }
 
                                 if (app._usuario.criancas.Count == 0)

@@ -16,6 +16,7 @@ namespace ProMama
         static PostoDatabaseController _postoDatabase;
         static DuvidaDatabaseController _duvidaDatabase;
         static InformacaoDatabaseController _informacaoDatabase;
+        static SincronizacaoDatabaseController _sincronizacaoDatabase;
 
         private Aplicativo app = Aplicativo.Instance;
 
@@ -34,8 +35,15 @@ namespace ProMama
             FlowListView.Init();
 
             // verifica se usuário já está logado
+            var sync = SincronizacaoDatabase.FindSincronizacao();
             var cfg = ConfigDatabase.FindConfig();
-            if (ConfigDatabase.FindConfig() != null && cfg.config_usuario != null && cfg.config_crianca != null)
+
+            if (SincronizacaoDatabase.FindSincronizacao() != null)
+            {
+                app._sync = sync;
+            }
+
+            if (cfg != null && cfg.config_usuario != null && cfg.config_crianca != null)
             {
                 app._usuario = cfg.config_usuario;
                 app._crianca = cfg.config_crianca;
@@ -155,6 +163,18 @@ namespace ProMama
                     _informacaoDatabase = new InformacaoDatabaseController();
                 }
                 return _informacaoDatabase;
+            }
+        }
+
+        public static SincronizacaoDatabaseController SincronizacaoDatabase
+        {
+            get
+            {
+                if (_sincronizacaoDatabase == null)
+                {
+                    _sincronizacaoDatabase = new SincronizacaoDatabaseController();
+                }
+                return _sincronizacaoDatabase;
             }
         }
     }

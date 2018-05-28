@@ -2,13 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProMama.View.Home.Paginas.DuvidasOutrosView"
+             x:Name="this"
              xmlns:local="clr-namespace:ProMama.CustomComponent;assembly=ProMama"
              Title="Dúvidas respondidas">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Name="Buscar" 
-            Command="{Binding BuscarCommand}" />
-    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="0, 0, 10, 0">
@@ -61,9 +57,14 @@
                                         TextColor="#262626"
                                         FontSize="Medium"/>
                                     <Label 
-                                        Text="{Binding duvida_resposta}"
+                                        Text="{Binding duvida_resumo}"
                                         FontSize="Small"/>
                                 </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirDuvidaCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

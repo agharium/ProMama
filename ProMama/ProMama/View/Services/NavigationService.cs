@@ -45,7 +45,12 @@ namespace ProMama.View.Services
 
         public async Task NavigateInformacao(INavigation Navigation, Informacao informacao)
         {
-            await Navigation.PushAsync(new InformacaoView(informacao));
+            await Navigation.PushAsync(new DetalhesView(informacao));
+        }
+
+        public async Task NavigateDuvida(INavigation Navigation, Duvida duvida)
+        {
+            await Navigation.PushAsync(new DetalhesView(duvida));
         }
 
         public async Task NavigateImagem(INavigation Navigation, Imagem imagem)

@@ -232,16 +232,42 @@ namespace ProMama.View.Services
             }
         }
 
-        public async Task<List<Posto>> PostosRead()
+        public async Task<List<Posto>> PostosRead(string token)
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(ApiUrl + "/postos?api_token=" + TokenPadrao);
+                var result = await client.GetAsync(ApiUrl + "/postos?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
                 Debug.WriteLine("API: LEITURA DE POSTOS");
                 Debug.WriteLine(obj.ToString());
 
                 return string.IsNullOrEmpty(obj.ToString()) ? new List<Posto>() : JsonConvert.DeserializeObject<List<Posto>>(obj);
+            }
+        }
+
+        public async Task<Sincronizacao> SincronizacaoRead(string token)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var result = await client.GetAsync(ApiUrl + "/sync?api_token=" + token);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: LEITURA DE SINCRONIZAÇÃO");
+                    Debug.WriteLine(obj.ToString());
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    return JsonConvert.DeserializeObject<Sincronizacao>(obj, settings);
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }

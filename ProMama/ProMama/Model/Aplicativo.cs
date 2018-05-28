@@ -22,5 +22,6 @@ namespace ProMama.Model
         public Usuario _usuario { get; set; }
         public Crianca _crianca { get; set; }
         public HomeMasterViewModel _master { get; set; }
+        public Sincronizacao _sync { get; set; }
     }
 }

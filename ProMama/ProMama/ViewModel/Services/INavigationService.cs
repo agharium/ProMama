@@ -22,6 +22,8 @@ namespace ProMama.ViewModel.Services
 
         Task NavigateInformacao(INavigation Navigation, Informacao informacao);
 
+        Task NavigateDuvida(INavigation Navigation, Duvida duvida);
+
         Task NavigateImagem(INavigation Navigation, Imagem imagem);
 
         Task NavigateOutrasDuvidas(INavigation Navigation);

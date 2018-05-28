@@ -3,6 +3,7 @@ using ProMama.ViewModel.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -53,16 +54,24 @@ namespace ProMama.ViewModel.Home.Paginas
             }
         }
 
-        public ICommand BuscarCommand { get; set; }
+        private INavigation Navigation { get; set; }
 
         private readonly IRestService RestService;
+        private readonly INavigationService NavigationService;
 
-        public DuvidasOutrosViewModel()
+        public ICommand BuscarCommand { get; set; }
+        public ICommand AbrirDuvidaCommand { get; set; }
+
+        public DuvidasOutrosViewModel(INavigation _navigation)
         {
+            Navigation = _navigation;
+
             RestService = DependencyService.Get<IRestService>();
+            NavigationService = DependencyService.Get<INavigationService>();
 
             BuscarCommand = new Command<string>(Buscar);
-            
+            AbrirDuvidaCommand = new Command<Duvida>(AbrirDuvida);
+
             DuvidasRead();
         }
 
@@ -72,6 +81,10 @@ namespace ProMama.ViewModel.Home.Paginas
             AvisoListaVazia = "False";
 
             Duvidas = new ObservableCollection<Duvida>(await RestService.DuvidasRead(app._usuario.api_token));
+            foreach (var d in Duvidas)
+            {
+                d.duvida_resumo = Regex.Match(d.duvida_resposta, @"^(\w+\b.*?){20}").ToString() + "...";
+            }
 
             IndicadorLoading = "False";
             if (Duvidas.Count == 0)
@@ -84,6 +97,11 @@ namespace ProMama.ViewModel.Home.Paginas
         {
             Duvidas = string.IsNullOrEmpty(termo) ? new ObservableCollection<Duvida>(DuvidasAux) : new ObservableCollection<Duvida>(DuvidasAux.Where(d => d.duvida_pergunta.Contains(termo)));
             AvisoListaVazia = Duvidas.Count == 0 ? "True" : "False";
+        }
+
+        public async void AbrirDuvida(Duvida duvida)
+        {
+            await NavigationService.NavigateDuvida(Navigation, duvida);
         }
     }
 }

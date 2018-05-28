@@ -10,7 +10,7 @@ namespace ProMama.View.Home.Paginas
 		{
 			InitializeComponent();
 
-            BindingContext = new ViewModel.Home.Paginas.DuvidasOutrosViewModel();
+            BindingContext = new ViewModel.Home.Paginas.DuvidasOutrosViewModel(Navigation);
         }
     }
 }

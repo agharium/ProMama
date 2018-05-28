@@ -2,16 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProMama.View.Home.Paginas.DuvidasView"
+             x:Name="this"
              Title="Minhas dúvidas">
     <ContentPage.Content>
         <StackLayout>
-            <ListView 
+            <ListView
                 SeparatorVisibility="None"
                 HasUnevenRows="true"
                 ItemsSource="{Binding Duvidas}">
                 <ListView.Header>
                     <StackLayout>
-                        <StackLayout 
+                        <StackLayout
                             Padding="20"
                             BackgroundColor="#F44336">
                             <Button 
@@ -19,7 +20,7 @@
                                 Text="Ver dúvidas já respondidas"
                                 Command="{Binding OutrasDuvidasCommand}"/>
                         </StackLayout>
-                        <StackLayout 
+                        <StackLayout
                             Padding="20"
                             Spacing="20">
                             <Label
@@ -69,9 +70,14 @@
                                         TextColor="#262626"
                                         FontSize="Medium"/>
                                     <Label
-                                        Text="{Binding duvida_resposta}"
+                                        Text="{Binding duvida_resumo}"
                                         FontSize="Small"/>
                                 </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirDuvidaCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

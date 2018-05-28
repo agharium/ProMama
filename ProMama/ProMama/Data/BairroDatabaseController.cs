@@ -25,9 +25,9 @@ namespace ProMama.Data
             BairroCollection.Persist(b);
         }
 
-        public void SaveBairroList(List<Bairro> bairros)
+        public void SaveBairroList(List<Bairro> bairro)
         {
-            foreach (var b in bairros)
+            foreach (var b in bairro)
             {
                 SaveBairro(b);
             }

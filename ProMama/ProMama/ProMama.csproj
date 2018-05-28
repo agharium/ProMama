@@ -51,6 +51,7 @@
     <Compile Include="Data\IMarcelloDB.cs" />
     <Compile Include="Data\InformacaoDatabaseController.cs" />
     <Compile Include="Data\PostoDatabaseController.cs" />
+    <Compile Include="Data\SincronizacaoDatabaseController.cs" />
     <Compile Include="Data\UsuarioDatabaseController.cs" />
     <Compile Include="Model\Bairro.cs" />
     <Compile Include="Model\Config.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Model\Marco.cs" />
     <Compile Include="Model\Medicao.cs" />
     <Compile Include="Model\Posto.cs" />
+    <Compile Include="Model\Sincronizacao.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Home\HomeMasterViewModel.cs" />
@@ -73,7 +75,7 @@
     <Compile Include="ViewModel\Home\Paginas\DuvidasViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\ImagemViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\InformacaoViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\DetalhesViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\LogoutViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\MarcosViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaEditViewModel.cs" />
@@ -117,8 +119,8 @@
     <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
       <DependentUpon>GaleriaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\InformacaoView.xaml.cs">
-      <DependentUpon>InformacaoView.xaml</DependentUpon>
+    <Compile Include="View\Home\Paginas\DetalhesView.xaml.cs">
+      <DependentUpon>DetalhesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\LogoutView.xaml.cs">
       <DependentUpon>LogoutView.xaml</DependentUpon>
@@ -201,17 +203,11 @@
     <Reference Include="Plugin.Iconize.FontAwesome, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Iconize.FontAwesome.2.0.0.37-beta\lib\netstandard1.0\Plugin.Iconize.FontAwesome.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Media, Version=3.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.Media.3.1.3\lib\netstandard1.0\Plugin.Media.dll</HintPath>
+    <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Media.4.0.0.9\lib\netstandard1.0\Plugin.Media.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Media.Abstractions, Version=3.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.Media.3.1.3\lib\netstandard1.0\Plugin.Media.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugin.Permissions.2.2.1\lib\netstandard1.0\Plugin.Permissions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions.Abstractions, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugin.Permissions.2.2.1\lib\netstandard1.0\Plugin.Permissions.Abstractions.dll</HintPath>
+    <Reference Include="Plugin.Permissions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.Permissions.3.0.0.12\lib\netstandard1.0\Plugin.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
@@ -324,7 +320,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\InformacaoView.xaml">
+    <EmbeddedResource Include="View\Home\Paginas\DetalhesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

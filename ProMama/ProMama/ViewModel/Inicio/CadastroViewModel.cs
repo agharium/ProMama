@@ -104,7 +104,7 @@ namespace ProMama.ViewModel.Inicio
 
                                 // Popula banco
                                 App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
-                                App.PostoDatabase.SavePostoList(await RestService.PostosRead());
+                                App.PostoDatabase.SavePostoList(await RestService.PostosRead(app._usuario.api_token));
                                 App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
                                 App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
                             }

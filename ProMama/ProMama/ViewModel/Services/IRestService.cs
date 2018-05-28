@@ -28,6 +28,8 @@ namespace ProMama.ViewModel.Services
 
         Task<List<Bairro>> BairrosRead();
 
-        Task<List<Posto>> PostosRead();
+        Task<List<Posto>> PostosRead(string token);
+
+        Task<Sincronizacao> SincronizacaoRead(string token);
     }
 }

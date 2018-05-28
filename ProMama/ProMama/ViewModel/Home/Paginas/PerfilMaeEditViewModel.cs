@@ -3,6 +3,7 @@ using ProMama.Model;
 using ProMama.ViewModel.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -153,7 +154,9 @@ namespace ProMama.ViewModel.Home.Paginas
 
         private async void Salvar()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            Debug.WriteLine("Bairro: " + Bairros[BairroSelecionado].bairro_id);
+            Debug.WriteLine("Posto: " + Postos[PostoSelecionado].posto_id);
+            /*if (CrossConnectivity.Current.IsConnected)
             {
                 if (DataSelecionada.Year == DateTime.Now.Year)
                 {
@@ -195,7 +198,7 @@ namespace ProMama.ViewModel.Home.Paginas
             } else
             {
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
-            }
+            }*/
         }
     }
 }

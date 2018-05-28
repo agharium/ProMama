@@ -1,8 +1,10 @@
 ﻿using ImageCircle.Forms.Plugin.Abstractions;
 using ProMama.Model;
 using ProMama.ViewModel.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -19,7 +21,7 @@ namespace ProMama.ViewModel.Home
 
         // Foto da Criança
         private ImageSource _foto { get; set; }
-        public  ImageSource Foto
+        public ImageSource Foto
         {
             get
             {
@@ -36,7 +38,7 @@ namespace ProMama.ViewModel.Home
         private List<string> IdadesExtensoLista { get; set; }
 
         private int _idadeAux;
-        public  int IdadeAux
+        public int IdadeAux
         {
             get { return _idadeAux; }
             set
@@ -49,7 +51,7 @@ namespace ProMama.ViewModel.Home
         }
 
         private string _idadeExtenso;
-        public  string IdadeExtenso
+        public string IdadeExtenso
         {
             get { return _idadeExtenso; }
             set
@@ -61,7 +63,7 @@ namespace ProMama.ViewModel.Home
 
         // Variáveis auxiliares da interface
         private string _indicadorLoading;
-        public  string IndicadorLoading
+        public string IndicadorLoading
         {
             get
             {
@@ -75,7 +77,7 @@ namespace ProMama.ViewModel.Home
         }
 
         private string _setaEsquerdaCor;
-        public  string SetaEsquerdaCor
+        public string SetaEsquerdaCor
         {
             get
             {
@@ -89,7 +91,7 @@ namespace ProMama.ViewModel.Home
         }
 
         private string _setaDireitaCor;
-        public  string SetaDireitaCor
+        public string SetaDireitaCor
         {
             get
             {
@@ -103,19 +105,19 @@ namespace ProMama.ViewModel.Home
         }
 
         // Informações
-        public  ObservableCollection<Informacao> Informacoes { get; set; }
+        public ObservableCollection<Informacao> Informacoes { get; set; }
 
         private List<Informacao> InformacoesAux = new List<Informacao>();
 
         // Picker
-        public  List<string> IdadesPickerLista { get; set; }
+        public List<string> IdadesPickerLista { get; set; }
 
         // Commands
-        public ICommand MenosIdadeCommand   { get; set; }
-        public ICommand MaisIdadeCommand    { get; set; }
-        public ICommand IdadePickerCommand  { get; set; }
-        public ICommand InformacaoCommand   { get; set; }
-        public ICommand FotoCommand         { get; set; }
+        public ICommand MenosIdadeCommand { get; set; }
+        public ICommand MaisIdadeCommand { get; set; }
+        public ICommand IdadePickerCommand { get; set; }
+        public ICommand AbrirInformacaoCommand { get; set; }
+        public ICommand AbrirFotoCommand { get; set; }
 
         // Navigation
         private INavigation Navigation { get; set; }
@@ -187,11 +189,11 @@ namespace ProMama.ViewModel.Home
             }
 
             // Commands
-            MenosIdadeCommand   = new Command(MenosIdade);
-            MaisIdadeCommand    = new Command(MaisIdade);
-            IdadePickerCommand  = new Command<Picker>(IdadePicker);
-            InformacaoCommand   = new Command<Informacao>(NavigateInformacao);
-            FotoCommand         = new Command<CircleImage>(NavigateFoto);
+            MenosIdadeCommand = new Command(MenosIdade);
+            MaisIdadeCommand = new Command(MaisIdade);
+            IdadePickerCommand = new Command<Picker>(IdadePicker);
+            AbrirInformacaoCommand = new Command<Informacao>(AbrirInformacao);
+            AbrirFotoCommand = new Command<CircleImage>(AbrirFoto);
 
             // Navigation
             Navigation = _navigation;
@@ -252,33 +254,66 @@ namespace ProMama.ViewModel.Home
         // Organiza as informações mostradas na tela de acordo com a idade que o usuário escolhe ao interagir com as setas
         private void OrganizaInformacoes()
         {
-            foreach (var informacao in InformacoesAux)
+            foreach (var info in InformacoesAux)
             {
+                var inicio = info.informacao_idadeSemanasInicio;
+                var fim = info.informacao_idadeSemanasFim;
+
+                // GAMBS
+                if ((inicio >= 1 && inicio <= 5) || (fim >= 1 && fim <= 5))
+                {
+                    var idadeDias = (DateTime.Now - app._crianca.crianca_dataNascimento).Days;
+                    if (idadeDias > 5)
+                    Debug.WriteLine(idadeDias);
+
+                    if (inicio <= idadeDias && fim >= idadeDias)
+                    {
+                        if (!Informacoes.Contains(info))
+                            Informacoes.Add(info);
+                    } else
+                    {
+                        if (Informacoes.Contains(info))
+                            Informacoes.Remove(info);
+                    }
+                }
                 // se a idade da criança é compatível com a informação
-                if (informacao.informacao_idadeSemanasInicio <= IdadeAux && informacao.informacao_idadeSemanasFim >= IdadeAux)
+                else if (inicio == 0 || fim == 0)
                 {
-                    if (!Informacoes.Contains(informacao))
+                    if (inicio <= IdadeAux && fim >= IdadeAux)
                     {
-                        Informacoes.Add(informacao);
+                        if (!Informacoes.Contains(info))
+                            Informacoes.Add(info);
+                    }
+                    else
+                    {
+                        if (Informacoes.Contains(info))
+                            Informacoes.Remove(info);
+                    }
+                } else
+                {
+                    Debug.WriteLine("CHEGUEI AQUI");
+                    if (inicio-5 <= IdadeAux && fim-5 >= IdadeAux)
+                    {
+                        if (!Informacoes.Contains(info))
+                            Informacoes.Add(info);
+                    }
+                    else
+                    {
+                        if (Informacoes.Contains(info))
+                            Informacoes.Remove(info);
                     }
                 }
-                else
-                {
-                    if (Informacoes.Contains(informacao))
-                    {
-                        Informacoes.Remove(informacao);
-                    }
-                }
+                
             }
         }
         
         // Abre pagina de informação
-        private async void NavigateInformacao(Informacao informacao)
+        private async void AbrirInformacao(Informacao informacao)
         {
             await NavigationService.NavigateInformacao(Navigation, informacao);
         }
 
-        private async void NavigateFoto(CircleImage foto)
+        private async void AbrirFoto(CircleImage foto)
         {
             Imagem imagem = new Imagem(-1, "Visualização", foto.Source);
             await NavigationService.NavigateImagem(Navigation, imagem);

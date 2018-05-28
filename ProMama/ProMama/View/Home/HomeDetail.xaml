@@ -72,7 +72,7 @@
                                     Grid.Row="0">
                                     <controls:CircleImage.GestureRecognizers>
                                         <TapGestureRecognizer 
-                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.FotoCommand}"
+                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirFotoCommand}"
                                             CommandParameter="{x:Reference Avatar}"/>
                                     </controls:CircleImage.GestureRecognizers>
                                 </controls:CircleImage>
@@ -166,7 +166,7 @@
                                 </Grid>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
-                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.InformacaoCommand}"
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirInformacaoCommand}"
                                         CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                             </Frame>
