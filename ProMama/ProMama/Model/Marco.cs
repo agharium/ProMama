@@ -24,6 +24,8 @@ namespace ProMama.Model
         public Color TituloBackgroundColor { get; set; }
         [JsonIgnore]
         public Color TextoBackgroundColor { get; set; }
+        [JsonIgnore]
+        public bool Visivel { get; set; }
 
         public Marco(string _titulo, Color _tituloBackgroundColor, bool _alcancado, ImageSource _imagem)
         {
@@ -34,6 +36,8 @@ namespace ProMama.Model
 
             Texto = Alcancado ? "Já alcançado" : "Não alcançado";
             TextoBackgroundColor = Alcancado ? Color.ForestGreen : Color.Orange;
+
+            Visivel = false;
         }
 
         public Marco() { }

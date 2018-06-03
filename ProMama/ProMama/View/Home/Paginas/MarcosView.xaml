@@ -10,18 +10,21 @@
                 ItemsSource="{Binding Marcos}"
                 SeparatorVisibility="None"
                 HasUnevenRows="true">
+                <ListView.Header>
+                    <StackLayout Margin="0, 10, 0, 0" />
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame 
                                 Padding="0"
-                                Margin="20, 20, 20, 0">
-                                <Grid>
+                                Margin="20, 10, 20, 10">
+                                <Grid
+                                    RowSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
@@ -37,39 +40,42 @@
                                             HorizontalTextAlignment="Center"
                                             VerticalOptions="Fill"
                                             VerticalTextAlignment="Center"
-                                            FontSize="20"/>
+                                            FontSize="Medium"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={x:Reference this}, Path=BindingContext.MostrarCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
-                                    <Image
-                                        Source="{Binding Imagem}"
-                                        Aspect="AspectFill"
-                                        HeightRequest="150"
-                                        Grid.Column="0"
-                                        Grid.Row="1"/>
                                     <StackLayout
                                         Grid.Column="0"
-                                        Grid.Row="2"
-                                        BackgroundColor="{Binding TextoBackgroundColor}"
-                                        Padding="10">
-                                        <Label
-                                            Text="{Binding Texto}"
-                                            TextColor="White"
-                                            HorizontalOptions="Fill"
-                                            HorizontalTextAlignment="Center"
-                                            VerticalOptions="Fill"
-                                            VerticalTextAlignment="Center"/>
+                                        Grid.Row="1"
+                                        IsVisible="{Binding Visivel}"
+                                        Spacing="0">
+                                        <Image
+                                            Source="{Binding Imagem}"
+                                            Aspect="AspectFill"
+                                            HeightRequest="150"
+                                            Margin="0"/>
+                                        <StackLayout
+                                            BackgroundColor="{Binding TextoBackgroundColor}"
+                                            Padding="10">
+                                            <Label
+                                                Text="{Binding Texto}"
+                                                TextColor="White"
+                                                HorizontalOptions="Fill"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalOptions="Fill"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
                                     </StackLayout>
                                 </Grid>
-                                <!--<Frame.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AAAAAAA}"
-                                        CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>-->
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout Margin="0, 0, 0, 20" />
+                    <StackLayout Margin="0, 0, 0, 10" />
                 </ListView.Footer>
             </ListView>
         </StackLayout>

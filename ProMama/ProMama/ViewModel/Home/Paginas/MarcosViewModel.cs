@@ -32,7 +32,7 @@ namespace ProMama.ViewModel.Home.Paginas
                 new Marco("Sentou-se sozinho", Color.LightBlue, true, "marco3.jpg"),
                 new Marco("Parou o aleitamento materno exclusivo", Color.Goldenrod, false, "marco4.jpg"),
                 new Marco("Comeu a primeira fruta", Color.LightCoral, false, "marco5.jpg"),
-                new Marco("Comeu a primeira papa salgada", Color.LightCyan, false, "marco6.jpg"),
+                new Marco("Comeu a primeira papa salgada", Color.Cyan, false, "marco6.jpg"),
                 new Marco("Engatinhou", Color.LightPink, false, "marco7.jpg"),
                 new Marco("Primeira palavra", Color.LightSkyBlue, false, "marco8.jpg"),
                 new Marco("Primeiros passos", Color.LightSeaGreen, false, "marco8.jpg"),
@@ -43,7 +43,10 @@ namespace ProMama.ViewModel.Home.Paginas
 
         private void Mostrar(Marco marco)
         {
-            
+            var index = Marcos.IndexOf(marco);
+            Marcos.RemoveAt(index);
+            marco.Visivel = !marco.Visivel;
+            Marcos.Insert(index, marco);
         }
 
     }
