@@ -104,7 +104,7 @@ namespace ProMama.ViewModel.Home.Paginas
         private readonly INavigationService NavigationService;
         private readonly IMessageService MessageService;
 
-        public PerfilCriancaViewModel(INavigation Navigation)
+        public PerfilCriancaViewModel(INavigation _navigation)
         {
             NomeCompleto      = app._crianca.crianca_primeiro_nome + " " + app._crianca.crianca_sobrenome;
             DataNascimento    = app._crianca.crianca_dataNascimento.ToString("dd/MM/yyyy");
@@ -115,7 +115,7 @@ namespace ProMama.ViewModel.Home.Paginas
             IdadeGestacional  = app._crianca.crianca_idade_gestacional != -1 ? app._crianca.crianca_idade_gestacional.ToString() + " semanas" : "";
             OutrasInformacoes = app._crianca.crianca_outrasInformacoes;
 
-            this.Navigation = Navigation;
+            Navigation = _navigation;
             EditarCommand = new Command(Editar);
 
             MessageService = DependencyService.Get<IMessageService>();

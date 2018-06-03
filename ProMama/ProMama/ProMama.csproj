@@ -85,6 +85,7 @@
     <Compile Include="ViewModel\Home\Paginas\DetalhesViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\LogoutViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\MarcosViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\MarcoVisualizacaoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaEditViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilCriancaViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\PerfilMaeEditViewModel.cs" />
@@ -135,6 +136,9 @@
     </Compile>
     <Compile Include="View\Home\Paginas\MarcosView.xaml.cs">
       <DependentUpon>MarcosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\Paginas\MarcoVisualizacaoView.xaml.cs">
+      <DependentUpon>MarcoVisualizacaoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\PerfilCriancaEditView.xaml.cs">
       <DependentUpon>PerfilCriancaEditView.xaml</DependentUpon>
@@ -371,6 +375,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Home\Paginas\MarcosView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Home\Paginas\MarcoVisualizacaoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

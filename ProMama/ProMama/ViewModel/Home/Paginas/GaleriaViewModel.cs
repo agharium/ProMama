@@ -28,10 +28,10 @@ namespace ProMama.ViewModel.Home.Paginas
 
         private List<string> IdadesExtensoLista { get; set; }
 
-        private INavigation Navigation { get; set; }
         public ICommand NavigationCommand { get; set; }
         public ICommand FotoCommand { get; set; }
 
+        private INavigation Navigation { get; set; }
         private readonly INavigationService NavigationService;
         private readonly IMessageService MessageService;
 
@@ -43,11 +43,6 @@ namespace ProMama.ViewModel.Home.Paginas
 
             FotoCommand = new Command<Foto>(Foto);
 
-            Load();
-        }
-
-        private void Load()
-        {
             var meses = Math.Floor(app._crianca.IdadeMeses) + 1;
 
             Fotos = new ObservableCollection<Foto>();
@@ -156,7 +151,6 @@ namespace ProMama.ViewModel.Home.Paginas
                         foto.caminho = file.Path;
 
                         App.FotoDatabase.Save(foto);
-                        Load();
                         await NavigationService.NavigateFoto(Navigation, foto);
                     }
                 }

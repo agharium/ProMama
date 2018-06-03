@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.View.Home.Paginas.MarcoVisualizacaoView"
+             Title="Marco de Desenvolvimento">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="20"
+            Spacing="20">
+            <Label
+                Text="{Binding Titulo}"
+                FontSize="Large"
+                TextColor="#262626"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

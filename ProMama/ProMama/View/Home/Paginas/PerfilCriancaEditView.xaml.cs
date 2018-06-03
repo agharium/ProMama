@@ -10,7 +10,7 @@ namespace ProMama.View.Home.Paginas
         {
             InitializeComponent();
 
-            BindingContext = new ViewModel.Home.Paginas.PerfilCriancaEditViewModel(this.Navigation);
+            BindingContext = new ViewModel.Home.Paginas.PerfilCriancaEditViewModel(Navigation);
 
             for (int i = 20; i <= 42; i++)
             {

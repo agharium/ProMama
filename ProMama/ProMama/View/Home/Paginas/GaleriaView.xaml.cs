@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ProMama.ViewModel.Home.Paginas;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ProMama.View.Home.Paginas
@@ -10,7 +11,13 @@ namespace ProMama.View.Home.Paginas
         {
             InitializeComponent();
 
-            BindingContext = new ViewModel.Home.Paginas.GaleriaViewModel(Navigation);
+            BindingContext = new GaleriaViewModel(Navigation);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new GaleriaViewModel(Navigation);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ProMama.Model;
+using ProMama.ViewModel.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -22,9 +23,16 @@ namespace ProMama.ViewModel.Home.Paginas
         }
 
         public ICommand MostrarCommand { get; set; }
+        public ICommand AbrirCommand { get; set; }
 
-        public MarcosViewModel()
+        private INavigation Navigation { get; set; }
+        private readonly INavigationService NavigationService;
+
+        public MarcosViewModel(INavigation _navigation)
         {
+            Navigation = _navigation;
+            NavigationService = DependencyService.Get<INavigationService>();
+
             Marcos = new ObservableCollection<Marco>
             {
                 new Marco("Primeiro dentinho", Color.DarkCyan, true, "marco1.jpg"),
@@ -39,6 +47,7 @@ namespace ProMama.ViewModel.Home.Paginas
             };
 
             MostrarCommand = new Command<Marco>(Mostrar);
+            AbrirCommand = new Command<Marco>(AbrirMarco);
         }
 
         private void Mostrar(Marco marco)
@@ -47,6 +56,11 @@ namespace ProMama.ViewModel.Home.Paginas
             Marcos.RemoveAt(index);
             marco.Visivel = !marco.Visivel;
             Marcos.Insert(index, marco);
+        }
+
+        private async void AbrirMarco(Marco marco)
+        {
+            await NavigationService.NavigateMarcoVisualizacao(Navigation, marco);
         }
 
     }

@@ -11,7 +11,13 @@ namespace ProMama.View.Home.Paginas
         {
             InitializeComponent();
 
-            BindingContext = new MarcosViewModel();
+            BindingContext = new MarcosViewModel(Navigation);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new MarcosViewModel(Navigation);
         }
     }
 }
