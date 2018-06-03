@@ -5,9 +5,9 @@ using ProMama.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
-    public class NotificacaoDatabaseController
+    public class NotificacaoDatabaseController : IDatabaseExtended<Notificacao>
     {
         Session session = App.DB;
 
@@ -17,42 +17,42 @@ namespace ProMama.Data
         public NotificacaoDatabaseController()
         {
             NotificacaoFile = session["notificacoes.dat"];
-            NotificacaoCollection = NotificacaoFile.Collection<Notificacao, int>("notificacoes", n => n.id);
+            NotificacaoCollection = NotificacaoFile.Collection<Notificacao, int>("notificacoes", obj => obj.id);
         }
 
-        public void SaveNotificacao(Notificacao n)
+        public void Save(Notificacao obj)
         {
-            NotificacaoCollection.Persist(n);
+            NotificacaoCollection.Persist(obj);
         }
 
-        public void SaveNotificacaoList(List<Notificacao> notificacoes)
+        public void SaveList(List<Notificacao> list)
         {
-            foreach (var n in notificacoes)
+            foreach (var obj in list)
             {
-                SaveNotificacao(n);
+                Save(obj);
             }
         }
 
-        public Notificacao FindNotificacao(int id)
+        public Notificacao Find(int id)
         {
             return NotificacaoCollection.Find(id);
         }
 
-        public List<Notificacao> GetAllNotificacao()
+        public List<Notificacao> GetAll()
         {
             return NotificacaoCollection.All.ToList();
         }
 
-        public void DeleteNotificacao(int id)
+        public void Delete(int id)
         {
             NotificacaoCollection.Destroy(id);
         }
 
         public void WipeTable()
         {
-            foreach (var n in GetAllNotificacao())
+            foreach (var obj in GetAll())
             {
-                DeleteNotificacao(n.id);
+                Delete(obj.id);
             }
         }
 

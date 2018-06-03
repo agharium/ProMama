@@ -3,9 +3,9 @@ using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Model;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
-    public class CriancaDatabaseController
+    public class CriancaDatabaseController : IDatabaseMinimal<Crianca>
     {
         Session session = App.DB;
 
@@ -15,20 +15,20 @@ namespace ProMama.Data
         public CriancaDatabaseController()
         {
             CriancaFile = session["criancas.dat"];
-            CriancaCollection = CriancaFile.Collection<Crianca, int>("criancas", c => c.crianca_id);
+            CriancaCollection = CriancaFile.Collection<Crianca, int>("criancas", obj => obj.crianca_id);
         }
 
-        public void SaveCrianca(Crianca c)
+        public void Save(Crianca obj)
         {
-            CriancaCollection.Persist(c);
+            CriancaCollection.Persist(obj);
         }
 
-        public Crianca FindCrianca(int id)
+        public Crianca Find(int id)
         {
             return CriancaCollection.Find(id);
         }
 
-        public void DeleteCrianca(int id)
+        public void Delete(int id)
         {
             CriancaCollection.Destroy(id);
         }

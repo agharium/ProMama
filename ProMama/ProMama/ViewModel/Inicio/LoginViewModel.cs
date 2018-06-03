@@ -70,7 +70,7 @@ namespace ProMama.ViewModel.Inicio
                                 using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
                                 {
                                     app._usuario = u;
-                                    App.UsuarioDatabase.SaveUsuario(app._usuario);
+                                    App.UsuarioDatabase.Save(app._usuario);
                                     
                                     var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
 
@@ -81,25 +81,25 @@ namespace ProMama.ViewModel.Inicio
                                     if (app._sync.bairro != syncAux.bairro)
                                     {
                                         App.BairroDatabase.WipeTable();
-                                        App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
+                                        App.BairroDatabase.SaveList(await RestService.BairrosRead());
                                     }
                                         
                                     if (app._sync.posto != syncAux.posto)
                                     {
                                         App.PostoDatabase.WipeTable();
-                                        App.PostoDatabase.SavePostoList(await RestService.PostosRead(app._usuario.api_token));
+                                        App.PostoDatabase.SaveList(await RestService.PostosRead(app._usuario.api_token));
                                     }
                                         
                                     if (app._sync.informacao != syncAux.informacao)
                                     {
                                         App.InformacaoDatabase.WipeTable();
-                                        App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
+                                        App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
                                     }
 
                                     if (app._sync.duvidas != syncAux.duvidas)
                                     {
                                         App.DuvidaDatabase.WipeTable();
-                                        App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+                                        App.DuvidaDatabase.SaveList(await RestService.DuvidasRead(app._usuario.api_token));
                                     }
 
                                     /*if (app._sync.notificacao != syncAux.notificacao)
@@ -109,7 +109,7 @@ namespace ProMama.ViewModel.Inicio
                                     }*/
 
                                     app._sync = syncAux;
-                                    App.SincronizacaoDatabase.SaveSincronizacao(app._sync);
+                                    App.SincronizacaoDatabase.Save(app._sync);
                                 }
 
                                 if (app._usuario.criancas.Count == 0)

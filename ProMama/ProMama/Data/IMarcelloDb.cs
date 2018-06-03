@@ -1,7 +1,9 @@
-﻿namespace ProMama.Data
+﻿using MarcelloDB;
+
+namespace ProMama.Data
 {
     public interface IMarcelloDB
     {
-        MarcelloDB.Session GetSession();
+        Session GetSession();
     }
 }

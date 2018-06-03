@@ -5,9 +5,9 @@ using ProMama.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
-    public class PostoDatabaseController
+    public class PostoDatabaseController : IDatabaseExtended<Posto>
     {
         Session session = App.DB;
 
@@ -17,42 +17,42 @@ namespace ProMama.Data
         public PostoDatabaseController()
         {
             PostoFile = session["postos.dat"];
-            PostoCollection = PostoFile.Collection<Posto, int>("postos", p => p.posto_id);
+            PostoCollection = PostoFile.Collection<Posto, int>("postos", obj => obj.posto_id);
         }
 
-        public void SavePosto(Posto p)
+        public void Save(Posto obj)
         {
-            PostoCollection.Persist(p);
+            PostoCollection.Persist(obj);
         }
 
-        public void SavePostoList(List<Posto> postos)
+        public void SaveList(List<Posto> list)
         {
-            foreach (var p in postos)
+            foreach (var obj in list)
             {
-                SavePosto(p);
+                Save(obj);
             }
         }
 
-        public Posto FindPosto(int id)
+        public Posto Find(int id)
         {
             return PostoCollection.Find(id);
         }
 
-        public List<Posto> GetAllPosto()
+        public List<Posto> GetAll()
         {
             return PostoCollection.All.ToList();
         }
 
-        public void DeletePosto(int id)
+        public void Delete(int id)
         {
             PostoCollection.Destroy(id);
         }
 
         public void WipeTable()
         {
-            foreach (var p in GetAllPosto())
+            foreach (var obj in GetAll())
             {
-                DeletePosto(p.posto_id);
+                Delete(obj.posto_id);
             }
         }
 

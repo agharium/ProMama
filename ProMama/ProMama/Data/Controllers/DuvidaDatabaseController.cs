@@ -5,9 +5,9 @@ using ProMama.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
-    public class DuvidaDatabaseController
+    public class DuvidaDatabaseController : IDatabaseExtended<Duvida>
     {
         Session session = App.DB;
 
@@ -17,42 +17,42 @@ namespace ProMama.Data
         public DuvidaDatabaseController()
         {
             DuvidaFile = session["duvidas.dat"];
-            DuvidaCollection = DuvidaFile.Collection<Duvida, int>("duvidas", d => d.duvida_id);
+            DuvidaCollection = DuvidaFile.Collection<Duvida, int>("duvidas", obj => obj.duvida_id);
         }
 
-        public void SaveDuvida(Duvida d)
+        public void Save(Duvida obj)
         {
-            DuvidaCollection.Persist(d);
+            DuvidaCollection.Persist(obj);
         }
 
-        public void SaveDuvidaList(List<Duvida> duvidas)
+        public void SaveList(List<Duvida> list)
         {
-            foreach (var d in duvidas)
+            foreach (var obj in list)
             {
-                SaveDuvida(d);
+                Save(obj);
             }
         }
 
-        public Duvida FindDuvida(int id)
+        public Duvida Find(int id)
         {
             return DuvidaCollection.Find(id);
         }
 
-        public void DeleteDuvida(int id)
+        public void Delete(int id)
         {
             DuvidaCollection.Destroy(id);
         }
 
-        public List<Duvida> GetAllDuvida()
+        public List<Duvida> GetAll()
         {
             return DuvidaCollection.All.ToList();
         }
 
         public void WipeTable()
         {
-            foreach (var d in GetAllDuvida())
+            foreach (var obj in GetAll())
             {
-                DeleteDuvida(d.duvida_id);
+                Delete(obj.duvida_id);
             }
         }
 

@@ -5,14 +5,19 @@ namespace ProMama.View.Services
 {
     class MessageService : ViewModel.Services.IMessageService
     {
-        public async Task AlertDialog(string message)
+        public async Task AlertDialog(string mensagem)
         {
-            await Application.Current.MainPage.DisplayAlert("Aviso", message, "Voltar");
+            await Application.Current.MainPage.DisplayAlert("Aviso", mensagem, "Voltar");
         }
 
-        public async Task<bool> ConfirmationDialog(string message, string negacao, string confirmacao)
+        public async Task<bool> ConfirmationDialog(string mensagem, string negacao, string confirmacao)
         {
-            return await Application.Current.MainPage.DisplayAlert("Confirmação", message, negacao, confirmacao);
+            return await Application.Current.MainPage.DisplayAlert("Confirmação", mensagem, negacao, confirmacao);
+        }
+
+        public async Task<string> ActionSheet(string mensagem, string[] opcoes)
+        {
+            return await Application.Current.MainPage.DisplayActionSheet(mensagem, "Cancelar", null, opcoes);
         }
     }
 }

@@ -79,7 +79,7 @@ namespace ProMama.ViewModel.Home
             Foto = app._crianca.Foto == null ? "avatar_default.jpg" : app._crianca.Foto;
 
             Type duvidaType = null;
-            if (App.BairroDatabase.FindBairro(app._usuario.bairro).bairro_nome.Equals("Outro"))
+            if (App.BairroDatabase.Find(app._usuario.bairro).bairro_nome.Equals("Outro"))
             {
                 duvidaType = typeof(DuvidasOutrosView);
             } else

@@ -24,7 +24,7 @@ namespace ProMama.ViewModel.Services
 
         Task NavigateDuvida(INavigation Navigation, Duvida duvida);
 
-        Task NavigateImagem(INavigation Navigation, Imagem imagem);
+        Task NavigateFoto(INavigation Navigation, Foto foto);
 
         Task NavigateOutrasDuvidas(INavigation Navigation);
     }

@@ -6,17 +6,14 @@
              x:Name="this"
              Title="Galeria">
     <ContentPage.Content>
-        <StackLayout
-            Padding="10">
+        <StackLayout Padding="10">
+            
             <flv:FlowListView 
                 x:Name="List"
                 SeparatorVisibility="None" 
                 HasUnevenRows="true"
                 FlowColumnCount="2"
                 FlowItemsSource="{Binding Fotos}">
-                <!--FlowItemTappedCommand="{Binding ItemTappedCommand}"
-                FlowLastTappedItem="{Binding LastTappedItem}">-->
-
                 <flv:FlowListView.FlowColumnTemplate>
                     <DataTemplate>
                         <Grid Padding="3">
@@ -27,11 +24,6 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <!--<ffimageloading:CachedImage HeightRequest="100" Aspect="AspectFill"
-							DownsampleHeight="100" DownsampleUseDipUnits="false" 
-							LoadingPlaceholder="image_loading.png" ErrorPlaceholder="image_error.png"
-							Source="{Binding ImageUrl}"/>-->
-                            
                             <Frame
                                 x:Name="Imagem"
                                 Padding="0"
@@ -47,12 +39,12 @@
                                     </Grid.RowDefinitions>
 
                                     <Image
-                                        Source="{Binding Caminho}"
+                                        Source="{Binding source}"
                                         Aspect="AspectFill"
                                         Grid.Column="0"
                                         Grid.Row="0"/>
                                     <Label 
-                                        Text="{Binding Texto}"
+                                        Text="{Binding titulo}"
                                         FontSize="Small"
                                         Margin="5"
                                         HorizontalOptions="FillAndExpand"
@@ -64,71 +56,15 @@
                                 </Grid>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
-                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.VisualizarCommand}"
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.FotoCommand}"
                                         CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                             </Frame>
-
-                            <!--<Label 
-                                x:Name="Label" 
-                                HorizontalOptions="Fill" 
-                                HorizontalTextAlignment="Center" 
-                                VerticalOptions="End"
-							    BackgroundColor="Silver" 
-                                Opacity="0.5" 
-                                Text="{Binding FileName}"/>-->
                         </Grid>
                     </DataTemplate>
                 </flv:FlowListView.FlowColumnTemplate>
-
             </flv:FlowListView>
 
-            <!--<ListView SeparatorVisibility="None"
-                      HasUnevenRows="true"
-                      ItemsSource="{Binding Fotos}">
-                <ListView.Header>
-                    
-                    <StackLayout Margin="0, 10, 0, 0" Spacing="10">
-                        <Button Text="Tirar foto" Command="{Binding TakePhotoCommand}" />
-                        <Button Text="Escolher foto" Command="{Binding PickPhotoCommand}" />
-                    </StackLayout>
-
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame Padding="0"
-                                   HeightRequest="250"
-                                   Margin="20, 10, 20, 10">
-                                <Grid RowSpacing="10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Label Text="{Binding Mes, StringFormat='{0}º Mês'}"
-                                           TextColor="#212121"
-                                           FontSize="20"
-                                           Margin="10, 10, 10, 0"
-                                           HorizontalTextAlignment="Center"
-                                           Grid.Column="0"
-                                           Grid.Row="0"/>
-                                    <Image Source="{Binding Imagem}"
-                                           Aspect="AspectFill"
-                                           Grid.Column="0"
-                                           Grid.Row="2"/>
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Footer>
-                    <StackLayout Margin="0, 0, 0, 10" />
-                </ListView.Footer>
-            </ListView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

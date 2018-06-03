@@ -3,7 +3,7 @@ using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Model;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
     public class SincronizacaoDatabaseController
     {
@@ -15,15 +15,15 @@ namespace ProMama.Data
         public SincronizacaoDatabaseController()
         {
             SincronizacaoFile = session["sincronizacoes.dat"];
-            SincronizacaoCollection = SincronizacaoFile.Collection<Sincronizacao, int>("sincronizacoes", s => s.id);
+            SincronizacaoCollection = SincronizacaoFile.Collection<Sincronizacao, int>("sincronizacoes", obj => obj.id);
         }
 
-        public void SaveSincronizacao(Sincronizacao s)
+        public void Save(Sincronizacao obj)
         {
-            SincronizacaoCollection.Persist(s);
+            SincronizacaoCollection.Persist(obj);
         }
 
-        public Sincronizacao FindSincronizacao()
+        public Sincronizacao Find()
         {
             return SincronizacaoCollection.Find(1);
         }

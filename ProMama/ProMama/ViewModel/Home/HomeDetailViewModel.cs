@@ -16,8 +16,8 @@ namespace ProMama.ViewModel.Home
         private Aplicativo app = Aplicativo.Instance;
 
         // Criança
-        public Crianca Crianca  { get; set; }
-        public string Nome      { get; set; }
+        public Crianca Crianca { get; set; }
+        public string Nome { get; set; }
 
         // Foto da Criança
         private ImageSource _foto { get; set; }
@@ -131,7 +131,7 @@ namespace ProMama.ViewModel.Home
         {
             // Salva o login
             Config cfg = new Config(app._usuario, app._crianca);
-            App.ConfigDatabase.SaveConfig(cfg);
+            App.ConfigDatabase.Save(cfg);
 
             // Informações
             RestService = DependencyService.Get<IRestService>();
@@ -193,7 +193,7 @@ namespace ProMama.ViewModel.Home
             MaisIdadeCommand = new Command(MaisIdade);
             IdadePickerCommand = new Command<Picker>(IdadePicker);
             AbrirInformacaoCommand = new Command<Informacao>(AbrirInformacao);
-            AbrirFotoCommand = new Command<CircleImage>(AbrirFoto);
+            /*AbrirFotoCommand = new Command<CircleImage>(AbrirFoto);*/
 
             // Navigation
             Navigation = _navigation;
@@ -312,18 +312,18 @@ namespace ProMama.ViewModel.Home
             await NavigationService.NavigateInformacao(Navigation, informacao);
         }
 
-        private async void AbrirFoto(CircleImage foto)
+        /*private async void AbrirFoto(CircleImage _foto)
         {
-            Imagem imagem = new Imagem(-1, "Visualização", foto.Source);
-            await NavigationService.NavigateImagem(Navigation, imagem);
-        }
+            var foto = new Foto(-1, "Visualização", _foto.Source);
+            await NavigationService.NavigateImagem(Navigation, foto);
+        }*/
 
         private void InformacaoRead()
         {
             IndicadorLoading = "True";
 
             var count = 0;
-            var informacoes = App.InformacaoDatabase.GetAllInformacao();
+            var informacoes = App.InformacaoDatabase.GetAll();
             foreach (var i in informacoes)
             {
                 i.informacao_imagem = count % 2 == 0 ? "baby.jpeg" : null;

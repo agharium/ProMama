@@ -1,4 +1,5 @@
-﻿using MarcelloDB.Platform;
+﻿using MarcelloDB;
+using MarcelloDB.Platform;
 using ProMama.Data;
 using ProMama.Droid.Data;
 using Xamarin.Forms;
@@ -9,11 +10,12 @@ namespace ProMama.Droid.Data
     class MarcelloDB_Android : IMarcelloDB
     {
         public MarcelloDB_Android() { }
-        public MarcelloDB.Session GetSession()
+
+        public Session GetSession()
         {
             IPlatform platform = new MarcelloDB.netfx.Platform();
             var dataPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            return new MarcelloDB.Session(platform, dataPath);
+            return new Session(platform, dataPath);
         }
     }
 }

@@ -99,14 +99,47 @@ namespace ProMama.ViewModel.Inicio
                                 u.api_token = result.message;
                                 u.posto_saude = -1;
 
-                                App.UsuarioDatabase.SaveUsuario(u);
                                 app._usuario = u;
+                                App.UsuarioDatabase.Save(app._usuario);
+
+                                var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
+
+                                if (app._sync == null)
+                                    app._sync = new Sincronizacao(1);
 
                                 // Popula banco
-                                App.BairroDatabase.SaveBairroList(await RestService.BairrosRead());
-                                App.PostoDatabase.SavePostoList(await RestService.PostosRead(app._usuario.api_token));
-                                App.InformacaoDatabase.SaveInformacaoList(await RestService.InformacoesRead(app._usuario.api_token));
-                                App.DuvidaDatabase.SaveDuvidaList(await RestService.DuvidasRead(app._usuario.api_token));
+                                if (app._sync.bairro != syncAux.bairro)
+                                {
+                                    App.BairroDatabase.WipeTable();
+                                    App.BairroDatabase.SaveList(await RestService.BairrosRead());
+                                }
+
+                                if (app._sync.posto != syncAux.posto)
+                                {
+                                    App.PostoDatabase.WipeTable();
+                                    App.PostoDatabase.SaveList(await RestService.PostosRead(app._usuario.api_token));
+                                }
+
+                                if (app._sync.informacao != syncAux.informacao)
+                                {
+                                    App.InformacaoDatabase.WipeTable();
+                                    App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
+                                }
+
+                                if (app._sync.duvidas != syncAux.duvidas)
+                                {
+                                    App.DuvidaDatabase.WipeTable();
+                                    App.DuvidaDatabase.SaveList(await RestService.DuvidasRead(app._usuario.api_token));
+                                }
+
+                                /*if (app._sync.notificacao != syncAux.notificacao)
+                                {
+                                    App.NotificacaoDatabase.WipeTable();
+                                    App.NotificacaoDatabase.SaveNotificacaoList(await RestService.NotificacoesRead(app._usuario.api_token));
+                                }*/
+
+                                app._sync = syncAux;
+                                App.SincronizacaoDatabase.Save(app._sync);
                             }
 
                             NavigationService.NavigateAddCrianca();

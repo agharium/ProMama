@@ -3,7 +3,7 @@ using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Model;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
     public class ConfigDatabaseController
     {
@@ -15,20 +15,20 @@ namespace ProMama.Data
         public ConfigDatabaseController()
         {
             ConfigFile = session["configs.dat"];
-            ConfigCollection = ConfigFile.Collection<Config, int>("configs", cfg => cfg.config_id);
+            ConfigCollection = ConfigFile.Collection<Config, int>("configs", obj => obj.config_id);
         }
 
-        public void SaveConfig(Config cfg)
+        public void Save(Config obj)
         {
-            ConfigCollection.Persist(cfg);
+            ConfigCollection.Persist(obj);
         }
 
-        public Config FindConfig()
+        public Config Find()
         {
             return ConfigCollection.Find(1);
         }
 
-        public void DeleteConfig()
+        public void Delete()
         {
             ConfigCollection.Destroy(1);
         }

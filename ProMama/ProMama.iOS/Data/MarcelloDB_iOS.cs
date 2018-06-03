@@ -1,13 +1,15 @@
 ﻿using MarcelloDB.Platform;
+using ProMama.Data;
 using ProMama.iOS.Data;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(MarcelloDB_iOS))]
 namespace ProMama.iOS.Data
 {
-    class MarcelloDB_iOS
+    class MarcelloDB_iOS : IMarcelloDB
     {
         public MarcelloDB_iOS() { }
+
         public MarcelloDB.Session GetSession()
         {
             IPlatform platform = new MarcelloDB.netfx.Platform();

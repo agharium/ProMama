@@ -1,5 +1,7 @@
 ﻿using Foundation;
+using Plugin.PushNotification;
 using UIKit;
+using UserNotifications;
 
 namespace ProMama.iOS
 {
@@ -28,9 +30,31 @@ namespace ProMama.iOS
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
 
             // FFImageLoading
-            FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
+            // Notifications
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                // Ask the user for permission to get notifications on iOS 10.0+
+                UNUserNotificationCenter.Current.RequestAuthorization(
+                        UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                        (approved, error) => { });
+            }
+            else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                // Ask the user for permission to get notifications on iOS 8.0+
+                var settings = UIUserNotificationSettings.GetSettingsForTypes(
+                        UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
+                        new NSSet());
+
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+            }
 
             LoadApplication(new App());
+
+            // Push Notifications
+            PushNotificationManager.Initialize(options, true);
+
             return base.FinishedLaunching(app, options);
         }
     }

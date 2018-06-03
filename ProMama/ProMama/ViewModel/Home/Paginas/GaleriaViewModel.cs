@@ -1,8 +1,7 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using ProMama.Model;
+using ProMama.ViewModel.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,8 +15,8 @@ namespace ProMama.ViewModel.Home.Paginas
     {
         private Aplicativo app = Aplicativo.Instance;
 
-        private ObservableCollection<Imagem> _fotos;
-        public ObservableCollection<Imagem> Fotos
+        private ObservableCollection<Foto> _fotos;
+        public ObservableCollection<Foto> Fotos
         {
             get { return _fotos; }
             set
@@ -29,29 +28,25 @@ namespace ProMama.ViewModel.Home.Paginas
 
         private List<string> IdadesExtensoLista { get; set; }
 
-        public ICommand PickPhotoCommand { get; set; }
-        public ICommand TakePhotoCommand { get; set; }
-        public ICommand VisualizarCommand { get; set; }
-
         private INavigation Navigation { get; set; }
         public ICommand NavigationCommand { get; set; }
+        public ICommand FotoCommand { get; set; }
 
-        private readonly Services.INavigationService NavigationService;
+        private readonly INavigationService NavigationService;
+        private readonly IMessageService MessageService;
 
         public GaleriaViewModel(INavigation _navigation)
         {
             Navigation = _navigation;
-            NavigationService = DependencyService.Get<Services.INavigationService>();
+            NavigationService = DependencyService.Get<INavigationService>();
+            MessageService = DependencyService.Get<IMessageService>();
 
             var meses = Math.Floor(app._crianca.IdadeMeses) + 1;
 
-            Fotos = new ObservableCollection<Imagem>();
+            Fotos = new ObservableCollection<Foto>();
 
             IdadesExtensoLista = new List<string>() {
                 "recém-nascido",
-                "1 semana",
-                "2 semanas",
-                "3 semanas",
                 "1 mês",
                 "2 meses",
                 "3 meses",
@@ -78,132 +73,93 @@ namespace ProMama.ViewModel.Home.Paginas
                 "2 anos"
             };
 
+            var FotosBanco = App.FotoDatabase.GetAll();
             for (int i = 0; i < meses; i++)
             {
-                new Imagem(i, IdadesExtensoLista[i], "baby.jpeg");
+                var added = false;
+                foreach (var f in FotosBanco)
+                {
+                    if (f.mes == i)
+                    {
+                        f.source = f.caminho;
+                        Fotos.Add(f);
+                        added = true;
+                    }
+                }
+                if (added == false)
+                    Fotos.Add(new Foto(i, IdadesExtensoLista[i], null, app._crianca.crianca_id));
             }
-
-            PickPhotoCommand = new Command(PickPhoto);
-            TakePhotoCommand = new Command(TakePhoto);
-            VisualizarCommand = new Command<Imagem>(Visualizar);
+            
+            FotoCommand = new Command<Foto>(Foto);
         }
 
-        private async void PickPhoto()
+        private async void Foto(Foto foto)
         {
-            /*var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-            var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-            if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
+            if (!foto.caminho.ToString().Contains("avatar_default.png"))
             {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
-                cameraStatus = results[Permission.Camera];
-                storageStatus = results[Permission.Storage];
-            }
-
-            if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
-            {
-                await CrossMedia.Current.Initialize();
-
-                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-                {
-                    Debug.WriteLine("No Camera", ":( No camera available.", "OK");
-                    return;
-                }
-
-                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-                {
-                    Directory = "Sample",
-                    Name = "test.jpg"
-                });
-
-                if (file == null)
-                    return;
-
-                Debug.WriteLine("File Location", file.Path, "OK");
-
-                Foto f = new Foto(4, "28/04/18", "teste");
-                f.Imagem = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-
-                Fotos.Add(f);
+                await NavigationService.NavigateFoto(Navigation, foto);
             }
             else
             {
-                Debug.WriteLine("Permissions Denied", "Unable to take photos.", "OK");
-                //On iOS you may want to send your user to the settings screen.
-                //CrossPermissions.Current.OpenAppSettings();
-            }*/
+                try
+                {
+                    var escolha = await MessageService.ActionSheet("Escolher foto", new string[] { "Selecionar foto da galeria", "Abrir câmera" });
 
-            await CrossMedia.Current.Initialize();
+                    if (!escolha.Equals("Cancelar") && escolha != null)
+                    {
+                        await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                Debug.WriteLine("No Camera", ":( No camera available.", "OK");
-                return;
+                        if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                        {
+                            Debug.WriteLine("No Camera", ":( No camera available.", "OK");
+                            return;
+                        }
+
+                        MediaFile file = null;
+
+                        if (escolha.Equals("Selecionar foto da galeria"))
+                        {
+                            file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                            {
+                                PhotoSize = PhotoSize.Medium,
+                                CompressionQuality = 92
+                            });
+                        }
+                        else
+                        {
+                            file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                            {
+                                AllowCropping = true,
+                                PhotoSize = PhotoSize.Medium,
+                                CompressionQuality = 92,
+                                Directory = "Sample",
+                                Name = "sample.jpg"
+                            });
+                        }
+
+                        if (file == null)
+                            return;
+
+                        Debug.WriteLine("File Location", file.Path, "OK");
+
+                        foto.source = ImageSource.FromStream(() =>
+                        {
+                            var stream = file.GetStream();
+                            return stream;
+                        });
+                        Notify("Fotos");
+                        foto.caminho = file.Path;
+
+                        App.FotoDatabase.Save(foto);
+                        await NavigationService.NavigateFoto(Navigation, foto);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                    Debug.WriteLine("Usuário tocou fora do ActionSheet.");
+                }
             }
-
-            var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-            {
-                //AllowCropping = true,
-                PhotoSize = PhotoSize.Medium,
-                CompressionQuality = 92/*,
-                Directory = "Sample",
-                Name = "test.jpg"*/
-            });
-
-            if (file == null)
-                return;
-
-            Debug.WriteLine("File Location", file.Path, "OK");
-
-            Imagem f = new Imagem(4, "teste", "teste");
-            f.Caminho = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-            Fotos.Add(f);
-        }
-
-        private async void TakePhoto()
-        {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                Debug.WriteLine("No Camera", ":( No camera available.", "OK");
-                return;
-            }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-            {
-                AllowCropping = true,
-                PhotoSize = PhotoSize.Medium,
-                CompressionQuality = 92,
-                Directory = "Sample",
-                Name = "test.jpg"
-            });
-
-            if (file == null)
-                return;
-
-            Debug.WriteLine("File Location", file.Path, "OK");
-
-            Imagem f = new Imagem(4, "teste", "teste");
-            f.Caminho = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                return stream;
-            });
-            Fotos.Add(f);
-        }
-
-        private async void Visualizar(Imagem imagem)
-        {
-            await NavigationService.NavigateImagem(Navigation, imagem);
         }
     }
 }

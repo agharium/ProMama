@@ -126,11 +126,11 @@ namespace ProMama.ViewModel.Home.Paginas
                     if (result.success)
                     {
                         c.crianca_id = result.id;
-                        App.CriancaDatabase.SaveCrianca(c);
+                        App.CriancaDatabase.Save(c);
                         if (app._usuario.criancas == null)
                             app._usuario.criancas = new List<Crianca>();
                         app._usuario.criancas.Add(c);
-                        App.UsuarioDatabase.SaveUsuario(app._usuario);
+                        App.UsuarioDatabase.Save(app._usuario);
                         app._crianca = c;
 
                         NavigationService.NavigateHome();

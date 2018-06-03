@@ -1,13 +1,20 @@
 ﻿using DLToolkit.Forms.Controls;
+using MarcelloDB;
+using Plugin.Iconize;
 using ProMama.Data;
+using ProMama.Data.Controllers;
 using ProMama.Model;
+using ProMama.View.Home;
+using ProMama.View.Inicio;
+using ProMama.View.Services;
+using ProMama.ViewModel.Services;
 using Xamarin.Forms;
 
 namespace ProMama
 {
     public partial class App : Application
     {
-        static MarcelloDB.Session _db;
+        static Session _db;
 
         static ConfigDatabaseController _configDatabase;
         static UsuarioDatabaseController _usuarioDatabase;
@@ -18,17 +25,20 @@ namespace ProMama
         static InformacaoDatabaseController _informacaoDatabase;
         static SincronizacaoDatabaseController _sincronizacaoDatabase;
         static NotificacaoDatabaseController _notificacaoDatabase;
+        static FotoDatabaseController _fotoDatabase;
+        static ImagemDatabaseController _imagemDatabase;
+        static INotificationService _notificationService;
 
         private Aplicativo app = Aplicativo.Instance;
 
         public App()
         {
             // Iconize
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
 
-            DependencyService.Register<ViewModel.Services.INavigationService, View.Services.NavigationService>();
-            DependencyService.Register<ViewModel.Services.IMessageService, View.Services.MessageService>();
-            DependencyService.Register<ViewModel.Services.IRestService, View.Services.RestService>();
+            DependencyService.Register<INavigationService, NavigationService>();
+            DependencyService.Register<IMessageService, MessageService>();
+            DependencyService.Register<IRestService, RestService>();
 
             InitializeComponent();
 
@@ -36,10 +46,10 @@ namespace ProMama
             FlowListView.Init();
 
             // verifica se usuário já está logado
-            var sync = SincronizacaoDatabase.FindSincronizacao();
-            var cfg = ConfigDatabase.FindConfig();
+            var sync = SincronizacaoDatabase.Find();
+            var cfg = ConfigDatabase.Find();
 
-            if (SincronizacaoDatabase.FindSincronizacao() != null)
+            if (SincronizacaoDatabase.Find() != null)
             {
                 app._sync = sync;
             }
@@ -48,11 +58,11 @@ namespace ProMama
             {
                 app._usuario = cfg.config_usuario;
                 app._crianca = cfg.config_crianca;
-                MainPage = new View.Home.Home();
+                MainPage = new Home();
             }
             else
             {
-                MainPage = new View.Inicio.IntroducaoView();
+                MainPage = new IntroducaoView();
             }
         }
 
@@ -71,7 +81,7 @@ namespace ProMama
             // Handle when your app resumes
         }
 
-        public static MarcelloDB.Session DB
+        public static Session DB
         {
             get
             {
@@ -188,6 +198,42 @@ namespace ProMama
                     _notificacaoDatabase = new NotificacaoDatabaseController();
                 }
                 return _notificacaoDatabase;
+            }
+        }
+
+        public static FotoDatabaseController FotoDatabase
+        {
+            get
+            {
+                if (_fotoDatabase == null)
+                {
+                    _fotoDatabase = new FotoDatabaseController();
+                }
+                return _fotoDatabase;
+            }
+        }
+
+        public static ImagemDatabaseController ImagemDatabase
+        {
+            get
+            {
+                if (_imagemDatabase == null)
+                {
+                    _imagemDatabase = new ImagemDatabaseController();
+                }
+                return _imagemDatabase;
+            }
+        }
+
+        public static INotificationService NotificationService
+        {
+            get
+            {
+                if (_notificationService == null)
+                {
+                    _notificationService = DependencyService.Get<INotificationService>();
+                }
+                return _notificationService;
             }
         }
     }

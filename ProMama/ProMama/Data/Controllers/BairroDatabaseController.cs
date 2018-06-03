@@ -5,9 +5,9 @@ using ProMama.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProMama.Data
+namespace ProMama.Data.Controllers
 {
-    public class BairroDatabaseController
+    public class BairroDatabaseController : IDatabaseExtended<Bairro>
     {
         Session session = App.DB;
 
@@ -17,42 +17,42 @@ namespace ProMama.Data
         public BairroDatabaseController()
         {
             BairroFile = session["bairros.dat"];
-            BairroCollection = BairroFile.Collection<Bairro, int>("bairros", b => b.bairro_id);
+            BairroCollection = BairroFile.Collection<Bairro, int>("bairros", obj => obj.bairro_id);
         }
 
-        public void SaveBairro(Bairro b)
+        public void Save(Bairro obj)
         {
-            BairroCollection.Persist(b);
+            BairroCollection.Persist(obj);
         }
 
-        public void SaveBairroList(List<Bairro> bairro)
+        public void SaveList(List<Bairro> list)
         {
-            foreach (var b in bairro)
+            foreach (var b in list)
             {
-                SaveBairro(b);
+                Save(b);
             }
         }
 
-        public Bairro FindBairro(int id)
+        public Bairro Find(int id)
         {
             return BairroCollection.Find(id);
         }
 
-        public List<Bairro> GetAllBairro()
+        public List<Bairro> GetAll()
         {
             return BairroCollection.All.ToList();
         }
 
-        public void DeleteBairro(int id)
+        public void Delete(int id)
         {
             BairroCollection.Destroy(id);
         }
 
         public void WipeTable()
         {
-            foreach (var b in GetAllBairro())
+            foreach (var obj in GetAll())
             {
-                DeleteBairro(b.bairro_id);
+                Delete(obj.bairro_id);
             }
         }
 

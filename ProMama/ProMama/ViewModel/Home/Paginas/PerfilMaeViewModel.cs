@@ -78,8 +78,8 @@ namespace ProMama.ViewModel.Home.Paginas
             Nome = app._usuario.name;
             var aux = (DateTime.Now.Year - app._usuario.data_nascimento.Year);
             Idade = (aux < 10 || aux > 100) ? "" : aux + " anos";
-            Bairro = App.BairroDatabase.FindBairro(app._usuario.bairro).bairro_nome;
-            PostoSaude = app._usuario.posto_saude < 1 ? "" : App.PostoDatabase.FindPosto(app._usuario.posto_saude).posto_nome;
+            Bairro = App.BairroDatabase.Find(app._usuario.bairro).bairro_nome;
+            PostoSaude = app._usuario.posto_saude < 1 ? "" : App.PostoDatabase.Find(app._usuario.posto_saude).posto_nome;
 
             Navigation = _navigation;
             EditarCommand = new Command(Editar);

@@ -128,14 +128,14 @@ namespace ProMama.ViewModel.Home.Paginas
             var aux = DateTime.Now.Year - app._usuario.data_nascimento.Year;
             DataSelecionada = (aux < 10 || aux > 100) ? DateTime.Now : app._usuario.data_nascimento;
 
-            Bairros = App.BairroDatabase.GetAllBairro();
+            Bairros = App.BairroDatabase.GetAll();
             foreach (var b in Bairros)
             {
                 if (b.bairro_id == app._usuario.bairro)
                     BairroSelecionado = Bairros.IndexOf(b);
             }
 
-            Postos = App.PostoDatabase.GetAllPosto();
+            Postos = App.PostoDatabase.GetAll();
             if (app._usuario.posto_saude == -1)
             {
                 PostoSelecionado = -1;

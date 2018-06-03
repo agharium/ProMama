@@ -44,21 +44,26 @@
     <Compile Include="CustomComponent\Carousel\DotButtonsLayout.cs" />
     <Compile Include="CustomComponent\LongPressedEffect.cs" />
     <Compile Include="CustomComponent\TextChangedBehavior.cs" />
-    <Compile Include="Data\BairroDatabaseController.cs" />
-    <Compile Include="Data\ConfigDatabaseController.cs" />
-    <Compile Include="Data\CriancaDatabaseController.cs" />
-    <Compile Include="Data\DuvidaDatabaseController.cs" />
+    <Compile Include="Data\Controllers\BairroDatabaseController.cs" />
+    <Compile Include="Data\Controllers\ConfigDatabaseController.cs" />
+    <Compile Include="Data\Controllers\CriancaDatabaseController.cs" />
+    <Compile Include="Data\Controllers\DuvidaDatabaseController.cs" />
+    <Compile Include="Data\Controllers\FotoDatabaseController.cs" />
+    <Compile Include="Data\IDatabaseExtended.cs" />
+    <Compile Include="Data\Controllers\ImagemDatabaseController.cs" />
+    <Compile Include="Data\IDatabaseMinimal.cs" />
     <Compile Include="Data\IMarcelloDB.cs" />
-    <Compile Include="Data\InformacaoDatabaseController.cs" />
-    <Compile Include="Data\NotificacaoDatabaseController.cs" />
-    <Compile Include="Data\PostoDatabaseController.cs" />
-    <Compile Include="Data\SincronizacaoDatabaseController.cs" />
-    <Compile Include="Data\UsuarioDatabaseController.cs" />
+    <Compile Include="Data\Controllers\InformacaoDatabaseController.cs" />
+    <Compile Include="Data\Controllers\NotificacaoDatabaseController.cs" />
+    <Compile Include="Data\Controllers\PostoDatabaseController.cs" />
+    <Compile Include="Data\Controllers\SincronizacaoDatabaseController.cs" />
+    <Compile Include="Data\Controllers\UsuarioDatabaseController.cs" />
     <Compile Include="Model\Bairro.cs" />
     <Compile Include="Model\Config.cs" />
     <Compile Include="Model\Crianca.cs" />
     <Compile Include="Model\Duvida.cs" />
     <Compile Include="Model\Aplicativo.cs" />
+    <Compile Include="Model\Foto.cs" />
     <Compile Include="Model\Imagem.cs" />
     <Compile Include="Model\Informacao.cs" />
     <Compile Include="Model\JsonMessage.cs" />
@@ -75,7 +80,7 @@
     <Compile Include="ViewModel\Home\Paginas\AcompanhamentoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\DuvidasOutrosViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\DuvidasViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\ImagemViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\FotoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\DetalhesViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\LogoutViewModel.cs" />
@@ -89,6 +94,7 @@
     <Compile Include="ViewModel\Inicio\IntroducaoViewModel.cs" />
     <Compile Include="ViewModel\Inicio\LoginViewModel.cs" />
     <Compile Include="ViewModel\Services\IMessageService.cs" />
+    <Compile Include="ViewModel\Services\INotificationService.cs" />
     <Compile Include="ViewModel\Services\IRestService.cs" />
     <Compile Include="View\Home\Paginas\AddCriancaView.xaml.cs">
       <DependentUpon>AddCriancaView.xaml</DependentUpon>
@@ -115,8 +121,8 @@
     <Compile Include="View\Home\Paginas\DuvidasView.xaml.cs">
       <DependentUpon>DuvidasView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\ImagemView.xaml.cs">
-      <DependentUpon>ImagemView.xaml</DependentUpon>
+    <Compile Include="View\Home\Paginas\FotoView.xaml.cs">
+      <DependentUpon>FotoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
       <DependentUpon>GaleriaView.xaml</DependentUpon>
@@ -175,14 +181,14 @@
     <Reference Include="DLToolkit.Forms.Controls.FlowListView, Version=1.0.6542.36915, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DLToolkit.Forms.Controls.FlowListView.2.0.10\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+netstandard1.0\DLToolkit.Forms.Controls.FlowListView.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.6\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.dll</HintPath>
+    <Reference Include="FFImageLoading, Version=2.4.1.823, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.1.823\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.3.6\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Forms.dll</HintPath>
+    <Reference Include="FFImageLoading.Forms, Version=2.4.1.823, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.4.1.823\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.6\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Platform.dll</HintPath>
+    <Reference Include="FFImageLoading.Platform, Version=2.4.1.823, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.1.823\lib\portable-win+net45+wp80+win81+wpa81\FFImageLoading.Platform.dll</HintPath>
     </Reference>
     <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\netstandard1.0\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
@@ -210,6 +216,12 @@
     </Reference>
     <Reference Include="Plugin.Permissions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Plugin.Permissions.3.0.0.12\lib\netstandard1.0\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.PushNotification, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.PushNotification.1.3.0\lib\netstandard1.0\Plugin.PushNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.PushNotification.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.PushNotification.1.3.0\lib\netstandard1.0\Plugin.PushNotification.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
@@ -346,7 +358,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\ImagemView.xaml">
+    <EmbeddedResource Include="View\Home\Paginas\FotoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
