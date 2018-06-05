@@ -61,7 +61,7 @@ namespace ProMama.Model
             }
         }
 
-        private string SemanasToString()
+        public string SemanasToString()
         {
             double semanas = IdadeSemanas;
             while (semanas > 4.34524)

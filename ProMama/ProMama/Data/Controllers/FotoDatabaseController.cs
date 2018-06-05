@@ -38,6 +38,17 @@ namespace ProMama.Data.Controllers
             return FotoCollection.Find(id);
         }
 
+        public List<Foto> FindByChildId(int id)
+        {
+            var retorno = new List<Foto>();
+            foreach (var obj in GetAll())
+            {
+                if (obj.crianca == id)
+                    retorno.Add(obj);
+            }
+            return retorno;
+        }
+
         public List<Foto> GetAll()
         {
             return FotoCollection.All.ToList();

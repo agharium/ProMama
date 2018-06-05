@@ -1,5 +1,6 @@
 ﻿using ProMama.Model;
 using ProMama.ViewModel.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -75,7 +76,7 @@ namespace ProMama.ViewModel.Home.Paginas
             DuvidasRead();
         }
 
-        public async void DuvidasRead()
+        private async void DuvidasRead()
         {
             IndicadorLoading = "True";
             AvisoListaVazia = "False";
@@ -83,7 +84,9 @@ namespace ProMama.ViewModel.Home.Paginas
             Duvidas = new ObservableCollection<Duvida>(await RestService.DuvidasRead(app._usuario.api_token));
             foreach (var d in Duvidas)
             {
-                d.duvida_resumo = Regex.Match(d.duvida_resposta, @"^(\w+\b.*?){20}").ToString() + "...";
+                d.duvida_resumo = String.Join(" ", d.duvida_resposta.Split().Take(20).ToArray());
+                d.duvida_resumo.Remove(d.duvida_resumo.Length - 1, 1);
+                d.duvida_resumo += "...";
             }
 
             IndicadorLoading = "False";
@@ -93,13 +96,13 @@ namespace ProMama.ViewModel.Home.Paginas
             DuvidasAux = new List<Duvida>(Duvidas);
         }
 
-        public void Buscar(string termo)
+        private void Buscar(string termo)
         {
             Duvidas = string.IsNullOrEmpty(termo) ? new ObservableCollection<Duvida>(DuvidasAux) : new ObservableCollection<Duvida>(DuvidasAux.Where(d => d.duvida_pergunta.Contains(termo)));
             AvisoListaVazia = Duvidas.Count == 0 ? "True" : "False";
         }
 
-        public async void AbrirDuvida(Duvida duvida)
+        private async void AbrirDuvida(Duvida duvida)
         {
             await NavigationService.NavigateDuvida(Navigation, duvida);
         }

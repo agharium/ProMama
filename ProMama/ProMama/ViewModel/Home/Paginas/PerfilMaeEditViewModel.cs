@@ -156,7 +156,7 @@ namespace ProMama.ViewModel.Home.Paginas
         {
             Debug.WriteLine("Bairro: " + Bairros[BairroSelecionado].bairro_id);
             Debug.WriteLine("Posto: " + Postos[PostoSelecionado].posto_id);
-            /*if (CrossConnectivity.Current.IsConnected)
+            if (CrossConnectivity.Current.IsConnected)
             {
                 if (DataSelecionada.Year == DateTime.Now.Year)
                 {
@@ -186,7 +186,7 @@ namespace ProMama.ViewModel.Home.Paginas
                     if (result.success)
                     {
                         app._usuario = u;
-                        App.UsuarioDatabase.SaveUsuario(u);
+                        App.UsuarioDatabase.Save(u);
                         app._master.Load();
                         await Navigation.PopAsync();
                     }
@@ -198,7 +198,7 @@ namespace ProMama.ViewModel.Home.Paginas
             } else
             {
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
-            }*/
+            }
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Plugin.Media.Abstractions;
 using ProMama.Model;
 using ProMama.ViewModel.Services;
+using Xamarin.Forms;
 
 namespace ProMama.View.Services
 {
@@ -151,13 +154,21 @@ namespace ProMama.View.Services
 
         public async Task<List<Informacao>> InformacoesRead(string token)
         {
-            using (var client = new HttpClient())
+            try
             {
-                var result = await client.GetAsync(ApiUrl + "/informacoes?api_token=" + token);
-                var obj = await result.Content.ReadAsStringAsync();
-                Debug.WriteLine("API: LEITURA DE INFORMAÇÕES");
-                Debug.WriteLine(obj.ToString());
-                return JsonConvert.DeserializeObject<List<Informacao>>(obj);
+                using (var client = new HttpClient())
+                {
+                    var result = await client.GetAsync(ApiUrl + "/informacoes?api_token=" + token);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: LEITURA DE INFORMAÇÕES");
+                    Debug.WriteLine(obj.ToString());
+                    return JsonConvert.DeserializeObject<List<Informacao>>(obj);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                return new List<Informacao>();
             }
         }
 
@@ -281,6 +292,36 @@ namespace ProMama.View.Services
                 Debug.WriteLine(obj.ToString());
 
                 return string.IsNullOrEmpty(obj.ToString()) ? new List<Notificacao>() : JsonConvert.DeserializeObject<List<Notificacao>>(obj);
+            }
+        }
+
+        public async Task<JsonMessage> UploadImage(Foto foto, string token)
+        {
+            IFileService File = DependencyService.Get<IFileService>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    MultipartFormDataContent content = new MultipartFormDataContent();
+
+                    ByteArrayContent imagem = new ByteArrayContent(File.ReadAllBytes(foto.caminho));
+                    StringContent crianca = new StringContent(foto.crianca.ToString());
+                    StringContent mes = new StringContent(foto.mes.ToString());
+
+                    content.Add(imagem, "foto", foto.caminho);
+                    content.Add(crianca, "crianca");
+                    content.Add(mes, "mes");
+
+                    var result = await client.PostAsync(ApiUrl + "/uploadfoto?api_token=" + token, content);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: UPLOAD DE IMAGEM");
+                    Debug.WriteLine(obj.ToString());
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + ex.ToString());
             }
         }
     }

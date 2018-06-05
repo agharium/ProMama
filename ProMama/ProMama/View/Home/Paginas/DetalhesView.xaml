@@ -1,21 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="ProMama.View.Home.Paginas.DetalhesView"
+             x:Name="this"
              Title="{Binding Titulo}">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="20"
-                         Spacing="20">
-                <Label Text="{Binding Titulo}"
-                       HorizontalOptions="Center"
-                       FontSize="Large"
-                       TextColor="Black"/>
-                <Image Source="{Binding Imagem}"
-                       HorizontalOptions="Center"
-                       Aspect="AspectFill"/>
-                <Label Text="{Binding Texto}"
-                       TextColor="#262626"/>
+            <StackLayout 
+                Padding="20"
+                Spacing="20">
+                <Label 
+                    Text="{Binding Titulo}"
+                    HorizontalOptions="Center"
+                    FontSize="Large"
+                    TextColor="Black"/>
+                <Frame Padding="0">
+                    <ffimageloading:CachedImage
+                        CacheDuration="365"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        HeightRequest="200"
+			            DownsampleToViewSize="true"
+                        Aspect="AspectFill"
+			            Source="{Binding Imagem}"
+                        Grid.Column="0"
+                        Grid.Row="2" />
+                </Frame>
+                <Label 
+                    Text="{Binding Texto}"
+                    TextColor="#262626"/>
+
+                <ListView
+                    SeparatorVisibility="None"
+                    HasUnevenRows="true"
+                    ItemsSource="{Binding Links}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Button
+                                    Text="{Binding titulo}"
+                                    Style="{StaticResource MainButton}"
+                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirLinkCommand}"
+                                    CommandParameter="{Binding url}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

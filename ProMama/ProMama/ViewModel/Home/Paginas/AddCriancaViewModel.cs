@@ -2,7 +2,6 @@
 using ProMama.ViewModel.Services;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 

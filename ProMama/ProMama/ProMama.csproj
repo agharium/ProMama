@@ -44,11 +44,13 @@
     <Compile Include="CustomComponent\Carousel\DotButtonsLayout.cs" />
     <Compile Include="CustomComponent\LongPressedEffect.cs" />
     <Compile Include="CustomComponent\TextChangedBehavior.cs" />
+    <Compile Include="Data\Controllers\AcompanhamentoDatabaseController.cs" />
     <Compile Include="Data\Controllers\BairroDatabaseController.cs" />
     <Compile Include="Data\Controllers\ConfigDatabaseController.cs" />
     <Compile Include="Data\Controllers\CriancaDatabaseController.cs" />
     <Compile Include="Data\Controllers\DuvidaDatabaseController.cs" />
     <Compile Include="Data\Controllers\FotoDatabaseController.cs" />
+    <Compile Include="Data\Controllers\MarcoDatabaseController.cs" />
     <Compile Include="Data\IDatabaseExtended.cs" />
     <Compile Include="Data\Controllers\ImagemDatabaseController.cs" />
     <Compile Include="Data\IDatabaseMinimal.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Data\Controllers\PostoDatabaseController.cs" />
     <Compile Include="Data\Controllers\SincronizacaoDatabaseController.cs" />
     <Compile Include="Data\Controllers\UsuarioDatabaseController.cs" />
+    <Compile Include="Model\Acompanhamento.cs" />
     <Compile Include="Model\Bairro.cs" />
     <Compile Include="Model\Config.cs" />
     <Compile Include="Model\Crianca.cs" />
@@ -67,14 +70,15 @@
     <Compile Include="Model\Imagem.cs" />
     <Compile Include="Model\Informacao.cs" />
     <Compile Include="Model\JsonMessage.cs" />
+    <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Marco.cs" />
-    <Compile Include="Model\Medicao.cs" />
     <Compile Include="Model\Notificacao.cs" />
     <Compile Include="Model\Posto.cs" />
     <Compile Include="Model\Sincronizacao.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Home\HomeMasterViewModel.cs" />
+    <Compile Include="ViewModel\Home\Paginas\AddAcompanhamentoViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\AddCriancaViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeDetailViewModel.cs" />
     <Compile Include="ViewModel\Home\Paginas\AcompanhamentoViewModel.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="ViewModel\Inicio\CadastroViewModel.cs" />
     <Compile Include="ViewModel\Inicio\IntroducaoViewModel.cs" />
     <Compile Include="ViewModel\Inicio\LoginViewModel.cs" />
+    <Compile Include="ViewModel\Services\IFileService.cs" />
     <Compile Include="ViewModel\Services\IMessageService.cs" />
     <Compile Include="ViewModel\Services\INotificationService.cs" />
     <Compile Include="ViewModel\Services\IRestService.cs" />

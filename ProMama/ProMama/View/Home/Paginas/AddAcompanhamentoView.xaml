@@ -6,31 +6,46 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <StackLayout Padding="20"
-                             Spacing="20">
+                <StackLayout 
+                    Padding="20"
+                    Spacing="20">
                     
-                    <Label Text="Selecione a data em que a medição foi realizada:" 
-                           HorizontalOptions="Center"/>
+                    <Label 
+                        Text="Selecione a data em que a medição foi realizada:" 
+                        HorizontalOptions="Center"/>
                     
-                    <DatePicker Format="dd/MM/yyyy"
-                                HorizontalOptions="Center" />
+                    <DatePicker
+                        Format="dd/MM/yyyy"
+                        HorizontalOptions="Center"
+                        MinimumDate="{Binding DataMinima}"
+                        MaximumDate="{Binding DataMaxima}"
+                        Date="{Binding DataSelecionada}"/>
                     
-                    <Entry Placeholder="Peso da criança (kg)"
-                           Keyboard="Numeric"/>
+                    <Entry 
+                        Placeholder="Peso da criança (kg)"
+                        Keyboard="Numeric"
+                        Text="{Binding Peso}"/>
                     
-                    <Entry Placeholder="Altura da criança (cm)"
-                           Keyboard="Numeric"/>
+                    <Entry 
+                        Placeholder="Altura da criança (cm)"
+                        Keyboard="Numeric"
+                        Text="{Binding Altura}"/>
                     
-                    <Picker Title="Alimentação da criança">
+                    <Picker 
+                        Title="Alimentação da criança"
+                        SelectedIndex="{Binding Alimentacao}">
                         <Picker.Items>
-                            <x:String>Tipo 1</x:String>
-                            <x:String>Tipo 2</x:String>
-                            <x:String>Tipo 3</x:String>
+                            <x:String>Exclusivo</x:String>
+                            <x:String>Predominante</x:String>
+                            <x:String>Complementar</x:String>
+                            <x:String>Não recebe leite materno</x:String>
                         </Picker.Items>
                     </Picker>
                     
-                    <Button Style="{StaticResource MainButton}"
-                            Text="Salvar medição"/>
+                    <Button 
+                        Style="{StaticResource MainButton}"
+                        Text="Salvar medição"
+                        Command="{Binding SalvarCommand}"/>
                     
                 </StackLayout>
             </ScrollView>

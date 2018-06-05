@@ -1,4 +1,5 @@
 ﻿using ProMama.Model;
+using ProMama.ViewModel.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -7,13 +8,16 @@ namespace ProMama.ViewModel.Home.Paginas
 {
     class AcompanhamentoViewModel : ViewModelBase
     {
-        private ObservableCollection<Medicao> _medicoes;
-        public ObservableCollection<Medicao> Medicoes
+        private Aplicativo app = Aplicativo.Instance;
+
+        private ObservableCollection<Acompanhamento> _medicoes;
+        public ObservableCollection<Acompanhamento> Medicoes
         {
             get { return _medicoes; }
             set
             {
                 _medicoes = value;
+                Notify("Medicoes");
             }
 
         }
@@ -21,25 +25,15 @@ namespace ProMama.ViewModel.Home.Paginas
         private INavigation Navigation { get; set; }
         public ICommand NavigationCommand { get; set; }
 
-        private readonly Services.INavigationService NavigationService;
+        private readonly INavigationService NavigationService;
 
-        public AcompanhamentoViewModel(INavigation Navigation)
+        public AcompanhamentoViewModel(INavigation _navigation)
         {
-            this.Navigation = Navigation;
-            NavigationCommand = new Command(this.NavigateToAddAcompanhamento);
+            Navigation = _navigation;
+            NavigationCommand = new Command(NavigateToAddAcompanhamento);
+            NavigationService = DependencyService.Get<INavigationService>();
 
-            NavigationService = DependencyService.Get<Services.INavigationService>();
-
-            Medicoes = new ObservableCollection<Medicao>();
-
-            Medicao teste1 = new Medicao("07/01/17", "4,5kg", "60cm", "Tipo 1");
-            Medicoes.Add(teste1);
-
-            Medicao teste2 = new Medicao("17/02/17", "5,5kg", "70cm", "Tipo 2");
-            Medicoes.Add(teste2);
-
-            Medicao teste3 = new Medicao("27/03/17", "6,5kg", "80cm", "Tipo 3");
-            Medicoes.Add(teste3);
+            Medicoes = new ObservableCollection<Acompanhamento>(App.AcompanhamentoDatabase.FindByChildId(app._crianca.crianca_id));
         }
 
         private async void NavigateToAddAcompanhamento()

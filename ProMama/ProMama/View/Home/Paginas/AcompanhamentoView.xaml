@@ -7,16 +7,19 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <StackLayout Padding="20"
-                             Spacing="20">
+                <StackLayout 
+                    Padding="20"
+                    Spacing="20">
 
-                    <Label Text="Medições anteriores:" 
-                           FontSize="Medium"
-                           HorizontalOptions="Center"/>
+                    <Label 
+                        Text="Medições anteriores:" 
+                        FontSize="Medium"
+                        HorizontalOptions="Center"/>
 
-                    <ListView SeparatorVisibility="None"
-                              HasUnevenRows="true"
-                              ItemsSource="{Binding Medicoes}">
+                    <ListView 
+                        SeparatorVisibility="None"
+                        HasUnevenRows="true"
+                        ItemsSource="{Binding Medicoes}">
                         <ListView.Header>
 
                             <Grid ColumnSpacing="0">
@@ -30,82 +33,98 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackLayout Padding="1, 1, 0, 1"
-                                             BackgroundColor="DarkGray"
-                                             Grid.Column="0"
-                                             Grid.Row="0">
-                                    <StackLayout Padding="10"
-                                                 BackgroundColor="White"
-                                                 HorizontalOptions="Fill"
-                                                 VerticalOptions="FillAndExpand">
-                                        <StackLayout Padding="0"
-                                                     BackgroundColor="White"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="CenterAndExpand">
-                                            <Label Text="Data"
-                                                   FontAttributes="Bold"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center"/>
+                                <StackLayout 
+                                    Padding="1, 1, 0, 1"
+                                    BackgroundColor="DarkGray"
+                                    Grid.Column="0"
+                                    Grid.Row="0">
+                                    <StackLayout 
+                                        Padding="10"
+                                        BackgroundColor="White"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="FillAndExpand">
+                                        <StackLayout 
+                                            Padding="0"
+                                            BackgroundColor="White"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                Text="Data"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
 
-                                <StackLayout Padding="1, 1, 0, 1"
-                                             BackgroundColor="DarkGray"
-                                             Grid.Column="1"
-                                             Grid.Row="0">
-                                    <StackLayout Padding="10"
-                                                 BackgroundColor="White"
-                                                 HorizontalOptions="Fill"
-                                                 VerticalOptions="FillAndExpand">
-                                        <StackLayout Padding="0"
-                                                     BackgroundColor="White"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="CenterAndExpand">
-                                            <Label Text="Peso"
-                                                   FontAttributes="Bold"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center"/>
+                                <StackLayout 
+                                    Padding="1, 1, 0, 1"
+                                    BackgroundColor="DarkGray"
+                                    Grid.Column="1"
+                                    Grid.Row="0">
+                                    <StackLayout 
+                                        Padding="10"
+                                        BackgroundColor="White"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="FillAndExpand">
+                                        <StackLayout 
+                                            Padding="0"
+                                            BackgroundColor="White"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                Text="Peso"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
 
-                                <StackLayout Padding="1, 1, 0, 1"
-                                             BackgroundColor="DarkGray"
-                                             Grid.Column="2"
-                                             Grid.Row="0">
-                                    <StackLayout Padding="10"
-                                                 BackgroundColor="White"
-                                                 HorizontalOptions="Fill"
-                                                 VerticalOptions="FillAndExpand">
-                                        <StackLayout Padding="0"
-                                                     BackgroundColor="White"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="CenterAndExpand">
-                                            <Label Text="Altura"
-                                                   FontAttributes="Bold"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center"/>
+                                <StackLayout 
+                                    Padding="1, 1, 0, 1"
+                                    BackgroundColor="DarkGray"
+                                    Grid.Column="2"
+                                    Grid.Row="0">
+                                    <StackLayout 
+                                        Padding="10"
+                                        BackgroundColor="White"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="FillAndExpand">
+                                        <StackLayout 
+                                            Padding="0"
+                                            BackgroundColor="White"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                Text="Altura"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
 
-                                <StackLayout Padding="1"
-                                             BackgroundColor="DarkGray"
-                                             Grid.Column="3"
-                                             Grid.Row="0">
-                                    <StackLayout Padding="10"
-                                                 BackgroundColor="White"
-                                                 HorizontalOptions="Fill"
-                                                 VerticalOptions="FillAndExpand">
-                                        <StackLayout Padding="0"
-                                                     BackgroundColor="White"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="CenterAndExpand">
-                                            <Label Text="Alimentação"
-                                                   FontAttributes="Bold"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center"/>
+                                <StackLayout 
+                                    Padding="1"
+                                    BackgroundColor="DarkGray"
+                                    Grid.Column="3"
+                                    Grid.Row="0">
+                                    <StackLayout 
+                                        Padding="10"
+                                        BackgroundColor="White"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="FillAndExpand">
+                                        <StackLayout 
+                                            Padding="0"
+                                            BackgroundColor="White"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label 
+                                                Text="Alimentação"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
@@ -127,78 +146,94 @@
                                             <RowDefinition Height="*"></RowDefinition>
                                         </Grid.RowDefinitions>
 
-                                        <StackLayout Padding="1, 0, 0, 1"
-                                                     BackgroundColor="DarkGray"
-                                                     Grid.Column="0"
-                                                     Grid.Row="0">
-                                            <StackLayout Padding="10"
-                                                         BackgroundColor="White"
-                                                         HorizontalOptions="Fill"
-                                                         VerticalOptions="FillAndExpand">
-                                                <StackLayout Padding="0"
-                                                             BackgroundColor="White"
-                                                             HorizontalOptions="Center"
-                                                             VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{Binding Data}"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center"/>
+                                        <StackLayout 
+                                            Padding="1, 0, 0, 1"
+                                            BackgroundColor="DarkGray"
+                                            Grid.Column="0"
+                                            Grid.Row="0">
+                                            <StackLayout 
+                                                Padding="10"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="FillAndExpand">
+                                                <StackLayout 
+                                                    Padding="0"
+                                                    BackgroundColor="White"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <Label 
+                                                        Text="{Binding data}"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center"/>
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
 
-                                        <StackLayout Padding="1, 0, 0, 1"
-                                                     BackgroundColor="DarkGray"
-                                                     Grid.Column="1"
-                                                     Grid.Row="0">
-                                            <StackLayout Padding="10"
-                                                         BackgroundColor="White"
-                                                         HorizontalOptions="Fill"
-                                                         VerticalOptions="FillAndExpand">
-                                                <StackLayout Padding="0"
-                                                             BackgroundColor="White"
-                                                             HorizontalOptions="Center"
-                                                             VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{Binding Peso}"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center"/>
+                                        <StackLayout 
+                                            Padding="1, 0, 0, 1"
+                                            BackgroundColor="DarkGray"
+                                            Grid.Column="1"
+                                            Grid.Row="0">
+                                            <StackLayout 
+                                                Padding="10"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="FillAndExpand">
+                                                <StackLayout 
+                                                    Padding="0"
+                                                    BackgroundColor="White"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <Label 
+                                                        Text="{Binding peso}"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center"/>
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
 
-                                        <StackLayout Padding="1, 0, 0, 1"
-                                                     BackgroundColor="DarkGray"
-                                                     Grid.Column="2"
-                                                     Grid.Row="0">
-                                            <StackLayout Padding="10"
-                                                         BackgroundColor="White"
-                                                         HorizontalOptions="Fill"
-                                                         VerticalOptions="FillAndExpand">
-                                                <StackLayout Padding="0"
-                                                             BackgroundColor="White"
-                                                             HorizontalOptions="Center"
-                                                             VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{Binding Altura}"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center"/>
+                                        <StackLayout 
+                                            Padding="1, 0, 0, 1"
+                                            BackgroundColor="DarkGray"
+                                            Grid.Column="2"
+                                            Grid.Row="0">
+                                            <StackLayout 
+                                                Padding="10"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="FillAndExpand">
+                                                <StackLayout 
+                                                    Padding="0"
+                                                    BackgroundColor="White"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <Label 
+                                                        Text="{Binding altura}"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center"/>
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
 
-                                        <StackLayout Padding="1, 0, 1, 1"
-                                                     BackgroundColor="DarkGray"
-                                                     Grid.Column="3"
-                                                     Grid.Row="0">
-                                            <StackLayout Padding="10"
-                                                         BackgroundColor="White"
-                                                         HorizontalOptions="Fill"
-                                                         VerticalOptions="FillAndExpand">
-                                                <StackLayout Padding="0"
-                                                             BackgroundColor="White"
-                                                             HorizontalOptions="Center"
-                                                             VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{Binding Alimentacao}"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center"/>
+                                        <StackLayout 
+                                            Padding="1, 0, 1, 1"
+                                            BackgroundColor="DarkGray"
+                                            Grid.Column="3"
+                                            Grid.Row="0">
+                                            <StackLayout 
+                                                Padding="10"
+                                                BackgroundColor="White"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="FillAndExpand">
+                                                <StackLayout 
+                                                    Padding="0"
+                                                    BackgroundColor="White"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <Label 
+                                                        Text="{Binding alimentacao_texto}"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Center"/>
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
@@ -209,10 +244,11 @@
                         </ListView.ItemTemplate>
                         <ListView.Footer>
 
-                            <Button Style="{StaticResource MainButton}"
-                                    Text="Adicionar nova medição"
-                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"
-                                    Margin="0, 20, 0, 0"/>
+                            <Button 
+                                Style="{StaticResource MainButton}"
+                                Text="Adicionar nova medição"
+                                Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"
+                                Margin="0, 20, 0, 0"/>
 
                         </ListView.Footer>
                     </ListView>

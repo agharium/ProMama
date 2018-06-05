@@ -10,6 +10,7 @@ namespace ProMama.Model
         public string titulo { get; set; }
         public string caminho { get; set; }
         public int crianca { get; set; }
+        public string url { get; set; }
 
         [JsonIgnore]
         public ImageSource source { get; set; }

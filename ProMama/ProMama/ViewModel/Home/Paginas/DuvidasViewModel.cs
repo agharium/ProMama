@@ -2,7 +2,7 @@
 using ProMama.ViewModel.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -91,7 +91,7 @@ namespace ProMama.ViewModel.Home.Paginas
             DuvidasRead();
         }
 
-        public async void EnviarDuvida()
+        private async void EnviarDuvida()
         {
             if (DuvidaTexto.Equals(string.Empty))
             {
@@ -115,7 +115,7 @@ namespace ProMama.ViewModel.Home.Paginas
             }
         }
 
-        public async void DuvidasRead()
+        private async void DuvidasRead()
         {
             IndicadorLoading = "True";
             AvisoListaVazia = "False";
@@ -129,13 +129,9 @@ namespace ProMama.ViewModel.Home.Paginas
                     d.duvida_resumo = "Aguardando resposta.";
                 } else
                 {
-                    if (d.duvida_resposta.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length > 20)
-                    {
-                        d.duvida_resumo = Regex.Match(d.duvida_resposta, @"^(\w+\b.*?){20}").ToString() + "...";
-                    } else
-                    {
-                        d.duvida_resumo = d.duvida_resposta;
-                    } 
+                    d.duvida_resumo = String.Join(" ", d.duvida_resposta.Split().Take(20).ToArray());
+                    d.duvida_resumo.Remove(d.duvida_resumo.Length - 1, 1);
+                    d.duvida_resumo += "...";
                 }
             }
             Duvidas = new ObservableCollection<Duvida>(duvidas);
@@ -145,12 +141,12 @@ namespace ProMama.ViewModel.Home.Paginas
                 AvisoListaVazia = "True";
         }
 
-        public async void OutrasDuvidas()
+        private async void OutrasDuvidas()
         {
             await NavigationService.NavigateOutrasDuvidas(Navigation);
         }
 
-        public async void AbrirDuvida(Duvida duvida)
+        private async void AbrirDuvida(Duvida duvida)
         {
             if (duvida.duvida_resposta != "Aguardando resposta.")
             {

@@ -34,12 +34,14 @@ namespace ProMama.ViewModel.Home.Paginas
         private INavigation Navigation { get; set; }
         private readonly INavigationService NavigationService;
         private readonly IMessageService MessageService;
+        private readonly IRestService RestService;
 
         public GaleriaViewModel(INavigation _navigation)
         {
             Navigation = _navigation;
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
+            RestService = DependencyService.Get<IRestService>();
 
             FotoCommand = new Command<Foto>(Foto);
 
@@ -150,6 +152,7 @@ namespace ProMama.ViewModel.Home.Paginas
                         Notify("Fotos");
                         foto.caminho = file.Path;
 
+                        await RestService.UploadImage(foto, app._usuario.api_token);
                         App.FotoDatabase.Save(foto);
                         await NavigationService.NavigateFoto(Navigation, foto);
                     }

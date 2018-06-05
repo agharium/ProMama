@@ -27,9 +27,9 @@ namespace ProMama.Data.Controllers
 
         public void SaveList(List<Bairro> list)
         {
-            foreach (var b in list)
+            foreach (var obj in list)
             {
-                Save(b);
+                Save(obj);
             }
         }
 

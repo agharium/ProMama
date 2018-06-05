@@ -1,11 +1,11 @@
 ﻿using ImageCircle.Forms.Plugin.Abstractions;
+using Plugin.Connectivity;
 using ProMama.Model;
 using ProMama.ViewModel.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -16,7 +16,6 @@ namespace ProMama.ViewModel.Home
         private Aplicativo app = Aplicativo.Instance;
 
         // Criança
-        public Crianca Crianca { get; set; }
         public string Nome { get; set; }
 
         // Foto da Criança
@@ -36,14 +35,18 @@ namespace ProMama.ViewModel.Home
 
         // Variavéis auxiliares para controle da timeline
         private List<string> IdadesExtensoLista { get; set; }
+        private List<double> IdadesAuxLista { get; set; }
 
-        private int _idadeAux;
-        public int IdadeAux
+        private int _idadeAuxIndex;
+        public int IdadeAuxIndex
         {
-            get { return _idadeAux; }
+            get
+            {
+                return _idadeAuxIndex;
+            }
             set
             {
-                _idadeAux = value;
+                _idadeAuxIndex = value;
                 IdadeExtenso = IdadesExtensoLista[value];
                 OrganizaSetas();
                 OrganizaInformacoes();
@@ -62,8 +65,8 @@ namespace ProMama.ViewModel.Home
         }
 
         // Variáveis auxiliares da interface
-        private string _indicadorLoading;
-        public string IndicadorLoading
+        private bool _indicadorLoading;
+        public bool IndicadorLoading
         {
             get
             {
@@ -73,6 +76,20 @@ namespace ProMama.ViewModel.Home
             {
                 _indicadorLoading = value;
                 Notify("IndicadorLoading");
+            }
+        }
+
+        private bool _atualizandoInformacoes;
+        public bool AtualizandoInformacoes
+        {
+            get
+            {
+                return _atualizandoInformacoes;
+            }
+            set
+            {
+                _atualizandoInformacoes = value;
+                Notify("AtualizandoInformacoes");
             }
         }
 
@@ -117,7 +134,8 @@ namespace ProMama.ViewModel.Home
         public ICommand MaisIdadeCommand { get; set; }
         public ICommand IdadePickerCommand { get; set; }
         public ICommand AbrirInformacaoCommand { get; set; }
-        public ICommand AbrirFotoCommand { get; set; }
+        public ICommand AtualizarInformacoesCommand { get; set; }
+        //public ICommand AbrirFotoCommand { get; set; }
 
         // Navigation
         private INavigation Navigation { get; set; }
@@ -138,9 +156,11 @@ namespace ProMama.ViewModel.Home
             Informacoes = new ObservableCollection<Informacao>();
             InformacaoRead();
 
+            // Lista auxiliar de idades
+            DefineListaIdadesAux();
+
             // Lista de idades por extenso
             IdadesExtensoLista = new List<string>() {
-                // TO-DO: Crianca.crianca_sexo == 0 ? "recém-nascida"  : "recém-nascido",
                 "recém-nascido",
                 "1 semana",
                 "2 semanas",
@@ -172,18 +192,16 @@ namespace ProMama.ViewModel.Home
             };
 
             // Criança
-            Crianca = app._crianca;
-            Nome = Crianca.crianca_primeiro_nome;
-            Foto = Crianca.Foto == null ? "avatar_default.png" : Crianca.Foto; 
-            IdadeAux = IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso);
-            IdadeExtenso = IdadesExtensoLista[IdadeAux];
-
-            // Display das setas
-            OrganizaSetas();
+            Nome = app._crianca.crianca_primeiro_nome;
+            Foto = app._crianca.Foto == null ? "avatar_default.png" : app._crianca.Foto;
+            IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.DefineIdadeExtenso());
+            // bug-proof
+            /*if (SetaDireitaCor.Equals("#EEEEEE"))
+                IdadeAuxIndex--;*/
 
             // Idades picker
             IdadesPickerLista = new List<string>();
-            for (int i = 0; i <= IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso); i++)
+            for (int i = 0; i <= IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso); i++)
             {
                 IdadesPickerLista.Add(IdadesExtensoLista[i]);
             }
@@ -193,6 +211,7 @@ namespace ProMama.ViewModel.Home
             MaisIdadeCommand = new Command(MaisIdade);
             IdadePickerCommand = new Command<Picker>(IdadePicker);
             AbrirInformacaoCommand = new Command<Informacao>(AbrirInformacao);
+            AtualizarInformacoesCommand = new Command(AtualizaInformacoes);
             /*AbrirFotoCommand = new Command<CircleImage>(AbrirFoto);*/
 
             // Navigation
@@ -200,21 +219,41 @@ namespace ProMama.ViewModel.Home
             NavigationService = DependencyService.Get<INavigationService>();
         }
 
+        // Atualiza informacoes com o banco de dados
+        private async void AtualizaInformacoes()
+        {
+            AtualizandoInformacoes = true;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
+
+                if (app._sync == null)
+                    app._sync = new Sincronizacao(1);
+
+                if (app._sync.informacao != syncAux.informacao)
+                {
+                    App.InformacaoDatabase.WipeTable();
+                    App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
+                }
+            }
+            AtualizandoInformacoes = false;
+        }
+
         // Botão da seta pra direita
         private void MaisIdade()
         {
-            if (IdadeAux < 27 && IdadeAux < Crianca.IdadeMeses + 2 && IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso) != 0)
+            if (IdadeAuxIndex < 27 && IdadeAuxIndex < app._crianca.IdadeMeses + 2 && IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) != 0)
             {
-                IdadeAux++;
+                IdadeAuxIndex++;
             }
         }
 
         // Botão da seta pra esquerda
         private void MenosIdade()
         {
-            if (IdadeAux > 0 && IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso) != 0)
+            if (IdadeAuxIndex > 0 && IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) != 0)
             {
-                IdadeAux--;
+                IdadeAuxIndex--;
             }
         }
 
@@ -227,18 +266,18 @@ namespace ProMama.ViewModel.Home
         // Organiza o display as setas
         private void OrganizaSetas()
         {
-            if (IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso) == 0)
+            if (IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) == 0)
             {
                 SetaEsquerdaCor = "#FF8A80";
                 SetaDireitaCor = "#FF8A80";
             } else
             {
-                if (IdadeAux == 0)
+                if (IdadeAuxIndex == 0)
                 {
                     SetaEsquerdaCor = "#FF8A80";
                     SetaDireitaCor = "#EEEEEE";
                 }
-                else if (IdadeAux == 27 || IdadeAux == IdadesExtensoLista.IndexOf(Crianca.IdadeExtenso))
+                else if (IdadeAuxIndex == 27 || IdadeAuxIndex == IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso))
                 {
                     SetaEsquerdaCor = "#EEEEEE";
                     SetaDireitaCor = "#FF8A80";
@@ -259,50 +298,15 @@ namespace ProMama.ViewModel.Home
                 var inicio = info.informacao_idadeSemanasInicio;
                 var fim = info.informacao_idadeSemanasFim;
 
-                // GAMBS
-                if ((inicio >= 1 && inicio <= 5) || (fim >= 1 && fim <= 5))
+                if (((IdadesAuxLista[IdadeAuxIndex] >= inicio && IdadesAuxLista[IdadeAuxIndex] <= fim) ||
+                    (IdadeAuxIndex == 0 && inicio < 1 && IdadesAuxLista[IdadeAuxIndex] <= fim)) &&
+                    app._crianca.IdadeSemanas >= inicio)
                 {
-                    var idadeDias = (DateTime.Now - app._crianca.crianca_dataNascimento).Days;
-                    if (idadeDias > 5)
-                    Debug.WriteLine(idadeDias);
-
-                    if (inicio <= idadeDias && fim >= idadeDias)
-                    {
-                        if (!Informacoes.Contains(info))
-                            Informacoes.Add(info);
-                    } else
-                    {
-                        if (Informacoes.Contains(info))
-                            Informacoes.Remove(info);
-                    }
-                }
-                // se a idade da criança é compatível com a informação
-                else if (inicio == 0 || fim == 0)
-                {
-                    if (inicio <= IdadeAux && fim >= IdadeAux)
-                    {
-                        if (!Informacoes.Contains(info))
-                            Informacoes.Add(info);
-                    }
-                    else
-                    {
-                        if (Informacoes.Contains(info))
-                            Informacoes.Remove(info);
-                    }
+                    AdicionarInfo(info);
                 } else
                 {
-                    if (inicio-5 <= IdadeAux && fim-5 >= IdadeAux)
-                    {
-                        if (!Informacoes.Contains(info))
-                            Informacoes.Add(info);
-                    }
-                    else
-                    {
-                        if (Informacoes.Contains(info))
-                            Informacoes.Remove(info);
-                    }
+                    RemoverInfo(info);
                 }
-                
             }
         }
         
@@ -320,21 +324,68 @@ namespace ProMama.ViewModel.Home
 
         private void InformacaoRead()
         {
-            IndicadorLoading = "True";
+            IndicadorLoading = true;
 
             var count = 0;
             var informacoes = App.InformacaoDatabase.GetAll();
             foreach (var i in informacoes)
             {
-                i.informacao_imagem = count % 2 == 0 ? "baby.jpeg" : null;
-                i.informacao_imagem_altura = i.informacao_imagem == null ? 0 : 150;
-                i.informacao_resumo = Regex.Match(i.informacao_corpo, @"^(\w+\b.*?){20}").ToString() + "...";
+                i.informacao_imagem_visivel = !String.IsNullOrEmpty(i.informacao_foto);
+                i.informacao_resumo = String.Join(" ", i.informacao_corpo.Split().Take(20).ToArray());
+                i.informacao_resumo.Remove(i.informacao_resumo.Length - 1, 1);
+                i.informacao_resumo += "...";
                 InformacoesAux.Add(i);
                 count++;
             }
-            OrganizaInformacoes();
 
-            IndicadorLoading = "False";
+            IndicadorLoading = false;
+        }
+
+        private void AdicionarInfo(Informacao info)
+        {
+            if (!Informacoes.Contains(info))
+                Informacoes.Add(info);
+        }
+
+        private void RemoverInfo(Informacao info)
+        {
+            if (Informacoes.Contains(info))
+                Informacoes.Remove(info);
+        }
+
+        private void DefineListaIdadesAux()
+        {
+            var semana = 0.1551871428571429;
+            IdadesAuxLista = new List<double>()
+            {
+                0,
+                semana * 7,
+                semana * 14,
+                semana * 21,
+            };
+
+            for (var i=28; i<=672; i+=28)
+            {
+                IdadesAuxLista.Add(semana * i);
+            }
+        }
+
+        private int DefineIdadeAuxIndex()
+        {
+            if (app._crianca.IdadeExtenso.Equals("2 anos"))
+                return IdadesAuxLista.Count() - 1;
+
+            var idadeSemanas = app._crianca.IdadeSemanas;
+
+            for (var i=0; i<IdadesAuxLista.Count()-1; i++)
+            {
+                if (IdadesAuxLista[i] <= idadeSemanas && IdadesAuxLista[i+1] > idadeSemanas)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
         }
     }
 }

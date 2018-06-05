@@ -6,7 +6,7 @@
              x:Name="this"
              Title="Galeria">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout>
             
             <flv:FlowListView 
                 x:Name="List"
@@ -27,7 +27,7 @@
                             <Frame
                                 x:Name="Imagem"
                                 Padding="0"
-                                Margin="10, 10, 10, 10"
+                                Margin="20, 10, 20, 10"
                                 HeightRequest="150">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
