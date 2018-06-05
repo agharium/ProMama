@@ -14,7 +14,7 @@ namespace ProMama.Model
         public string informacao_autor { get; set; }
         public double informacao_idadeSemanasInicio { get; set; }
         public double informacao_idadeSemanasFim { get; set; }
-        public List<Link> informacao_links { get; set; }
+        public List<Link> links { get; set; }
 
         [JsonIgnore]
         public string informacao_resumo { get; set; }

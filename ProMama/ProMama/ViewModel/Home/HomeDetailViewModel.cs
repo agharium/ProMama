@@ -154,7 +154,7 @@ namespace ProMama.ViewModel.Home
             // Informações
             RestService = DependencyService.Get<IRestService>();
             Informacoes = new ObservableCollection<Informacao>();
-            InformacaoRead();
+            InformacoesRead();
 
             // Lista auxiliar de idades
             DefineListaIdadesAux();
@@ -235,6 +235,11 @@ namespace ProMama.ViewModel.Home
                     App.InformacaoDatabase.WipeTable();
                     App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
                 }
+
+                app._sync = syncAux;
+                App.SincronizacaoDatabase.Save(app._sync);
+
+                InformacoesRead();
             }
             AtualizandoInformacoes = false;
         }
@@ -322,7 +327,7 @@ namespace ProMama.ViewModel.Home
             await NavigationService.NavigateImagem(Navigation, foto);
         }*/
 
-        private void InformacaoRead()
+        private void InformacoesRead()
         {
             IndicadorLoading = true;
 

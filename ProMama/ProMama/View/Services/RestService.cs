@@ -162,7 +162,14 @@ namespace ProMama.View.Services
                     var obj = await result.Content.ReadAsStringAsync();
                     Debug.WriteLine("API: LEITURA DE INFORMAÇÕES");
                     Debug.WriteLine(obj.ToString());
-                    return JsonConvert.DeserializeObject<List<Informacao>>(obj);
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    return JsonConvert.DeserializeObject<List<Informacao>>(obj, settings);
                 }
             }
             catch (Exception e)

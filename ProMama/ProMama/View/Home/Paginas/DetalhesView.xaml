@@ -10,12 +10,16 @@
             <StackLayout 
                 Padding="20"
                 Spacing="20">
+                
                 <Label 
                     Text="{Binding Titulo}"
                     HorizontalOptions="Center"
                     FontSize="Large"
                     TextColor="Black"/>
-                <Frame Padding="0">
+                
+                <Frame 
+                    Padding="0"
+                    IsVisible="{Binding ImagemVisivel}">
                     <ffimageloading:CachedImage
                         CacheDuration="365"
                         HorizontalOptions="Center"
@@ -27,22 +31,34 @@
                         Grid.Column="0"
                         Grid.Row="2" />
                 </Frame>
+                
                 <Label 
                     Text="{Binding Texto}"
                     TextColor="#262626"/>
-
+                
                 <ListView
                     SeparatorVisibility="None"
                     HasUnevenRows="true"
                     ItemsSource="{Binding Links}">
+                    <ListView.Header>
+                        <StackLayout>
+                            <Label
+                                IsVisible="{Binding LinksVisivel}"
+                                Text="Links:"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Margin="10"/>
+                        </StackLayout>
+                    </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Button
                                     Text="{Binding titulo}"
                                     Style="{StaticResource MainButton}"
+                                    Margin="10"
                                     Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirLinkCommand}"
-                                    CommandParameter="{Binding url}"/>
+                                    CommandParameter="{Binding .}"/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
