@@ -53,10 +53,10 @@ namespace ProMama.Data.Controllers
                     switch (obj.alimentacao)
                     {
                         case 0:
-                            obj.alimentacao_texto = "Exclusivo";
+                            obj.alimentacao_texto = "Exclusivamente leite materno";
                             break;
                         case 1:
-                            obj.alimentacao_texto = "Predominante";
+                            obj.alimentacao_texto = "Predominantemente leite materno";
                             break;
                         case 2:
                             obj.alimentacao_texto = "Complementar";
@@ -65,6 +65,8 @@ namespace ProMama.Data.Controllers
                             obj.alimentacao_texto = "Não recebe leite materno";
                             break;
                     }
+                    obj.altura += "cm";
+                    obj.peso += "kg";
                     retorno.Add(obj);
                 }
             }

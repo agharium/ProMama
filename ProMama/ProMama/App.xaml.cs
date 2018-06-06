@@ -48,13 +48,8 @@ namespace ProMama
             FlowListView.Init();
 
             // verifica se usuário já está logado
-            var sync = SincronizacaoDatabase.Find();
+            app._sync = SincronizacaoDatabase.Find();
             var cfg = ConfigDatabase.Find();
-
-            if (SincronizacaoDatabase.Find() != null)
-            {
-                app._sync = sync;
-            }
 
             if (cfg != null && cfg.config_usuario != null && cfg.config_crianca != null)
             {

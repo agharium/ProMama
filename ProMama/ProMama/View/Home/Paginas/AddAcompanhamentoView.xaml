@@ -35,8 +35,8 @@
                         Title="Alimentação da criança"
                         SelectedIndex="{Binding Alimentacao}">
                         <Picker.Items>
-                            <x:String>Exclusivo</x:String>
-                            <x:String>Predominante</x:String>
+                            <x:String>Exclusivamente leite materno</x:String>
+                            <x:String>Predominantemente leite materno</x:String>
                             <x:String>Complementar</x:String>
                             <x:String>Não recebe leite materno</x:String>
                         </Picker.Items>

@@ -64,12 +64,12 @@
                                                 HorizontalTextAlignment="Center"
                                                 VerticalOptions="Fill"
                                                 VerticalTextAlignment="Center"/>
-                                            <StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer
+                                        </StackLayout>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
                                                 Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirCommand}"
                                                 CommandParameter="{Binding .}"/>
-                                            </StackLayout.GestureRecognizers>
-                                        </StackLayout>
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </Grid>
                             </Frame>
