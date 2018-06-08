@@ -29,8 +29,10 @@ namespace ProMama.Droid.Services
             Notification.Builder builder;
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
             {
-                var channel = new NotificationChannel(PROMAMA_CHANNEL, "Notificações Pró-Mamá", NotificationImportance.Default);
-                channel.LockscreenVisibility = NotificationVisibility.Public;
+                var channel = new NotificationChannel(PROMAMA_CHANNEL, "Notificações Pró-Mamá", NotificationImportance.Default)
+                {
+                    LockscreenVisibility = NotificationVisibility.Public
+                };
 
                 notificationManager.CreateNotificationChannel(channel);
 

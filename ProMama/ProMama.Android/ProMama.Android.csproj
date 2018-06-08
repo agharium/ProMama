@@ -286,12 +286,6 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProMama\ProMama.csproj">
-      <Project>{3fce3a93-216b-4025-a9fa-7a835aea0dc5}</Project>
-      <Name>ProMama</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\intro_bebe1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -383,6 +377,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\marco8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProMama\ProMama.csproj">
+      <Project>{425cf9b3-2954-4411-bdea-ad33ae23223d}</Project>
+      <Name>ProMama</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

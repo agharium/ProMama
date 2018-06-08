@@ -1,10 +1,12 @@
 ﻿using ImageCircle.Forms.Plugin.Abstractions;
 using Plugin.Connectivity;
+using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -193,7 +195,7 @@ namespace ProMama.ViewModels.Home
 
             // Criança
             Nome = app._crianca.crianca_primeiro_nome;
-            Foto = app._crianca.Foto == null ? "avatar_default.png" : app._crianca.Foto;
+            Foto = app._crianca.Foto ?? "avatar_default.png";
             IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.DefineIdadeExtenso());
             // bug-proof
             /*if (SetaDireitaCor.Equals("#EEEEEE"))
