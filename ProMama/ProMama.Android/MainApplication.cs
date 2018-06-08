@@ -3,7 +3,6 @@ using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
-using Plugin.PushNotification;
 
 namespace ProMama.Droid
 {
@@ -21,31 +20,6 @@ namespace ProMama.Droid
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
             //A great place to initialize Xamarin.Insights and Dependency Services!
-
-            // Push Notifications
-            //If debug you should reset the token each time.
-            #if DEBUG
-                PushNotificationManager.Initialize(this, true);
-            #else
-                PushNotificationManager.Initialize(this,false);
-            #endif
-
-            //Handle notification when app is closed here
-            CrossPushNotification.Current.OnNotificationReceived += (s, p) =>
-            {
-
-
-            };
-
-            //Set the default notification channel for your app when running Android Oreo
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                //Change for your default notification channel id here
-                PushNotificationManager.DefaultNotificationChannelId = "br.gov.rs.osorio.promama";
-
-                //Change for your default notification channel name here
-                PushNotificationManager.DefaultNotificationChannelName = "Notificações Pró-Mamá";
-            }
         }
 
         public override void OnTerminate()

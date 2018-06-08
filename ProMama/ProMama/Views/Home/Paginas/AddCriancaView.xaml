@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.AddCriancaView"
+             Title="Adicionar criança">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout 
+                    Spacing="20"
+                    Padding="20">
+                    <Entry 
+                        Placeholder="Primeiro nome da criança"
+                        Text="{Binding PrimeiroNome}"/>
+                    <Label
+                        Text="Selecione a data de nascimento da criança:" 
+                        HorizontalOptions="Center"/>
+                    <DatePicker
+                        Format="dd/MM/yyyy"
+                        HorizontalOptions="Center"
+                        MinimumDate="{Binding DataMinima}"
+                        MaximumDate="{Binding DataMaxima}"
+                        Date="{Binding DataSelecionada}"
+                        x:Name="DatePicker"/>
+                    <Picker 
+                        Title="Sexo da criança"
+                        ItemsSource="{Binding Sexos}"
+                        SelectedIndex="{Binding SexoSelecionado}" />
+                    <Button 
+                        Style="{StaticResource MainButton}"
+                        Text="Começar"
+                        Command="{Binding AddCriancaCommand}"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

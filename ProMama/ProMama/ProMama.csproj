@@ -38,141 +38,139 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomComponent\Carousel\Carousel.cs" />
-    <Compile Include="CustomComponent\Carousel\CarouselContent.cs" />
-    <Compile Include="CustomComponent\Carousel\DotButton.cs" />
-    <Compile Include="CustomComponent\Carousel\DotButtonsLayout.cs" />
-    <Compile Include="CustomComponent\LongPressedEffect.cs" />
-    <Compile Include="CustomComponent\TextChangedBehavior.cs" />
-    <Compile Include="Data\Controllers\AcompanhamentoDatabaseController.cs" />
-    <Compile Include="Data\Controllers\BairroDatabaseController.cs" />
-    <Compile Include="Data\Controllers\ConfigDatabaseController.cs" />
-    <Compile Include="Data\Controllers\CriancaDatabaseController.cs" />
-    <Compile Include="Data\Controllers\DuvidaDatabaseController.cs" />
-    <Compile Include="Data\Controllers\FotoDatabaseController.cs" />
-    <Compile Include="Data\Controllers\MarcoDatabaseController.cs" />
-    <Compile Include="Data\IDatabaseExtended.cs" />
-    <Compile Include="Data\Controllers\ImagemDatabaseController.cs" />
-    <Compile Include="Data\IDatabaseMinimal.cs" />
-    <Compile Include="Data\IMarcelloDB.cs" />
-    <Compile Include="Data\Controllers\InformacaoDatabaseController.cs" />
-    <Compile Include="Data\Controllers\NotificacaoDatabaseController.cs" />
-    <Compile Include="Data\Controllers\PostoDatabaseController.cs" />
-    <Compile Include="Data\Controllers\SincronizacaoDatabaseController.cs" />
-    <Compile Include="Data\Controllers\UsuarioDatabaseController.cs" />
-    <Compile Include="Model\Acompanhamento.cs" />
-    <Compile Include="Model\Bairro.cs" />
-    <Compile Include="Model\Config.cs" />
-    <Compile Include="Model\Crianca.cs" />
-    <Compile Include="Model\Duvida.cs" />
-    <Compile Include="Model\Aplicativo.cs" />
-    <Compile Include="Model\Foto.cs" />
-    <Compile Include="Model\Imagem.cs" />
-    <Compile Include="Model\Informacao.cs" />
-    <Compile Include="Model\JsonMessage.cs" />
-    <Compile Include="Model\Link.cs" />
-    <Compile Include="Model\Marco.cs" />
-    <Compile Include="Model\Notificacao.cs" />
-    <Compile Include="Model\Posto.cs" />
-    <Compile Include="Model\Sincronizacao.cs" />
-    <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Components\Carousel\Carousel.cs" />
+    <Compile Include="Components\Carousel\CarouselContent.cs" />
+    <Compile Include="Components\Carousel\DotButton.cs" />
+    <Compile Include="Components\Carousel\DotButtonsLayout.cs" />
+    <Compile Include="Components\LongPressedEffect.cs" />
+    <Compile Include="Components\TextChangedBehavior.cs" />
+    <Compile Include="Database\Controllers\AcompanhamentoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\BairroDatabaseController.cs" />
+    <Compile Include="Database\Controllers\ConfigDatabaseController.cs" />
+    <Compile Include="Database\Controllers\CriancaDatabaseController.cs" />
+    <Compile Include="Database\Controllers\DuvidaDatabaseController.cs" />
+    <Compile Include="Database\Controllers\FotoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\MarcoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\ImagemDatabaseController.cs" />
+    <Compile Include="Database\IMarcelloDB.cs" />
+    <Compile Include="Database\Controllers\InformacaoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\NotificacaoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\PostoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\SincronizacaoDatabaseController.cs" />
+    <Compile Include="Database\Controllers\UsuarioDatabaseController.cs" />
+    <Compile Include="Models\Acompanhamento.cs" />
+    <Compile Include="Models\Bairro.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\Crianca.cs" />
+    <Compile Include="Models\Duvida.cs" />
+    <Compile Include="Models\Aplicativo.cs" />
+    <Compile Include="Models\Foto.cs" />
+    <Compile Include="Models\Imagem.cs" />
+    <Compile Include="Models\Informacao.cs" />
+    <Compile Include="Models\JsonMessage.cs" />
+    <Compile Include="Models\Link.cs" />
+    <Compile Include="Models\Marco.cs" />
+    <Compile Include="Models\Notificacao.cs" />
+    <Compile Include="Models\Posto.cs" />
+    <Compile Include="Models\Sincronizacao.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\Home\HomeMasterViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\AddAcompanhamentoViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\AddCriancaViewModel.cs" />
-    <Compile Include="ViewModel\Home\HomeDetailViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\AcompanhamentoViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\DuvidasOutrosViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\DuvidasViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\FotoViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\GaleriaViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\DetalhesViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\LogoutViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\MarcosViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\MarcoVisualizacaoViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\PerfilCriancaEditViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\PerfilCriancaViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\PerfilMaeEditViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\PerfilMaeViewModel.cs" />
-    <Compile Include="ViewModel\Home\Paginas\SelecionarCriancaViewModel.cs" />
-    <Compile Include="ViewModel\Inicio\CadastroViewModel.cs" />
-    <Compile Include="ViewModel\Inicio\IntroducaoViewModel.cs" />
-    <Compile Include="ViewModel\Inicio\LoginViewModel.cs" />
-    <Compile Include="ViewModel\Services\IFileService.cs" />
-    <Compile Include="ViewModel\Services\IMessageService.cs" />
-    <Compile Include="ViewModel\Services\INotificationService.cs" />
-    <Compile Include="ViewModel\Services\IRestService.cs" />
-    <Compile Include="View\Home\Paginas\AddCriancaView.xaml.cs">
+    <Compile Include="ViewModels\Home\HomeMasterViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\AddAcompanhamentoViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\AddCriancaViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomeDetailViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\AcompanhamentoViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\DuvidasOutrosViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\DuvidasViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\FotoViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\GaleriaViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\DetalhesViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\LogoutViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\MarcosViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\MarcoVisualizacaoViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\PerfilCriancaEditViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\PerfilCriancaViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\PerfilMaeEditViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\PerfilMaeViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\SelecionarCriancaViewModel.cs" />
+    <Compile Include="ViewModels\Inicio\CadastroViewModel.cs" />
+    <Compile Include="ViewModels\Inicio\IntroducaoViewModel.cs" />
+    <Compile Include="ViewModels\Inicio\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Services\IFileService.cs" />
+    <Compile Include="ViewModels\Services\IMessageService.cs" />
+    <Compile Include="ViewModels\Services\INotificationService.cs" />
+    <Compile Include="ViewModels\Services\IRestService.cs" />
+    <Compile Include="Views\Home\Paginas\AddCriancaView.xaml.cs">
       <DependentUpon>AddCriancaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Home.xaml.cs">
+    <Compile Include="Views\Home\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\HomeDetail.xaml.cs">
+    <Compile Include="Views\Home\HomeDetail.xaml.cs">
       <DependentUpon>HomeDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\HomeMaster.xaml.cs">
+    <Compile Include="Views\Home\HomeMaster.xaml.cs">
       <DependentUpon>HomeMaster.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\HomeMenuItem.cs" />
-    <Compile Include="View\Home\Paginas\AcompanhamentoView.xaml.cs">
+    <Compile Include="Views\Home\HomeMenuItem.cs" />
+    <Compile Include="Views\Home\Paginas\AcompanhamentoView.xaml.cs">
       <DependentUpon>AcompanhamentoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\AddAcompanhamentoView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\AddAcompanhamentoView.xaml.cs">
       <DependentUpon>AddAcompanhamentoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\DuvidasOutrosView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\DuvidasOutrosView.xaml.cs">
       <DependentUpon>DuvidasOutrosView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\DuvidasView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\DuvidasView.xaml.cs">
       <DependentUpon>DuvidasView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\FotoView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\FotoView.xaml.cs">
       <DependentUpon>FotoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\GaleriaView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\GaleriaView.xaml.cs">
       <DependentUpon>GaleriaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\DetalhesView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\DetalhesView.xaml.cs">
       <DependentUpon>DetalhesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\LogoutView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\LogoutView.xaml.cs">
       <DependentUpon>LogoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\MarcosView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\MarcosView.xaml.cs">
       <DependentUpon>MarcosView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\MarcoVisualizacaoView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\MarcoVisualizacaoView.xaml.cs">
       <DependentUpon>MarcoVisualizacaoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\PerfilCriancaEditView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\PerfilCriancaEditView.xaml.cs">
       <DependentUpon>PerfilCriancaEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\PerfilCriancaView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\PerfilCriancaView.xaml.cs">
       <DependentUpon>PerfilCriancaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\PerfilMaeEditView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\PerfilMaeEditView.xaml.cs">
       <DependentUpon>PerfilMaeEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\PerfilMaeView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\PerfilMaeView.xaml.cs">
       <DependentUpon>PerfilMaeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Home\Paginas\SelecionarCriancaView.xaml.cs">
+    <Compile Include="Views\Home\Paginas\SelecionarCriancaView.xaml.cs">
       <DependentUpon>SelecionarCriancaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Services\MessageService.cs" />
-    <Compile Include="View\Services\NavigationService.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\Inicio\CadastroView.xaml.cs">
+    <Compile Include="Views\Services\MessageService.cs" />
+    <Compile Include="Views\Services\NavigationService.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Inicio\CadastroView.xaml.cs">
       <DependentUpon>CadastroView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Inicio\IntroducaoView.cs" />
-    <Compile Include="View\Inicio\LoginView.xaml.cs">
+    <Compile Include="Views\Inicio\IntroducaoView.cs" />
+    <Compile Include="Views\Inicio\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Services\INavigationService.cs" />
-    <Compile Include="View\Inicio\LoginCadastroTabbedView.cs" />
-    <Compile Include="View\Services\RestService.cs" />
+    <Compile Include="ViewModels\Services\INavigationService.cs" />
+    <Compile Include="Views\Inicio\LoginCadastroTabbedView.cs" />
+    <Compile Include="Views\Services\RestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -226,12 +224,6 @@
     <Reference Include="Plugin.Permissions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Plugin.Permissions.3.0.0.12\lib\netstandard1.0\Plugin.Permissions.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.PushNotification, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugin.PushNotification.1.3.0\lib\netstandard1.0\Plugin.PushNotification.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.PushNotification.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugin.PushNotification.1.3.0\lib\netstandard1.0\Plugin.PushNotification.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
     </Reference>
@@ -265,127 +257,127 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Inicio\LoginView.xaml">
+    <EmbeddedResource Include="Views\Inicio\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Inicio\CadastroView.xaml">
+    <EmbeddedResource Include="Views\Inicio\CadastroView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\AddCriancaView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\AddCriancaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Home.xaml">
+    <EmbeddedResource Include="Views\Home\Home.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\HomeMaster.xaml">
+    <EmbeddedResource Include="Views\Home\HomeMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\HomeDetail.xaml">
+    <EmbeddedResource Include="Views\Home\HomeDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\AddAcompanhamentoView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\AddAcompanhamentoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\PerfilMaeEditView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\PerfilMaeEditView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\PerfilMaeView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\PerfilMaeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\GaleriaView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\GaleriaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\PerfilCriancaEditView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\PerfilCriancaEditView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\PerfilCriancaView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\PerfilCriancaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\AcompanhamentoView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\AcompanhamentoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\DetalhesView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\DetalhesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\DuvidasView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\DuvidasView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\SelecionarCriancaView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\SelecionarCriancaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\LogoutView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\LogoutView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\FotoView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\FotoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\DuvidasOutrosView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\DuvidasOutrosView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\MarcosView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\MarcosView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Home\Paginas\MarcoVisualizacaoView.xaml">
+    <EmbeddedResource Include="Views\Home\Paginas\MarcoVisualizacaoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

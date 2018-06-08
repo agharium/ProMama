@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    xmlns:effects="clr-namespace:ProMama.Components"
+    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Class="ProMama.Views.Home.HomeDetail"
+    x:Name="this"
+    Title="Início">
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker 
+                Title="Selecione a idade da qual deseja visualizar informações:"
+                VerticalOptions="CenterAndExpand"
+                x:Name="IdadePicker"
+                IsEnabled="True"
+                IsVisible="False"
+                ItemsSource="{Binding IdadesPickerLista}"
+                SelectedIndex="{Binding IdadeAuxIndex}"/>
+            <ListView
+                SeparatorVisibility="None"
+                HasUnevenRows="true"
+                ItemsSource="{Binding Informacoes}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding AtualizarInformacoesCommand}"
+                IsRefreshing="{Binding AtualizandoInformacoes}">
+                <ListView.Header>
+                    <StackLayout>
+                        <Grid 
+                            BackgroundColor="#F44336"
+                            HeightRequest="125">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid
+                                Grid.Row="0"
+                                Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <iconize:IconButton
+                                    Text="fa-chevron-left"
+                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.MenosIdadeCommand}"
+                                    effects:LongPressedEffect.Command="{Binding Source={x:Reference this}, Path=BindingContext.IdadePickerCommand}"
+                                    effects:LongPressedEffect.CommandParameter="{x:Reference IdadePicker}"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    BorderColor="Transparent"
+                                    BackgroundColor="Transparent"
+                                    FontSize="45"
+                                    Margin="0, 15, 0, 0"
+                                    TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaEsquerdaCor}">
+                                    <iconize:IconButton.Effects>
+                                        <effects:LongPressedEffect />
+                                    </iconize:IconButton.Effects>
+                                </iconize:IconButton>
+
+                                <controls:CircleImage
+                                    x:Name="Avatar"
+                                    Source="{Binding Source={x:Reference this}, Path=BindingContext.Foto}"
+                                    Margin="0, 15, 0, 0"
+                                    Grid.Column="1" 
+                                    Grid.Row="0">
+                                    <controls:CircleImage.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirFotoCommand}"
+                                            CommandParameter="{x:Reference Avatar}"/>
+                                    </controls:CircleImage.GestureRecognizers>
+                                </controls:CircleImage>
+
+                                <iconize:IconButton
+                                    Text="fa-chevron-right"
+                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.MaisIdadeCommand}"
+                                    effects:LongPressedEffect.Command="{Binding Source={x:Reference this}, Path=BindingContext.IdadePickerCommand}"
+                                    effects:LongPressedEffect.CommandParameter="{x:Reference IdadePicker}"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    BorderColor="Transparent"
+                                    BackgroundColor="Transparent"
+                                    FontSize="45"
+                                    Margin="0, 15, 0, 0"
+                                    TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaDireitaCor}">
+                                    <iconize:IconButton.Effects>
+                                        <effects:LongPressedEffect />
+                                    </iconize:IconButton.Effects>
+                                </iconize:IconButton>
+                            </Grid>
+
+                            <StackLayout 
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal"
+                                Margin="0, 0, 0, 10"
+                                Grid.Column="0"
+                                Grid.Row="1">
+                                <Label 
+                                    Text="{Binding Nome, StringFormat='{0} - '}"
+                                    TextColor="White"
+                                    FontSize="Small"/>
+                                <Label 
+                                    Text="{Binding IdadeExtenso}"
+                                    TextColor="White"
+                                    FontSize="Small" />
+                            </StackLayout>
+
+                        </Grid>
+                        
+                        <!-- INDICADOR DE LOADING -->
+                        <StackLayout
+                            Padding="0, 75, 0, 0"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill"
+                            IsVisible="{Binding IndicadorLoading}">
+                            <ActivityIndicator
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                IsEnabled="{Binding IndicadorLoading}"
+                                IsRunning="{Binding IndicadorLoading}"
+                                IsVisible="{Binding IndicadorLoading}" />
+                        </StackLayout>
+                        
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame 
+                                Padding="0"
+                                Margin="20, 10, 20, 10">
+                                <Grid RowSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Text="{Binding informacao_titulo}"
+                                        TextColor="#212121"
+                                        FontSize="20"
+                                        Margin="10, 10, 10, 0"
+                                        Grid.Column="0"
+                                        Grid.Row="0"/>
+                                    <Label
+                                        Text="{Binding informacao_resumo}"
+                                        TextColor="#757575"
+                                        Margin="10, 0, 10, 0"
+                                        Grid.Column="0"
+                                        Grid.Row="1"/>
+                                    <ffimageloading:CachedImage
+                                        IsVisible="{Binding informacao_imagem_visivel}"
+                                        CacheDuration="365"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        HeightRequest="150"
+			                            DownsampleToViewSize="true"
+                                        Aspect="AspectFill"
+			                            Source="{Binding informacao_foto}"
+                                        Grid.Column="0"
+                                        Grid.Row="2" />
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirInformacaoCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

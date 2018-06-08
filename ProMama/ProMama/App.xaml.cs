@@ -1,13 +1,13 @@
 ﻿using DLToolkit.Forms.Controls;
 using MarcelloDB;
 using Plugin.Iconize;
-using ProMama.Data;
-using ProMama.Data.Controllers;
-using ProMama.Model;
-using ProMama.View.Home;
-using ProMama.View.Inicio;
-using ProMama.View.Services;
-using ProMama.ViewModel.Services;
+using ProMama.Database;
+using ProMama.Database.Controllers;
+using ProMama.Models;
+using ProMama.Views.Home;
+using ProMama.Views.Inicio;
+using ProMama.Views.Services;
+using ProMama.ViewModels.Services;
 using Xamarin.Forms;
 
 namespace ProMama

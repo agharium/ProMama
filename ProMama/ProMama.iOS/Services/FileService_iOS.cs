@@ -1,5 +1,5 @@
 ﻿using ProMama.iOS.Services;
-using ProMama.ViewModel.Services;
+using ProMama.ViewModels.Services;
 using System.IO;
 using Xamarin.Forms;
 

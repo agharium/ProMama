@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using Plugin.PushNotification;
 using UIKit;
 using UserNotifications;
 
@@ -51,9 +50,6 @@ namespace ProMama.iOS
             }
 
             LoadApplication(new App());
-
-            // Push Notifications
-            PushNotificationManager.Initialize(options, true);
 
             return base.FinishedLaunching(app, options);
         }

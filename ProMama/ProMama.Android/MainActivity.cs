@@ -1,6 +1,5 @@
 ﻿using Acr.UserDialogs;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -9,7 +8,6 @@ using Plugin.Iconize;
 // Media
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Plugin.PushNotification;
 
 namespace ProMama.Droid
 {
@@ -42,21 +40,12 @@ namespace ProMama.Droid
             UserDialogs.Init(this);
 
             LoadApplication(new ProMama.App());
-
-            // Push Notifications
-            PushNotificationManager.ProcessIntent(this, Intent);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        protected override void OnNewIntent(Intent intent)
-        {
-            base.OnNewIntent(intent);
-            PushNotificationManager.ProcessIntent(this, intent);
         }
     }
 }

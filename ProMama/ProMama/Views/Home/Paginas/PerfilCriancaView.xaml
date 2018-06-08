@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.PerfilCriancaView"
+             Title="Perfil da Criança">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Editar" Command="{Binding EditarCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="225" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image 
+                            Source="baby.jpeg"
+                            Aspect="AspectFill"
+                            Grid.Column="0"
+                            Grid.Row="0"/>
+                        <StackLayout 
+                            Padding="60, 25, 60, 25"
+                            Spacing="25" 
+                            Grid.Column="0"
+                            Grid.Row="1">
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Nome" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding NomeCompleto}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Data de nascimento" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding DataNascimento}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Sexo" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Sexo}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Peso ao nascer" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding PesoAoNascer}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Altura ao nascer" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding AlturaAoNascer}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Tipo de parto" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding TipoDeParto}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Idade gestacional no momento do parto" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding IdadeGestacional}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Outras informações" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding OutrasInformacoes}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.MarcosView"
+             x:Name="this"
+             Title="Marcos do Desenvolvimento">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView 
+                ItemsSource="{Binding Marcos}"
+                SeparatorVisibility="None"
+                HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame 
+                                Padding="0"
+                                Margin="20, 10, 20, 10">
+                                <Grid
+                                    RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        BackgroundColor="{Binding TituloBackgroundColor}"
+                                        Padding="10">
+                                        <Label
+                                            Text="{Binding Titulo}"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalOptions="Fill"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="Medium"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={x:Reference this}, Path=BindingContext.MostrarCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        IsVisible="{Binding Visivel}"
+                                        Spacing="0">
+                                        <Image
+                                            Source="{Binding Imagem}"
+                                            Aspect="AspectFill"
+                                            HeightRequest="150"
+                                            Margin="0"/>
+                                        <StackLayout
+                                            BackgroundColor="{Binding TextoBackgroundColor}"
+                                            Padding="10">
+                                            <Label
+                                                Text="{Binding Texto}"
+                                                TextColor="White"
+                                                HorizontalOptions="Fill"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalOptions="Fill"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

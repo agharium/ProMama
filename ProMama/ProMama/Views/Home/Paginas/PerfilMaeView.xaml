@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.PerfilMaeView"
+             Title="Perfil da Mãe">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Editar" Command="{Binding EditarCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="225" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image 
+                            Source="mother.jpeg" 
+                            Aspect="AspectFill"
+                            Grid.Column="0"
+                            Grid.Row="0" />
+                        <StackLayout 
+                            Padding="60, 25, 60, 25"
+                            Spacing="25"
+                            Grid.Column="0"
+                            Grid.Row="1">
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Nome" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Nome}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Idade" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Idade}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Bairro" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding Bairro}" />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Style="{StaticResource labelSubtitle}"
+                                    Text="Posto de saúde de referência" />
+                                <Label 
+                                    Style="{StaticResource labelTitle}"
+                                    Text="{Binding PostoSaude}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
