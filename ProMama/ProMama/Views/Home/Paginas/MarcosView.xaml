@@ -16,62 +16,23 @@
                             <Frame 
                                 Padding="0"
                                 Margin="20, 10, 20, 10">
-                                <Grid
-                                    RowSpacing="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <StackLayout
-                                        Grid.Column="0"
-                                        Grid.Row="0"
-                                        BackgroundColor="{Binding TituloBackgroundColor}"
-                                        Padding="10">
-                                        <Label
-                                            Text="{Binding Titulo}"
-                                            TextColor="White"
-                                            HorizontalOptions="Fill"
-                                            HorizontalTextAlignment="Center"
-                                            VerticalOptions="Fill"
-                                            VerticalTextAlignment="Center"
-                                            FontSize="Medium"/>
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding Source={x:Reference this}, Path=BindingContext.MostrarCommand}"
-                                                CommandParameter="{Binding .}"/>
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                    <StackLayout
-                                        Grid.Column="0"
-                                        Grid.Row="1"
-                                        IsVisible="{Binding Visivel}"
-                                        Spacing="0">
-                                        <Image
-                                            Source="{Binding Imagem}"
-                                            Aspect="AspectFill"
-                                            HeightRequest="150"
-                                            Margin="0"/>
-                                        <StackLayout
-                                            BackgroundColor="{Binding TextoBackgroundColor}"
-                                            Padding="10">
-                                            <Label
-                                                Text="{Binding Texto}"
-                                                TextColor="White"
-                                                HorizontalOptions="Fill"
-                                                HorizontalTextAlignment="Center"
-                                                VerticalOptions="Fill"
-                                                VerticalTextAlignment="Center"/>
-                                        </StackLayout>
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirCommand}"
-                                                CommandParameter="{Binding .}"/>
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                </Grid>
+                                <StackLayout
+                                    BackgroundColor="{Binding TituloBackgroundColor}"
+                                    Padding="10">
+                                    <Label
+                                        Text="{Binding Titulo}"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="Fill"
+                                        VerticalTextAlignment="Center"
+                                        FontSize="Medium"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirMarcoCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

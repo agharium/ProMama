@@ -16,29 +16,11 @@ namespace ProMama.Models
         [JsonIgnore]
         public string Texto { get; set; }
         [JsonIgnore]
-        private bool _alcancado;
-        public bool Alcancado
-        {
-            get
-            {
-                return _alcancado;
-            }
-            set
-            {
-                _alcancado = value;
-                Texto = value ? "Já alcançado" : "Não alcançado";
-                TextoBackgroundColor = value ? Color.FromHex("#4CAF50") : Color.FromHex("#FF9800");
-            }
-        }
+        public bool Alcancado { get; set; }
         [JsonIgnore]
         public ImageSource Imagem { get; set; }
-
         [JsonIgnore]
         public Color TituloBackgroundColor { get; set; }
-        [JsonIgnore]
-        public Color TextoBackgroundColor { get; set; }
-        [JsonIgnore]
-        public bool Visivel { get; set; }
 
         public Marco(int _marco, string _titulo, Color _tituloBackgroundColor, bool _alcancado, ImageSource _imagem)
         {
@@ -48,8 +30,6 @@ namespace ProMama.Models
             Alcancado = _alcancado;
             Imagem = _imagem;
             TituloBackgroundColor = _tituloBackgroundColor;
-            
-            Visivel = false;
         }
 
         public Marco() { }

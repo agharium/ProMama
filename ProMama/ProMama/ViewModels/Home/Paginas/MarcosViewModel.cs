@@ -24,9 +24,8 @@ namespace ProMama.ViewModels.Home.Paginas
                 Notify("Marcos");
             }
         }
-
-        public ICommand MostrarCommand { get; set; }
-        public ICommand AbrirCommand { get; set; }
+        
+        public ICommand AbrirMarcoCommand { get; set; }
 
         private INavigation Navigation { get; set; }
         private readonly INavigationService NavigationService;
@@ -38,15 +37,15 @@ namespace ProMama.ViewModels.Home.Paginas
             
             var list = new List<Marco>
             {
-                new Marco(1, "Primeiro dentinho", Color.FromHex("#EC407A"), false, "marco1.jpg"),
-                new Marco(2, app._crianca.crianca_sexo == 0 ? "Virou-se sozinho" : "Virou-se sozinha", Color.FromHex("#8BC34A"), false, "marco2.jpg"),
-                new Marco(3, app._crianca.crianca_sexo == 0 ? "Sentou-se sozinho" : "Sentou-se sozinha", Color.FromHex("#FFC107"), false, "marco3.jpg"),
-                new Marco(4, "Parou o aleitamento materno exclusivo", Color.FromHex("#2196F3"), false, "marco4.jpg"),
-                new Marco(5, "Comeu a primeira fruta", Color.FromHex("#26A69A"), false, "marco5.jpg"),
-                new Marco(6, "Comeu a primeira papa salgada", Color.FromHex("#AB47BC"), false, "marco6.jpg"),
-                new Marco(7, "Engatinhou", Color.FromHex("#3F51B5"), false, "marco7.jpg"),
-                new Marco(8, "Primeira palavra", Color.FromHex("#CDDC39"), false, "marco8.jpg"),
-                new Marco(9, "Primeiros passos", Color.FromHex("#FF5722"), false, "marco8.jpg"),
+                new Marco(1, "Primeiro dentinho", Color.FromHex("#ff5656"), false, "marco1.jpg"),
+                new Marco(2, app._crianca.crianca_sexo == 0 ? "Virou-se sozinho" : "Virou-se sozinha", Color.FromHex("#fd5353"), false, "marco2.jpg"),
+                new Marco(3, app._crianca.crianca_sexo == 0 ? "Sentou-se sozinho" : "Sentou-se sozinha", Color.FromHex("#fb5150"), false, "marco3.jpg"),
+                new Marco(4, "Parou o aleitamento materno exclusivo", Color.FromHex("#f84e4d"), false, "marco4.jpg"),
+                new Marco(5, "Comeu a primeira fruta", Color.FromHex("#f64c4a"), false, "marco5.jpg"),
+                new Marco(6, "Comeu a primeira papa salgada", Color.FromHex("#f44948"), false, "marco6.jpg"),
+                new Marco(7, "Engatinhou", Color.FromHex("#f24745"), false, "marco7.jpg"),
+                new Marco(8, "Primeira palavra", Color.FromHex("#f04442"), false, "marco8.jpg"),
+                new Marco(9, "Primeiros passos", Color.FromHex("#ee423f"), false, "marco8.jpg"),
             };
 
             foreach (var obj in App.MarcoDatabase.FindByChildId(app._crianca.crianca_id))
@@ -60,16 +59,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
             Marcos = new ObservableCollection<Marco>(list);
 
-            MostrarCommand = new Command<Marco>(Mostrar);
-            AbrirCommand = new Command<Marco>(AbrirMarco);
-        }
-
-        private void Mostrar(Marco marco)
-        {
-            var index = Marcos.IndexOf(marco);
-            Marcos.RemoveAt(index);
-            marco.Visivel = !marco.Visivel;
-            Marcos.Insert(index, marco);
+            AbrirMarcoCommand = new Command<Marco>(AbrirMarco);
         }
 
         private async void AbrirMarco(Marco marco)

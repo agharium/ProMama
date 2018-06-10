@@ -163,9 +163,9 @@
                                         Grid.Row="1"/>
                                     <ffimageloading:CachedImage
                                         IsVisible="{Binding informacao_imagem_visivel}"
-                                        CacheDuration="365"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
+                                        CacheDuration="730"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="Fill"
                                         HeightRequest="150"
 			                            DownsampleToViewSize="true"
                                         Aspect="AspectFill"

@@ -16,22 +16,22 @@
                     HorizontalOptions="Center"
                     FontSize="Large"
                     TextColor="Black"/>
-                
-                <Frame 
-                    Padding="0"
-                    IsVisible="{Binding ImagemVisivel}">
-                    <ffimageloading:CachedImage
-                        CacheDuration="365"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        HeightRequest="200"
-			            DownsampleToViewSize="true"
-                        Aspect="AspectFill"
-			            Source="{Binding Imagem}"
-                        Grid.Column="0"
-                        Grid.Row="2" />
-                </Frame>
-                
+
+                <StackLayout IsVisible="{Binding ImagemVisivel}">
+                    <Frame Padding="0">
+                        <ffimageloading:CachedImage
+                            CacheDuration="365"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            HeightRequest="200"
+			                DownsampleToViewSize="true"
+                            Aspect="AspectFill"
+			                Source="{Binding Imagem}"
+                            Grid.Column="0"
+                            Grid.Row="2" />
+                    </Frame>
+                </StackLayout>
+
                 <Label 
                     Text="{Binding Texto}"
                     TextColor="#262626"/>
@@ -53,12 +53,28 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Button
-                                    Text="{Binding titulo}"
-                                    Style="{StaticResource MainButton}"
-                                    Margin="10"
-                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirLinkCommand}"
-                                    CommandParameter="{Binding .}"/>
+                                <Frame
+                                    Padding="0"
+                                    Margin="10, 5, 5, 10"
+                                    HasShadow="False">
+                                    <StackLayout 
+                                        BackgroundColor="#E53935"
+                                        Padding="10">
+                                        <Label 
+                                            Text="{Binding titulo}"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalOptions="Fill"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="15"/>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirLinkCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

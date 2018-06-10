@@ -4,63 +4,65 @@
              x:Class="ProMama.Views.Home.Paginas.MarcoVisualizacaoView"
              Title="Marco de Desenvolvimento">
     <ContentPage.Content>
-        <StackLayout
-            Padding="20"
-            Spacing="20">
-            <Label
-                Text="{Binding Titulo}"
-                FontSize="Large"
-                TextColor="#262626"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center"/>
-            <Frame Padding="0">
-                <Image 
-                    Source="{Binding Imagem}"
-                    Aspect="AspectFill"
-                    HeightRequest="200"/>
-            </Frame>
-
+        <ScrollView>
             <StackLayout
-                Spacing="20"
-                IsVisible="{Binding Alcancado}">
+                Padding="20"
+                Spacing="20">
                 <Label
-                    Text="{Binding TextoAlcancado}"
+                    Text="{Binding Titulo}"
+                    FontSize="Large"
+                    TextColor="#262626"
                     HorizontalOptions="Center"
+                    VerticalOptions="Center"
                     HorizontalTextAlignment="Center"
-                    FontSize="Medium"/>
-            </StackLayout>
+                    VerticalTextAlignment="Center"/>
+                <Frame Padding="0">
+                    <Image 
+                        Source="{Binding Imagem}"
+                        Aspect="AspectFill"
+                        HeightRequest="200"/>
+                </Frame>
 
-            <StackLayout
-                Spacing="20"
-                IsVisible="{Binding NaoAlcancado}">
-                <Label
-                    Text="{Binding TextoNaoAlcancado}"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    FontSize="Medium"/>
-                <DatePicker
-                    IsVisible="{Binding DataAparece}"
-                    Format="dd/MM/yyyy"
-                    HorizontalOptions="Center"
-                    MinimumDate="{Binding DataMinima}"
-                    MaximumDate="{Binding DataMaxima}"
-                    Date="{Binding DataSelecionada}"/>
-                <Label
-                    IsVisible="{Binding TextoExtraAparece}"
-                    Text="{Binding TextoExtra}"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"/>
-                <Entry
-                    IsVisible="{Binding ExtraAparece}"
-                    Text="{Binding ExtraInput}"
-                    Keyboard="{Binding ExtraInputKeyboard}"/>
-                <Button 
-                    Style="{StaticResource MainButton}"
-                    Text="Salvar"
-                    Command="{Binding SalvarCommand}"/>
+                <StackLayout
+                    Spacing="20"
+                    IsVisible="{Binding Alcancado}">
+                    <Label
+                        Text="{Binding TextoAlcancado}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"/>
+                </StackLayout>
+
+                <StackLayout
+                    Spacing="20"
+                    IsVisible="{Binding NaoAlcancado}">
+                    <Label
+                        Text="{Binding TextoNaoAlcancado}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"/>
+                    <DatePicker
+                        IsVisible="{Binding DataAparece}"
+                        Format="dd/MM/yyyy"
+                        HorizontalOptions="Center"
+                        MinimumDate="{Binding DataMinima}"
+                        MaximumDate="{Binding DataMaxima}"
+                        Date="{Binding DataSelecionada}"/>
+                    <Label
+                        IsVisible="{Binding TextoExtraAparece}"
+                        Text="{Binding TextoExtra}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"/>
+                    <Entry
+                        IsVisible="{Binding ExtraAparece}"
+                        Text="{Binding ExtraInput}"
+                        Keyboard="{Binding ExtraInputKeyboard}"/>
+                    <Button 
+                        Style="{StaticResource MainButton}"
+                        Text="Salvar"
+                        Command="{Binding SalvarCommand}"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
