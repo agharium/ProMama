@@ -21,7 +21,7 @@ namespace ProMama
         static CriancaDatabaseController _criancaDatabase;
         static BairroDatabaseController _bairroDatabase;
         static PostoDatabaseController _postoDatabase;
-        static DuvidaDatabaseController _duvidaDatabase;
+        static ConversaDatabaseController _duvidaDatabase;
         static InformacaoDatabaseController _informacaoDatabase;
         static SincronizacaoDatabaseController _sincronizacaoDatabase;
         static NotificacaoDatabaseController _notificacaoDatabase;
@@ -150,13 +150,13 @@ namespace ProMama
             }
         }
 
-        public static DuvidaDatabaseController DuvidaDatabase
+        public static ConversaDatabaseController DuvidaDatabase
         {
             get
             {
                 if (_duvidaDatabase == null)
                 {
-                    _duvidaDatabase = new DuvidaDatabaseController();
+                    _duvidaDatabase = new ConversaDatabaseController();
                 }
                 return _duvidaDatabase;
             }

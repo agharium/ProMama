@@ -5,13 +5,13 @@ using Xamarin.Forms.Xaml;
 namespace ProMama.Views.Home.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DuvidasView : ContentPage
+    public partial class FaleConoscoView : ContentPage
     {
-        public DuvidasView()
+        public FaleConoscoView()
         {
             InitializeComponent();
 
-            BindingContext = new DuvidasViewModel(Navigation);
+            BindingContext = new FaleConoscoViewModel(Navigation);
         }
     }
 }

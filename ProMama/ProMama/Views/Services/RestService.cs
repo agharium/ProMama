@@ -177,7 +177,7 @@ namespace ProMama.Views.Services
             }
         }
 
-        public async Task<JsonMessage> DuvidaCreate(JsonMessage msg, string token)
+        public async Task<JsonMessage> ConversaCreate(JsonMessage msg, string token)
         {
             try
             {
@@ -186,7 +186,7 @@ namespace ProMama.Views.Services
                     var content = new StringContent(JsonConvert.SerializeObject(msg), Encoding.UTF8, "application/json");
                     var result = await client.PostAsync(ApiUrl + "/duvidas?api_token=" + token, content);
                     var obj = await result.Content.ReadAsStringAsync();
-                    Debug.WriteLine("API: CRIAÇÃO DE DÚVIDA");
+                    Debug.WriteLine("API: CRIAÇÃO DE CONVERSA");
                     Debug.WriteLine(obj.ToString());
                     return JsonConvert.DeserializeObject<JsonMessage>(obj);
                 }
@@ -197,13 +197,13 @@ namespace ProMama.Views.Services
             }
         }
 
-        public async Task<List<Duvida>> DuvidasRead(string token)
+        public async Task<List<Conversa>> ConversasRead(string token)
         {
             using (var client = new HttpClient())
             {
                 var result = await client.GetAsync(ApiUrl + "/duvidas-todos?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
-                Debug.WriteLine("API: LEITURA DE TODAS AS DÚVIDAS");
+                Debug.WriteLine("API: LEITURA DE TODAS AS CONVERSAS");
                 Debug.WriteLine(obj.ToString());
 
                 var settings = new JsonSerializerSettings
@@ -212,17 +212,17 @@ namespace ProMama.Views.Services
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
 
-                return string.IsNullOrEmpty(obj.ToString()) ? new List<Duvida>() : JsonConvert.DeserializeObject<List<Duvida>>(obj, settings);
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Conversa>() : JsonConvert.DeserializeObject<List<Conversa>>(obj, settings);
             }
         }
 
-        public async Task<List<Duvida>> DuvidasUsuarioRead(string token)
+        public async Task<List<Conversa>> ConversasUsuarioRead(string token)
         {
             using (var client = new HttpClient())
             {
                 var result = await client.GetAsync(ApiUrl + "/duvidas-do-user?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
-                Debug.WriteLine("API: LEITURA DE DÚVIDAS DO USUÁRIO");
+                Debug.WriteLine("API: LEITURA DE CONVERSAS DO USUÁRIO");
                 Debug.WriteLine(obj.ToString());
 
                 var settings = new JsonSerializerSettings
@@ -231,7 +231,7 @@ namespace ProMama.Views.Services
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
 
-                return string.IsNullOrEmpty(obj.ToString()) ? new List<Duvida>() : JsonConvert.DeserializeObject<List<Duvida>>(obj, settings);
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Conversa>() : JsonConvert.DeserializeObject<List<Conversa>>(obj, settings);
             }
         }
 

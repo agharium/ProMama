@@ -49,9 +49,9 @@ namespace ProMama.Views.Services
             await Navigation.PushAsync(new DetalhesView(informacao));
         }
 
-        public async Task NavigateDuvida(INavigation Navigation, Duvida duvida)
+        public async Task NavigateConversa(INavigation Navigation, Conversa conversa)
         {
-            await Navigation.PushAsync(new DetalhesView(duvida));
+            await Navigation.PushAsync(new DetalhesView(conversa));
         }
 
         public async Task NavigateFoto(INavigation Navigation, Foto foto)
@@ -59,9 +59,9 @@ namespace ProMama.Views.Services
             await Navigation.PushAsync(new FotoView(foto));
         }
 
-        public async Task NavigateOutrasDuvidas(INavigation Navigation)
+        public async Task NavigateOutrasConversas(INavigation Navigation)
         {
-            await Navigation.PushAsync(new DuvidasOutrosView());
+            await Navigation.PushAsync(new FaleConoscoOutrosView());
         }
 
         public async Task NavigateMarcoVisualizacao(INavigation Navigation, Marco marco)

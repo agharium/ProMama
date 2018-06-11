@@ -134,25 +134,26 @@
     <Reference Include="DLToolkit.Forms.Controls.FlowListView, Version=1.0.6542.36915, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DLToolkit.Forms.Controls.FlowListView.2.0.10\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+netstandard1.0\DLToolkit.Forms.Controls.FlowListView.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading, Version=2.4.2.832, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.2.832\lib\Xamarin.iOS10\FFImageLoading.dll</HintPath>
+    <Reference Include="FFImageLoading, Version=2.4.3.840, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading.Forms, Version=2.4.2.832, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.4.2.832\lib\Xamarin.iOS10\FFImageLoading.Forms.dll</HintPath>
+    <Reference Include="FFImageLoading.Forms, Version=2.4.3.840, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading.Forms.Platform, Version=2.4.2.832, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.4.2.832\lib\Xamarin.iOS10\FFImageLoading.Forms.Platform.dll</HintPath>
+    <Reference Include="FFImageLoading.Forms.Platform, Version=2.4.3.840, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Forms.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="FFImageLoading.Platform, Version=2.4.2.832, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.2.832\lib\Xamarin.iOS10\FFImageLoading.Platform.dll</HintPath>
+    <Reference Include="FFImageLoading.Platform, Version=2.4.3.840, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="ImageCircle.Forms.Plugin.Abstractions">
+    <Reference Include="FFImageLoading.Transformations, Version=2.4.3.840, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Transformations.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Transformations.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="ImageCircle.Forms.Plugin.iOS">
+    <Reference Include="ImageCircle.Forms.Plugin.iOS, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.iOS.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MarcelloDB, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\Xamarin.iOS\MarcelloDB.dll</HintPath>

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using ProMama.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace ProMama.Database.Controllers
 {
@@ -23,6 +24,12 @@ namespace ProMama.Database.Controllers
         public void Save(Foto obj)
         {
             FotoCollection.Persist(obj);
+        }
+
+        public void SaveIncrementing(Foto obj)
+        {
+            obj.id = GetAll().Count() + 1;
+            Save(obj);
         }
 
         public void SaveList(List<Foto> list)
@@ -47,6 +54,29 @@ namespace ProMama.Database.Controllers
                     retorno.Add(obj);
             }
             return retorno;
+        }
+
+        public ImageSource GetMostRecent()
+        {
+            var list = GetAll();
+            var mesMaisRecente = -1;
+            Foto maisRecente = null;
+
+            if (list.Count() == 0)
+            {
+                return "avatar_default.png";
+            } else
+            {
+                foreach (var f in list)
+                {
+                    if (f.mes > mesMaisRecente)
+                    {
+                        mesMaisRecente = f.mes;
+                        maisRecente = f;
+                    }
+                }
+                return maisRecente.caminho;
+            }
         }
 
         public List<Foto> GetAll()

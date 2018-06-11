@@ -20,11 +20,11 @@ namespace ProMama.ViewModels.Services
 
         Task<List<Informacao>> InformacoesRead(string token);
 
-        Task<JsonMessage> DuvidaCreate(JsonMessage pergunta, string token);
+        Task<JsonMessage> ConversaCreate(JsonMessage pergunta, string token);
 
-        Task<List<Duvida>> DuvidasRead(string token);
+        Task<List<Conversa>> ConversasRead(string token);
 
-        Task<List<Duvida>> DuvidasUsuarioRead(string token);
+        Task<List<Conversa>> ConversasUsuarioRead(string token);
 
         Task<List<Bairro>> BairrosRead();
 

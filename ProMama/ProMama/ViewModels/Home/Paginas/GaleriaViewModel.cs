@@ -1,4 +1,5 @@
-﻿using Plugin.Media;
+﻿using Plugin.Connectivity;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -152,8 +154,20 @@ namespace ProMama.ViewModels.Home.Paginas
                         Notify("Fotos");
                         foto.caminho = file.Path;
 
-                        await RestService.UploadImage(foto, app._usuario.api_token);
-                        App.FotoDatabase.Save(foto);
+                        App.FotoDatabase.SaveIncrementing(foto);
+
+                        // TESTE
+                        Task.Run(async () =>
+                        {
+                            if (CrossConnectivity.Current.IsConnected)
+                            {
+                                var result = await RestService.UploadImage(foto, app._usuario.api_token);
+                                if (result.success)
+                                    Debug.WriteLine("Deu certo!");
+                            }
+                        });
+                        // TESTE
+                        
                         await NavigationService.NavigateFoto(Navigation, foto);
                     }
                 }

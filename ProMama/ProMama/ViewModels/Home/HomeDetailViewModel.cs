@@ -1,12 +1,9 @@
-﻿using ImageCircle.Forms.Plugin.Abstractions;
-using Plugin.Connectivity;
-using ProMama.Components.Cryptography;
+﻿using Plugin.Connectivity;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -52,6 +49,7 @@ namespace ProMama.ViewModels.Home
                 IdadeExtenso = IdadesExtensoLista[value];
                 OrganizaSetas();
                 OrganizaInformacoes();
+                DefineFoto();
             }
         }
 
@@ -63,21 +61,6 @@ namespace ProMama.ViewModels.Home
             {
                 _idadeExtenso = value;
                 Notify("IdadeExtenso");
-            }
-        }
-
-        // Variáveis auxiliares da interface
-        private bool _indicadorLoading;
-        public bool IndicadorLoading
-        {
-            get
-            {
-                return _indicadorLoading;
-            }
-            set
-            {
-                _indicadorLoading = value;
-                Notify("IndicadorLoading");
             }
         }
 
@@ -137,7 +120,7 @@ namespace ProMama.ViewModels.Home
         public ICommand IdadePickerCommand { get; set; }
         public ICommand AbrirInformacaoCommand { get; set; }
         public ICommand AtualizarInformacoesCommand { get; set; }
-        //public ICommand AbrirFotoCommand { get; set; }
+        public ICommand GaleriaCommand { get; set; }
 
         // Navigation
         private INavigation Navigation { get; set; }
@@ -195,7 +178,6 @@ namespace ProMama.ViewModels.Home
 
             // Criança
             Nome = app._crianca.crianca_primeiro_nome;
-            Foto = app._crianca.Foto ?? "avatar_default.png";
             IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.DefineIdadeExtenso());
             // bug-proof
             /*if (SetaDireitaCor.Equals("#EEEEEE"))
@@ -214,7 +196,7 @@ namespace ProMama.ViewModels.Home
             IdadePickerCommand = new Command<Picker>(IdadePicker);
             AbrirInformacaoCommand = new Command<Informacao>(AbrirInformacao);
             AtualizarInformacoesCommand = new Command(AtualizaInformacoes);
-            /*AbrirFotoCommand = new Command<CircleImage>(AbrirFoto);*/
+            GaleriaCommand = new Command(Galeria);
 
             // Navigation
             Navigation = _navigation;
@@ -323,16 +305,13 @@ namespace ProMama.ViewModels.Home
             await NavigationService.NavigateInformacao(Navigation, informacao);
         }
 
-        /*private async void AbrirFoto(CircleImage _foto)
+        private void Galeria()
         {
-            var foto = new Foto(-1, "Visualização", _foto.Source);
-            await NavigationService.NavigateImagem(Navigation, foto);
-        }*/
+            app._home.Detail_Galeria();
+        }
 
         private void InformacoesRead()
         {
-            IndicadorLoading = true;
-
             var count = 0;
             var informacoes = App.InformacaoDatabase.GetAll();
             foreach (var i in informacoes)
@@ -344,8 +323,6 @@ namespace ProMama.ViewModels.Home
                 InformacoesAux.Add(i);
                 count++;
             }
-
-            IndicadorLoading = false;
         }
 
         private void AdicionarInfo(Informacao info)
@@ -393,6 +370,40 @@ namespace ProMama.ViewModels.Home
             }
 
             return 0;
+        }
+
+        private void DefineFoto()
+        {
+            var list = App.FotoDatabase.FindByChildId(app._crianca.crianca_id);
+            if (list.Count() == 0)
+            {
+                Foto = "avatar_default.png";
+                return;
+            }
+
+            if (IdadeAuxIndex < 4)
+            {
+                foreach (var f in list)
+                {
+                    if (f.mes == 0)
+                    {
+                        Foto = f.caminho;
+                        return;
+                    }
+                }
+                Foto = "avatar_default.png";
+            } else
+            {
+                foreach (var f in list)
+                {
+                    if (f.mes == IdadeAuxIndex - 3)
+                    {
+                        Foto = f.caminho;
+                        return;
+                    }
+                }
+                Foto = "avatar_default.png";
+            }
         }
     }
 }

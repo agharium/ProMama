@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="ProMama.Views.Home.HomeMaster"
-             Title="Menu"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+             Title="Menu">
     <StackLayout>
-        <ListView x:Name="MenuItemsListView"
-                  SeparatorVisibility="None"
-                  HasUnevenRows="true"
-                  ItemsSource="{Binding MenuItems}">
+        <ListView 
+            x:Name="MenuItemsListView"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
+            ItemsSource="{Binding MenuItems}">
             <ListView.Header>
                 <Grid BackgroundColor="#E53935">
                     <Grid.ColumnDefinitions>
@@ -25,27 +27,33 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <controls:CircleImage
+                    
+                    <ffimageloading:CachedImage 
                         x:Name="Avatar"
+                        DownsampleToViewSize="true"
                         Source="{Binding Foto}"
                         Grid.Column="1" 
                         Grid.Row="1">
-                        <!--<controls:CircleImage.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                Command="{Binding Source={x:Reference this}, Path=BindingContext.FotoPageCommand}"
-                                CommandParameter="{x:Reference Avatar}"/>
-                        </controls:CircleImage.GestureRecognizers>-->
-                    </controls:CircleImage>
-                    <Label Text="{Binding Nome}"
-                           TextColor="White"
-                           FontSize="Medium"
-                           Grid.Column="1"
-                           Grid.Row="3"/>
-                    <Label Text="{Binding Idade}"
-                           TextColor="White"
-                           FontSize="Small"
-                           Grid.Column="1"
-                           Grid.Row="4"/>
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GaleriaCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+
+                    <Label 
+                        Text="{Binding Nome}"
+                        TextColor="White"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="3"/>
+                    <Label 
+                        Text="{Binding Idade}"
+                        TextColor="White"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="4"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProMama.Views.Home.Paginas.DuvidasOutrosView"
+             x:Class="ProMama.Views.Home.Paginas.FaleConoscoOutrosView"
              x:Name="this"
              xmlns:local="clr-namespace:ProMama.Components;assembly=ProMama"
              Title="Dúvidas respondidas">
@@ -33,18 +33,6 @@
                                 HorizontalOptions="CenterAndExpand"
                                 IsVisible="{Binding AvisoListaVazia}"/>
                         </StackLayout>
-                        <StackLayout
-                            Padding="0, 75, 0, 0"
-                            VerticalOptions="Fill"
-                            HorizontalOptions="Fill"
-                            IsVisible="{Binding IndicadorLoading}">
-                            <ActivityIndicator
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                IsEnabled="{Binding IndicadorLoading}"
-                                IsRunning="{Binding IndicadorLoading}"
-                                IsVisible="{Binding IndicadorLoading}" />
-                        </StackLayout>
                     </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -52,17 +40,17 @@
                         <ViewCell>
                             <Frame Margin="20, 10, 20, 10">
                                 <StackLayout>
-                                    <Label 
-                                        Text="{Binding duvida_pergunta}"
+                                    <Label
+                                        Text="{Binding pergunta}"
                                         TextColor="#262626"
                                         FontSize="Medium"/>
                                     <Label 
-                                        Text="{Binding duvida_resumo}"
+                                        Text="{Binding resumo}"
                                         FontSize="Small"/>
                                 </StackLayout>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
-                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirDuvidaCommand}"
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirConversaCommand}"
                                         CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                             </Frame>

@@ -24,8 +24,6 @@ namespace ProMama.Models
         public double IdadeMeses { get { return (DateTime.Now - crianca_dataNascimento).Days / 30.4167; } set { } }
         [JsonIgnore]
         public string IdadeExtenso { get { return DefineIdadeExtenso(); } set { } }
-        [JsonIgnore]
-        public ImageSource Foto { get; set; }
 
         public Crianca(string primeiro_nome, DateTime data_nascimento, int sexo)
         {

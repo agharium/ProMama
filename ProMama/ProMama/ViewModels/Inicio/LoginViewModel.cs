@@ -99,7 +99,7 @@ namespace ProMama.ViewModels.Inicio
                                     if (app._sync.duvidas != syncAux.duvidas)
                                     {
                                         App.DuvidaDatabase.WipeTable();
-                                        App.DuvidaDatabase.SaveList(await RestService.DuvidasRead(app._usuario.api_token));
+                                        App.DuvidaDatabase.SaveList(await RestService.ConversasRead(app._usuario.api_token));
                                     }
 
                                     /*if (app._sync.notificacao != syncAux.notificacao)

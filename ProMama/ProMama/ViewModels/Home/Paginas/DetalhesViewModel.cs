@@ -42,11 +42,11 @@ namespace ProMama.ViewModels.Home.Paginas
             
         }
 
-        public DetalhesViewModel(Duvida d)
+        public DetalhesViewModel(Conversa c)
         {
-            Titulo = d.duvida_pergunta;
+            Titulo = c.pergunta;
             ImagemVisivel = false;
-            Texto = d.duvida_resposta;
+            Texto = c.resposta;
             LinksVisivel = false;
         }
     }

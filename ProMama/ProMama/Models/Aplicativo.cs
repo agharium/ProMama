@@ -1,4 +1,5 @@
 ﻿using ProMama.ViewModels.Home;
+using ProMama.Views.Home;
 
 namespace ProMama.Models
 {
@@ -22,6 +23,7 @@ namespace ProMama.Models
         public Usuario _usuario { get; set; }
         public Crianca _crianca { get; set; }
         public HomeMasterViewModel _master { get; set; }
+        public Home _home { get; set; }
         public Sincronizacao _sync { get; set; }
     }
 }

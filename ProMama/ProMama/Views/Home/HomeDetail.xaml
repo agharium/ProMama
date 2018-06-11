@@ -2,10 +2,10 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     xmlns:effects="clr-namespace:ProMama.Components"
     xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     x:Class="ProMama.Views.Home.HomeDetail"
     x:Name="this"
     Title="Início">
@@ -68,18 +68,20 @@
                                     </iconize:IconButton.Effects>
                                 </iconize:IconButton>
 
-                                <controls:CircleImage
+                                <ffimageloading:CachedImage 
                                     x:Name="Avatar"
+                                    DownsampleToViewSize="true"
                                     Source="{Binding Source={x:Reference this}, Path=BindingContext.Foto}"
                                     Margin="0, 15, 0, 0"
                                     Grid.Column="1" 
                                     Grid.Row="0">
-                                    <controls:CircleImage.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirFotoCommand}"
-                                            CommandParameter="{x:Reference Avatar}"/>
-                                    </controls:CircleImage.GestureRecognizers>
-                                </controls:CircleImage>
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation/>
+                                    </ffimageloading:CachedImage.Transformations>
+                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.GaleriaCommand}"/>
+                                    </ffimageloading:CachedImage.GestureRecognizers>
+                                </ffimageloading:CachedImage>
 
                                 <iconize:IconButton
                                     Text="fa-chevron-right"
@@ -116,21 +118,7 @@
                             </StackLayout>
 
                         </Grid>
-                        
-                        <!-- INDICADOR DE LOADING -->
-                        <StackLayout
-                            Padding="0, 75, 0, 0"
-                            VerticalOptions="Fill"
-                            HorizontalOptions="Fill"
-                            IsVisible="{Binding IndicadorLoading}">
-                            <ActivityIndicator
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                IsEnabled="{Binding IndicadorLoading}"
-                                IsRunning="{Binding IndicadorLoading}"
-                                IsVisible="{Binding IndicadorLoading}" />
-                        </StackLayout>
-                        
+
                     </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>

@@ -22,11 +22,11 @@ namespace ProMama.ViewModels.Services
 
         Task NavigateInformacao(INavigation Navigation, Informacao informacao);
 
-        Task NavigateDuvida(INavigation Navigation, Duvida duvida);
+        Task NavigateConversa(INavigation Navigation, Conversa duvida);
 
         Task NavigateFoto(INavigation Navigation, Foto foto);
 
-        Task NavigateOutrasDuvidas(INavigation Navigation);
+        Task NavigateOutrasConversas(INavigation Navigation);
 
         Task NavigateMarcoVisualizacao(INavigation Navigation, Marco marco);
     }
