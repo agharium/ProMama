@@ -10,12 +10,15 @@
             <StackLayout 
                 Padding="20"
                 Spacing="20">
-                
-                <Label 
-                    Text="{Binding Titulo}"
-                    HorizontalOptions="Center"
-                    FontSize="Large"
-                    TextColor="Black"/>
+
+                <StackLayout>
+                    <Label 
+                        Text="{Binding Titulo}"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center"
+                        FontSize="Large"
+                        TextColor="Black"/>
+                </StackLayout>
 
                 <StackLayout IsVisible="{Binding ImagemVisivel}">
                     <Frame Padding="0">
@@ -32,18 +35,24 @@
                     </Frame>
                 </StackLayout>
 
-                <Label 
-                    Text="{Binding Texto}"
-                    TextColor="#262626"/>
-                
+                <StackLayout>
+                    <Label
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        Text="{Binding Texto}"
+                        TextColor="#262626"/>
+                </StackLayout>
+
                 <ListView
                     SeparatorVisibility="None"
                     HasUnevenRows="true"
-                    ItemsSource="{Binding Links}">
+                    ItemsSource="{Binding Links}"
+                    IsVisible="{Binding LinksVisivel}">
                     <ListView.Header>
                         <StackLayout>
                             <Label
-                                IsVisible="{Binding LinksVisivel}"
                                 Text="Links:"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
@@ -79,6 +88,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

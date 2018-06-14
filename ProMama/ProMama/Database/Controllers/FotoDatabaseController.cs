@@ -45,7 +45,12 @@ namespace ProMama.Database.Controllers
             return FotoCollection.Find(id);
         }
 
-        public List<Foto> FindByChildId(int id)
+        public List<Foto> GetAll()
+        {
+            return FotoCollection.All.ToList();
+        }
+
+        public List<Foto> GetAllByChildId(int id)
         {
             var retorno = new List<Foto>();
             foreach (var obj in GetAll())
@@ -56,16 +61,17 @@ namespace ProMama.Database.Controllers
             return retorno;
         }
 
-        public ImageSource GetMostRecent()
+        public ImageSource GetMostRecent(int id)
         {
-            var list = GetAll();
+            var list = GetAllByChildId(id);
             var mesMaisRecente = -1;
             Foto maisRecente = null;
 
             if (list.Count() == 0)
             {
                 return "avatar_default.png";
-            } else
+            }
+            else
             {
                 foreach (var f in list)
                 {
@@ -77,11 +83,6 @@ namespace ProMama.Database.Controllers
                 }
                 return maisRecente.caminho;
             }
-        }
-
-        public List<Foto> GetAll()
-        {
-            return FotoCollection.All.ToList();
         }
 
         public void Delete(int id)

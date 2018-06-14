@@ -68,5 +68,10 @@ namespace ProMama.Views.Services
         {
             await Navigation.PushAsync(new MarcoVisualizacaoView(marco));
         }
+
+        public async Task NavigateDuvidaFrequente(INavigation Navigation, DuvidaFrequente duvidaFrequente)
+        {
+            await Navigation.PushAsync(new DetalhesView(duvidaFrequente));
+        }
     }
 }

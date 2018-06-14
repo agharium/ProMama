@@ -1,7 +1,11 @@
 ﻿using Acr.UserDialogs;
 using Plugin.Connectivity;
+using ProMama.Components;
+using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
+using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -12,7 +16,6 @@ namespace ProMama.ViewModels.Inicio
         private Aplicativo app = Aplicativo.Instance;
 
         public string Email { get; set; }
-
         public string Senha { get; set; }
 
         public ICommand LoginCommand { get; set; }
@@ -30,6 +33,12 @@ namespace ProMama.ViewModels.Inicio
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
             RestService = DependencyService.Get<IRestService>();
+
+            var senha = "12341234";
+            var hash = PasswordHash.CreateHash(senha);
+            Debug.WriteLine(hash);
+            if (PasswordHash.ValidatePassword(senha, hash))
+                Debug.WriteLine("Deu certo");
         }
 
         public async void Login()
@@ -48,80 +57,55 @@ namespace ProMama.ViewModels.Inicio
                     else
                     {
                         var u = new Usuario(Email, Senha);
-                        var result = await RestService.UsuarioLogin(u);
-
-                        if (!result.success)
+                        var result  = await RestService.UsuarioLogin(u);
+                        
+                        if (result.success)
                         {
-                            await MessageService.AlertDialog(result.message);
-                            LoginClicado = false;
-                        }
-                        else
-                        {
-                            System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(u));
-
-                            u = await RestService.UsuarioRead(result);
-                            if (u == null)
+                            try
                             {
-                                await MessageService.AlertDialog("Algo de errado não está certo.");
-                                LoginClicado = false;
-                            }
-                            else
-                            {
-                                using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
+                                if (!PasswordHash.ValidatePassword(Senha, result.password))
                                 {
-                                    app._usuario = u;
-                                    App.UsuarioDatabase.Save(app._usuario);
-                                    
-                                    var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
-
-                                    if (app._sync == null)
-                                        app._sync = new Sincronizacao(1);
-                                    
-                                    // Popula banco
-                                    if (app._sync.bairro != syncAux.bairro)
-                                    {
-                                        App.BairroDatabase.WipeTable();
-                                        App.BairroDatabase.SaveList(await RestService.BairrosRead());
-                                    }
-                                        
-                                    if (app._sync.posto != syncAux.posto)
-                                    {
-                                        App.PostoDatabase.WipeTable();
-                                        App.PostoDatabase.SaveList(await RestService.PostosRead(app._usuario.api_token));
-                                    }
-                                        
-                                    if (app._sync.informacao != syncAux.informacao)
-                                    {
-                                        App.InformacaoDatabase.WipeTable();
-                                        App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
-                                    }
-
-                                    if (app._sync.duvidas != syncAux.duvidas)
-                                    {
-                                        App.DuvidaDatabase.WipeTable();
-                                        App.DuvidaDatabase.SaveList(await RestService.ConversasRead(app._usuario.api_token));
-                                    }
-
-                                    /*if (app._sync.notificacao != syncAux.notificacao)
-                                    {
-                                        App.NotificacaoDatabase.WipeTable();
-                                        App.NotificacaoDatabase.SaveNotificacaoList(await RestService.NotificacoesRead(app._usuario.api_token));
-                                    }*/
-
-                                    app._sync = syncAux;
-                                    App.SincronizacaoDatabase.Save(app._sync);
-                                }
-
-                                if (app._usuario.criancas.Count == 0)
-                                {
-                                    NavigationService.NavigateAddCrianca();
+                                    await MessageService.AlertDialog(result.password);
+                                    LoginClicado = false;
                                 }
                                 else
                                 {
-                                    app._crianca = app._usuario.criancas[app._usuario.criancas.Count - 1];
-                                    NavigationService.NavigateHome();
+                                    u = await RestService.UsuarioRead(result);
+                                    if (u == null)
+                                    {
+                                        await MessageService.AlertDialog("Algo de errado não está certo.");
+                                        LoginClicado = false;
+                                    }
+                                    else
+                                    {
+                                        using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
+                                        {
+                                            app._usuario = u;
+                                            App.UsuarioDatabase.Save(app._usuario);
+
+                                            Ferramentas.PopularBancoLocal();
+                                        }
+
+                                        if (app._usuario.criancas.Count == 0)
+                                        {
+                                            NavigationService.NavigateAddCrianca();
+                                        }
+                                        else
+                                        {
+                                            app._crianca = app._usuario.criancas[app._usuario.criancas.Count - 1];
+                                            NavigationService.NavigateHome();
+                                        }
+                                    }
                                 }
+                            } catch (Exception ex)
+                            {
+                                Debug.WriteLine(ex);
+                                await MessageService.AlertDialog("E-mail ou senha incorretos.");
                             }
+                        } else
+                        {
+                            await MessageService.AlertDialog("E-mail ou senha incorretos.");
+                            LoginClicado = false;
                         }
                     }
                 }

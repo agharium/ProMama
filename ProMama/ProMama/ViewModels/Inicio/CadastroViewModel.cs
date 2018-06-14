@@ -1,9 +1,10 @@
 ﻿using Acr.UserDialogs;
 using Plugin.Connectivity;
+using ProMama.Components;
+using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -80,10 +81,14 @@ namespace ProMama.ViewModels.Inicio
                         await MessageService.AlertDialog("Você precisa selecionar um bairro.");
                         CadastroClicado = false;
                     }
+                    else if (Senha.Length < 8)
+                    {
+                        await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
+                        CadastroClicado = false;
+                    }
                     else
                     {
-                        Debug.WriteLine(BairroSelecionado.bairro_id);
-                        var u = new Usuario(Email, Senha, BairroSelecionado.bairro_id);
+                        var u = new Usuario(Email, PasswordHash.CreateHash(Senha), BairroSelecionado.bairro_id);
                         var result = await RestService.UsuarioCreate(u);
 
                         if (!result.success)
@@ -102,44 +107,7 @@ namespace ProMama.ViewModels.Inicio
                                 app._usuario = u;
                                 App.UsuarioDatabase.Save(app._usuario);
 
-                                var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
-
-                                if (app._sync == null)
-                                    app._sync = new Sincronizacao(1);
-
-                                // Popula banco
-                                if (app._sync.bairro != syncAux.bairro)
-                                {
-                                    App.BairroDatabase.WipeTable();
-                                    App.BairroDatabase.SaveList(await RestService.BairrosRead());
-                                }
-
-                                if (app._sync.posto != syncAux.posto)
-                                {
-                                    App.PostoDatabase.WipeTable();
-                                    App.PostoDatabase.SaveList(await RestService.PostosRead(app._usuario.api_token));
-                                }
-
-                                if (app._sync.informacao != syncAux.informacao)
-                                {
-                                    App.InformacaoDatabase.WipeTable();
-                                    App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
-                                }
-
-                                if (app._sync.duvidas != syncAux.duvidas)
-                                {
-                                    App.DuvidaDatabase.WipeTable();
-                                    App.DuvidaDatabase.SaveList(await RestService.ConversasRead(app._usuario.api_token));
-                                }
-
-                                /*if (app._sync.notificacao != syncAux.notificacao)
-                                {
-                                    App.NotificacaoDatabase.WipeTable();
-                                    App.NotificacaoDatabase.SaveNotificacaoList(await RestService.NotificacoesRead(app._usuario.api_token));
-                                }*/
-
-                                app._sync = syncAux;
-                                App.SincronizacaoDatabase.Save(app._sync);
+                                Ferramentas.PopularBancoLocal();
                             }
 
                             NavigationService.NavigateAddCrianca();

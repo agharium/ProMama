@@ -184,7 +184,7 @@ namespace ProMama.Views.Services
                 using (var client = new HttpClient())
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(msg), Encoding.UTF8, "application/json");
-                    var result = await client.PostAsync(ApiUrl + "/duvidas?api_token=" + token, content);
+                    var result = await client.PostAsync(ApiUrl + "/conversa?api_token=" + token, content);
                     var obj = await result.Content.ReadAsStringAsync();
                     Debug.WriteLine("API: CRIAÇÃO DE CONVERSA");
                     Debug.WriteLine(obj.ToString());
@@ -201,7 +201,7 @@ namespace ProMama.Views.Services
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(ApiUrl + "/duvidas-todos?api_token=" + token);
+                var result = await client.GetAsync(ApiUrl + "/conversa-todos?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
                 Debug.WriteLine("API: LEITURA DE TODAS AS CONVERSAS");
                 Debug.WriteLine(obj.ToString());
@@ -220,7 +220,7 @@ namespace ProMama.Views.Services
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(ApiUrl + "/duvidas-do-user?api_token=" + token);
+                var result = await client.GetAsync(ApiUrl + "/conversa-user?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
                 Debug.WriteLine("API: LEITURA DE CONVERSAS DO USUÁRIO");
                 Debug.WriteLine(obj.ToString());
@@ -327,6 +327,25 @@ namespace ProMama.Views.Services
             catch (Exception ex)
             {
                 return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + ex.ToString());
+            }
+        }
+
+        public async Task<List<DuvidaFrequente>> DuvidasFrequentesRead(string token)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync(ApiUrl + "/duvidas-frequentes?api_token=" + token);
+                var obj = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine("API: LEITURA DE TODAS AS DÚVIDAS FREQUENTES");
+                Debug.WriteLine(obj.ToString());
+
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<DuvidaFrequente>() : JsonConvert.DeserializeObject<List<DuvidaFrequente>>(obj, settings);
             }
         }
     }

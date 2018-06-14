@@ -47,9 +47,9 @@
                                         Text="{Binding titulo}"
                                         FontSize="Small"
                                         Margin="5"
-                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalOptions="Center"
                                         HorizontalTextAlignment="Center"
-                                        VerticalOptions="FillAndExpand"
+                                        VerticalOptions="Center"
                                         VerticalTextAlignment="Center"
                                         Grid.Column="0"
                                         Grid.Row="1"/>

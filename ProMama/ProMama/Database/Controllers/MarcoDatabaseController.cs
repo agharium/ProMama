@@ -44,7 +44,12 @@ namespace ProMama.Database.Controllers
             return MarcoCollection.Find(id);
         }
 
-        public List<Marco> FindByChildId(int id)
+        public List<Marco> GetAll()
+        {
+            return MarcoCollection.All.ToList();
+        }
+
+        public List<Marco> GetAllByChildId(int id)
         {
             var retorno = new List<Marco>();
             foreach (var obj in GetAll())
@@ -53,11 +58,6 @@ namespace ProMama.Database.Controllers
                     retorno.Add(obj);
             }
             return retorno;
-        }
-
-        public List<Marco> GetAll()
-        {
-            return MarcoCollection.All.ToList();
         }
 
         public void Delete(int id)

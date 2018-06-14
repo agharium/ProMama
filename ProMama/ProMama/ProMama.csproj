@@ -44,6 +44,7 @@
     <Compile Include="Components\Carousel\DotButtonsLayout.cs" />
     <Compile Include="Components\Cryptography\PasswordHash.cs" />
     <Compile Include="Components\Cryptography\Pbkdf.cs" />
+    <Compile Include="Components\Ferramentas.cs" />
     <Compile Include="Components\LongPressedEffect.cs" />
     <Compile Include="Components\TextChangedBehavior.cs" />
     <Compile Include="Database\Controllers\AcompanhamentoDatabaseController.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Database\Controllers\ConfigDatabaseController.cs" />
     <Compile Include="Database\Controllers\CriancaDatabaseController.cs" />
     <Compile Include="Database\Controllers\ConversaDatabaseController.cs" />
+    <Compile Include="Database\Controllers\DuvidaFrequenteDatabaseController.cs" />
     <Compile Include="Database\Controllers\FotoDatabaseController.cs" />
     <Compile Include="Database\Controllers\MarcoDatabaseController.cs" />
     <Compile Include="Database\Controllers\ImagemDatabaseController.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Models\Crianca.cs" />
     <Compile Include="Models\Conversa.cs" />
     <Compile Include="Models\Aplicativo.cs" />
+    <Compile Include="Models\DuvidaFrequente.cs" />
     <Compile Include="Models\Foto.cs" />
     <Compile Include="Models\Imagem.cs" />
     <Compile Include="Models\Informacao.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="ViewModels\Home\Paginas\AddCriancaViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeDetailViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\AcompanhamentoViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\DuvidasFrequentesViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\FaleConoscoOutrosViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\FaleConoscoViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\FotoViewModel.cs" />
@@ -120,6 +124,9 @@
     </Compile>
     <Compile Include="Views\Home\Paginas\AddAcompanhamentoView.xaml.cs">
       <DependentUpon>AddAcompanhamentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Paginas\DuvidasFrequentesView.xaml.cs">
+      <DependentUpon>DuvidasFrequentesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Paginas\FaleConoscoOutrosView.xaml.cs">
       <DependentUpon>FaleConoscoOutrosView.xaml</DependentUpon>
@@ -389,6 +396,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Home\Paginas\MarcoVisualizacaoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Home\Paginas\DuvidasFrequentesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

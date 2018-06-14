@@ -30,7 +30,6 @@
                     
                     <ffimageloading:CachedImage 
                         x:Name="Avatar"
-                        DownsampleToViewSize="true"
                         Source="{Binding Foto}"
                         Grid.Column="1" 
                         Grid.Row="1">

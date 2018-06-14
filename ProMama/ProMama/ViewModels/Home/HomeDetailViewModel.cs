@@ -34,7 +34,7 @@ namespace ProMama.ViewModels.Home
 
         // Variavéis auxiliares para controle da timeline
         private List<string> IdadesExtensoLista { get; set; }
-        private List<double> IdadesAuxLista { get; set; }
+        private Dictionary<double, int> IdadeAuxIndexador { get; set; }
 
         private int _idadeAuxIndex;
         public int IdadeAuxIndex
@@ -142,7 +142,7 @@ namespace ProMama.ViewModels.Home
             InformacoesRead();
 
             // Lista auxiliar de idades
-            DefineListaIdadesAux();
+            DefineIdadeAuxIndexador();
 
             // Lista de idades por extenso
             IdadesExtensoLista = new List<string>() {
@@ -284,18 +284,12 @@ namespace ProMama.ViewModels.Home
         {
             foreach (var info in InformacoesAux)
             {
-                var inicio = info.informacao_idadeSemanasInicio;
-                var fim = info.informacao_idadeSemanasFim;
+                KeyValuePair<double, int> idade = IdadeAuxIndexador.FirstOrDefault(x => x.Key == info.informacao_idadeSemanasInicio);
 
-                if (((IdadesAuxLista[IdadeAuxIndex] >= inicio && IdadesAuxLista[IdadeAuxIndex] <= fim) ||
-                    (IdadeAuxIndex == 0 && inicio < 1 && IdadesAuxLista[IdadeAuxIndex] <= fim)) &&
-                    app._crianca.IdadeSemanas >= inicio)
-                {
+                if ((idade.Value == IdadeAuxIndex) && (app._crianca.IdadeSemanas >= info.informacao_idadeSemanasInicio))
                     AdicionarInfo(info);
-                } else
-                {
+                else
                     RemoverInfo(info);
-                }
             }
         }
         
@@ -337,44 +331,102 @@ namespace ProMama.ViewModels.Home
                 Informacoes.Remove(info);
         }
 
-        private void DefineListaIdadesAux()
+        private void DefineIdadeAuxIndexador()
         {
-            var semana = 0.1551871428571429;
-            IdadesAuxLista = new List<double>()
+            IdadeAuxIndexador = new Dictionary<double, int>()
             {
-                0,
-                semana * 7,
-                semana * 14,
-                semana * 21,
+                {0, 0},
+                {0.31037428571429, 0},
+                {0.46556142857143, 0},
+                {0.62074857142857, 0},
+                {0.77593571428571, 0},
+                {0.93112285714286, 0},
+                {1.08631, 1},
+                {2.17262, 2},
+                {3.25893, 3},
+                {4.34524, 4},
+                {5.43155, 4},
+                {6.51786, 4},
+                {7.60417, 4},
+                {8.69048, 5},
+                {9.77679, 5},
+                {10.8631, 5},
+                {11.94941, 5},
+                {13.03572, 6},
+                {14.12203, 6},
+                {15.20834, 6},
+                {16.29465, 6},
+                {17.38096, 7},
+                {18.46727, 7},
+                {19.55358, 7},
+                {20.63989, 7},
+                {21.7262, 8},
+                {22.81251, 8},
+                {23.89882, 8},
+                {24.98513, 8},
+                {26.07144, 9},
+                {27.15775, 9},
+                {28.24406, 9},
+                {29.33037, 9},
+                {30.41668, 10},
+                {31.50299, 10},
+                {32.5893, 10},
+                {33.67561, 10},
+                {34.76192, 11},
+                {35.84823, 11},
+                {36.93454, 11},
+                {38.02085, 11},
+                {39.10716, 12},
+                {40.19347, 12},
+                {41.27978, 12},
+                {42.36609, 12},
+                {43.4524, 12},
+                {44.53871, 13},
+                {45.62502, 13},
+                {46.71133, 13},
+                {47.79764, 13},
+                {48.88395, 14},
+                {49.97026, 14},
+                {51.05657, 14},
+                {52.14288, 14},
+                {56.48812, 15},
+                {60.83336, 16},
+                {65.1786, 17},
+                {69.52384, 18},
+                {73.86908, 19},
+                {78.21432, 20},
+                {82.55956, 21},
+                {86.9048, 22},
+                {91.25004, 23},
+                {95.59528, 24},
+                {99.94052, 25},
+                {104.28576, 26}
             };
-
-            for (var i=28; i<=672; i+=28)
-            {
-                IdadesAuxLista.Add(semana * i);
-            }
         }
 
-        private int DefineIdadeAuxIndex()
+        private int DefineIdadeAux()
         {
             if (app._crianca.IdadeExtenso.Equals("2 anos"))
-                return IdadesAuxLista.Count() - 1;
+                return IdadesExtensoLista.Count() - 1;
 
             var idadeSemanas = app._crianca.IdadeSemanas;
 
-            for (var i=0; i<IdadesAuxLista.Count()-1; i++)
+            for (var i=0; i<IdadeAuxIndexador.Count()-1; i++)
             {
-                if (IdadesAuxLista[i] <= idadeSemanas && IdadesAuxLista[i+1] > idadeSemanas)
+                var firstPair = IdadeAuxIndexador.ElementAt(i);
+                var secondPair = IdadeAuxIndexador.ElementAt(i+1);
+                if (firstPair.Key <= idadeSemanas && secondPair.Key > idadeSemanas)
                 {
-                    return i;
+                    return firstPair.Value;
                 }
             }
 
-            return 0;
+            return IdadesExtensoLista.Count() - 1;
         }
 
         private void DefineFoto()
         {
-            var list = App.FotoDatabase.FindByChildId(app._crianca.crianca_id);
+            var list = App.FotoDatabase.GetAllByChildId(app._crianca.crianca_id);
             if (list.Count() == 0)
             {
                 Foto = "avatar_default.png";

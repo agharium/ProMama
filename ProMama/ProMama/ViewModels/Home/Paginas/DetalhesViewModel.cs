@@ -49,5 +49,13 @@ namespace ProMama.ViewModels.Home.Paginas
             Texto = c.resposta;
             LinksVisivel = false;
         }
+
+        public DetalhesViewModel(DuvidaFrequente df)
+        {
+            Titulo = df.titulo;
+            ImagemVisivel = false;
+            Texto = df.texto;
+            LinksVisivel = false;
+        }
     }
 }

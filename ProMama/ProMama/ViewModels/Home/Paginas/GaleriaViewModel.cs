@@ -79,7 +79,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 "2 anos"
             };
 
-            var FotosBanco = App.FotoDatabase.GetAll();
+            var FotosBanco = App.FotoDatabase.GetAllByChildId(app._crianca.crianca_id);
             for (int i = 0; i < meses; i++)
             {
                 var added = false;

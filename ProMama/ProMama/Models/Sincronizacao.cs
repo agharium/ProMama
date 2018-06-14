@@ -7,7 +7,7 @@
         public int notificacao { get; set; }
         public int bairro { get; set; }
         public int posto { get; set; }
-        public int duvidas { get; set; }
+        public int duvidas_frequentes { get; set; }
 
         public Sincronizacao() { }
 
@@ -18,7 +18,7 @@
             notificacao = 0;
             bairro = 0;
             posto = 0;
-            duvidas = 0;
+            duvidas_frequentes = 0;
         }
     }
 }

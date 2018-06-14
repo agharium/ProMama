@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.DuvidasFrequentesView">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                SeparatorVisibility="None"
+                HasUnevenRows="true"
+                ItemsSource="{Binding DuvidasFrequentes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame 
+                                Padding="0"
+                                Margin="20, 10, 20, 10">
+                                <Grid RowSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Text="{Binding titulo}"
+                                        TextColor="#212121"
+                                        FontSize="20"
+                                        Margin="10, 10, 10, 0"
+                                        Grid.Column="0"
+                                        Grid.Row="0"/>
+                                    <Label
+                                        Text="{Binding resumo}"
+                                        TextColor="#757575"
+                                        Margin="10, 0, 10, 0"
+                                        Grid.Column="0"
+                                        Grid.Row="1"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirDuvidaCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

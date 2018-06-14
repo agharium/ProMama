@@ -19,5 +19,11 @@ namespace ProMama.Views.Home.Paginas
             InitializeComponent();
             BindingContext = new DetalhesViewModel(duvida);
         }
+
+        public DetalhesView(DuvidaFrequente duvidaFrequente)
+        {
+            InitializeComponent();
+            BindingContext = new DetalhesViewModel(duvidaFrequente);
+        }
     }
 }

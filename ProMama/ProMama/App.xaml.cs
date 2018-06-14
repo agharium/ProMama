@@ -29,6 +29,7 @@ namespace ProMama
         static ImagemDatabaseController _imagemDatabase;
         static AcompanhamentoDatabaseController _acompanhamentoDatabase;
         static MarcoDatabaseController _marcoDatabase;
+        static DuvidaFrequenteDatabaseController _duvidaFrequenteDatabase;
         static INotificationService _notificationService;
 
         private Aplicativo app = Aplicativo.Instance;
@@ -243,6 +244,18 @@ namespace ProMama
                     _marcoDatabase = new MarcoDatabaseController();
                 }
                 return _marcoDatabase;
+            }
+        }
+
+        public static DuvidaFrequenteDatabaseController DuvidaFrequenteDatabase
+        {
+            get
+            {
+                if (_duvidaFrequenteDatabase == null)
+                {
+                    _duvidaFrequenteDatabase = new DuvidaFrequenteDatabaseController();
+                }
+                return _duvidaFrequenteDatabase;
             }
         }
 

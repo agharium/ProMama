@@ -48,7 +48,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 new Marco(9, "Primeiros passos", Color.FromHex("#ee423f"), false, "marco8.jpg"),
             };
 
-            foreach (var obj in App.MarcoDatabase.FindByChildId(app._crianca.crianca_id))
+            foreach (var obj in App.MarcoDatabase.GetAllByChildId(app._crianca.crianca_id))
             {
                 list[obj.marco - 1].Alcancado = true;
                 list[obj.marco - 1].id = obj.id;

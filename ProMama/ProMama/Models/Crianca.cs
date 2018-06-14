@@ -1,21 +1,20 @@
 ﻿using Newtonsoft.Json;
 using System;
-using Xamarin.Forms;
 
 namespace ProMama.Models
 {
     public class Crianca
     {
-        public int      crianca_id { get; set; }
-        public string   crianca_primeiro_nome { get; set; }
-        public string   crianca_sobrenome { get; set; }
+        public int crianca_id { get; set; }
+        public string crianca_primeiro_nome { get; set; }
+        public string crianca_sobrenome { get; set; }
         public DateTime crianca_dataNascimento { get; set; }
-        public int      crianca_sexo { get; set; }
-        public double   crianca_pesoAoNascer { get; set; }
-        public double   crianca_alturaAoNascer { get; set; }
-        public string   crianca_outrasInformacoes { get; set; }
-        public int      crianca_idade_gestacional { get; set; }
-        public int      crianca_tipo_parto { get; set; }
+        public int crianca_sexo { get; set; }
+        public double crianca_pesoAoNascer { get; set; }
+        public double crianca_alturaAoNascer { get; set; }
+        public string crianca_outrasInformacoes { get; set; }
+        public int crianca_idade_gestacional { get; set; }
+        public int crianca_tipo_parto { get; set; }
 
         // variáveis auxiliares
         [JsonIgnore]
