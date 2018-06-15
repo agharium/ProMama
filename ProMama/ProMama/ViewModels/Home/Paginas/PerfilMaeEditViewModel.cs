@@ -113,7 +113,9 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private INavigation Navigation { get; set; }
         public ICommand SalvarCommand { get; set; }
+        public ICommand TrocarSenhaCommand { get; set; }
 
+        private readonly INavigationService NavigationService;
         private readonly IMessageService MessageService;
         private readonly IRestService RestService;
 
@@ -121,6 +123,7 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             Navigation = _navigation;
             SalvarCommand = new Command(Salvar);
+            TrocarSenhaCommand = new Command(TrocarSenha);
 
             Nome = app._usuario.name;
 
@@ -148,6 +151,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 }
             }
 
+            NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
             RestService = DependencyService.Get<IRestService>();
         }
@@ -196,6 +200,18 @@ namespace ProMama.ViewModels.Home.Paginas
                     }
                 }
             } else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
+            }
+        }
+
+        private async void TrocarSenha()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                await NavigationService.NavigateTrocarSenha(Navigation);
+            }
+            else
             {
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
             }

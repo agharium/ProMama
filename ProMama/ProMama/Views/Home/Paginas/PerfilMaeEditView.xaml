@@ -79,9 +79,15 @@
                             Grid.Column="1"/>
                     </Grid>
 
-                    <Button Style="{StaticResource MainButton}"
-                            Text="Salvar"
-                            Command="{Binding SalvarCommand}"/>
+                    <Button 
+                        Style="{StaticResource MainButton}"
+                        Text="Salvar"
+                        Command="{Binding SalvarCommand}"/>
+
+                    <Button 
+                        Style="{StaticResource GrayButton}"
+                        Text="Trocar Senha"
+                        Command="{Binding TrocarSenhaCommand}"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

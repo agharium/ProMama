@@ -10,6 +10,20 @@ namespace ProMama.ViewModels.Home.Paginas
     {
         private Aplicativo app = Aplicativo.Instance;
 
+        private ImageSource _foto;
+        public ImageSource Foto
+        {
+            get
+            {
+                return _foto;
+            }
+            set
+            {
+                _foto = value;
+                Notify("Foto");
+            }
+        }
+
         private string _nomeCompleto;
         public string NomeCompleto
         {
@@ -106,6 +120,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         public PerfilCriancaViewModel(INavigation _navigation)
         {
+            Foto              = App.FotoDatabase.GetMostRecent(app._crianca.crianca_id);
             NomeCompleto      = app._crianca.crianca_primeiro_nome + " " + app._crianca.crianca_sobrenome;
             DataNascimento    = app._crianca.crianca_dataNascimento.ToString("dd/MM/yyyy");
             Sexo              = app._crianca.crianca_sexo == 1 ? "Menina" : "Menino";

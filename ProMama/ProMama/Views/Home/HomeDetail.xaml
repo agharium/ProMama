@@ -70,7 +70,6 @@
 
                                 <ffimageloading:CachedImage 
                                     x:Name="Avatar"
-                                    DownsampleToViewSize="true"
                                     Source="{Binding Source={x:Reference this}, Path=BindingContext.Foto}"
                                     Margin="0, 15, 0, 0"
                                     Grid.Column="1" 

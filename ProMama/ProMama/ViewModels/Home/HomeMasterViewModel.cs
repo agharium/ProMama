@@ -76,7 +76,7 @@ namespace ProMama.ViewModels.Home
         public void Load(){
             Nome = app._crianca.crianca_primeiro_nome;
             Idade = app._crianca.IdadeExtenso;
-            Foto = App.FotoDatabase.GetMostRecent(app._crianca.crianca_id);
+            SetFoto();
 
             Type FaleConoscoType = null;
             if (App.BairroDatabase.Find(app._usuario.bairro).bairro_nome.Equals("Outro"))
@@ -100,6 +100,11 @@ namespace ProMama.ViewModels.Home
                     new HomeMenuItem(11, "Sair", "fa-sign-out", typeof(LogoutView))
                 }
             );
+        }
+
+        public void SetFoto()
+        {
+            Foto = App.FotoDatabase.GetMostRecent(app._crianca.crianca_id);
         }
     }
 }

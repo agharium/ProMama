@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.PerfilMaeEditSenhaView"
+             Title="Trocar senha">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout 
+                Padding="20"
+                Spacing="20">
+                <Grid RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        Text="Senha atual:"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        LineBreakMode="WordWrap"
+                        Grid.Row="0"
+                        Grid.Column="0"/>
+                    <Entry
+                        Text="{Binding SenhaAtual}"
+                        IsPassword="True"
+                        Grid.Row="0"
+                        Grid.Column="1"/>
+
+                    <Label 
+                        Text="Nova senha:"
+                        LineBreakMode="WordWrap"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        Grid.Row="1"
+                        Grid.Column="0"/>
+                    <Entry
+                        Text="{Binding NovaSenha}"
+                        IsPassword="True"
+                        Grid.Row="1"
+                        Grid.Column="1"/>
+
+                    <Label 
+                        Text="Confirme a nova senha:"
+                        LineBreakMode="WordWrap"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        Grid.Row="2"
+                        Grid.Column="0"/>
+                    <Entry
+                        Text="{Binding NovaSenhaConfirmacao}"
+                        IsPassword="True"
+                        Grid.Row="2"
+                        Grid.Column="1"/>
+                </Grid>
+
+                <Button 
+                    Style="{StaticResource MainButton}"
+                    Text="Salvar"
+                    Command="{Binding SalvarCommand}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

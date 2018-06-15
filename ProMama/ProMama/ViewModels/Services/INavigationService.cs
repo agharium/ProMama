@@ -31,5 +31,7 @@ namespace ProMama.ViewModels.Services
         Task NavigateMarcoVisualizacao(INavigation Navigation, Marco marco);
 
         Task NavigateDuvidaFrequente(INavigation Navigation, DuvidaFrequente duvidaFrequente);
+
+        Task NavigateTrocarSenha(INavigation Navigation);
     }
 }

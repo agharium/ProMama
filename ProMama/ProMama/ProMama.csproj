@@ -96,6 +96,7 @@
     <Compile Include="ViewModels\Home\Paginas\MarcoVisualizacaoViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\PerfilCriancaEditViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\PerfilCriancaViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\PerfilMaeEditSenhaViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\PerfilMaeEditViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\PerfilMaeViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\SelecionarCriancaViewModel.cs" />
@@ -157,6 +158,9 @@
     </Compile>
     <Compile Include="Views\Home\Paginas\PerfilCriancaView.xaml.cs">
       <DependentUpon>PerfilCriancaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Paginas\PerfilMaeEditSenhaView.xaml.cs">
+      <DependentUpon>PerfilMaeEditSenhaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Paginas\PerfilMaeEditView.xaml.cs">
       <DependentUpon>PerfilMaeEditView.xaml</DependentUpon>
@@ -402,6 +406,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Home\Paginas\DuvidasFrequentesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Home\Paginas\PerfilMaeEditSenhaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -5,6 +5,7 @@ using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,9 +16,7 @@ namespace ProMama.ViewModels.Inicio
         private Aplicativo app = Aplicativo.Instance;
 
         public string Email { get; set; }
-
         public string Senha { get; set; }
-
         public string SenhaConfirmacao { get; set; }
 
         private List<Bairro> _bairros;
@@ -43,6 +42,7 @@ namespace ProMama.ViewModels.Inicio
         private readonly IRestService RestService;
 
         private bool CadastroClicado = false;
+        private string RegexEmailPattern { get; set; }
 
         public CadastroViewModel()
         {
@@ -56,10 +56,15 @@ namespace ProMama.ViewModels.Inicio
             {
                 BairrosRead();
             }
+
+            // http://www.rhyous.com/2010/06/15/csharp-email-regular-expression
+            RegexEmailPattern = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                              + "@"
+                              + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z";
         }
 
         private async void Cadastro()
-        {   
+        {
             if (CrossConnectivity.Current.IsConnected)
             {
                 if (!CadastroClicado)
@@ -84,6 +89,11 @@ namespace ProMama.ViewModels.Inicio
                     else if (Senha.Length < 8)
                     {
                         await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
+                        CadastroClicado = false;
+                    }
+                    else if (!Regex.IsMatch(Email, RegexEmailPattern))
+                    {
+                        await MessageService.AlertDialog("E-mail inválido.");
                         CadastroClicado = false;
                     }
                     else

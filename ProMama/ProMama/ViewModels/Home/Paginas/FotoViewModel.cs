@@ -102,6 +102,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     Foto.caminho = file.Path;
 
                     App.FotoDatabase.Save(Foto);
+                    app._master.SetFoto();
 
                     // TESTE
                     Task.Run(async () =>
