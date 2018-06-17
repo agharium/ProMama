@@ -55,19 +55,19 @@ namespace ProMama.ViewModels.Home.Paginas
             else
             {
                 var senhaAntiga = app._usuario.password;
-                app._usuario.password = PasswordHash.CreateHash(SenhaAtual);
+                app._usuario.password = PasswordHash.CreateHash(NovaSenha);
 
                 var result = await RestService.UsuarioUpdate(app._usuario);
                 if (result.success)
                 {
                     App.UsuarioDatabase.Save(app._usuario);
+                    await MessageService.AlertDialog("A senha foi atualizada com sucesso.");
+                    await Navigation.PopAsync();
                 } else
                 {
                     app._usuario.password = senhaAntiga;
                     await MessageService.AlertDialog("Algo de errado aconteceu. A senha não foi trocada.");
                 }
-
-                await Navigation.PopAsync();
             }
         }
     }

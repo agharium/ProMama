@@ -65,7 +65,7 @@ namespace ProMama.ViewModels.Inicio
                             {
                                 if (!PasswordHash.ValidatePassword(Senha, result.password))
                                 {
-                                    await MessageService.AlertDialog(result.password);
+                                    await MessageService.AlertDialog("E-mail ou senha incorretos.");
                                     LoginClicado = false;
                                 }
                                 else
