@@ -1,10 +1,9 @@
-﻿using Acr.UserDialogs;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using ImageCircle.Forms.Plugin.Droid;
-using Plugin.Iconize;
 // Media
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
@@ -34,7 +33,7 @@ namespace ProMama.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
             // Iconize
-            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+            Plugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.tabs);
 
             // Acr.UserDialogs
             UserDialogs.Init(this);
