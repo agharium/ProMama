@@ -21,7 +21,7 @@ namespace ProMama
         static CriancaDatabaseController _criancaDatabase;
         static BairroDatabaseController _bairroDatabase;
         static PostoDatabaseController _postoDatabase;
-        static ConversaDatabaseController _duvidaDatabase;
+        static ConversaDatabaseController _conversaDatabase;
         static InformacaoDatabaseController _informacaoDatabase;
         static SincronizacaoDatabaseController _sincronizacaoDatabase;
         static NotificacaoDatabaseController _notificacaoDatabase;
@@ -52,7 +52,7 @@ namespace ProMama
             app._sync = SincronizacaoDatabase.Find();
             var cfg = ConfigDatabase.Find();
 
-            if (cfg != null && cfg.config_usuario != null && cfg.config_crianca != null)
+            if (cfg != null)
             {
                 app._usuario = cfg.config_usuario;
                 app._crianca = cfg.config_crianca;
@@ -151,15 +151,15 @@ namespace ProMama
             }
         }
 
-        public static ConversaDatabaseController DuvidaDatabase
+        public static ConversaDatabaseController ConversaDatabase
         {
             get
             {
-                if (_duvidaDatabase == null)
+                if (_conversaDatabase == null)
                 {
-                    _duvidaDatabase = new ConversaDatabaseController();
+                    _conversaDatabase = new ConversaDatabaseController();
                 }
-                return _duvidaDatabase;
+                return _conversaDatabase;
             }
         }
 

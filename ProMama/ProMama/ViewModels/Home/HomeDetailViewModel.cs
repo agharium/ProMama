@@ -1,10 +1,12 @@
 ﻿using Plugin.Connectivity;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -61,20 +63,6 @@ namespace ProMama.ViewModels.Home
             {
                 _idadeExtenso = value;
                 Notify("IdadeExtenso");
-            }
-        }
-
-        private bool _atualizandoInformacoes;
-        public bool AtualizandoInformacoes
-        {
-            get
-            {
-                return _atualizandoInformacoes;
-            }
-            set
-            {
-                _atualizandoInformacoes = value;
-                Notify("AtualizandoInformacoes");
             }
         }
 
@@ -195,37 +183,29 @@ namespace ProMama.ViewModels.Home
             MaisIdadeCommand = new Command(MaisIdade);
             IdadePickerCommand = new Command<Picker>(IdadePicker);
             AbrirInformacaoCommand = new Command<Informacao>(AbrirInformacao);
-            AtualizarInformacoesCommand = new Command(AtualizaInformacoes);
             GaleriaCommand = new Command(Galeria);
 
             // Navigation
             Navigation = _navigation;
             NavigationService = DependencyService.Get<INavigationService>();
-        }
 
-        // Atualiza informacoes com o banco de dados
-        private async void AtualizaInformacoes()
-        {
-            AtualizandoInformacoes = true;
-            if (CrossConnectivity.Current.IsConnected)
+            // Sincronizando banco em thread
+            Task.Run(async () =>
             {
-                var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
-
-                if (app._sync == null)
-                    app._sync = new Sincronizacao(1);
-
-                if (app._sync.informacao != syncAux.informacao)
+                if (!app.onThread)
                 {
-                    App.InformacaoDatabase.WipeTable();
-                    App.InformacaoDatabase.SaveList(await RestService.InformacoesRead(app._usuario.api_token));
+                    app.onThread = true;
+                    Debug.WriteLine("INÍCIO DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD");
+
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await Ferramentas.SincronizarBanco();
+                    }
+
+                    app.onThread = false;
+                    Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD");
                 }
-
-                app._sync = syncAux;
-                App.SincronizacaoDatabase.Save(app._sync);
-
-                InformacoesRead();
-            }
-            AtualizandoInformacoes = false;
+            });
         }
 
         // Botão da seta pra direita
@@ -310,10 +290,7 @@ namespace ProMama.ViewModels.Home
             var informacoes = App.InformacaoDatabase.GetAll();
             foreach (var i in informacoes)
             {
-                i.informacao_imagem_visivel = !String.IsNullOrEmpty(i.informacao_foto);
-                i.informacao_resumo = String.Join(" ", i.informacao_corpo.Split().Take(20).ToArray());
-                i.informacao_resumo.Remove(i.informacao_resumo.Length - 1, 1);
-                i.informacao_resumo += "...";
+                
                 InformacoesAux.Add(i);
                 count++;
             }

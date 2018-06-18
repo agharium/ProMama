@@ -7,8 +7,6 @@ namespace ProMama.Models
         public int id { get; set; }
         public string titulo { get; set; }
         public string texto { get; set; }
-
-        [JsonIgnore]
         public string resumo { get; set; }
 
         public DuvidaFrequente() { }

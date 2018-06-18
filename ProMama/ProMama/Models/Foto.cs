@@ -10,6 +10,7 @@ namespace ProMama.Models
         public string titulo { get; set; }
         public string caminho { get; set; }
         public int crianca { get; set; }
+        public bool uploaded { get; set; }
 
         [JsonIgnore]
         public ImageSource source { get; set; }
@@ -22,6 +23,8 @@ namespace ProMama.Models
             crianca = _crianca;
 
             source = caminho;
+
+            uploaded = false;
         }
 
         public Foto() { }

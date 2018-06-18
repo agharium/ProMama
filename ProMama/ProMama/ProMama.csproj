@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\Home\Paginas\PerfilMaeEditSenhaViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\PerfilMaeEditViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\PerfilMaeViewModel.cs" />
+    <Compile Include="ViewModels\Home\Paginas\PostosSaudeViewModel.cs" />
     <Compile Include="ViewModels\Home\Paginas\SelecionarCriancaViewModel.cs" />
     <Compile Include="ViewModels\Inicio\CadastroViewModel.cs" />
     <Compile Include="ViewModels\Inicio\IntroducaoViewModel.cs" />
@@ -167,6 +168,9 @@
     </Compile>
     <Compile Include="Views\Home\Paginas\PerfilMaeView.xaml.cs">
       <DependentUpon>PerfilMaeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Paginas\PostosSaudeView.xaml.cs">
+      <DependentUpon>PostosSaudeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Paginas\SelecionarCriancaView.xaml.cs">
       <DependentUpon>SelecionarCriancaView.xaml</DependentUpon>
@@ -412,6 +416,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Home\Paginas\PerfilMaeEditSenhaView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Home\Paginas\PostosSaudeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -10,6 +10,7 @@ namespace ProMama.Models
         public int marco { get; set; }
         public string data { get; set; }
         public string extra { get; set; }
+        public bool uploaded { get; set; }
 
         [JsonIgnore]
         public string Titulo { get; set; }
@@ -30,6 +31,7 @@ namespace ProMama.Models
             Alcancado = _alcancado;
             Imagem = _imagem;
             TituloBackgroundColor = _tituloBackgroundColor;
+            uploaded = false;
         }
 
         public Marco() { }

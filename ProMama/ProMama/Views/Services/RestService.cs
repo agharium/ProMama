@@ -291,7 +291,7 @@ namespace ProMama.Views.Services
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(ApiUrl + "/notificacao?api_token=" + token);
+                var result = await client.GetAsync(ApiUrl + "/notificacoes?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
                 Debug.WriteLine("API: LEITURA DE NOTIFICAÇÕES");
                 Debug.WriteLine(obj.ToString());

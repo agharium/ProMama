@@ -117,7 +117,7 @@ namespace ProMama.ViewModels.Inicio
                                 app._usuario = u;
                                 App.UsuarioDatabase.Save(app._usuario);
 
-                                Ferramentas.PopularBancoLocal();
+                                await Ferramentas.SincronizarBanco();
                             }
 
                             NavigationService.NavigateAddCrianca();

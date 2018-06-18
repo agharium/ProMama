@@ -43,5 +43,16 @@ namespace ProMama.Views.Home
 
             MasterPage.ListView.SelectedItem = null;
         }
+
+        public void Detail_Home()
+        {
+            var page = (Page)Activator.CreateInstance(typeof(HomeDetail));
+            page.Title = "Início";
+
+            Detail = new NavigationPage(page);
+            IsPresented = false;
+
+            MasterPage.ListView.SelectedItem = null;
+        }
     }
 }

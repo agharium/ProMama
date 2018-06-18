@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ProMama.Models
@@ -15,10 +14,8 @@ namespace ProMama.Models
         public double informacao_idadeSemanasInicio { get; set; }
         public double informacao_idadeSemanasFim { get; set; }
         public List<Link> links { get; set; }
-
-        [JsonIgnore]
+        
         public string informacao_resumo { get; set; }
-        [JsonIgnore]
         public bool informacao_imagem_visivel { get; set; }
 
         public Informacao() { }

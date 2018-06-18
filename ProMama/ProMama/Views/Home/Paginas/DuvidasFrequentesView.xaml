@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProMama.Views.Home.Paginas.DuvidasFrequentesView">
+             x:Class="ProMama.Views.Home.Paginas.DuvidasFrequentesView"
+             x:Name="this">
     <ContentPage.Content>
         <StackLayout>
             <ListView
                 SeparatorVisibility="None"
                 HasUnevenRows="true"
                 ItemsSource="{Binding DuvidasFrequentes}">
+                <ListView.Header>
+                    <StackLayout HeightRequest="10"/>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -46,6 +50,9 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="10"/>
+                </ListView.Footer>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

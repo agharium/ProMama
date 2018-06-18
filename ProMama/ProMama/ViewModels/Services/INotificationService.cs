@@ -2,6 +2,10 @@
 {
     public interface INotificationService
     {
-        void Notify(string titulo, string texto, int dias);
+        void Notify(int id, string titulo, string texto, int dias);
+
+        void Cancel(int id);
+
+        void CancelAll();
     }
 }

@@ -11,7 +11,7 @@ namespace ProMama.Views.Home.Paginas
         public DetalhesView(Informacao informacao)
         {
             InitializeComponent();
-            BindingContext = new DetalhesViewModel(informacao);
+            BindingContext = new DetalhesViewModel(Navigation, informacao);
         }
 
         public DetalhesView(Conversa duvida)

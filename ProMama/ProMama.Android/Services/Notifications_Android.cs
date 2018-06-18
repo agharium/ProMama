@@ -14,7 +14,7 @@ namespace ProMama.Droid.Services
 
         public Notifications_Android() { }
 
-        public void Notify(string titulo, string texto, int dias)
+        public void Notify(int id, string titulo, string texto, int dias)
         {
             var Context = Android.App.Application.Context;
 
@@ -55,8 +55,19 @@ namespace ProMama.Droid.Services
             Notification notification = builder.Build();
 
             // Publish the notification:
-            const int notificationId = 0;
-            notificationManager.Notify(notificationId, notification);
+            notificationManager.Notify(id, notification);
+        }
+
+        public void Cancel(int id)
+        {
+            NotificationManager notificationManager = Android.App.Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
+            notificationManager.Cancel(id);
+        }
+
+        public void CancelAll()
+        {
+            NotificationManager notificationManager = Android.App.Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;
+            notificationManager.CancelAll();
         }
     }
 }

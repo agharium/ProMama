@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.PostosSaudeView"
+             x:Name="this">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                SeparatorVisibility="None"
+                HasUnevenRows="true"
+                ItemsSource="{Binding PostosSaude}">
+                <ListView.Header>
+                    <StackLayout HeightRequest="10"/>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame 
+                                Padding="0"
+                                Margin="20, 10, 20, 10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Text="{Binding posto_nome}"
+                                        TextColor="#212121"
+                                        FontSize="20"
+                                        Margin="10, 10, 10, 0"
+                                        Grid.Column="0"
+                                        Grid.Row="0"/>
+                                    <Label
+                                        Text="{Binding posto_endereco}"
+                                        TextColor="#757575"
+                                        Margin="10, 5, 10, 0"
+                                        Grid.Column="0"
+                                        Grid.Row="1"/>
+                                    <Label
+                                        Text="{Binding posto_telefone}"
+                                        TextColor="#757575"
+                                        Margin="10, 5, 10 , 10"
+                                        Grid.Column="0"
+                                        Grid.Row="2"/>
+                                    <StackLayout
+                                        Margin="0"
+                                        BackgroundColor="#F44336"
+                                        Grid.Column="0"
+                                        Grid.Row="3">
+                                        <StackLayout
+                                            Margin="0"
+                                            Padding="10, 10, 10, 2.5">
+                                            <Label
+                                                Text="Ver no mapa"
+                                                TextColor="White"
+                                                FontSize="Medium"
+                                                HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer 
+                                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.VerMapaCommand}"
+                                                    CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
+                                        </StackLayout>
+                                        <StackLayout
+                                            HeightRequest="1"
+                                            BackgroundColor="White"/>
+                                        <StackLayout
+                                            Margin="0"
+                                            Padding="10, 2.5, 10, 10">
+                                            <Label
+                                                Text="Ligar"
+                                                TextColor="White"
+                                                FontSize="Medium"
+                                                HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Center"/>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer 
+                                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.LigarCommand}"
+                                                    CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="10"/>
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

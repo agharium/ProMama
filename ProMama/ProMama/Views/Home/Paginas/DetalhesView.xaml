@@ -6,90 +6,84 @@
              x:Name="this"
              Title="{Binding Titulo}">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout 
-                Padding="20"
-                Spacing="20">
+        <StackLayout>
+            <ListView
+                SeparatorVisibility="None"
+                HasUnevenRows="true"
+                ItemsSource="{Binding Links}">
+                <ListView.Header>
+                    <StackLayout 
+                        Padding="20"
+                        Spacing="20">
 
-                <StackLayout>
-                    <Label 
-                        Text="{Binding Titulo}"
-                        HorizontalTextAlignment="Center"
-                        HorizontalOptions="Center"
-                        FontSize="Large"
-                        TextColor="Black"/>
-                </StackLayout>
+                        <Label 
+                            Text="{Binding Titulo}"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Center"
+                            FontSize="Large"
+                            TextColor="Black"/>
 
-                <StackLayout IsVisible="{Binding ImagemVisivel}">
-                    <Frame Padding="0">
-                        <ffimageloading:CachedImage
-                            CacheDuration="365"
-                            HorizontalOptions="Fill"
-                            VerticalOptions="Fill"
-                            HeightRequest="200"
-			                DownsampleToViewSize="true"
-                            Aspect="AspectFill"
-			                Source="{Binding Imagem}"
-                            Grid.Column="0"
-                            Grid.Row="2" />
-                    </Frame>
-                </StackLayout>
+                        <StackLayout IsVisible="{Binding ImagemVisivel}">
+                            <Frame Padding="0">
+                                <ffimageloading:CachedImage
+                                    CacheDuration="365"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    HeightRequest="200"
+			                        DownsampleToViewSize="true"
+                                    Aspect="AspectFill"
+			                        Source="{Binding Imagem}"
+                                    Grid.Column="0"
+                                    Grid.Row="2" />
+                            </Frame>
+                        </StackLayout>
 
-                <StackLayout>
-                    <Label
-                        HorizontalOptions="StartAndExpand"
-                        HorizontalTextAlignment="Start"
-                        VerticalOptions="Start"
-                        VerticalTextAlignment="Start"
-                        Text="{Binding Texto}"
-                        TextColor="#262626"/>
-                </StackLayout>
+                        <Label
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            Text="{Binding Texto}"
+                            TextColor="#262626"/>
 
-                <ListView
-                    SeparatorVisibility="None"
-                    HasUnevenRows="true"
-                    ItemsSource="{Binding Links}"
-                    IsVisible="{Binding LinksVisivel}">
-                    <ListView.Header>
-                        <StackLayout>
+                        <StackLayout IsVisible="{Binding LinksVisivel}">
                             <Label
                                 Text="Links:"
                                 HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Margin="10"/>
+                                HorizontalTextAlignment="Center"/>
                         </StackLayout>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame
-                                    Padding="0"
-                                    Margin="10, 5, 5, 10"
-                                    HasShadow="False">
-                                    <StackLayout 
-                                        BackgroundColor="#E53935"
-                                        Padding="10">
-                                        <Label 
-                                            Text="{Binding titulo}"
-                                            TextColor="White"
-                                            HorizontalOptions="Fill"
-                                            HorizontalTextAlignment="Center"
-                                            VerticalOptions="Fill"
-                                            VerticalTextAlignment="Center"
-                                            FontSize="15"/>
-                                    </StackLayout>
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                            Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirLinkCommand}"
-                                            CommandParameter="{Binding .}"/>
-                                    </Frame.GestureRecognizers>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                
-            </StackLayout>
-        </ScrollView>
+                        
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                Padding="0"
+                                Margin="20, 0, 20, 20"
+                                HasShadow="False">
+                                <StackLayout 
+                                    BackgroundColor="#E53935"
+                                    Padding="10">
+                                    <Label 
+                                        Text="{Binding titulo}"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalOptions="Fill"
+                                        VerticalTextAlignment="Center"
+                                        FontSize="15"/>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirLinkCommand}"
+                                    CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

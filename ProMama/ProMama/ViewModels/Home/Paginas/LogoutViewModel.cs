@@ -36,18 +36,7 @@ namespace ProMama.ViewModels.Home.Paginas
             }
             else
             {
-                try
-                {
-                    App app = Application.Current as App;
-                    MasterDetailPage md = (MasterDetailPage)app.MainPage;
-
-                    var page = (Page)Activator.CreateInstance(typeof(HomeDetail));
-                    md.Detail = new NavigationPage(page);
-                    md.IsPresented = false;
-                } catch (System.Reflection.TargetInvocationException ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex);
-                }
+                app._home.Detail_Home();
             }
         }
     }

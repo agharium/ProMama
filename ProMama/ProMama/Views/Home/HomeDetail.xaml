@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:ProMama.Components"
@@ -22,10 +22,7 @@
             <ListView
                 SeparatorVisibility="None"
                 HasUnevenRows="true"
-                ItemsSource="{Binding Informacoes}"
-                IsPullToRefreshEnabled="True"
-                RefreshCommand="{Binding AtualizarInformacoesCommand}"
-                IsRefreshing="{Binding AtualizandoInformacoes}">
+                ItemsSource="{Binding Informacoes}">
                 <ListView.Header>
                     <StackLayout>
                         <Grid 
@@ -169,6 +166,9 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="10" />
+                </ListView.Footer>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

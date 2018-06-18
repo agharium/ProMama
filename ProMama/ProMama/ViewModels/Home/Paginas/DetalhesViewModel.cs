@@ -1,4 +1,5 @@
 ﻿using ProMama.Models;
+using ProMama.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,9 +18,14 @@ namespace ProMama.ViewModels.Home.Paginas
         public bool LinksVisivel { get; set; }
 
         public ICommand AbrirLinkCommand { get; set; }
+        private INavigation Navigation { get; set; }
+        private readonly INavigationService NavigationService;
 
-        public DetalhesViewModel(Informacao i)
+        public DetalhesViewModel(INavigation _navigation, Informacao i)
         {
+            Navigation = _navigation;
+            NavigationService = DependencyService.Get<INavigationService>();
+
             Titulo = i.informacao_titulo;
             Imagem = i.informacao_foto;
             ImagemVisivel = i.informacao_imagem_visivel;
@@ -32,14 +38,33 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private void AbrirLink(Link l)
         {
-            try
+            if (l.url.Contains("DUVIDAFREQUENTE:"))
             {
-                Device.OpenUri(new Uri(l.url));
-            } catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
+                try
+                {
+                    int id = Convert.ToInt32(l.url.Substring(l.url.IndexOf("DUVIDAFREQUENTE:") + "DUVIDAFREQUENTE:".Length));
+                    DuvidaFrequente df = App.DuvidaFrequenteDatabase.Find(id);
+                    if (df != null)
+                    {
+                        NavigationService.NavigateDuvidaFrequente(Navigation, df);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                }
             }
-            
+            else
+            {
+                try
+                {
+                    Device.OpenUri(new Uri(l.url));
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                }
+            }
         }
 
         public DetalhesViewModel(Conversa c)

@@ -10,6 +10,7 @@ namespace ProMama.Models
         public string peso { get; set; }
         public string altura { get; set; }
         public int alimentacao { get; set; }
+        public bool uploaded { get; set; }
 
         [JsonIgnore]
         public string alimentacao_texto { get; set; }
@@ -23,6 +24,7 @@ namespace ProMama.Models
             peso = _peso;
             altura = _altura;
             alimentacao = _alimentacao;
+            uploaded = false;
         }
     }
 }

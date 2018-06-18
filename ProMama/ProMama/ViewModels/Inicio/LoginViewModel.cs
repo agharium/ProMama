@@ -83,7 +83,7 @@ namespace ProMama.ViewModels.Inicio
                                             app._usuario = u;
                                             App.UsuarioDatabase.Save(app._usuario);
 
-                                            Ferramentas.PopularBancoLocal();
+                                            await Ferramentas.SincronizarBanco();
                                         }
 
                                         if (app._usuario.criancas.Count == 0)

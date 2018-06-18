@@ -8,7 +8,7 @@ namespace ProMama.Views.Services
     {
         public async Task AlertDialog(string mensagem)
         {
-            await Application.Current.MainPage.DisplayAlert("Aviso", mensagem, "Voltar");
+            await Application.Current.MainPage.DisplayAlert("Aviso", mensagem, "OK");
         }
 
         public async Task<bool> ConfirmationDialog(string mensagem, string negacao, string confirmacao)
