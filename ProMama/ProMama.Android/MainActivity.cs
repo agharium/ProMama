@@ -1,13 +1,7 @@
-﻿using Acr.UserDialogs;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using ImageCircle.Forms.Plugin.Droid;
-using Plugin.Iconize;
-// Media
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 
 namespace ProMama.Droid
 {
@@ -28,16 +22,19 @@ namespace ProMama.Droid
             var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
             // ImageCircle
-            ImageCircleRenderer.Init();
+            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
 
             // FFImageLoading
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
             // Iconize
-            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
 
             // Acr.UserDialogs
-            UserDialogs.Init(this);
+            Acr.UserDialogs.UserDialogs.Init(this);
+
+            // Notification Icon
+            Plugin.LocalNotifications.LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.icon;
 
             LoadApplication(new ProMama.App());
         }
@@ -45,7 +42,7 @@ namespace ProMama.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using UserNotifications;
 
-namespace ProMama.iOS.Services
+namespace ProMama.iOS
 {
     public class UserNotificationCenterDelegate : UNUserNotificationCenterDelegate
     {

@@ -120,6 +120,9 @@ namespace ProMama.ViewModels.Home
         // Construtor
         public HomeDetailViewModel(INavigation _navigation)
         {
+            Plugin.LocalNotifications.CrossLocalNotifications.Current.Show("title", "body");
+            Plugin.LocalNotifications.CrossLocalNotifications.Current.Show("title", "body", 101, System.DateTime.Now.AddSeconds(5));
+
             // Salva o login
             Config cfg = new Config(app._usuario, app._crianca);
             App.ConfigDatabase.Save(cfg);

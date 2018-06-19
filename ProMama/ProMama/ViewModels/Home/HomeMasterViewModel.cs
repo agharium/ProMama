@@ -3,6 +3,7 @@ using ProMama.Views.Home;
 using ProMama.Views.Home.Paginas;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ProMama.ViewModels.Home
@@ -67,8 +68,11 @@ namespace ProMama.ViewModels.Home
             }
         }
 
+        public ICommand GaleriaCommand { get; set; }
+
         public HomeMasterViewModel()
         {
+            GaleriaCommand = new Command(Galeria);
             app._master = this;
             Load();
         }
@@ -105,6 +109,11 @@ namespace ProMama.ViewModels.Home
         public void SetFoto()
         {
             Foto = App.FotoDatabase.GetMostRecent(app._crianca.crianca_id);
+        }
+
+        private void Galeria()
+        {
+            app._home.Detail_Galeria();
         }
     }
 }
