@@ -1,5 +1,6 @@
-using DLToolkit.Forms.Controls;
+﻿using DLToolkit.Forms.Controls;
 using MarcelloDB;
+using Plugin.Iconize;
 using ProMama.Database;
 using ProMama.Database.Controllers;
 using ProMama.Models;
@@ -36,7 +37,7 @@ namespace ProMama
         public App()
         {
             // Iconize
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
+            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
 
             DependencyService.Register<INavigationService, NavigationService>();
             DependencyService.Register<IMessageService, MessageService>();
