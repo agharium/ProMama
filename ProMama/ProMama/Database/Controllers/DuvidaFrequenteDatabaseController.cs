@@ -40,7 +40,6 @@ namespace ProMama.Database.Controllers
 
         public List<DuvidaFrequente> GetAll()
         {
-            //objListOrder.OrderBy(o=>o.OrderDate).ToList();
             return DuvidaFrequenteCollection.All.ToList();
         }
 
