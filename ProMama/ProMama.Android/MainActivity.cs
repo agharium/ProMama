@@ -37,9 +37,6 @@ namespace ProMama.Droid
 
             // Acr.UserDialogs
             UserDialogs.Init(this);
-            
-            // Definindo ícone das notificações
-            LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.icon;
 
             LoadApplication(new ProMama.App());
         }
