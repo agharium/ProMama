@@ -40,7 +40,7 @@ namespace ProMama.Database.Controllers
 
         public List<DuvidaFrequente> GetAll()
         {
-            return DuvidaFrequenteCollection.All.ToList();
+            return DuvidaFrequenteCollection.All.ToList().OrderBy(o => o.titulo).ToList();
         }
 
         public void Delete(int id)

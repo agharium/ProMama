@@ -90,6 +90,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\iOSLongPressedEffect.cs" />
+    <Compile Include="Components\MaterialFrameRenderer.cs" />
     <Compile Include="Services\MarcelloDB_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -181,11 +182,11 @@
     <Reference Include="Plugin.Iconize.FontAwesome, Version=2.0.0.37, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Iconize.FontAwesome.2.0.0.37-beta\lib\Xamarin.iOS10\Plugin.Iconize.FontAwesome.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.LocalNotifications, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.2.1.0\lib\Xamarin.iOS10\Plugin.LocalNotifications.dll</HintPath>
+    <Reference Include="Plugin.LocalNotifications, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.0-beta14\lib\Xamarin.iOS10\Plugin.LocalNotifications.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.LocalNotifications.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.2.1.0\lib\Xamarin.iOS10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
+    <Reference Include="Plugin.LocalNotifications.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.0-beta14\lib\Xamarin.iOS10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.4.0.0.9\lib\xamarinios10\Plugin.Media.dll</HintPath>
