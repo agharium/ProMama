@@ -12,12 +12,9 @@ namespace ProMama.Components
     {
         private static Aplicativo app = Aplicativo.Instance;
         private static readonly IRestService RestService = DependencyService.Get<IRestService>();
-        private static INotificationService NotificationService { get; set; }
 
         public static async Task SincronizarBanco()
         {
-            NotificationService = DependencyService.Get<INotificationService>();
-
             var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
 
             if (app._sync == null)

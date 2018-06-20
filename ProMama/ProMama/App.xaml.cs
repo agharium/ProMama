@@ -9,6 +9,9 @@ using ProMama.Views.Inicio;
 using ProMama.Views.Services;
 using ProMama.ViewModels.Services;
 using Xamarin.Forms;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System.Threading.Tasks;
 
 namespace ProMama
 {
@@ -30,7 +33,6 @@ namespace ProMama
         static AcompanhamentoDatabaseController _acompanhamentoDatabase;
         static MarcoDatabaseController _marcoDatabase;
         static DuvidaFrequenteDatabaseController _duvidaFrequenteDatabase;
-        static INotificationService _notificationService;
 
         private Aplicativo app = Aplicativo.Instance;
 
@@ -48,6 +50,8 @@ namespace ProMama
             // FlowListView
             FlowListView.Init();
 
+            //storagePermission();
+
             // verifica se usuário já está logado
             app._sync = SincronizacaoDatabase.Find();
             var cfg = ConfigDatabase.Find();
@@ -63,6 +67,41 @@ namespace ProMama
                 MainPage = new IntroducaoView();
             }
         }
+
+        /*private async void storagePermission()
+        {
+            var MessageService = DependencyService.Get<IMessageService>();
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (status != PermissionStatus.Granted)
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
+                    {
+                        await MessageService.AlertDialog("O aplicativo precisa de acesso ao armazenamento local para pleno funcionamento.");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                    //Best practice to always check that the key exists
+                    if (results.ContainsKey(Permission.Storage))
+                        status = results[Permission.Storage];
+                }
+
+                if (status == PermissionStatus.Granted)
+                {
+                    var results = await CrossGeolocator.Current.GetPositionAsync(10000);
+                    LabelGeolocation.Text = "Lat: " + results.Latitude + " Long: " + results.Longitude;
+                }
+                else if (status != PermissionStatus.Unknown)
+                {
+                    await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Deu ruim: " + ex);
+            }
+        }*/
 
         protected override void OnStart()
         {
@@ -256,18 +295,6 @@ namespace ProMama
                     _duvidaFrequenteDatabase = new DuvidaFrequenteDatabaseController();
                 }
                 return _duvidaFrequenteDatabase;
-            }
-        }
-
-        public static INotificationService NotificationService
-        {
-            get
-            {
-                if (_notificationService == null)
-                {
-                    _notificationService = DependencyService.Get<INotificationService>();
-                }
-                return _notificationService;
             }
         }
     }
