@@ -23,7 +23,7 @@ namespace ProMama.iOS.Components
             Layer.ShadowColor = UIColor.Gray.CGColor;
             Layer.ShadowOffset = new CGSize(2, 2);
             Layer.ShadowOpacity = 0.80f;
-            Layer.ShadowPath = UIBezierPath.FromRect(Layer.Bounds).CGPath;
+            //Layer.ShadowPath = UIBezierPath.FromRect(Layer.Bounds).CGPath; --> tentativa pra resolver o problema da sombra voltar
             Layer.MasksToBounds = false;
         }
     }
