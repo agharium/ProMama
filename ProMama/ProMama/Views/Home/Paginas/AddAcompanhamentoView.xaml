@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ProMama.Components"
              x:Class="ProMama.Views.Home.Paginas.AddAcompanhamentoView"
              Title="Adicionar Medição">
     <ContentPage.Content>
@@ -9,40 +10,184 @@
                 <StackLayout 
                     Padding="20"
                     Spacing="20">
-                    
-                    <Label 
-                        Text="Selecione a data em que a medição foi realizada:" 
+
+                    <Grid RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label
+                            Text="Data da medição:"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Grid.Row="0"
+                            Grid.Column="0"/>
+                        <DatePicker
+                            Format="dd/MM/yyyy"
+                            HorizontalOptions="Center"
+                            MinimumDate="{Binding DataMinima}"
+                            MaximumDate="{Binding DataMaxima}"
+                            Date="{Binding DataSelecionada}"
+                            Grid.Row="0"
+                            Grid.Column="1"/>
+
+                        <Label
+                            Text="Peso da criança (kg):"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Grid.Row="1"
+                            Grid.Column="0"/>
+                        <Entry
+                            Keyboard="Numeric"
+                            Text="{Binding Peso}"
+                            Grid.Row="1"
+                            Grid.Column="1"/>
+
+                        <Label
+                            Text="Altura da criança (cm):"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Grid.Row="2"
+                            Grid.Column="0"/>
+                        <Entry
+                            Keyboard="Numeric"
+                            Text="{Binding Altura}"
+                            Grid.Row="2"
+                            Grid.Column="1"/>
+                    </Grid>
+
+                    <Label
+                        Text="Alimentação da criança:"
+                        FontSize="Medium"
+                        TextColor="#262626"
                         HorizontalOptions="Center"/>
-                    
-                    <DatePicker
-                        Format="dd/MM/yyyy"
-                        HorizontalOptions="Center"
-                        MinimumDate="{Binding DataMinima}"
-                        MaximumDate="{Binding DataMaxima}"
-                        Date="{Binding DataSelecionada}"/>
-                    
-                    <Entry 
-                        Placeholder="Peso da criança (kg)"
-                        Keyboard="Numeric"
-                        Text="{Binding Peso}"/>
-                    
-                    <Entry 
-                        Placeholder="Altura da criança (cm)"
-                        Keyboard="Numeric"
-                        Text="{Binding Altura}"/>
-                    
-                    <Picker 
-                        Title="Alimentação da criança"
-                        SelectedIndex="{Binding Alimentacao}">
-                        <Picker.Items>
-                            <x:String>Exclusivamente leite materno</x:String>
-                            <x:String>Predominantemente leite materno</x:String>
-                            <x:String>Complementar</x:String>
-                            <x:String>Não recebe leite materno</x:String>
-                        </Picker.Items>
-                    </Picker>
-                    
-                    <Button 
+
+                    <StackLayout Spacing="5">
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao1}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Leite materno"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao2}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Fórmula infantil"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao3}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Leite de vaca"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao4}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Água"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao5}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Chá"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao6}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Suco"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao7}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Frutas"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <components:Checkbox
+                                IsChecked="{Binding Alimentacao8}"
+                                VerticalOptions="Center"
+                                OutlineColor="#262626" 
+                                CheckedOutlineColor="#E53935" 
+                                CheckColor="#E53935"/>
+                            <Label
+                                Text="Alimentação sólida (legumes, carnes, feijão, arroz, outros)"
+                                FontSize="Small"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Button
+                        Margin="0, 10, 0, 0"
                         Style="{StaticResource MainButton}"
                         Text="Salvar medição"
                         Command="{Binding SalvarCommand}"/>

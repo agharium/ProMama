@@ -25,7 +25,8 @@
                 ItemsSource="{Binding Informacoes}">
                 <ListView.Header>
                     <StackLayout>
-                        <Grid 
+                        <Grid
+                            Margin="0, 0, 0, 10"
                             BackgroundColor="#F44336"
                             HeightRequest="125">
                             <Grid.RowDefinitions>

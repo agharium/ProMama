@@ -54,20 +54,14 @@ namespace ProMama.ViewModels.Home.Paginas
 
         public string Peso { get; set; }
         public string Altura { get; set; }
-
-        private int _alimentacao;
-        public int Alimentacao
-        {
-            get
-            {
-                return _alimentacao;
-            }
-            set
-            {
-                _alimentacao = value;
-                Notify("Alimentacao");
-            }
-        }
+        public bool Alimentacao1 { get; set; }
+        public bool Alimentacao2 { get; set; }
+        public bool Alimentacao3 { get; set; }
+        public bool Alimentacao4 { get; set; }
+        public bool Alimentacao5 { get; set; }
+        public bool Alimentacao6 { get; set; }
+        public bool Alimentacao7 { get; set; }
+        public bool Alimentacao8 { get; set; }
 
         private INavigation Navigation { get; set; }
         private readonly INavigationService NavigationService;
@@ -84,16 +78,48 @@ namespace ProMama.ViewModels.Home.Paginas
             DataMinima = app._crianca.crianca_dataNascimento;
             DataMaxima = DateTime.Now;
             DataSelecionada = DateTime.Now;
-            Alimentacao = -1;
+            Alimentacao1 = false;
+            Alimentacao2 = false;
+            Alimentacao3 = false;
+            Alimentacao4 = false;
+            Alimentacao5 = false;
+            Alimentacao6 = false;
+            Alimentacao7 = false;
+            Alimentacao8 = false;
 
             SalvarCommand = new Command(Salvar);
         }
 
         private async void Salvar()
         {
-            if (!String.IsNullOrEmpty(Peso) && !String.IsNullOrEmpty(Altura) && Alimentacao != -1)
+            if (!String.IsNullOrEmpty(Peso) &&
+                !String.IsNullOrEmpty(Altura) && (
+                Alimentacao1 || Alimentacao2 ||
+                Alimentacao3 || Alimentacao4 ||
+                Alimentacao5 || Alimentacao6 ||
+                Alimentacao7 || Alimentacao8))
             {
-                var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada.ToString("dd/MM/yyyy"), Peso, Altura, Alimentacao);
+                string alimentacoes = "";
+                if (Alimentacao1)
+                    alimentacoes += "leite materno, ";
+                if (Alimentacao2)
+                    alimentacoes += "fórmula infantil, ";
+                if (Alimentacao3)
+                    alimentacoes += "leite de vaca, ";
+                if (Alimentacao4)
+                    alimentacoes += "água, ";
+                if (Alimentacao5)
+                    alimentacoes += "chá, ";
+                if (Alimentacao6)
+                    alimentacoes += "suco, ";
+                if (Alimentacao7)
+                    alimentacoes += "frutas, ";
+                if (Alimentacao8)
+                    alimentacoes += "alimentação sólida, ";
+                                
+                alimentacoes = char.ToUpper(alimentacoes[0]) + alimentacoes.Substring(1, alimentacoes.Length - 3);
+
+                var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Peso + "kg", Altura + "cm", alimentacoes);
                 App.AcompanhamentoDatabase.SaveIncrementing(acompanhamento);
                 await Navigation.PopAsync();
             }

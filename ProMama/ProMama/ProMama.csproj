@@ -42,6 +42,7 @@
     <Compile Include="Components\Carousel\CarouselContent.cs" />
     <Compile Include="Components\Carousel\DotButton.cs" />
     <Compile Include="Components\Carousel\DotButtonsLayout.cs" />
+    <Compile Include="Components\Checkbox.cs" />
     <Compile Include="Components\Cryptography\PasswordHash.cs" />
     <Compile Include="Components\Cryptography\Pbkdf.cs" />
     <Compile Include="Components\Ferramentas.cs" />
@@ -225,8 +226,8 @@
     <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\netstandard1.0\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="MarcelloDB, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\netstandard1.1\MarcelloDB.dll</HintPath>
+    <Reference Include="MarcelloDB, Version=1.0.8.30150, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarcelloDB.1.0.8-beta2\lib\netstandard1.1\MarcelloDB.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>

@@ -89,6 +89,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\iOSCheckboxRenderer.cs" />
     <Compile Include="Components\iOSLongPressedEffect.cs" />
     <Compile Include="Components\MaterialFrameRenderer.cs" />
     <Compile Include="Services\MarcelloDB_iOS.cs" />
@@ -159,11 +160,11 @@
     <Reference Include="ImageCircle.Forms.Plugin.iOS, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="MarcelloDB, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\Xamarin.iOS\MarcelloDB.dll</HintPath>
+    <Reference Include="MarcelloDB, Version=1.0.8.30150, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarcelloDB.1.0.8-beta2\lib\Xamarin.iOS\MarcelloDB.dll</HintPath>
     </Reference>
-    <Reference Include="MarcelloDB.netfx, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\Xamarin.iOS\MarcelloDB.netfx.dll</HintPath>
+    <Reference Include="MarcelloDB.netfx, Version=1.0.8.30153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarcelloDB.1.0.8-beta2\lib\Xamarin.iOS\MarcelloDB.netfx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -196,6 +197,9 @@
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="SaturdayMP.XPlugins.iOS.BEMCheckBox, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SaturdayMP.XPlugins.iOS.BEMCheckBox.1.4.3\lib\Xamarin.iOS10\SaturdayMP.XPlugins.iOS.BEMCheckBox.dll</HintPath>
     </Reference>
     <Reference Include="Splat, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Splat.2.0.0\lib\Xamarin.iOS10\Splat.dll</HintPath>

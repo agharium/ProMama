@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>
     </AndroidSupportedAbis>
     <AotAssemblies>false</AotAssemblies>
@@ -54,7 +54,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
@@ -101,11 +101,11 @@
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.2.0.2\lib\MonoAndroid10\ImageCircle.Forms.Plugin.Android.dll</HintPath>
     </Reference>
     <Reference Include="Java.Interop" />
-    <Reference Include="MarcelloDB, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\MonoAndroid\MarcelloDB.dll</HintPath>
+    <Reference Include="MarcelloDB, Version=1.0.8.30150, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarcelloDB.1.0.8-beta2\lib\MonoAndroid\MarcelloDB.dll</HintPath>
     </Reference>
-    <Reference Include="MarcelloDB.netfx, Version=1.0.7.16132, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MarcelloDB.1.0.7\lib\MonoAndroid\MarcelloDB.netfx.dll</HintPath>
+    <Reference Include="MarcelloDB.netfx, Version=1.0.8.30153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarcelloDB.1.0.8-beta2\lib\MonoAndroid\MarcelloDB.netfx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
@@ -254,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AndroidLongPressedEffect.cs" />
+    <Compile Include="Components\AndroidCheckboxRenderer.cs" />
     <Compile Include="Services\MarcelloDB_Android.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />

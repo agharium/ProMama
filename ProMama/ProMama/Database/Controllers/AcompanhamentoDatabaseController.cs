@@ -49,26 +49,8 @@ namespace ProMama.Database.Controllers
             var retorno = new List<Acompanhamento>();
             foreach (var obj in GetAll())
             {
-                if (obj.crianca == id) {
-                    switch (obj.alimentacao)
-                    {
-                        case 0:
-                            obj.alimentacao_texto = "Exclusivamente leite materno";
-                            break;
-                        case 1:
-                            obj.alimentacao_texto = "Predominantemente leite materno";
-                            break;
-                        case 2:
-                            obj.alimentacao_texto = "Complementar";
-                            break;
-                        case 3:
-                            obj.alimentacao_texto = "Não recebe leite materno";
-                            break;
-                    }
-                    obj.altura += "cm";
-                    obj.peso += "kg";
+                if (obj.crianca == id)
                     retorno.Add(obj);
-                }
             }
             return retorno;
         }

@@ -166,7 +166,7 @@ namespace ProMama.ViewModels.Home
 
             // Criança
             Nome = app._crianca.crianca_primeiro_nome;
-            IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.DefineIdadeExtenso());
+            IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso);
             // bug-proof
             /*if (SetaDireitaCor.Equals("#EEEEEE"))
                 IdadeAuxIndex--;*/
@@ -211,7 +211,7 @@ namespace ProMama.ViewModels.Home
         // Botão da seta pra direita
         private void MaisIdade()
         {
-            if (IdadeAuxIndex < 27 && IdadeAuxIndex < app._crianca.IdadeMeses + 2 && IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) != 0)
+            if (IdadeAuxIndex < 27 && IdadeAuxIndex < app._crianca.IdadeMeses + 2 && IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) != 0 && !SetaDireitaCor.Equals("#FF8A80"))
             {
                 IdadeAuxIndex++;
             }
@@ -220,7 +220,7 @@ namespace ProMama.ViewModels.Home
         // Botão da seta pra esquerda
         private void MenosIdade()
         {
-            if (IdadeAuxIndex > 0 && IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) != 0)
+            if (IdadeAuxIndex > 0 && IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) != 0 && !SetaEsquerdaCor.Equals("#FF8A80"))
             {
                 IdadeAuxIndex--;
             }
@@ -286,13 +286,11 @@ namespace ProMama.ViewModels.Home
 
         private void InformacoesRead()
         {
-            var count = 0;
             var informacoes = App.InformacaoDatabase.GetAll();
             foreach (var i in informacoes)
             {
                 
                 InformacoesAux.Add(i);
-                count++;
             }
         }
 

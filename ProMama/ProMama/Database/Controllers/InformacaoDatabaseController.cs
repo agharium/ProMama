@@ -40,7 +40,7 @@ namespace ProMama.Database.Controllers
 
         public List<Informacao> GetAll()
         {
-            return InformacaoCollection.All.ToList();
+            return InformacaoCollection.All.OrderByDescending(x => x.informacao_idadeSemanasInicio).ToList();
         }
 
         public void Delete(int id)

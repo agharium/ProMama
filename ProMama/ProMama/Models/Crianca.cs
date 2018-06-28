@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProMama.Components;
 using System;
 
 namespace ProMama.Models
@@ -22,7 +23,7 @@ namespace ProMama.Models
         [JsonIgnore]
         public double IdadeMeses { get { return (DateTime.Now - crianca_dataNascimento).Days / 30.4167; } set { } }
         [JsonIgnore]
-        public string IdadeExtenso { get { return DefineIdadeExtenso(); } set { } }
+        public string IdadeExtenso { get { return Ferramentas.DefineIdadeExtenso(IdadeSemanas, IdadeMeses); } set { } }
 
         public Crianca(string primeiro_nome, DateTime data_nascimento, int sexo)
         {
@@ -32,61 +33,5 @@ namespace ProMama.Models
         }
 
         public Crianca() {}
-
-        public string DefineIdadeExtenso()
-        {
-            if (IdadeSemanas < 4)
-            {
-                return SemanasToString();
-            }
-            else if (IdadeMeses < 12)
-            {
-                return MesesToString();// + " e " + SemanasToString();
-            }
-            else
-            {   if (IdadeMeses > 12 && IdadeMeses < 13)
-                {
-                    return "1 ano";
-                }
-                else if (IdadeMeses > 24)
-                {
-                    return "2 anos";
-                } else
-                {
-                    return "1 ano e " + MesesToString();
-                }
-            }
-        }
-
-        public string SemanasToString()
-        {
-            double semanas = IdadeSemanas;
-            while (semanas > 4.34524)
-            {
-                semanas -= 4.34524;
-            }
-
-            int semanasAux = Convert.ToInt32(semanas);
-
-            if (IdadeSemanas < 1)
-            {
-                return "recém-nascido";
-            } else if (IdadeSemanas >= 1 && IdadeSemanas < 2)
-            {
-                return "1 semana";
-            } else if (IdadeSemanas >= 2 && IdadeSemanas < 3)
-            {
-                return "2 semanas";
-            } else
-            {
-                return "3 semanas";
-            }
-        }
-
-        private string MesesToString()
-        {
-            int m = (IdadeMeses > 12) ? (int)Math.Floor(IdadeMeses - 12) : (int)Math.Floor(IdadeMeses);
-            return m == 1 ? m + " mês" : m + " meses";
-        }
     }
 }
