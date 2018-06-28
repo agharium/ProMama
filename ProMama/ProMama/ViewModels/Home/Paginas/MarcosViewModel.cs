@@ -37,15 +37,15 @@ namespace ProMama.ViewModels.Home.Paginas
             
             var list = new List<Marco>
             {
-                new Marco(1, "Primeiro dentinho", Color.FromHex("#ff5656"), false, "marco1.jpg"),
-                new Marco(2, app._crianca.crianca_sexo == 0 ? "Virou-se sozinho" : "Virou-se sozinha", Color.FromHex("#fd5353"), false, "marco2.jpg"),
-                new Marco(3, app._crianca.crianca_sexo == 0 ? "Sentou-se sozinho" : "Sentou-se sozinha", Color.FromHex("#fb5150"), false, "marco3.jpg"),
-                new Marco(4, "Parou o aleitamento materno exclusivo", Color.FromHex("#f84e4d"), false, "marco4.jpg"),
-                new Marco(5, "Comeu a primeira fruta", Color.FromHex("#f64c4a"), false, "marco5.jpg"),
-                new Marco(6, "Comeu a primeira papa salgada", Color.FromHex("#f44948"), false, "marco6.jpg"),
-                new Marco(7, "Engatinhou", Color.FromHex("#f24745"), false, "marco7.jpg"),
-                new Marco(8, "Primeira palavra", Color.FromHex("#f04442"), false, "marco8.jpg"),
-                new Marco(9, "Primeiros passos", Color.FromHex("#ee423f"), false, "marco8.jpg"),
+                new Marco(1, "Primeiro dentinho", Color.FromHex("#FF9696"), false, "marco1.jpg"),
+                new Marco(2, app._crianca.crianca_sexo == 0 ? "Virou-se sozinho" : "Virou-se sozinha", Color.FromHex("#FA8383"), false, "marco2.jpg"),
+                new Marco(3, app._crianca.crianca_sexo == 0 ? "Sentou-se sozinho" : "Sentou-se sozinha", Color.FromHex("#F57170"), false, "marco3.jpg"),
+                new Marco(4, "Parou o aleitamento materno exclusivo", Color.FromHex("#F05E5D"), false, "marco4.jpg"),
+                new Marco(5, "Comeu a primeira fruta", Color.FromHex("#EB4C4B"), false, "marco5.jpg"),
+                new Marco(6, "Comeu a primeira papa salgada", Color.FromHex("#E63A38"), false, "marco6.jpg"),
+                new Marco(7, "Engatinhou", Color.FromHex("#E12725"), false, "marco7.jpg"),
+                new Marco(8, "Primeira palavra", Color.FromHex("#DC1512"), false, "marco8.jpg"),
+                new Marco(9, "Primeiros passos", Color.FromHex("#D80300"), false, "marco9.jpg"),
             };
 
             foreach (var obj in App.MarcoDatabase.GetAllByChildId(app._crianca.crianca_id))
@@ -55,6 +55,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 list[obj.marco - 1].crianca = obj.crianca;
                 list[obj.marco - 1].data = obj.data;
                 list[obj.marco - 1].extra = obj.extra;
+                list[obj.marco - 1].Icone = "fa-check-circle";
             }
 
             Marcos = new ObservableCollection<Marco>(list);

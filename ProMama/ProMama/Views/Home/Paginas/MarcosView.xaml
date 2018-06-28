@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="ProMama.Views.Home.Paginas.MarcosView"
              x:Name="this"
              Title="Marcos do Desenvolvimento">
@@ -10,6 +11,9 @@
                 ItemsSource="{Binding Marcos}"
                 SeparatorVisibility="None"
                 HasUnevenRows="true">
+                <ListView.Header>
+                    <StackLayout HeightRequest="10"/>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -17,16 +21,32 @@
                                 Padding="0"
                                 Margin="20, 10, 20, 10">
                                 <StackLayout
+                                    Orientation="Horizontal"
                                     BackgroundColor="{Binding TituloBackgroundColor}"
                                     Padding="10">
-                                    <Label
-                                        Text="{Binding Titulo}"
-                                        TextColor="White"
-                                        HorizontalOptions="Fill"
-                                        HorizontalTextAlignment="Center"
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label
+                                            Text="{Binding Titulo}"
+                                            TextColor="White"
+                                            HorizontalOptions="StartAndExpand"
+                                            HorizontalTextAlignment="Start"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="Medium"/>
+                                    </StackLayout>
+                                    <StackLayout 
+                                        HorizontalOptions="End"
                                         VerticalOptions="Fill"
-                                        VerticalTextAlignment="Center"
-                                        FontSize="Medium"/>
+                                        WidthRequest="50">
+                                        <iconize:IconLabel 
+                                            Text="{Binding Icone}"
+                                            TextColor="White"
+                                            HorizontalOptions="End"
+                                            HorizontalTextAlignment="End"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="25"/>
+                                    </StackLayout>
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding Source={x:Reference this}, Path=BindingContext.AbrirMarcoCommand}"
@@ -37,6 +57,9 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="10"/>
+                </ListView.Footer>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

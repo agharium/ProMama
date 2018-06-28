@@ -22,6 +22,8 @@ namespace ProMama.Models
         public ImageSource Imagem { get; set; }
         [JsonIgnore]
         public Color TituloBackgroundColor { get; set; }
+        [JsonIgnore]
+        public string Icone { get; set; }
 
         public Marco(int _marco, string _titulo, Color _tituloBackgroundColor, bool _alcancado, ImageSource _imagem)
         {
@@ -31,6 +33,8 @@ namespace ProMama.Models
             Alcancado = _alcancado;
             Imagem = _imagem;
             TituloBackgroundColor = _tituloBackgroundColor;
+            Icone = _alcancado ? "fa-check-circle" : "fa-circle";
+
             uploaded = false;
         }
 
