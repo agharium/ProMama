@@ -48,6 +48,32 @@ namespace ProMama.Database.Controllers
             return ConversaCollection.All.ToList();
         }
 
+        public List<Conversa> GetConversasTodos()
+        {
+            var retorno = new List<Conversa>();
+            foreach (var obj in GetAll())
+            {
+                if (obj.paraTodos == 1)
+                {
+                    retorno.Add(obj);
+                }
+            }
+            return retorno;
+        }
+
+        public List<Conversa> GetConversasUser(int id)
+        {
+            var retorno = new List<Conversa>();
+            foreach (var obj in GetAll())
+            {
+                if (obj.user == id)
+                {
+                    retorno.Add(obj);
+                }
+            }
+            return retorno;
+        }
+
         public void WipeTable()
         {
             foreach (var obj in GetAll())

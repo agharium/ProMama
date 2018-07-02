@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ProMama.Components;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.DuvidasFrequentesView"
              x:Name="this">
     <ContentPage.Content>
@@ -10,7 +11,18 @@
                 HasUnevenRows="true"
                 ItemsSource="{Binding DuvidasFrequentes}">
                 <ListView.Header>
-                    <StackLayout HeightRequest="10"/>
+                    <StackLayout Padding="0, 0, 10, 0">
+                        <SearchBar 
+                                x:Name="SearchBar"
+                                HeightRequest="50"
+                                SearchCommand="{Binding BuscarCommand}" 
+                                SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                                Placeholder="Busca">
+                            <SearchBar.Behaviors>
+                                <components:TextChangedBehavior />
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                    </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>

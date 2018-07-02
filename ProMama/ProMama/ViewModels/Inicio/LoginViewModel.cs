@@ -33,12 +33,6 @@ namespace ProMama.ViewModels.Inicio
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
             RestService = DependencyService.Get<IRestService>();
-
-            var senha = "12341234";
-            var hash = PasswordHash.CreateHash(senha);
-            Debug.WriteLine(hash);
-            if (PasswordHash.ValidatePassword(senha, hash))
-                Debug.WriteLine("Deu certo");
         }
 
         public async void Login()

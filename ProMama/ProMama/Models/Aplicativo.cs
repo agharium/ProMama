@@ -25,6 +25,6 @@ namespace ProMama.Models
         public HomeMasterViewModel _master { get; set; }
         public Home _home { get; set; }
         public Sincronizacao _sync { get; set; }
-        public bool onThread { get; set; }
+        public bool _onThread { get; set; }
     }
 }

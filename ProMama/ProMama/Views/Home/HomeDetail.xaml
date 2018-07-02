@@ -147,6 +147,7 @@
                                         Grid.Column="0"
                                         Grid.Row="1"/>
                                     <ffimageloading:CachedImage
+                                        LoadingPlaceholder="loading.gif"
                                         IsVisible="{Binding informacao_imagem_visivel}"
                                         CacheDuration="730"
                                         HorizontalOptions="Fill"

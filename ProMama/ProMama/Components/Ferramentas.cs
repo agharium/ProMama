@@ -2,6 +2,7 @@
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -82,11 +83,42 @@ namespace ProMama.Components
                             }
                         }
                     }
-
-                    app._sync = syncAux;
-                    App.SincronizacaoDatabase.Save(app._sync);
                 }
             }
+
+            if (app._sync.faleConoscoLastUpdate == null || (DateTime.Now - app._sync.faleConoscoLastUpdate).Seconds >= 86400)
+            {
+                if (app._usuario != null)
+                {
+                    var conversasTodos = await RestService.ConversasRead(app._usuario.api_token);
+                    var conversasUser = await RestService.ConversasUsuarioRead(app._usuario.api_token);
+
+                    foreach (var c in conversasTodos)
+                    {
+                        c.resumo = CriarResumo(c.resposta);
+                    }
+                    foreach (var c in conversasUser)
+                    {
+                        if (String.IsNullOrEmpty(c.resposta))
+                        {
+                            c.resposta = "Aguardando resposta.";
+                            c.resumo = "Aguardando resposta.";
+                        } else
+                        {
+                            c.resumo = CriarResumo(c.resposta);
+                        }
+                    }
+
+                    App.ConversaDatabase.WipeTable();
+                    App.ConversaDatabase.SaveList(conversasTodos);
+                    App.ConversaDatabase.SaveList(conversasUser);
+
+                    app._sync.faleConoscoLastUpdate = DateTime.Now;
+                }
+            }
+
+            app._sync = syncAux;
+            App.SincronizacaoDatabase.Save(app._sync);
         }
 
         private static string CriarResumo(string texto)
@@ -243,15 +275,18 @@ namespace ProMama.Components
         
         private static int Anos { get; set; }
 
-        public static string DaysToFullString(double totalDias)
+        public static string DaysToFullString(int tDias, int tipo)
         {
+            // tipo: 1 = DefineIdadeExtenso da classe Criança / 2 = Marcos e Acompanhamento
             Anos = 0;
             Meses = 0;
             Semanas = 0;
             Dias = 0;
 
-            double numeroMagico = 0.1551871428571429;
-            while (totalDias > numeroMagico)
+            //double numeroMagico = 0.15518714285;
+            double numeroMagico = 93857.18399568;
+            double totalDias = (tDias+1) * 86400;
+            while (totalDias >= numeroMagico)
             {
                 Dias = Dias + 1;
                 totalDias -= numeroMagico;
@@ -261,90 +296,80 @@ namespace ProMama.Components
                 Semanas == 0 && Dias == 0)
                 return "recém-nascido";
 
-            string AnosString = "";
-            string SemanasString = "";
-            string MesesString = "";
-            string DiasString = "";
-            int SeparadorCount = 0;
+            string strReturn = "";
 
-            if (Anos > 0)
+            if (Anos == 1)
             {
-                if (Anos == 1)
-                {
-                    AnosString = "1 ano";
-                }
-                else if (Anos > 1)
-                {
-                    AnosString = Anos + " anos";
-                }
-                SeparadorCount++;
-            }      
-            
-            if (Meses > 0)
+                strReturn += "1 ano, ";
+            }
+            else if (Anos > 1)
             {
-                if (Meses == 1)
-                {
-                    MesesString = "1 mês";
-                }
-                else if (Meses > 1)
-                {
-                    MesesString = Meses + " meses";
-                }
-                SeparadorCount++;
+                strReturn += Anos + " anos, ";
             }
 
-            if (Semanas > 0)
+            if (Meses == 1)
+            {
+                strReturn += "1 mês, ";
+            }
+            else if (Meses > 1)
+            {
+                strReturn += Meses + " meses, ";
+            }
+
+            if (Semanas > 0 && (
+                    tipo == 2 || (
+                        tipo == 1 && (
+                            Anos == 0 &&
+                            Meses == 0)
+                        )
+                    )
+                )
             {
                 if (Semanas == 1)
                 {
-                    SemanasString = "1 semana";
+                    strReturn += "1 semana, ";
                 }
                 else if (Semanas > 1)
                 {
-                    SemanasString = Semanas + " semanas";
+                    strReturn += Semanas + " semanas, ";
                 }
-                SeparadorCount++;
             }
 
-            if (Dias == 1)
+            if (tipo == 2)
             {
-                DiasString = "1 dia";
-            }
-            else if (Dias > 1)
-            {
-                DiasString = Dias + " dias";
-            }
-
-            string[] strReturn = new string[7] { "", "", "", "", "", "", ""};
-
-            strReturn[0] = AnosString;
-            strReturn[2] = MesesString;
-            strReturn[4] = SemanasString;
-            strReturn[6] = DiasString;
-
-            bool first = true;
-            for (int i = 5; i >= 1; i = i-2)
-            {
-                if (SeparadorCount > 0)
+                if (Dias == 1)
                 {
-                    if (!strReturn[i-1].Equals(String.Empty) &&
-                        !strReturn[i + 1].Equals(String.Empty))
-                    {
-                        if (first)
-                        {
-                            strReturn[i] = " e ";
-                            first = false;
-                        }
-                        else
-                        {
-                            strReturn[i] = ", ";
-                        }
-                        SeparadorCount--;
-                    }
+                    strReturn += "1 dia";
+                }
+                else if (Dias > 1)
+                {
+                    strReturn += Dias + " dias";
                 }
             }
-            
-            return string.Join("", strReturn);
+
+            if (strReturn[strReturn.Length - 2].Equals(','))
+                strReturn = strReturn.Substring(0, strReturn.Length - 2);
+
+            if (strReturn.Contains(", "))
+            {
+                var index = strReturn.LastIndexOf(", ");
+                strReturn = strReturn.Remove(index, 2).Insert(index, " e ");
+            }
+
+            return strReturn;
+        }
+
+        // https://pt.stackoverflow.com/questions/2/como-fa%C3%A7o-para-remover-acentos-em-uma-string
+        public static string removerAcentos(string texto)
+        {
+            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+
+            for (int i = 0; i < comAcentos.Length; i++)
+            {
+                texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+            }
+            return texto;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ProMama.Models;
+﻿using ProMama.Components;
+using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Windows.Input;
@@ -233,47 +234,57 @@ namespace ProMama.ViewModels.Home.Paginas
             Alcancado = Marco.Alcancado;
             NaoAlcancado = !Alcancado;
 
+            var auxData = Marco.data.ToString("dd/MM/yyyy");
+            var auxNome = app._crianca.crianca_primeiro_nome;
+            var fraseIdade = Marco.idade.Equals("recém-nascido") ?
+                (app._crianca.crianca_sexo == 0 ? "era recém-nascido" : "era recém-nascida") : 
+                "tinha " + Marco.idade + " de vida";
             if (Alcancado)
             {
                 switch (Marco.marco)
                 {
                     case 1:
                         TextoAlcancado =
-                            "O primeiro dentinho de " + app._crianca.crianca_primeiro_nome + " nasceu em " + Marco.data + "!";
+                            auxNome + " deu seu primeiro sorriso em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 2:
                         TextoAlcancado = app._crianca.crianca_sexo == 0 ?
-                            app._crianca.crianca_primeiro_nome + " virou-se sozinho pela primeira vez em " + Marco.data + "!" :
-                            app._crianca.crianca_primeiro_nome + " virou-se sozinha pela primeira vez em " + Marco.data + "!";
+                            auxNome + " virou-se sozinho pela primeira vez em " + auxData + ", quando " + fraseIdade + "!" :
+                            auxNome + " virou-se sozinha pela primeira vez em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 3:
                         TextoAlcancado = app._crianca.crianca_sexo == 0 ?
-                            app._crianca.crianca_primeiro_nome + " sentou-se sozinho pela primeira vez em " + Marco.data + "!" :
-                            app._crianca.crianca_primeiro_nome + " sentou-se sozinha pela primeira vez em " + Marco.data + "!";
+                            "O primeiro dentinho de " + auxNome + " nasceu em " + auxData + ", quando ele " + fraseIdade + "!" :
+                            "O primeiro dentinho de " + auxNome + " nasceu em " + auxData + ", quando ela " + fraseIdade + "!";
                         break;
                     case 4:
-                        TextoAlcancado =
-                            app._crianca.crianca_primeiro_nome + " parou de se alimentar exclusivamente de leite materno aos " + Marco.extra + " meses!";
+                        TextoAlcancado = app._crianca.crianca_sexo == 0 ?
+                            auxNome + " sentou-se sozinho pela primeira vez em " + auxData + ", quando " + fraseIdade + "!" :
+                            auxNome + " sentou-se sozinha pela primeira vez em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 5:
                         TextoAlcancado =
-                            app._crianca.crianca_primeiro_nome + " comeu sua primeira fruta em " + Marco.data + "!";
+                            auxNome + " parou de se alimentar exclusivamente de leite materno aos " + auxData + " meses!";
                         break;
                     case 6:
                         TextoAlcancado =
-                            app._crianca.crianca_primeiro_nome + " comeu sua primeira papa salgada em " + Marco.data + "!";
+                            auxNome + " comeu sua primeira fruta em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 7:
                         TextoAlcancado =
-                            app._crianca.crianca_primeiro_nome + " engatinhou pela primeira vez em " + Marco.data + "!";
+                            auxNome + " comeu sua primeira papa salgada em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 8:
                         TextoAlcancado =
-                            app._crianca.crianca_primeiro_nome + " falou pela primeira vez em " + Marco.data + ", e sua primeira palavra foi " + Marco.extra + "!";
+                            auxNome + " engatinhou pela primeira vez em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 9:
                         TextoAlcancado =
-                            app._crianca.crianca_primeiro_nome + " deu seus primeiros passos em " + Marco.data + "!";
+                            auxNome + " falou pela primeira vez em " + auxData + ", quando " + fraseIdade + ", e sua primeira palavra foi " + Marco.extra + "!";
+                        break;
+                    case 10:
+                        TextoAlcancado =
+                            auxNome + " deu seus primeiros passos em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                 }
             }
@@ -287,48 +298,52 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     case 1:
                         TextoNaoAlcancado =
-                            "Quando foi que nasceu o primeiro dentinho de " + app._crianca.crianca_primeiro_nome + "?";
+                             "Quando foi que " + auxNome + " deu seu primeiro sorriso?";
                         break;
                     case 2:
                         TextoNaoAlcancado = app._crianca.crianca_sexo == 0 ?
-                            "Quando foi a primeira vez que " + app._crianca.crianca_primeiro_nome + " virou-se sozinho?" :
-                            "Quando foi a primeira vez que " + app._crianca.crianca_primeiro_nome + " virou-se sozinha?";
+                            "Quando foi a primeira vez que " + auxNome + " virou-se sozinho?" :
+                            "Quando foi a primeira vez que " + auxNome + " virou-se sozinha?";
                         break;
                     case 3:
-                        TextoNaoAlcancado = app._crianca.crianca_sexo == 0 ?
-                            "Quando foi a primeira vez que " + app._crianca.crianca_primeiro_nome + " sentou-se sozinho?" :
-                            "Quando foi a primeira vez que " + app._crianca.crianca_primeiro_nome + " sentou-se sozinha?";
+                        TextoNaoAlcancado =
+                            "Quando foi que nasceu o primeiro dentinho de " + auxNome + "?";
                         break;
                     case 4:
+                        TextoNaoAlcancado = app._crianca.crianca_sexo == 0 ?
+                            "Quando foi a primeira vez que " + auxNome + " sentou-se sozinho?" :
+                            "Quando foi a primeira vez que " + auxNome + " sentou-se sozinha?";
+                        break;
+                    case 5:
                         DataAparece = false;
                         ExtraAparece = true;
                         ExtraInputKeyboard = Keyboard.Numeric;
                         TextoNaoAlcancado =
-                            "Com quantos meses " + app._crianca.crianca_primeiro_nome + " parou de se alimentar exclusivamente de leite materno?";
-                        break;
-                    case 5:
-                        TextoNaoAlcancado =
-                            "Quando foi que " + app._crianca.crianca_primeiro_nome + " comeu sua primeira fruta?";
+                            "Com quantos meses " + auxNome + " parou de se alimentar exclusivamente de leite materno?";
                         break;
                     case 6:
                         TextoNaoAlcancado =
-                            "Quando foi que " + app._crianca.crianca_primeiro_nome + " comeu sua primeira papa salgada?";
+                            "Quando foi que " + auxNome + " comeu sua primeira fruta?";
                         break;
                     case 7:
                         TextoNaoAlcancado =
-                            "Quando foi que " + app._crianca.crianca_primeiro_nome + " engatinhou pela primeira vez?";
+                            "Quando foi que " + auxNome + " comeu sua primeira papa salgada?";
                         break;
                     case 8:
+                        TextoNaoAlcancado =
+                            "Quando foi que " + auxNome + " engatinhou pela primeira vez?";
+                        break;
+                    case 9:
                         ExtraAparece = true;
                         ExtraInputKeyboard = Keyboard.Text;
                         TextoExtraAparece = true;
                         TextoExtra = "E qual foi a primeira palavra?";
                         TextoNaoAlcancado =
-                            "Quando foi que " + app._crianca.crianca_primeiro_nome + " falou pela primeira vez?";
+                            "Quando foi que " + auxNome + " falou pela primeira vez?";
                         break;
-                    case 9:
+                    case 10:
                         TextoNaoAlcancado =
-                            "Quando foi que " + app._crianca.crianca_primeiro_nome + " deu os primeiros passos?";
+                            "Quando foi que " + auxNome + " deu os primeiros passos?";
                         break;
                 }
             }
@@ -341,9 +356,10 @@ namespace ProMama.ViewModels.Home.Paginas
             if ((ExtraAparece && !String.IsNullOrEmpty(ExtraInput)) || !ExtraAparece)
             {
                 Marco.crianca = app._crianca.crianca_id;
-                Marco.data = DataSelecionada.ToString("dd/MM/yyyy");
+                Marco.data = DataSelecionada;
                 Marco.extra = ExtraInput;
                 Marco.Alcancado = true;
+                Marco.idade = Ferramentas.DaysToFullString((DataSelecionada - app._crianca.crianca_dataNascimento).Days, 2);
                 App.MarcoDatabase.SaveIncrementing(Marco);
                 await Navigation.PopAsync();
             }

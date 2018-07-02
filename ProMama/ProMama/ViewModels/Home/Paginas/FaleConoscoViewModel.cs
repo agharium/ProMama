@@ -1,4 +1,5 @@
-﻿using ProMama.Models;
+﻿using Plugin.Connectivity;
+using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.ObjectModel;
@@ -26,8 +27,8 @@ namespace ProMama.ViewModels.Home.Paginas
             }
         }
 
-        private string _avisoListaVazia;
-        public string AvisoListaVazia
+        private bool _avisoListaVazia;
+        public bool AvisoListaVazia
         {
             get
             {
@@ -79,50 +80,38 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void EnviarConversa()
         {
-            if (ConversaTexto.Equals(string.Empty))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                await MessageService.AlertDialog("Você deve preencher o campo de dúvida.");
-            }
-            else
-            {
-                var result = await RestService.ConversaCreate(new JsonMessage(ConversaTexto), app._usuario.api_token);
-                if (!result.success)
+                if (ConversaTexto.Equals(string.Empty))
                 {
-                    await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                    await MessageService.AlertDialog("Você deve preencher o campo de texto.");
                 }
                 else
                 {
-                    Conversa c = new Conversa(ConversaTexto, "Aguardando resposta.");
-                    Conversas.Insert(0, c);
-                    ConversaTexto = string.Empty;
-                    AvisoListaVazia = "False";
+                    var result = await RestService.ConversaCreate(new JsonMessage(ConversaTexto), app._usuario.api_token);
+                    if (!result.success)
+                    {
+                        await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                    }
+                    else
+                    {
+                        Conversa c = new Conversa(result.id, ConversaTexto, "Aguardando resposta.");
+                        Conversas.Insert(0, c);
+                        App.ConversaDatabase.Save(c);
+                        ConversaTexto = string.Empty;
+                        AvisoListaVazia = false;
+                    }
                 }
+            } else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para enviar um dúvida.");
             }
         }
 
-        private async void ConversasRead()
+        private void ConversasRead()
         {
-            AvisoListaVazia = "False";
-
-            var conversas = await RestService.ConversasUsuarioRead(app._usuario.api_token);
-            foreach (var c in conversas)
-            {
-                if (c.resposta == null)
-                {
-                    c.resposta = "Aguardando resposta.";
-                    c.resumo = "Aguardando resposta.";
-                }
-                else
-                {
-                    c.resumo = String.Join(" ", c.resposta.Split().Take(20).ToArray());
-                    c.resumo.Remove(c.resumo.Length - 1, 1);
-                    c.resumo += "...";
-                }
-            }
-            Conversas = new ObservableCollection<Conversa>(conversas);
-
-            if (Conversas.Count == 0)
-                AvisoListaVazia = "True";
+            Conversas = new ObservableCollection<Conversa>(App.ConversaDatabase.GetConversasUser(app._usuario.id));
+            AvisoListaVazia = Conversas.Count == 0 ? true : false;
         }
 
         private async void OutrasConversas()

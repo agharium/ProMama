@@ -206,6 +206,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Json" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
@@ -364,6 +365,39 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\avatar_default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="loading.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

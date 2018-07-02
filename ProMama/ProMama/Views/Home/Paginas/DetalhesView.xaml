@@ -26,6 +26,7 @@
                         <StackLayout IsVisible="{Binding ImagemVisivel}">
                             <Frame Padding="0">
                                 <ffimageloading:CachedImage
+                                    LoadingPlaceholder="loading.gif"
                                     CacheDuration="365"
                                     HorizontalOptions="Fill"
                                     VerticalOptions="Fill"

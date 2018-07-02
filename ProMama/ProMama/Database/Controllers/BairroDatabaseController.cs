@@ -40,7 +40,7 @@ namespace ProMama.Database.Controllers
 
         public List<Bairro> GetAll()
         {
-            return BairroCollection.All.ToList();
+            return BairroCollection.All.OrderBy(obj => obj.bairro_nome).ToList();
         }
 
         public void Delete(int id)

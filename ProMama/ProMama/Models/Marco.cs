@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using Xamarin.Forms;
 
 namespace ProMama.Models
@@ -8,9 +9,10 @@ namespace ProMama.Models
         public int id { get; set; }
         public int crianca { get; set; }
         public int marco { get; set; }
-        public string data { get; set; }
+        public DateTime data { get; set; }
         public string extra { get; set; }
         public bool uploaded { get; set; }
+        public string idade { get; set; }
 
         [JsonIgnore]
         public string Titulo { get; set; }
@@ -33,7 +35,9 @@ namespace ProMama.Models
             Alcancado = _alcancado;
             Imagem = _imagem;
             TituloBackgroundColor = _tituloBackgroundColor;
+
             Icone = _alcancado ? "fa-check-circle" : "fa-circle";
+            idade = "";
 
             uploaded = false;
         }

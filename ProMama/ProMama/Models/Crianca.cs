@@ -23,7 +23,7 @@ namespace ProMama.Models
         [JsonIgnore]
         public double IdadeMeses { get { return (DateTime.Now - crianca_dataNascimento).Days / 30.4167; } set { } }
         [JsonIgnore]
-        public string IdadeExtenso { get { return Ferramentas.DefineIdadeExtenso(IdadeSemanas, IdadeMeses); } set { } }
+        public string IdadeExtenso { get { return Ferramentas.DaysToFullString((DateTime.Now - crianca_dataNascimento).Days, 1); } set { } }
 
         public Crianca(string primeiro_nome, DateTime data_nascimento, int sexo)
         {

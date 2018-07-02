@@ -1,4 +1,6 @@
-﻿namespace ProMama.Models
+﻿using System;
+
+namespace ProMama.Models
 {
     public class Sincronizacao
     {
@@ -8,6 +10,7 @@
         public int bairro { get; set; }
         public int posto { get; set; }
         public int duvidas_frequentes { get; set; }
+        public DateTime faleConoscoLastUpdate { get; set; }
 
         public Sincronizacao() { }
 

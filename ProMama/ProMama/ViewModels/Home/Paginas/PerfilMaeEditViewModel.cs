@@ -135,7 +135,10 @@ namespace ProMama.ViewModels.Home.Paginas
             foreach (var b in Bairros)
             {
                 if (b.bairro_id == app._usuario.bairro)
+                {
                     BairroSelecionado = Bairros.IndexOf(b);
+                    break;
+                }
             }
 
             Postos = App.PostoDatabase.GetAll();
@@ -147,7 +150,10 @@ namespace ProMama.ViewModels.Home.Paginas
                 foreach (var p in Postos)
                 {
                     if (p.posto_id == app._usuario.posto_saude)
+                    {
                         PostoSelecionado = Postos.IndexOf(p);
+                        break;
+                    }
                 }
             }
 
@@ -213,7 +219,7 @@ namespace ProMama.ViewModels.Home.Paginas
             }
             else
             {
-                await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para trocar a senha.");
             }
         }
     }

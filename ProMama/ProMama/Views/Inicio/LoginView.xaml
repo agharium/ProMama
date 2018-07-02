@@ -7,22 +7,28 @@
     <ContentPage.Content>
         <ScrollView>
             
-            <StackLayout Padding="20" 
-                         Spacing="20">
-                <Entry Placeholder="E-mail"
-                       Keyboard="Email"
-                       Text="{Binding Email}"/>
-                <Entry Placeholder="Senha"
-                       IsPassword="True"
-                       Text="{Binding Senha}"/>
-                <Button Style="{StaticResource MainButton}"
-                        Text="Entrar"
-                        Command="{Binding LoginCommand}"/>
-                <Button Style="{StaticResource FacebookButton}"
-                        Text="Entrar com o Facebook"/>
-                <Button Style="{StaticResource GrayButton}"
-                        Text="Ainda não tem cadastro?"
-                        Clicked="ChangeToCadastro"/>
+            <StackLayout 
+                Padding="20" 
+                Spacing="20">
+                <Entry 
+                    Placeholder="E-mail"
+                    Keyboard="Email"
+                    Text="{Binding Email}"/>
+                <Entry 
+                    Placeholder="Senha"
+                    IsPassword="True"
+                    Text="{Binding Senha}"/>
+                <Button 
+                    Style="{StaticResource MainButton}"
+                    Text="Entrar"
+                    Command="{Binding LoginCommand}"/>
+                <Button 
+                    Style="{StaticResource FacebookButton}"
+                    Text="Entrar com o Facebook"/>
+                <Button 
+                    Style="{StaticResource GrayButton}"
+                    Text="Ainda não tem cadastro?"
+                    Clicked="ChangeToCadastro"/>
             </StackLayout>
             
         </ScrollView>
