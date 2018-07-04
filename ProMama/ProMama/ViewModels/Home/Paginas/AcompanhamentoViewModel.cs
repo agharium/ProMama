@@ -19,7 +19,6 @@ namespace ProMama.ViewModels.Home.Paginas
                 _medicoes = value;
                 Notify("Medicoes");
             }
-
         }
 
         private INavigation Navigation { get; set; }
