@@ -132,22 +132,20 @@ namespace ProMama.ViewModels.Inicio
 
         private async void BairrosRead()
         {
-            var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
+            var syncAux = await RestService.SincronizacaoBairroRead();
+            var syncBairro = syncAux.id;
 
             if (app._sync == null)
                 app._sync = new Sincronizacao(1);
 
-            if (app._sync.bairro != syncAux.bairro)
+            if (app._sync.bairro != syncBairro)
             {
-                Bairros = await RestService.BairrosRead();
                 App.BairroDatabase.WipeTable();
-                App.BairroDatabase.SaveList(Bairros);
+                App.BairroDatabase.SaveList(await RestService.BairrosRead());
+                Bairros = App.BairroDatabase.GetAll();
             }
 
-            app._sync.bairro = syncAux.bairro;
-            App.SincronizacaoDatabase.Save(app._sync);
-
-            
+            app._sync.bairro = syncBairro;
         }
     }
 }

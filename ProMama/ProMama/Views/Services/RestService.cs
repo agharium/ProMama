@@ -287,6 +287,25 @@ namespace ProMama.Views.Services
             }
         }
 
+        public async Task<JsonMessage> SincronizacaoBairroRead()
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var result = await client.GetAsync(ApiUrl + "/bairrosync" + TokenPadrao);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: LEITURA DE SINCRONIZAÇÃO DE BAIRRO");
+                    Debug.WriteLine(obj.ToString());
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (JsonReaderException e)
+            {
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
+
         public async Task<List<Notificacao>> NotificacoesRead(string token)
         {
             using (var client = new HttpClient())

@@ -32,6 +32,8 @@ namespace ProMama.ViewModels.Services
 
         Task<Sincronizacao> SincronizacaoRead(string token);
 
+        Task<JsonMessage> SincronizacaoBairroRead();
+
         Task<List<Notificacao>> NotificacoesRead(string token);
 
         Task<JsonMessage> FotoUpload(Foto foto, string token);
