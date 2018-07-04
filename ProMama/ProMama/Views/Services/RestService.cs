@@ -293,7 +293,7 @@ namespace ProMama.Views.Services
             {
                 using (var client = new HttpClient())
                 {
-                    var result = await client.GetAsync(ApiUrl + "/bairrosync" + TokenPadrao);
+                    var result = await client.GetAsync(ApiUrl + "/bairrosync?api_token=" + TokenPadrao);
                     var obj = await result.Content.ReadAsStringAsync();
                     Debug.WriteLine("API: LEITURA DE SINCRONIZAÇÃO DE BAIRRO");
                     Debug.WriteLine(obj.ToString());
