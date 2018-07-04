@@ -18,7 +18,7 @@
                             <Frame 
                                 Padding="0"
                                 Margin="20, 10, 20, 10">
-                                <Grid>
+                                <Grid RowSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
@@ -28,62 +28,74 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
+                                    <Image 
+                                        Source="{Binding image_path}"
+                                        Aspect="AspectFill"
+                                        Opacity="0.5"
+                                        HeightRequest="125"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="3"/>
                                     <Label
                                         Text="{Binding nome}"
-                                        TextColor="#212121"
-                                        FontSize="20"
+                                        TextColor="Black"
+                                        FontSize="24"
                                         Margin="10, 10, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="0"/>
                                     <Label
                                         Text="{Binding endereco}"
-                                        TextColor="#757575"
+                                        TextColor="Black"
+                                        FontSize="18"
                                         Margin="10, 5, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="1"/>
                                     <Label
                                         Text="{Binding telefone}"
-                                        TextColor="#757575"
-                                        Margin="10, 5, 10 , 10"
+                                        TextColor="Black"
+                                        FontSize="18"
+                                        Margin="10, 5, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="2"/>
                                     <StackLayout
                                         Margin="0"
-                                        BackgroundColor="#F44336"
+                                        Spacing="0"
                                         Grid.Column="0"
                                         Grid.Row="3">
                                         <StackLayout
-                                            Margin="0"
-                                            Padding="10, 10, 10, 2.5">
+                                            BackgroundColor="#E53935"
+                                            Padding="10"
+                                            Margin="0">
                                             <Label
                                                 Text="Ver no mapa"
                                                 TextColor="White"
                                                 FontSize="Medium"
                                                 HorizontalOptions="Center"
                                                 HorizontalTextAlignment="Center"/>
-                                            <Frame.GestureRecognizers>
+                                            <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer 
                                                     Command="{Binding Source={x:Reference this}, Path=BindingContext.VerMapaCommand}"
                                                     CommandParameter="{Binding .}"/>
-                                            </Frame.GestureRecognizers>
+                                            </StackLayout.GestureRecognizers>
                                         </StackLayout>
                                         <StackLayout
-                                            HeightRequest="1"
+                                            HeightRequest="0.5"
                                             BackgroundColor="White"/>
                                         <StackLayout
-                                            Margin="0"
-                                            Padding="10, 2.5, 10, 10">
+                                            BackgroundColor="#E53935"
+                                            Padding="10"
+                                            Margin="0">
                                             <Label
                                                 Text="Ligar"
                                                 TextColor="White"
                                                 FontSize="Medium"
                                                 HorizontalOptions="Center"
                                                 HorizontalTextAlignment="Center"/>
-                                            <Frame.GestureRecognizers>
+                                            <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer 
                                                     Command="{Binding Source={x:Reference this}, Path=BindingContext.LigarCommand}"
                                                     CommandParameter="{Binding .}"/>
-                                            </Frame.GestureRecognizers>
+                                            </StackLayout.GestureRecognizers>
                                         </StackLayout>
                                     </StackLayout>
                                 </Grid>
