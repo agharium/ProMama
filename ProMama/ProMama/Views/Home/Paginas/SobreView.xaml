@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.SobreView">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="20"
+                Spacing="20">
+                <Label 
+                    Text="PRÓ-MAMÁ Osório"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    FontSize="Large"
+                    TextColor="Black"/>
+                <Label 
+                    Text="Programa Municipal de Aleitamento Materno"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    TextColor="#262626"/>
+
+                <StackLayout Spacing="10">
+                    <Label 
+                        Text="Com o objetivo de aumentar os índices de aleitamento materno, qualificar a assistência no município de Osório e nortear a conduta dos profissionais da Atenção Básica, a equipe de fonoaudiologia e o NASF criaram com o apoio do Secretário Emerson Arli Magni da Silva e o Prefeito Eduardo Aluísio Cardoso Abrahão o Programa Municipal de Aleitamento Materno intitulado PRÓ-MAMÁ."
+                        TextColor="#262626"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        LineBreakMode="WordWrap"/>
+                    <Label 
+                        Text="Este programa está inserido na Linha de Cuidado Materno-Infantil, pertencente a Rede Cegonha em Osório e foi oficializado pelo Decreto 193/2017 que dispõe sobre o Programa Municipal de Aleitamento Materno - Pró-Mamá, através do Protocolo Municipal de Aleitamento Materno de Osório."
+                        TextColor="#262626"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        LineBreakMode="WordWrap"/>
+                </StackLayout>
+
+                <Button 
+                    Style="{StaticResource MainButton}"
+                    Text="Acessar o decreto"
+                    Clicked="OnDecretoTapped"/>
+
+                <StackLayout Spacing="10">
+                    <Label 
+                        Text="Neste programa, destaca-se a formação de profissionais de referência em amamentação em cada Unidade de Saúde da Família, que tem por objetivo de atuar de forma mais próxima ao território e aos usuários nas dificuldades em relação à amamentação. Tais profissionais são capacitados constantemente pela Equipe Gestora Multidisciplinar do Pró-Mamá, composta por fonoaudiólogo, nutricionista e psicólogo. Estas referências atuam diretamente no acompanhamento da dupla mãe-bebê em relação ao aleitamento materno e desenvolvimento infantil através de visita domiciliar e atendimentos na Unidade de Saúde no intuito de evitar a introdução de fórmulas infantis ou leite de vaca. Os casos mais complexos são discutidos e encaminhados para a equipe multiprofissional do Programa. Outras ações desenvolvidas pelo PRÓ-MAMÁ compreendem grupos, orientação, sala de espera, visitas domiciliares, interconsultas e discussão de casos."
+                        TextColor="#262626"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        LineBreakMode="WordWrap"/>
+                    <Label 
+                        Text="O PRÓ-MAMÁ atua de forma intersetorial em parceria com o Programa Jogue Limpo, a Secretaria de Assistência Social e Habitação, Secretaria de Educação, UniCNEC, IFRS Campus Osório entre outros."
+                        TextColor="#262626"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        LineBreakMode="WordWrap"/>
+                    <Label 
+                        Text="Devido ao leite materno ser considerado o melhor e mais completo alimento para o bebê, o 'padrão ouro' da alimentação infantil e com o objetivo de fornecer informação de qualidade para todos que assim desejarem, independente de procurar o Sistema Único de Saúde - SUS, a equipe gestora do PRÓ-MAMÁ  juntamente com a comunidade acadêmica do Instituto Federal do Rio Grande do Sul – IFRS - Campus Osório desenvolveu este aplicativo municipal voltado à amamentação e desenvolvimento infantil. O aplicativo foi legitimado através do Acordo de Cooperação, que entre si celebram o Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - IFRS Campus Osório e a Prefeitura Municipal de Osório para que o desenvolvimento do aplicativo fosse possível. A partir de então, em abril de 2017 iniciaram-se as reuniões nas quais a Equipe Multiprofissional do PRÓ-MAMÁ, os professores e alunos do Instituto Federal do Rio Grande do Sul – IFRS trabalharam arduamente no desenvolvimento deste aplicativo. Neste período contamos também com apoio técnico-administrativo do Alan Alves Correa, a assessoria do DTI – Departamento de Tecnologia da Informação, a parceria e colaboração da Coordenação da Atenção Básica, do Secretário da Saúde Emerson Arli Magni da Silva. Após aproximadamente 18 meses desde o surgimento da ideia até o lançamento deste aplicativo concretiza-se um sonho, integrar a comunidade acadêmica e os serviços de saúde em Osório culminando com um aplicativo de excelente qualidade voltado para a comunidade osoriense, mas acessível a todos que assim desejarem através das plataformas IOS e Android."
+                        TextColor="#262626"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        LineBreakMode="WordWrap"/>
+                </StackLayout>
+
+                <StackLayout
+                    Spacing="10">
+                    <Label 
+                        Text="Conheça esta equipe e suas atribuições dentro deste projeto:"
+                        TextColor="#262626"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start"
+                        LineBreakMode="WordWrap"/>
+
+                    <StackLayout>
+                        <Label
+                            Text="Ana Paula de Carvalho Sudbrack"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Fonoaudióloga da SMS Osório/RS, Consultora em Amamentação, integrante do Programa Municipal de Aleitamento Materno - PRÓ-MAMÁ Osório.\nResponsável pelo planejamento e elaboração do material científico do aplicativo."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Bruno Chagas Alves Fernandes"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Professor, Coordenador do Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas do Instituto Federal do Rio Grande do Sul IFRS - Campus Osório/RS.\nResponsável pelo planejamento, elaboração, acompanhamento do projeto do aplicativo e supervisão acadêmica dos alunos. "
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Celina Rech Maggi"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Fonoaudióloga da SMS Osório/RS, Consultora em Amamentação, integrante do Programa Municipal de Aleitamento Materno - PRÓ-MAMÁ Osório.&#x0a;Responsável pelo planejamento e elaboração do material científico do aplicativo."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Diana Cabral Calvacanti"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Professora, IFRS,...&#x0a;Responsável pelo planejamento, elaboração, acompanhamento do projeto do aplicativo e supervisão acadêmica dos alunos."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Gislaine Teixeira Ferreira"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Nutricionista da SMS Osório/RS, especialista em Saúde da Família, integrante do Programa Municipal de Aleitamento Materno - PRÓ-MAMÁ Osório.&#x0a;Responsável pelo planejamento e elaboração do material científico do aplicativo."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="José Paulo Oliveira Filho"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Aluno do curso de Análise e Desenvolvimento de Sistemas do Instituto Federal do Rio Grande do Sul do IFRS - Campus Osório/RS.&#x0a;Responsável pelo desenvolvimento do aplicativo para Android e iOS."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Lucas Jardim da Silva"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Aluno do curso de Análise e Desenvolvimento de Sistemas do Instituto Federal do Rio Grande do Sul do IFRS - Campus Osório/RS.&#x0a;Responsável pelo backend, o site do aplicativo onde as informações são registradas."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                            Text="Viviane Iara Heckler"
+                            TextColor="Black"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Psicóloga da SMS Osório/RS, Especialista em Saúde Pública/ESP/RS, Mestre em Psicologia Clínica - UNISINOS, integrante do Programa Municipal de Aleitamento Materno - PRÓ-MAMÁ Osório.&#x0a;Responsável pelo planejamento e elaboração do material científico do aplicativo."
+                            TextColor="#262626"
+                            HorizontalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            LineBreakMode="WordWrap"/>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

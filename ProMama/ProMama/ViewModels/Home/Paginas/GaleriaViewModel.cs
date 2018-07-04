@@ -1,13 +1,12 @@
-﻿using Plugin.Connectivity;
-using Plugin.Media;
+﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -27,8 +26,6 @@ namespace ProMama.ViewModels.Home.Paginas
                 Notify("Fotos");
             }
         }
-
-        private List<string> IdadesExtensoLista { get; set; }
 
         public ICommand NavigationCommand { get; set; }
         public ICommand FotoCommand { get; set; }
@@ -51,34 +48,6 @@ namespace ProMama.ViewModels.Home.Paginas
 
             Fotos = new ObservableCollection<Foto>();
 
-            IdadesExtensoLista = new List<string>() {
-                "recém-nascido",
-                "1 mês",
-                "2 meses",
-                "3 meses",
-                "4 meses",
-                "5 meses",
-                "6 meses",
-                "7 meses",
-                "8 meses",
-                "9 meses",
-                "10 meses",
-                "11 meses",
-                "1 ano",
-                "1 ano e 1 mês",
-                "1 ano e 2 meses",
-                "1 ano e 3 meses",
-                "1 ano e 4 meses",
-                "1 ano e 5 meses",
-                "1 ano e 6 meses",
-                "1 ano e 7 meses",
-                "1 ano e 8 meses",
-                "1 ano e 9 meses",
-                "1 ano e 10 meses",
-                "1 ano e 11 meses",
-                "2 anos"
-            };
-
             var FotosBanco = App.FotoDatabase.GetAllByChildId(app._crianca.crianca_id);
             for (int i = 0; i < meses; i++)
             {
@@ -93,7 +62,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     }
                 }
                 if (added == false)
-                    Fotos.Add(new Foto(i, IdadesExtensoLista[i], null, app._crianca.crianca_id));
+                    Fotos.Add(new Foto(i, Ferramentas.IdadesExtensoFotos[i], null, app._crianca.crianca_id));
             }
         }
 
@@ -156,18 +125,6 @@ namespace ProMama.ViewModels.Home.Paginas
 
                         App.FotoDatabase.SaveIncrementing(foto);
                         app._master.SetFoto();
-
-                        // TESTE
-                        Task.Run(async () =>
-                        {
-                            if (CrossConnectivity.Current.IsConnected)
-                            {
-                                var result = await RestService.UploadImage(foto, app._usuario.api_token);
-                                if (result.success)
-                                    Debug.WriteLine("Deu certo!");
-                            }
-                        });
-                        // TESTE
                         
                         await NavigationService.NavigateFoto(Navigation, foto);
                     }

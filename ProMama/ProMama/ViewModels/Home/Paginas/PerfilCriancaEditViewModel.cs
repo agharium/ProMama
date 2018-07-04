@@ -1,4 +1,5 @@
 ﻿using Plugin.Connectivity;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -136,8 +137,12 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Salvar()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            if (!Ferramentas.ValidarNomeRegex(PrimeiroNome))
             {
+                await MessageService.AlertDialog("O nome da criança só pode conter letras.");
+            } else if (CrossConnectivity.Current.IsConnected)
+            {
+
                 Crianca c = new Crianca();
 
                 c.crianca_id = app._crianca.crianca_id;

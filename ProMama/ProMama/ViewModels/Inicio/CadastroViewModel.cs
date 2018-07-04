@@ -42,7 +42,6 @@ namespace ProMama.ViewModels.Inicio
         private readonly IRestService RestService;
 
         private bool CadastroClicado = false;
-        private string RegexEmailPattern { get; set; }
 
         public CadastroViewModel()
         {
@@ -56,11 +55,6 @@ namespace ProMama.ViewModels.Inicio
             {
                 BairrosRead();
             }
-
-            // http://www.rhyous.com/2010/06/15/csharp-email-regular-expression
-            RegexEmailPattern = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
-                              + "@"
-                              + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z";
         }
 
         private async void Cadastro()
@@ -91,7 +85,7 @@ namespace ProMama.ViewModels.Inicio
                         await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
                         CadastroClicado = false;
                     }
-                    else if (!Regex.IsMatch(Email, RegexEmailPattern))
+                    else if (!Ferramentas.VerificarEmailRegex(Email))
                     {
                         await MessageService.AlertDialog("E-mail inválido.");
                         CadastroClicado = false;
@@ -105,14 +99,14 @@ namespace ProMama.ViewModels.Inicio
                         {
                             await MessageService.AlertDialog(result.message);
                             CadastroClicado = false;
-                        }
-                        else
+                        } else
                         {
                             using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
                             {
                                 u.id = result.id;
                                 u.api_token = result.message;
                                 u.posto_saude = -1;
+                                u.criancas = new List<Crianca>();
 
                                 app._usuario = u;
                                 App.UsuarioDatabase.Save(app._usuario);

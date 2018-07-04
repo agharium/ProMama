@@ -34,8 +34,18 @@ namespace ProMama.ViewModels.Services
 
         Task<List<Notificacao>> NotificacoesRead(string token);
 
-        Task<JsonMessage> UploadImage(Foto foto, string token);
+        Task<JsonMessage> FotoUpload(Foto foto, string token);
+
+        Task<List<Foto>> FotoRead(string token);
 
         Task<List<DuvidaFrequente>> DuvidasFrequentesRead(string token);
+
+        Task<JsonMessage> AcompanhamentoUpload(Acompanhamento a, string token);
+
+        Task<List<Acompanhamento>> AcompanhamentoRead(string token);
+
+        Task<JsonMessage> MarcoUpload(Marco m, string token);
+
+        Task<List<Marco>> MarcoRead(string token);
     }
 }

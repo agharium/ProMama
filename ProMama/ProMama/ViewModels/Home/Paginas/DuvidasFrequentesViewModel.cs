@@ -52,7 +52,7 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             DuvidasFrequentes = string.IsNullOrEmpty(termo) ?
                 new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux) :
-                new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux.Where(df => Ferramentas.removerAcentos(df.titulo.ToLower()).Contains(Ferramentas.removerAcentos(termo.ToLower()))));
+                new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux.Where(df => Ferramentas.RemoverAcentos(df.titulo.ToLower()).Contains(Ferramentas.RemoverAcentos(termo.ToLower()))));
         }
 
         private async void AbrirDuvida(DuvidaFrequente duvidaFrequente)

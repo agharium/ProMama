@@ -5,6 +5,7 @@ using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -78,10 +79,12 @@ namespace ProMama.ViewModels.Inicio
                                             App.UsuarioDatabase.Save(app._usuario);
 
                                             await Ferramentas.SincronizarBanco();
+                                            await Ferramentas.DownloadInformacoesUser();
                                         }
 
                                         if (app._usuario.criancas.Count == 0)
                                         {
+                                            app._usuario.criancas = new List<Crianca>();
                                             NavigationService.NavigateAddCrianca();
                                         }
                                         else

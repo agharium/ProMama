@@ -40,7 +40,21 @@ namespace ProMama.Database.Controllers
 
         public List<Bairro> GetAll()
         {
-            return BairroCollection.All.OrderBy(obj => obj.bairro_nome).ToList();
+            var bairros = BairroCollection.All.OrderBy(obj => obj.bairro_nome).ToList();
+
+            if (bairros.Count() > 0)
+            {
+                var outroIndex = bairros.FindIndex(obj => obj.bairro_nome.Equals("Não moro em Osório"));
+                if (outroIndex != -1)
+                {
+                    var outroObj = bairros[outroIndex];
+
+                    bairros.RemoveAt(outroIndex);
+                    bairros.Insert(bairros.Count(), outroObj);
+                }
+            }
+
+            return bairros;
         }
 
         public void Delete(int id)

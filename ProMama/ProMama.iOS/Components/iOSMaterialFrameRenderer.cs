@@ -4,7 +4,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(Frame), typeof(MaterialFrameRenderer))]
+[assembly: ExportRenderer(typeof(Frame), typeof(iOSMaterialFrameRenderer))]
 namespace ProMama.iOS.Components
 {
     /// <summary>
@@ -12,7 +12,7 @@ namespace ProMama.iOS.Components
     /// https://alexdunn.org/2017/05/01/xamarin-tips-making-your-ios-frame-shadows-more-material/
     /// </summary>
 
-    public class MaterialFrameRenderer : FrameRenderer
+    public class iOSMaterialFrameRenderer : FrameRenderer
     {
         public override void Draw(CGRect rect)
         {

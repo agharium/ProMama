@@ -2,11 +2,12 @@
 {
     public class Posto
     {
-        public int posto_id { get; set; }
-        public string posto_nome { get; set; }
-        public string posto_endereco { get; set; }
-        public string posto_telefone { get; set; }
-        public int posto_bairro { get; set; }
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string endereco { get; set; }
+        public string telefone { get; set; }
+        public string lat_long { get; set; }
+        public string image_path { get; set; }
 
         public Posto() {}
     }

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Home.Paginas.RedesSociaisView">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="20"
+                Spacing="20">
+                <Label 
+                    Text="Acesse as nossas redes sociais!"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    FontSize="Large"
+                    TextColor="Black"/>
+                <StackLayout
+                    Padding="10"
+                    Spacing="10">
+                    <Image 
+                        Source="facebook_round.png"
+                        Aspect="AspectFit">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFacebookTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label 
+                        Text="Nossa página no Facebook"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Padding="10"
+                    Spacing="10">
+                    <Image 
+                        Source="youtube_round.png"
+                        Aspect="AspectFit">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnYoutubeTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label 
+                        Text="Nosso canal no YouTube"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

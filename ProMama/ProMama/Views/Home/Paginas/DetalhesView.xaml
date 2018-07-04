@@ -45,7 +45,8 @@
                             VerticalOptions="Start"
                             VerticalTextAlignment="Start"
                             Text="{Binding Texto}"
-                            TextColor="#262626"/>
+                            TextColor="#262626"
+                            LineBreakMode="WordWrap"/>
 
                         <StackLayout IsVisible="{Binding LinksVisivel}">
                             <Label

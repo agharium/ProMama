@@ -3,5 +3,7 @@
     public interface IFileService
     {
         byte[] ReadAllBytes(string path);
+
+        string DownloadFile(string url, string api_token);
     }
 }

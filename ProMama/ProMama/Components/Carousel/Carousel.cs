@@ -72,7 +72,7 @@ namespace ProMama.Components.Carousel
                 page1.Children.Add(lab2);
                 page1.Children.Add(img);
                 // And position the content
-                AbsoluteLayout.SetLayoutBounds(lab, new Rectangle(0, 0, 1, 0.2));
+                AbsoluteLayout.SetLayoutBounds(lab, new Rectangle(0, 0, 1, 0.15));
                 AbsoluteLayout.SetLayoutFlags(lab, AbsoluteLayoutFlags.All);
                 AbsoluteLayout.SetLayoutBounds(lab2, new Rectangle(0, 0.1, 1, 0.2));
                 AbsoluteLayout.SetLayoutFlags(lab2, AbsoluteLayoutFlags.All);

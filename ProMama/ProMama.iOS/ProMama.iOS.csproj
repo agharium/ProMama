@@ -91,7 +91,7 @@
   <ItemGroup>
     <Compile Include="Components\iOSCheckboxRenderer.cs" />
     <Compile Include="Components\iOSLongPressedEffect.cs" />
-    <Compile Include="Components\MaterialFrameRenderer.cs" />
+    <Compile Include="Components\iOSMaterialFrameRenderer.cs" />
     <Compile Include="Services\MarcelloDB_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -103,7 +103,6 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Services\Notifications_iOS.cs" />
-    <Compile Include="Services\UserNotificationCenterDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
@@ -395,6 +394,15 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\facebook_round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\youtube_round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marco1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

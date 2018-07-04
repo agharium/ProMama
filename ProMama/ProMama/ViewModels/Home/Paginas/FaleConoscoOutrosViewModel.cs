@@ -65,7 +65,7 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             Conversas = string.IsNullOrEmpty(termo) ? 
                 new ObservableCollection<Conversa>(ConversasAux) : 
-                new ObservableCollection<Conversa>(ConversasAux.Where(c => Ferramentas.removerAcentos(c.pergunta.ToLower()).Contains(Ferramentas.removerAcentos(termo.ToLower()))));
+                new ObservableCollection<Conversa>(ConversasAux.Where(c => Ferramentas.RemoverAcentos(c.pergunta.ToLower()).Contains(Ferramentas.RemoverAcentos(termo.ToLower()))));
             AvisoListaVazia = Conversas.Count == 0 ? true : false;
         }
 

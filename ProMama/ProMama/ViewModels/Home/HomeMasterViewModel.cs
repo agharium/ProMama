@@ -83,7 +83,7 @@ namespace ProMama.ViewModels.Home
             SetFoto();
 
             Type FaleConoscoType = null;
-            if (App.BairroDatabase.Find(app._usuario.bairro).bairro_nome.Equals("Outro"))
+            if (App.BairroDatabase.Find(app._usuario.bairro).bairro_nome.Equals("Não moro em Osório"))
                 FaleConoscoType = typeof(FaleConoscoOutrosView);
             else
                 FaleConoscoType = typeof(FaleConoscoView);
@@ -99,9 +99,10 @@ namespace ProMama.ViewModels.Home
                     new HomeMenuItem(6, "Fale Conosco", "fa-comments", FaleConoscoType),
                     new HomeMenuItem(7, "Dúvidas Frequentes", "fa-question-circle", typeof(DuvidasFrequentesView)),
                     new HomeMenuItem(8, "Postos de Saúde", "fa-map", typeof(PostosSaudeView)),
-                    new HomeMenuItem(9, "Redes Sociais", "fa-globe", typeof(HomeDetail)),
-                    new HomeMenuItem(10, "Selecionar Criança", "fa-exchange", typeof(SelecionarCriancaView)),
-                    new HomeMenuItem(11, "Sair", "fa-sign-out", typeof(LogoutView))
+                    new HomeMenuItem(9, "Selecionar Criança", "fa-exchange", typeof(SelecionarCriancaView)),
+                    new HomeMenuItem(10, "Redes Sociais", "fa-globe", typeof(RedesSociaisView)),
+                    new HomeMenuItem(11, "Sobre", "fa-info-circle", typeof(SobreView)),
+                    new HomeMenuItem(12, "Sair", "fa-sign-out", typeof(LogoutView))
                 }
             );
         }

@@ -163,7 +163,7 @@
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="CenterAndExpand">
                                                 <Label 
-                                                    Text="{Binding idade}"
+                                                    Text="{Binding dataPorExtenso}"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"/>
                                             </StackLayout>

@@ -300,7 +300,26 @@ namespace ProMama.Views.Services
             }
         }
 
-        public async Task<JsonMessage> UploadImage(Foto foto, string token)
+        public async Task<List<DuvidaFrequente>> DuvidasFrequentesRead(string token)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync(ApiUrl + "/duvidas-frequentes?api_token=" + token);
+                var obj = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine("API: LEITURA DE TODAS AS DÚVIDAS FREQUENTES");
+                Debug.WriteLine(obj.ToString());
+
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<DuvidaFrequente>() : JsonConvert.DeserializeObject<List<DuvidaFrequente>>(obj, settings);
+            }
+        }
+
+        public async Task<JsonMessage> FotoUpload(Foto foto, string token)
         {
             IFileService File = DependencyService.Get<IFileService>();
             try
@@ -330,22 +349,82 @@ namespace ProMama.Views.Services
             }
         }
 
-        public async Task<List<DuvidaFrequente>> DuvidasFrequentesRead(string token)
+        public async Task<List<Foto>> FotoRead(string token)
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(ApiUrl + "/duvidas-frequentes?api_token=" + token);
+                var result = await client.GetAsync(ApiUrl + "/fotos?api_token=" + token);
                 var obj = await result.Content.ReadAsStringAsync();
-                Debug.WriteLine("API: LEITURA DE TODAS AS DÚVIDAS FREQUENTES");
+                Debug.WriteLine("API: LEITURA DE FOTOS");
                 Debug.WriteLine(obj.ToString());
 
-                var settings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                };
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Foto>() : JsonConvert.DeserializeObject<List<Foto>>(obj);
+            }
+        }
 
-                return string.IsNullOrEmpty(obj.ToString()) ? new List<DuvidaFrequente>() : JsonConvert.DeserializeObject<List<DuvidaFrequente>>(obj, settings);
+        public async Task<JsonMessage> AcompanhamentoUpload(Acompanhamento acompanhamento, string token)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(acompanhamento), Encoding.UTF8, "application/json");
+                    var result = await client.PostAsync(ApiUrl + "/acompanhamentos?api_token=" + token, content);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: UPLOAD DE ACOMPANHAMENTO");
+                    Debug.WriteLine(obj.ToString());
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (JsonReaderException e)
+            {
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
+
+        public async Task<List<Acompanhamento>> AcompanhamentoRead(string token)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync(ApiUrl + "/acompanhamentos?api_token=" + token);
+                var obj = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine("API: LEITURA DE ACOMPANHAMENTOS");
+                Debug.WriteLine(obj.ToString());
+
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Acompanhamento>() : JsonConvert.DeserializeObject<List<Acompanhamento>>(obj);
+            }
+        }
+
+        public async Task<JsonMessage> MarcoUpload(Marco marco, string token)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(marco), Encoding.UTF8, "application/json");
+                    var result = await client.PostAsync(ApiUrl + "/marcos?api_token=" + token, content);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: UPLOAD DE MARCO");
+                    Debug.WriteLine(obj.ToString());
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (JsonReaderException e)
+            {
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
+
+        public async Task<List<Marco>> MarcoRead(string token)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync(ApiUrl + "/marcos?api_token=" + token);
+                var obj = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine("API: LEITURA DE MARCOS");
+                Debug.WriteLine(obj.ToString());
+
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Marco>() : JsonConvert.DeserializeObject<List<Marco>>(obj);
             }
         }
     }

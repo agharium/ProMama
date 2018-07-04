@@ -57,7 +57,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 list[obj.marco - 1].crianca = obj.crianca;
                 list[obj.marco - 1].data = obj.data;
                 list[obj.marco - 1].extra = obj.extra;
-                list[obj.marco - 1].idade = obj.idade;
+                list[obj.marco - 1].dataPorExtenso = obj.dataPorExtenso;
             }
 
             Marcos = new ObservableCollection<Marco>(list);

@@ -236,9 +236,9 @@ namespace ProMama.ViewModels.Home.Paginas
 
             var auxData = Marco.data.ToString("dd/MM/yyyy");
             var auxNome = app._crianca.crianca_primeiro_nome;
-            var fraseIdade = Marco.idade.Equals("recém-nascido") ?
+            var fraseIdade = Marco.dataPorExtenso.Equals("recém-nascido") ?
                 (app._crianca.crianca_sexo == 0 ? "era recém-nascido" : "era recém-nascida") : 
-                "tinha " + Marco.idade + " de vida";
+                "tinha " + Marco.dataPorExtenso + " de vida";
             if (Alcancado)
             {
                 switch (Marco.marco)
@@ -359,7 +359,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 Marco.data = DataSelecionada;
                 Marco.extra = ExtraInput;
                 Marco.Alcancado = true;
-                Marco.idade = Ferramentas.DaysToFullString((DataSelecionada - app._crianca.crianca_dataNascimento).Days, 2);
+                Marco.dataPorExtenso = Ferramentas.DaysToFullString((DataSelecionada - app._crianca.crianca_dataNascimento).Days, 2);
                 App.MarcoDatabase.SaveIncrementing(Marco);
                 await Navigation.PopAsync();
             }

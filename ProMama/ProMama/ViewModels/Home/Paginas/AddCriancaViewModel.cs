@@ -1,4 +1,5 @@
-﻿using ProMama.Models;
+﻿using ProMama.Components;
+using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.Generic;
@@ -113,10 +114,12 @@ namespace ProMama.ViewModels.Home.Paginas
             if (PrimeiroNome.Equals(string.Empty) || SexoSelecionado == -1)
             {
                 await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
-            }
-            else
+            } else
             {
-                if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
+                if (!Ferramentas.ValidarNomeRegex(PrimeiroNome))
+                {
+                    await MessageService.AlertDialog("O nome da criança só pode conter letras.");
+                } else if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
                     var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
                     c.crianca_tipo_parto = -1;
                     c.crianca_idade_gestacional = -1;
@@ -126,12 +129,14 @@ namespace ProMama.ViewModels.Home.Paginas
                     {
                         c.crianca_id = result.id;
                         App.CriancaDatabase.Save(c);
+
                         if (app._usuario.criancas == null)
                             app._usuario.criancas = new List<Crianca>();
+
                         app._usuario.criancas.Add(c);
                         App.UsuarioDatabase.Save(app._usuario);
-                        app._crianca = c;
 
+                        app._crianca = c;
                         NavigationService.NavigateHome();
                     }
                     else

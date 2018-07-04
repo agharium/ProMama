@@ -6,10 +6,11 @@ namespace ProMama.Models
     public class Foto
     {
         public int id { get; set; }
+        public int crianca { get; set; }
         public int mes { get; set; }
+        public string url { get; set; }
         public string titulo { get; set; }
         public string caminho { get; set; }
-        public int crianca { get; set; }
         public bool uploaded { get; set; }
 
         [JsonIgnore]

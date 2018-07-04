@@ -10,9 +10,9 @@ namespace ProMama.Models
         public int crianca { get; set; }
         public int marco { get; set; }
         public DateTime data { get; set; }
+        public string dataPorExtenso { get; set; }
         public string extra { get; set; }
         public bool uploaded { get; set; }
-        public string idade { get; set; }
 
         [JsonIgnore]
         public string Titulo { get; set; }
@@ -37,7 +37,7 @@ namespace ProMama.Models
             TituloBackgroundColor = _tituloBackgroundColor;
 
             Icone = _alcancado ? "fa-check-circle" : "fa-circle";
-            idade = "";
+            dataPorExtenso = "";
 
             uploaded = false;
         }

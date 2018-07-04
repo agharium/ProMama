@@ -1,4 +1,5 @@
 ﻿using Plugin.Connectivity;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -149,7 +150,7 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 foreach (var p in Postos)
                 {
-                    if (p.posto_id == app._usuario.posto_saude)
+                    if (p.id == app._usuario.posto_saude)
                     {
                         PostoSelecionado = Postos.IndexOf(p);
                         break;
@@ -165,12 +166,16 @@ namespace ProMama.ViewModels.Home.Paginas
         private async void Salvar()
         {
             Debug.WriteLine("Bairro: " + Bairros[BairroSelecionado].bairro_id);
-            Debug.WriteLine("Posto: " + Postos[PostoSelecionado].posto_id);
+            Debug.WriteLine("Posto: " + Postos[PostoSelecionado].id);
             if (CrossConnectivity.Current.IsConnected)
             {
                 if (DataSelecionada.Year == DateTime.Now.Year)
                 {
                     await MessageService.AlertDialog("Selecione uma data válida.");
+                } else if (!Ferramentas.ValidarNomeRegex(Nome))
+                {
+                    await MessageService.AlertDialog("O nome da criança só pode conter letras.");
+
                 } else
                 {
                     Usuario u = new Usuario();
@@ -186,7 +191,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     u.bairro = Bairros[BairroSelecionado].bairro_id;
                     if (PostoSelecionado != -1)
                     {
-                        u.posto_saude = Postos[PostoSelecionado].posto_id;
+                        u.posto_saude = Postos[PostoSelecionado].id;
                     } else
                     {
                         u.posto_saude = -1;

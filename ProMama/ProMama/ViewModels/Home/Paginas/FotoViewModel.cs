@@ -104,18 +104,6 @@ namespace ProMama.ViewModels.Home.Paginas
                     App.FotoDatabase.Save(Foto);
                     app._master.SetFoto();
 
-                    // TESTE
-                    Task.Run(async () =>
-                    {
-                        if (CrossConnectivity.Current.IsConnected)
-                        {
-                            var result = await RestService.UploadImage(Foto, app._usuario.api_token);
-                            if (result.success)
-                                Debug.WriteLine("Deu certo!");
-                        }
-                    });
-                    // TESTE
-
                     Caminho = Foto.source;
                 }
             }

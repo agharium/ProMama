@@ -29,20 +29,20 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Label
-                                        Text="{Binding posto_nome}"
+                                        Text="{Binding nome}"
                                         TextColor="#212121"
                                         FontSize="20"
                                         Margin="10, 10, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="0"/>
                                     <Label
-                                        Text="{Binding posto_endereco}"
+                                        Text="{Binding endereco}"
                                         TextColor="#757575"
                                         Margin="10, 5, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="1"/>
                                     <Label
-                                        Text="{Binding posto_telefone}"
+                                        Text="{Binding telefone}"
                                         TextColor="#757575"
                                         Margin="10, 5, 10 , 10"
                                         Grid.Column="0"

@@ -2,8 +2,9 @@
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,6 +14,35 @@ namespace ProMama.Components
     {
         private static Aplicativo app = Aplicativo.Instance;
         private static readonly IRestService RestService = DependencyService.Get<IRestService>();
+        private static readonly IFileService FileService = DependencyService.Get<IFileService>();
+
+        public static readonly List<string> IdadesExtensoFotos = new List<string>() {
+                "recém-nascido",
+                "1 mês",
+                "2 meses",
+                "3 meses",
+                "4 meses",
+                "5 meses",
+                "6 meses",
+                "7 meses",
+                "8 meses",
+                "9 meses",
+                "10 meses",
+                "11 meses",
+                "1 ano",
+                "1 ano e 1 mês",
+                "1 ano e 2 meses",
+                "1 ano e 3 meses",
+                "1 ano e 4 meses",
+                "1 ano e 5 meses",
+                "1 ano e 6 meses",
+                "1 ano e 7 meses",
+                "1 ano e 8 meses",
+                "1 ano e 9 meses",
+                "1 ano e 10 meses",
+                "1 ano e 11 meses",
+                "2 anos"
+            };
 
         public static async Task SincronizarBanco()
         {
@@ -119,6 +149,110 @@ namespace ProMama.Components
 
             app._sync = syncAux;
             App.SincronizacaoDatabase.Save(app._sync);
+        }
+
+        public static async Task UploadInformacoesUser()
+        {
+            var acompanhamentos = App.AcompanhamentoDatabase.GetAll();
+            var fotos = App.FotoDatabase.GetAll();
+            var marcos = App.MarcoDatabase.GetAll();
+
+            foreach (var obj in acompanhamentos)
+            {
+                if (!obj.uploaded)
+                {
+                    var result = await RestService.AcompanhamentoUpload(obj, app._usuario.api_token);
+                    if (result.success)
+                    {
+                        var aux = App.AcompanhamentoDatabase.Find(result.id);
+
+                        if (aux != obj && aux != null)
+                        {
+                            App.AcompanhamentoDatabase.SaveIncrementing(aux);
+                        }
+
+                        App.AcompanhamentoDatabase.Delete(obj.id);
+
+                        obj.uploaded = true;
+                        obj.id = result.id;
+                        App.AcompanhamentoDatabase.Save(obj);
+                    }
+                }
+            }
+
+            foreach (var obj in fotos)
+            {
+                if (!obj.uploaded)
+                {
+                    var result = await RestService.FotoUpload(obj, app._usuario.api_token);
+                    if (result.success)
+                    {
+                        var aux = App.FotoDatabase.Find(result.id);
+
+                        if (aux != obj && aux != null)
+                        {
+                            App.FotoDatabase.SaveIncrementing(aux);
+                        }
+
+                        App.FotoDatabase.Delete(obj.id);
+
+                        obj.uploaded = true;
+                        obj.id = result.id;
+                        App.FotoDatabase.Save(obj);
+                    }
+                }
+            }
+
+            foreach (var obj in marcos)
+            {
+                if (!obj.uploaded)
+                {
+                    var result = await RestService.MarcoUpload(obj, app._usuario.api_token);
+                    if (result.success)
+                    {
+                        var aux = App.MarcoDatabase.Find(result.id);
+
+                        if (aux != obj && aux != null)
+                        {
+                            App.MarcoDatabase.SaveIncrementing(aux);
+                        }
+
+                        App.MarcoDatabase.Delete(obj.id);
+
+                        obj.uploaded = true;
+                        obj.id = result.id;
+                        App.MarcoDatabase.Save(obj);
+                    }
+                }
+            }
+        }
+
+        public static async Task DownloadInformacoesUser()
+        {
+            var acompanhamentos = await RestService.AcompanhamentoRead(app._usuario.api_token);
+            var fotos = await RestService.FotoRead(app._usuario.api_token);
+            var marcos = await RestService.MarcoRead(app._usuario.api_token);
+
+            foreach (var obj in acompanhamentos)
+            {
+                obj.uploaded = true;
+                App.AcompanhamentoDatabase.Save(obj);
+            }
+
+            foreach (var obj in fotos)
+            {
+                obj.caminho = FileService.DownloadFile(obj.url, app._usuario.api_token);
+                obj.source = obj.caminho;
+                obj.uploaded = true;
+                obj.titulo = IdadesExtensoFotos[obj.mes];
+                App.FotoDatabase.Save(obj);
+            }
+
+            foreach (var obj in marcos)
+            {
+                obj.uploaded = true;
+                App.MarcoDatabase.Save(obj);
+            }
         }
 
         private static string CriarResumo(string texto)
@@ -292,8 +426,11 @@ namespace ProMama.Components
                 totalDias -= numeroMagico;
             }
 
-            if (Anos == 0 && Meses == 0 &&
-                Semanas == 0 && Dias == 0)
+            if ((Anos == 0 && Meses == 0 &&
+                Semanas == 0 && Dias == 0) ||
+                (tipo == 1 &&
+                Anos == 0 && Meses == 0 &&
+                Semanas == 0 && Dias < 7))
                 return "recém-nascido";
 
             string strReturn = "";
@@ -360,7 +497,7 @@ namespace ProMama.Components
         }
 
         // https://pt.stackoverflow.com/questions/2/como-fa%C3%A7o-para-remover-acentos-em-uma-string
-        public static string removerAcentos(string texto)
+        public static string RemoverAcentos(string texto)
         {
             string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
             string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
@@ -370,6 +507,23 @@ namespace ProMama.Components
                 texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
             }
             return texto;
+        }
+
+        // https://pt.stackoverflow.com/a/15741
+        public static bool ValidarNomeRegex(string nome)
+        {
+            var NomePattern = "^[a-zA-Z\u00C0-\u00FF ]+$";
+            return Regex.IsMatch(nome, NomePattern);
+        }
+
+        // http://www.rhyous.com/2010/06/15/csharp-email-regular-expression
+        public static bool VerificarEmailRegex(string email)
+        {
+            var RegexEmailPattern = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                                  + "@"
+                                  + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z";
+
+            return Regex.IsMatch(email, RegexEmailPattern);
         }
     }
 }

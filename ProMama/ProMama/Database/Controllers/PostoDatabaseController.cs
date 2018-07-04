@@ -17,7 +17,7 @@ namespace ProMama.Database.Controllers
         public PostoDatabaseController()
         {
             PostoFile = session["postos.dat"];
-            PostoCollection = PostoFile.Collection<Posto, int>("postos", obj => obj.posto_id);
+            PostoCollection = PostoFile.Collection<Posto, int>("postos", obj => obj.id);
         }
 
         public void Save(Posto obj)
@@ -40,7 +40,21 @@ namespace ProMama.Database.Controllers
 
         public List<Posto> GetAll()
         {
-            return PostoCollection.All.OrderBy(obj => obj.posto_nome).ToList();
+            var postos = PostoCollection.All.OrderBy(obj => obj.nome).ToList();
+
+            if (postos.Count() > 0)
+            {
+                var outroIndex = postos.FindIndex(obj => obj.nome.Equals("Outro"));
+                if (outroIndex != -1)
+                {
+                    var outroObj = postos[outroIndex];
+
+                    postos.RemoveAt(outroIndex);
+                    postos.Insert(postos.Count(), outroObj);
+                }
+            }
+
+            return postos;
         }
 
         public void Delete(int id)
@@ -52,7 +66,7 @@ namespace ProMama.Database.Controllers
         {
             foreach (var obj in GetAll())
             {
-                Delete(obj.posto_id);
+                Delete(obj.id);
             }
         }
 

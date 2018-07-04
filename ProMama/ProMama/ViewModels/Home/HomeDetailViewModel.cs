@@ -120,12 +120,6 @@ namespace ProMama.ViewModels.Home
         // Construtor
         public HomeDetailViewModel(INavigation _navigation)
         {
-            for (int i = 1; i <= 12; i++)
-            {
-                Debug.WriteLine(Ferramentas.DaysToFullString(i * 30, 2));
-            }
-            Debug.WriteLine(Ferramentas.DaysToFullString(365, 2));
-
             // Salva o login
             Config cfg = new Config(app._usuario, app._crianca);
             App.ConfigDatabase.Save(cfg);
@@ -173,9 +167,6 @@ namespace ProMama.ViewModels.Home
             // Criança
             Nome = app._crianca.crianca_primeiro_nome;
             IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso);
-            // bug-proof
-            /*if (SetaDireitaCor.Equals("#EEEEEE"))
-                IdadeAuxIndex--;*/
 
             // Idades picker
             IdadesPickerLista = new List<string>();
@@ -206,6 +197,7 @@ namespace ProMama.ViewModels.Home
                     if (CrossConnectivity.Current.IsConnected)
                     {
                         await Ferramentas.SincronizarBanco();
+                        await Ferramentas.UploadInformacoesUser();
                     }
 
                     app._onThread = false;
