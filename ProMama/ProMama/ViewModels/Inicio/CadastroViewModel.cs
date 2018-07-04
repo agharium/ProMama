@@ -5,7 +5,6 @@ using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -53,7 +52,14 @@ namespace ProMama.ViewModels.Inicio
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                BairrosRead();
+                var _bairros = App.BairroDatabase.GetAll();
+                if (_bairros.Count == 0)
+                {
+                    BairrosRead();
+                } else
+                {
+                    Bairros = _bairros;
+                }
             }
         }
 
@@ -126,7 +132,22 @@ namespace ProMama.ViewModels.Inicio
 
         private async void BairrosRead()
         {
-            Bairros = await RestService.BairrosRead();
+            var syncAux = await RestService.SincronizacaoRead(app._usuario.api_token);
+
+            if (app._sync == null)
+                app._sync = new Sincronizacao(1);
+
+            if (app._sync.bairro != syncAux.bairro)
+            {
+                Bairros = await RestService.BairrosRead();
+                App.BairroDatabase.WipeTable();
+                App.BairroDatabase.SaveList(Bairros);
+            }
+
+            app._sync.bairro = syncAux.bairro;
+            App.SincronizacaoDatabase.Save(app._sync);
+
+            
         }
     }
 }
