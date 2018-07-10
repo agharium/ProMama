@@ -102,31 +102,37 @@ namespace ProMama.ViewModels.Home.Paginas
                 Alimentacao5 || Alimentacao6 ||
                 Alimentacao7 || Alimentacao8))
             {
-                string alimentacoes = "";
-                if (Alimentacao1)
-                    alimentacoes += "leite materno, ";
-                if (Alimentacao2)
-                    alimentacoes += "fórmula infantil, ";
-                if (Alimentacao3)
-                    alimentacoes += "leite de vaca, ";
-                if (Alimentacao4)
-                    alimentacoes += "água, ";
-                if (Alimentacao5)
-                    alimentacoes += "chá, ";
-                if (Alimentacao6)
-                    alimentacoes += "suco, ";
-                if (Alimentacao7)
-                    alimentacoes += "frutas, ";
-                if (Alimentacao8)
-                    alimentacoes += "alimentação sólida, ";
-                                
-                alimentacoes = char.ToUpper(alimentacoes[0]) + alimentacoes.Substring(1, alimentacoes.Length - 3);
+                if (await MessageService.ConfirmationDialog("Você tem certeza que as informações estão corretas? Esta medição não poderá ser alterada ou excluída posteriormente.", "Sim", "Não"))
+                {
+                    string alimentacoes = "";
+                    if (Alimentacao1)
+                        alimentacoes += "leite materno, ";
+                    if (Alimentacao2)
+                        alimentacoes += "fórmula infantil, ";
+                    if (Alimentacao3)
+                        alimentacoes += "leite de vaca, ";
+                    if (Alimentacao4)
+                        alimentacoes += "água, ";
+                    if (Alimentacao5)
+                        alimentacoes += "chá, ";
+                    if (Alimentacao6)
+                        alimentacoes += "suco, ";
+                    if (Alimentacao7)
+                        alimentacoes += "frutas, ";
+                    if (Alimentacao8)
+                        alimentacoes += "alimentação sólida, ";
 
-                var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Peso + "g", Altura + "cm", alimentacoes);
-                App.AcompanhamentoDatabase.SaveIncrementing(acompanhamento);
+                    alimentacoes = char.ToUpper(alimentacoes[0]) + alimentacoes.Substring(1, alimentacoes.Length - 3);
 
-                LoadingDialog.Hide();
-                await Navigation.PopAsync();
+                    var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Peso + "g", Altura + "cm", alimentacoes);
+                    App.AcompanhamentoDatabase.SaveIncrementing(acompanhamento);
+
+                    LoadingDialog.Hide();
+                    await Navigation.PopAsync();
+                } else
+                {
+                    LoadingDialog.Hide();
+                }
             }
             else
             {

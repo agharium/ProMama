@@ -1,8 +1,6 @@
 ﻿using Acr.UserDialogs;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
-using ProMama.Views.Home;
-using System;
 using Xamarin.Forms;
 
 namespace ProMama.ViewModels.Home.Paginas
