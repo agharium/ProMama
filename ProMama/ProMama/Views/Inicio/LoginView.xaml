@@ -22,9 +22,9 @@
                     Style="{StaticResource MainButton}"
                     Text="Entrar"
                     Command="{Binding LoginCommand}"/>
-                <Button 
+                <!--<Button 
                     Style="{StaticResource FacebookButton}"
-                    Text="Entrar com o Facebook"/>
+                    Text="Entrar com o Facebook"/>-->
                 <Button 
                     Style="{StaticResource GrayButton}"
                     Text="Ainda não tem cadastro?"
