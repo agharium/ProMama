@@ -40,8 +40,6 @@ namespace ProMama.ViewModels.Inicio
         private readonly IMessageService MessageService;
         private readonly IRestService RestService;
 
-        private bool CadastroClicado = false;
-
         public CadastroViewModel()
         {
             CadastroCommand = new Command(Cadastro);
