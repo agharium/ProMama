@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Plugin.Connectivity;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -39,6 +40,20 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 _avisoListaVazia = value;
                 Notify("AvisoListaVazia");
+            }
+        }
+
+        private bool _loadingVisibility;
+        public bool LoadingVisibility
+        {
+            get
+            {
+                return _loadingVisibility;
+            }
+            set
+            {
+                _loadingVisibility = value;
+                Notify("LoadingVisibility");
             }
         }
 
@@ -100,7 +115,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     }
                     else
                     {
-                        Conversa c = new Conversa(result.id, ConversaTexto, "Aguardando resposta.");
+                        Conversa c = new Conversa(result.id, app._usuario.id, ConversaTexto, "Aguardando resposta.");
                         Conversas.Insert(0, c);
                         App.ConversaDatabase.Save(c);
                         ConversaTexto = string.Empty;
@@ -116,9 +131,32 @@ namespace ProMama.ViewModels.Home.Paginas
             }
         }
 
-        private void ConversasRead()
+        private async void ConversasRead()
         {
-            Conversas = new ObservableCollection<Conversa>(App.ConversaDatabase.GetConversasUser(app._usuario.id));
+            LoadingVisibility = true;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var conversas = new ObservableCollection<Conversa>(await RestService.ConversasUsuarioRead(app._usuario.api_token));
+                foreach (var obj in conversas)
+                {
+                    if (String.IsNullOrEmpty(obj.resposta))
+                    {
+                        obj.resposta = "Aguardando resposta.";
+                        obj.resumo = "Aguardando resposta.";
+                    }
+                    else
+                    {
+                        obj.resumo = Ferramentas.CriarResumo(obj.resposta);
+                    }
+                }
+                LoadingVisibility = false;
+                Conversas = new ObservableCollection<Conversa>(conversas);
+            } else
+            {
+                LoadingVisibility = false;
+                Conversas = new ObservableCollection<Conversa>(App.ConversaDatabase.GetConversasUser(app._usuario.id));
+            }
+
             AvisoListaVazia = Conversas.Count == 0 ? true : false;
         }
 

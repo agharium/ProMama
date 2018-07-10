@@ -1,4 +1,5 @@
-﻿using ProMama.Components;
+﻿using Plugin.Connectivity;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Collections.Generic;
@@ -24,6 +25,20 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 _avisoListaVazia = value;
                 Notify("AvisoListaVazia");
+            }
+        }
+
+        private bool _loadingVisibility;
+        public bool LoadingVisibility
+        {
+            get
+            {
+                return _loadingVisibility;
+            }
+            set
+            {
+                _loadingVisibility = value;
+                Notify("LoadingVisibility");
             }
         }
 
@@ -56,9 +71,30 @@ namespace ProMama.ViewModels.Home.Paginas
             BuscarCommand = new Command<string>(Buscar);
             AbrirConversaCommand = new Command<Conversa>(AbrirConversa);
 
-            Conversas = new ObservableCollection<Conversa>(App.ConversaDatabase.GetConversasTodos());
-            AvisoListaVazia = Conversas.Count == 0 ? true : false;
+            ConversasRead();
+        }
+
+        private async void ConversasRead()
+        {
+            LoadingVisibility = true;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var conversas = new ObservableCollection<Conversa>(await RestService.ConversasRead(app._usuario.api_token));
+                foreach (var obj in conversas)
+                {
+                     obj.resumo = Ferramentas.CriarResumo(obj.resposta);
+                }
+                LoadingVisibility = false;
+                Conversas = new ObservableCollection<Conversa>(conversas);
+            }
+            else
+            {
+                LoadingVisibility = false;
+                Conversas = new ObservableCollection<Conversa>(App.ConversaDatabase.GetConversasTodos());
+            }
+
             ConversasAux = new List<Conversa>(Conversas);
+            AvisoListaVazia = Conversas.Count == 0 ? true : false;
         }
 
         private void Buscar(string termo)

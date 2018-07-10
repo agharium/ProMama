@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -273,7 +272,7 @@ namespace ProMama.Components
             }
         }
 
-        private static string CriarResumo(string texto)
+        public static string CriarResumo(string texto)
         {
             var resumo = String.Join(" ", texto.Split().Take(20).ToArray());
             resumo.Remove(resumo.Length - 1, 1);

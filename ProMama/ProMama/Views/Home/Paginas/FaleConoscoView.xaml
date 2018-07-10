@@ -37,16 +37,24 @@
                                 Text="Enviar dúvida"
                                 Command="{Binding EnviarConversaCommand}"/>
                         </StackLayout>
-                        <StackLayout
-                            Margin="20"
+                        <StackLayout 
                             Padding="20"
                             IsVisible="{Binding AvisoListaVazia}">
                             <Label 
-                                Text="Você não tem dúvidas para mostrar."
-                                HorizontalOptions="CenterAndExpand"
+                                Text="Não há nenhuma dúvida para ser mostrada."
+                                HorizontalOptions="Center"
                                 IsVisible="{Binding AvisoListaVazia}"/>
                         </StackLayout>
+                        <StackLayout
+                            Padding="20"
+                            IsVisible="{Binding LoadingVisibility}">
+                            <ActivityIndicator
+                                HorizontalOptions="Center"
+                                IsVisible="{Binding LoadingVisibility}"
+                                IsRunning="{Binding LoadingVisibility}"/>
+                        </StackLayout>
                     </StackLayout>
+                    
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>

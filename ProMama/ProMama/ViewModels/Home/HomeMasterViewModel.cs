@@ -100,9 +100,9 @@ namespace ProMama.ViewModels.Home
                     new HomeMenuItem(6, "Fale Conosco", "fa-comments", FaleConoscoType),
                     new HomeMenuItem(7, "Dúvidas Frequentes", "fa-question-circle", typeof(DuvidasFrequentesView)),
                     new HomeMenuItem(8, "Postos de Saúde", "fa-map", typeof(PostosSaudeView)),
-                    new HomeMenuItem(9, "Selecionar Criança", "fa-exchange", typeof(SelecionarCriancaView)),
-                    new HomeMenuItem(10, "Redes Sociais", "fa-globe", typeof(RedesSociaisView)),
-                    new HomeMenuItem(11, "Sobre", "fa-info-circle", typeof(SobreView)),
+                    new HomeMenuItem(9, "Redes Sociais", "fa-globe", typeof(RedesSociaisView)),
+                    new HomeMenuItem(10, "Sobre", "fa-info-circle", typeof(SobreView)),
+                    new HomeMenuItem(11, "Selecionar Criança", "fa-exchange", typeof(SelecionarCriancaView)),
                     new HomeMenuItem(12, "Sair", "fa-sign-out", typeof(LogoutView))
                 }
             );

@@ -30,8 +30,16 @@
                             IsVisible="{Binding AvisoListaVazia}">
                             <Label 
                                 Text="Não há nenhuma dúvida para ser mostrada."
-                                HorizontalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
                                 IsVisible="{Binding AvisoListaVazia}"/>
+                        </StackLayout>
+                        <StackLayout
+                            Padding="20"
+                            IsVisible="{Binding LoadingVisibility}">
+                            <ActivityIndicator
+                                HorizontalOptions="Center"
+                                IsVisible="{Binding LoadingVisibility}"
+                                IsRunning="{Binding LoadingVisibility}"/>
                         </StackLayout>
                     </StackLayout>
                 </ListView.Header>

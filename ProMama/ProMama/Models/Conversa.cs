@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace ProMama.Models
+﻿namespace ProMama.Models
 {
     public class Conversa
     {
@@ -11,9 +9,10 @@ namespace ProMama.Models
         public int paraTodos { get; set; }
         public string resumo { get; set; }
 
-        public Conversa(int _id, string _pergunta, string _resposta)
+        public Conversa(int _id, int _user, string _pergunta, string _resposta)
         {
             id = _id;
+            user = _user;
             pergunta = _pergunta;
             resposta = _resposta;
             resumo = _resposta;
