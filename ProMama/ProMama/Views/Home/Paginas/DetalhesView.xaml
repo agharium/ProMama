@@ -39,14 +39,22 @@
                             </Frame>
                         </StackLayout>
 
-                        <Label
-                            HorizontalOptions="StartAndExpand"
-                            HorizontalTextAlignment="Start"
-                            VerticalOptions="Start"
-                            VerticalTextAlignment="Start"
-                            Text="{Binding Texto}"
-                            TextColor="#262626"
-                            LineBreakMode="WordWrap"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout
+                                x:Name="Texto"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Grid.Column="0"
+                                Grid.Row="0">
+                            </StackLayout>
+                        </Grid>
 
                         <StackLayout IsVisible="{Binding LinksVisivel}">
                             <Label

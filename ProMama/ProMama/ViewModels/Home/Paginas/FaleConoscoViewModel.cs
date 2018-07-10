@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -80,10 +81,13 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void EnviarConversa()
         {
+            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
+
             if (CrossConnectivity.Current.IsConnected)
             {
-                if (ConversaTexto.Equals(string.Empty))
+                if (string.IsNullOrEmpty(ConversaTexto))
                 {
+                    LoadingDialog.Hide();
                     await MessageService.AlertDialog("Você deve preencher o campo de texto.");
                 }
                 else
@@ -91,6 +95,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     var result = await RestService.ConversaCreate(new JsonMessage(ConversaTexto), app._usuario.api_token);
                     if (!result.success)
                     {
+                        LoadingDialog.Hide();
                         await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
                     }
                     else
@@ -100,10 +105,13 @@ namespace ProMama.ViewModels.Home.Paginas
                         App.ConversaDatabase.Save(c);
                         ConversaTexto = string.Empty;
                         AvisoListaVazia = false;
+
+                        LoadingDialog.Hide();
                     }
                 }
             } else
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para enviar um dúvida.");
             }
         }

@@ -24,7 +24,6 @@ namespace ProMama.Components
             view.SetValue(CommandProperty, value);
         }
 
-
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.CreateAttached("CommandParameter", typeof(object), typeof(LongPressedEffect), (object)null);
         public static object GetCommandParameter(BindableObject view)
         {

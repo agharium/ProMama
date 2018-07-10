@@ -1,4 +1,5 @@
-﻿using ProMama.Components;
+﻿using Acr.UserDialogs;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -111,13 +112,17 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void AddCrianca()
         {
-            if (PrimeiroNome.Equals(string.Empty) || SexoSelecionado == -1)
+            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
+
+            if (string.IsNullOrEmpty(PrimeiroNome) || SexoSelecionado == -1)
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
             } else
             {
                 if (!Ferramentas.ValidarNomeRegex(PrimeiroNome))
                 {
+                    LoadingDialog.Hide();
                     await MessageService.AlertDialog("O nome da criança só pode conter letras.");
                 } else if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
                     var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
@@ -135,12 +140,14 @@ namespace ProMama.ViewModels.Home.Paginas
 
                         app._usuario.criancas.Add(c);
                         App.UsuarioDatabase.Save(app._usuario);
-
                         app._crianca = c;
+
+                        LoadingDialog.Hide();
                         NavigationService.NavigateHome();
                     }
                     else
                     {
+                        LoadingDialog.Hide();
                         await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
                     }
                 }

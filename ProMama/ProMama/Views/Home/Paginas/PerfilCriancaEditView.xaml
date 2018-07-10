@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ProMama.Components"
              x:Class="ProMama.Views.Home.Paginas.PerfilCriancaEditView"
              Title="Perfil da Criança">
     <ContentPage.Content>
@@ -81,7 +82,7 @@
                         </Picker>
 
                         <Label 
-                            Text="Peso ao nascer (kg):"
+                            Text="Peso ao nascer (g):"
                             LineBreakMode="WordWrap"
                             VerticalOptions="Center"
                             VerticalTextAlignment="Center"
@@ -91,7 +92,11 @@
                             Text="{Binding PesoAoNascer}"
                             Keyboard="Numeric"
                             Grid.Row="4"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <components:EntryLengthValidatorBehavior MaxLength="4" />
+                            </Entry.Behaviors>
+                        </Entry>
 
                         <Label 
                             Text="Altura ao nascer (cm):"
@@ -104,7 +109,11 @@
                             Text="{Binding AlturaAoNascer}"
                             Keyboard="Numeric"
                             Grid.Row="5"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <components:EntryLengthValidatorBehavior MaxLength="3" />
+                            </Entry.Behaviors>
+                        </Entry>
 
                         <Label 
                             Text="Tipo de parto:"

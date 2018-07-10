@@ -266,6 +266,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AndroidExtendedWebViewRenderer.cs" />
     <Compile Include="Components\AndroidLongPressedEffect.cs" />
     <Compile Include="Components\AndroidCheckboxRenderer.cs" />
     <Compile Include="Services\MarcelloDB_Android.cs" />

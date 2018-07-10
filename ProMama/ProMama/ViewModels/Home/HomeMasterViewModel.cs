@@ -1,4 +1,5 @@
 ﻿using ProMama.Models;
+using ProMama.ViewModels.Services;
 using ProMama.Views.Home;
 using ProMama.Views.Home.Paginas;
 using System;
@@ -68,11 +69,11 @@ namespace ProMama.ViewModels.Home
             }
         }
 
-        public ICommand GaleriaCommand { get; set; }
+        public ICommand BackToHomeCommand { get; set; }
 
         public HomeMasterViewModel()
         {
-            GaleriaCommand = new Command(Galeria);
+            BackToHomeCommand = new Command(BackToHome);
             app._master = this;
             Load();
         }
@@ -112,9 +113,10 @@ namespace ProMama.ViewModels.Home
             Foto = App.FotoDatabase.GetMostRecent(app._crianca.crianca_id);
         }
 
-        private void Galeria()
+        private void BackToHome()
         {
-            app._home.Detail_Galeria();
+            var NavigationService = DependencyService.Get<INavigationService>();
+            NavigationService.NavigateHome();
         }
     }
 }

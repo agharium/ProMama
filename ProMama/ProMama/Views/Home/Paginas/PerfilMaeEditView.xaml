@@ -44,6 +44,7 @@
                         <DatePicker
                             Format="dd/MM/yyyy"
                             HorizontalOptions="Center"
+                            MinimumDate="{Binding DataMinima}"
                             MaximumDate="{Binding DataMaxima}"
                             Date="{Binding DataSelecionada}"
                             x:Name="DatePicker"
@@ -73,7 +74,7 @@
                             Grid.Column="0"/>
                         <Picker
                             ItemsSource="{Binding Postos}"
-                            ItemDisplayBinding="{Binding posto_nome}"
+                            ItemDisplayBinding="{Binding nome}"
                             SelectedIndex="{Binding PostoSelecionado}"
                             Grid.Row="3"
                             Grid.Column="1"/>

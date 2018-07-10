@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProMama.Models;
+using System;
 using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,6 +36,13 @@ namespace ProMama.Views.Home.Paginas
             {
                 Debug.WriteLine(ex.ToString());
             }
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Aplicativo app = Aplicativo.Instance;
+            app._home.Detail_Home();
+            return true;
         }
     }
 }

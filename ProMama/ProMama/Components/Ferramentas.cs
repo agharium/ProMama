@@ -3,7 +3,9 @@ using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -92,28 +94,8 @@ namespace ProMama.Components
 
             if (app._sync.notificacao != syncAux.notificacao)
             {
-                if (app._crianca != null)
-                {
-                    var currentNotifications = App.NotificacaoDatabase.GetAll();
-                    var newNotifications = await RestService.NotificacoesRead(app._usuario.api_token);
-                    var idadeAtual = (DateTime.Now - app._crianca.crianca_dataNascimento).Days;
-
-                    foreach (var n in newNotifications)
-                    {
-                        if (currentNotifications.FirstOrDefault(o => o.id == n.id) == null)
-                        {
-                            App.NotificacaoDatabase.Save(n);
-                            if (n.semana == -1)
-                            {
-                                CrossLocalNotifications.Current.Show(n.titulo, n.texto);
-                            }
-                            else if (n.semana >= idadeAtual)
-                            {
-                                CrossLocalNotifications.Current.Show(n.titulo, n.texto, n.id, DateTime.Now.AddDays(n.semana - idadeAtual));
-                            }
-                        }
-                    }
-                }
+                App.NotificacaoDatabase.WipeTable();
+                App.NotificacaoDatabase.SaveList(await RestService.NotificacoesRead(app._usuario.api_token));
             }
 
             if (app._sync.faleConoscoLastUpdate == null || (DateTime.Now - app._sync.faleConoscoLastUpdate).Seconds >= 86400)
@@ -149,6 +131,42 @@ namespace ProMama.Components
 
             app._sync = syncAux;
             App.SincronizacaoDatabase.Save(app._sync);
+        }
+
+        public static async Task MarcarNotificacoes()
+        {
+            if (app._usuario.criancas.Count != 0 && app._usuario.criancas != null)
+            {
+                var notifications = App.NotificacaoDatabase.GetAll();
+                var idadeAtual = (DateTime.Now - app._crianca.crianca_dataNascimento).Days;
+                var oQuantoAntesCount = 1;
+
+                foreach (var n in notifications)
+                {
+                    foreach (var c in app._usuario.criancas)
+                    {
+                        int nId = int.Parse(n.id.ToString() + c.crianca_id.ToString());
+                        int notificacaoDias = (int)Math.Ceiling(n.semana / 0.1551871428571429);
+
+                        var artigo = c.crianca_sexo == 0 ? "o" : "a";
+                        var titulo = n.titulo.Replace("%NOMEDACRIANCA%", c.crianca_primeiro_nome).Replace("%ARTIGO%", app._usuario.name);
+                        var texto = n.texto.Replace("%NOMEDACRIANCA%", c.crianca_primeiro_nome).Replace("%ARTIGO%", app._usuario.name);
+                        titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
+                        texto = char.ToUpper(texto[0]) + texto.Substring(1);
+
+                        if (!c.notificacoesMarcadas.Contains(n.id) && notificacaoDias >= idadeAtual)
+                        {
+                            CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddDays(notificacaoDias - idadeAtual));
+                            c.notificacoesMarcadas.Add(n.id);
+                        } else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
+                        {
+                            CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
+                            app._usuario.notificacoes_oQuantoAntes.Add(n.id);
+                            oQuantoAntesCount++;
+                        }
+                    }
+                }
+            }
         }
 
         public static async Task UploadInformacoesUser()
@@ -524,6 +542,30 @@ namespace ProMama.Components
                                   + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z";
 
             return Regex.IsMatch(email, RegexEmailPattern);
+        }
+
+        // http://codesnippets.fesslersoft.de/how-to-remove-unicode-characters-from-a-string-in-c-and-vb-net/
+        public static string StripUnicodeCharactersFromString(string inputValue)
+        {
+            return Regex.Replace(inputValue, @"[^\u0000-\u007F]", string.Empty);
+        }
+
+        // http://lukealderton.com/blog/posts/2016/may/autocustom-height-on-xamarin-forms-webview-for-android-and-ios/
+        public static ExtendedWebView CreateBrowser(string text)
+        {
+            return new ExtendedWebView()
+            {
+                Source = new HtmlWebViewSource()
+                {
+                    Html = "<html>" +
+                                "<body style=\"text-align: justify; font-size: 90%; background-color: #00000000; padding: 0; margin: 0\">" +
+                                    String.Format("<p>{0}</p>", text) +
+                                "</body>" +
+                            "</html>"
+                },
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
         }
     }
 }

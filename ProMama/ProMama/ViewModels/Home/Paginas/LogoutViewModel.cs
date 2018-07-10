@@ -1,4 +1,5 @@
-﻿using ProMama.Models;
+﻿using Acr.UserDialogs;
+using ProMama.Models;
 using ProMama.ViewModels.Services;
 using ProMama.Views.Home;
 using System;
@@ -31,7 +32,6 @@ namespace ProMama.ViewModels.Home.Paginas
 
                 app._crianca = null;
                 app._usuario = null;
-
                 _navigationService.NavigateCadastroLogin();
             }
             else

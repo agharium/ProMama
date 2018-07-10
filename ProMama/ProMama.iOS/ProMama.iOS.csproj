@@ -89,7 +89,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\ExtendedUIWebViewDelegate.cs" />
     <Compile Include="Components\iOSCheckboxRenderer.cs" />
+    <Compile Include="Components\iOSExtendedWebViewRenderer.cs" />
     <Compile Include="Components\iOSLongPressedEffect.cs" />
     <Compile Include="Components\iOSMaterialFrameRenderer.cs" />
     <Compile Include="Services\MarcelloDB_iOS.cs" />

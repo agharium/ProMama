@@ -39,7 +39,7 @@
                             Grid.Column="1"/>
 
                         <Label
-                            Text="Peso da criança (kg):"
+                            Text="Peso da criança (g):"
                             VerticalOptions="Center"
                             VerticalTextAlignment="Center"
                             LineBreakMode="WordWrap"
@@ -49,7 +49,11 @@
                             Keyboard="Numeric"
                             Text="{Binding Peso}"
                             Grid.Row="1"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <components:EntryLengthValidatorBehavior MaxLength="4" />
+                            </Entry.Behaviors>
+                        </Entry>
 
                         <Label
                             Text="Altura da criança (cm):"
@@ -62,7 +66,11 @@
                             Keyboard="Numeric"
                             Text="{Binding Altura}"
                             Grid.Row="2"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <components:EntryLengthValidatorBehavior MaxLength="3" />
+                            </Entry.Behaviors>
+                        </Entry>
                     </Grid>
 
                     <Label

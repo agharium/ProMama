@@ -25,8 +25,6 @@ namespace ProMama.ViewModels.Inicio
         private readonly IMessageService MessageService;
         private readonly IRestService RestService;
 
-        private bool LoginClicado = false;
-
         public LoginViewModel()
         {
             LoginCommand = new Command(Login);
@@ -38,79 +36,74 @@ namespace ProMama.ViewModels.Inicio
 
         public async void Login()
         {
+            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
             if (CrossConnectivity.Current.IsConnected)
             {
-                if (!LoginClicado)
+                if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha))
                 {
-                    LoginClicado = true;
-
-                    if (Email.Equals(string.Empty) || Senha.Equals(string.Empty))
-                    {
-                        await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
-                        LoginClicado = false;
-                    }
-                    else
-                    {
-                        var u = new Usuario(Email, Senha);
-                        var result  = await RestService.UsuarioLogin(u);
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
+                }
+                else
+                {
+                    var u = new Usuario(Email, Senha);
+                    var result  = await RestService.UsuarioLogin(u);
                         
-                        if (result.success)
+                    if (result.success)
+                    {
+                        try
                         {
-                            try
+                            if (!PasswordHash.ValidatePassword(Senha, result.password))
                             {
-                                if (!PasswordHash.ValidatePassword(Senha, result.password))
+                                LoadingDialog.Hide();
+                                await MessageService.AlertDialog("E-mail ou senha incorretos.");
+                            }
+                            else
+                            {
+                                u = await RestService.UsuarioRead(result);
+                                if (u == null)
                                 {
-                                    await MessageService.AlertDialog("E-mail ou senha incorretos.");
-                                    LoginClicado = false;
+                                    LoadingDialog.Hide();
+                                    await MessageService.AlertDialog("Algo de errado não está certo.");
                                 }
                                 else
                                 {
-                                    u = await RestService.UsuarioRead(result);
-                                    if (u == null)
+                                    app._usuario = u;
+                                    App.UsuarioDatabase.Save(app._usuario);
+
+                                    await Ferramentas.SincronizarBanco();
+                                    await Ferramentas.DownloadInformacoesUser();
+
+                                    if (app._usuario.criancas.Count == 0)
                                     {
-                                        await MessageService.AlertDialog("Algo de errado não está certo.");
-                                        LoginClicado = false;
+                                        app._usuario.criancas = new List<Crianca>();
+                                        LoadingDialog.Hide();
+                                        NavigationService.NavigateAddCrianca();
                                     }
                                     else
                                     {
-                                        using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
-                                        {
-                                            app._usuario = u;
-                                            App.UsuarioDatabase.Save(app._usuario);
-
-                                            await Ferramentas.SincronizarBanco();
-                                            await Ferramentas.DownloadInformacoesUser();
-                                        }
-
-                                        if (app._usuario.criancas.Count == 0)
-                                        {
-                                            app._usuario.criancas = new List<Crianca>();
-                                            NavigationService.NavigateAddCrianca();
-                                        }
-                                        else
-                                        {
-                                            app._crianca = app._usuario.criancas[app._usuario.criancas.Count - 1];
-                                            NavigationService.NavigateHome();
-                                        }
+                                        app._crianca = app._usuario.criancas[app._usuario.criancas.Count - 1];
+                                        LoadingDialog.Hide();
+                                        NavigationService.NavigateHome();
                                     }
                                 }
-                            } catch (Exception ex)
-                            {
-                                Debug.WriteLine(ex);
-                                await MessageService.AlertDialog("E-mail ou senha incorretos.");
                             }
-                        } else
+                        } catch (Exception ex)
                         {
-                            await MessageService.AlertDialog("E-mail ou senha incorretos.");
-                            LoginClicado = false;
+                            Debug.WriteLine(ex);
+                            LoadingDialog.Hide();
+                            await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
                         }
+                    } else
+                    {
+                        LoadingDialog.Hide();
+                        await MessageService.AlertDialog("E-mail ou senha incorretos.");
                     }
                 }
             } else {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para fazer login no aplicativo.");
             }
-            
         }
-
     }
 }

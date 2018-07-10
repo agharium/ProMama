@@ -65,67 +65,62 @@ namespace ProMama.ViewModels.Inicio
 
         private async void Cadastro()
         {
+            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
             if (CrossConnectivity.Current.IsConnected)
             {
-                if (!CadastroClicado)
+                if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha) || string.IsNullOrEmpty(SenhaConfirmacao))
                 {
-                    CadastroClicado = true;
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
+                }
+                else if (!Senha.Equals(SenhaConfirmacao))
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("As senhas não são iguais.");
+                }
+                else if (BairroSelecionado == null)
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("Você precisa selecionar um bairro.");
+                }
+                else if (Senha.Length < 8)
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
+                }
+                else if (!Ferramentas.VerificarEmailRegex(Email))
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("E-mail inválido.");
+                }
+                else
+                {
+                    var u = new Usuario(Email, PasswordHash.CreateHash(Senha), BairroSelecionado.bairro_id);
+                    var result = await RestService.UsuarioCreate(u);
 
-                    if (!Senha.Equals(SenhaConfirmacao))
+                    if (!result.success)
                     {
-                        await MessageService.AlertDialog("As senhas não são iguais.");
-                        CadastroClicado = false;
-                    }
-                    else if (Email.Equals(string.Empty) || Senha.Equals(string.Empty) || SenhaConfirmacao.Equals(string.Empty))
+                        LoadingDialog.Hide();
+                        await MessageService.AlertDialog(result.message);
+                    } else
                     {
-                        await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
-                        CadastroClicado = false;
-                    }
-                    else if (BairroSelecionado == null)
-                    {
-                        await MessageService.AlertDialog("Você precisa selecionar um bairro.");
-                        CadastroClicado = false;
-                    }
-                    else if (Senha.Length < 8)
-                    {
-                        await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
-                        CadastroClicado = false;
-                    }
-                    else if (!Ferramentas.VerificarEmailRegex(Email))
-                    {
-                        await MessageService.AlertDialog("E-mail inválido.");
-                        CadastroClicado = false;
-                    }
-                    else
-                    {
-                        var u = new Usuario(Email, PasswordHash.CreateHash(Senha), BairroSelecionado.bairro_id);
-                        var result = await RestService.UsuarioCreate(u);
+                        u.id = result.id;
+                        u.api_token = result.message;
+                        u.posto_saude = -1;
+                        u.criancas = new List<Crianca>();
 
-                        if (!result.success)
-                        {
-                            await MessageService.AlertDialog(result.message);
-                            CadastroClicado = false;
-                        } else
-                        {
-                            using (UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black))
-                            {
-                                u.id = result.id;
-                                u.api_token = result.message;
-                                u.posto_saude = -1;
-                                u.criancas = new List<Crianca>();
+                        app._usuario = u;
+                        App.UsuarioDatabase.Save(app._usuario);
 
-                                app._usuario = u;
-                                App.UsuarioDatabase.Save(app._usuario);
+                        await Ferramentas.SincronizarBanco();
 
-                                await Ferramentas.SincronizarBanco();
-                            }
-
-                            NavigationService.NavigateAddCrianca();
-                        }
+                        LoadingDialog.Hide();
+                        NavigationService.NavigateAddCrianca();
                     }
                 }
             } else
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para poder realizar o cadastro no aplicativo.");
             }
         }

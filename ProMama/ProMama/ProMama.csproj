@@ -45,6 +45,8 @@
     <Compile Include="Components\Checkbox.cs" />
     <Compile Include="Components\Cryptography\PasswordHash.cs" />
     <Compile Include="Components\Cryptography\Pbkdf.cs" />
+    <Compile Include="Components\EntryLengthValidatorBehavior.cs" />
+    <Compile Include="Components\ExtendedWebView.cs" />
     <Compile Include="Components\Ferramentas.cs" />
     <Compile Include="Components\LongPressedEffect.cs" />
     <Compile Include="Components\TextChangedBehavior.cs" />

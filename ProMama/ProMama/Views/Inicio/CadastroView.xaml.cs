@@ -19,5 +19,11 @@ namespace ProMama.Views.Inicio
             var tabbedPage = this.Parent as LoginCadastroTabbedView;
             tabbedPage.ChangeToLogin();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            ChangeToLogin();
+            return true;
+        }
     }
 }

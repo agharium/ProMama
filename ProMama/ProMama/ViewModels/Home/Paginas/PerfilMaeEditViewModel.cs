@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
@@ -39,6 +40,20 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 _dataMaxima = value;
                 Notify("DataMaxima");
+            }
+        }
+
+        private DateTime _dataMinima;
+        public DateTime DataMinima
+        {
+            get
+            {
+                return _dataMinima;
+            }
+            set
+            {
+                _dataMinima = value;
+                Notify("DataMinima");
             }
         }
 
@@ -128,9 +143,10 @@ namespace ProMama.ViewModels.Home.Paginas
 
             Nome = app._usuario.name;
 
-            DataMaxima = DateTime.Now;
+            DataMinima = DateTime.Now.AddYears(-100);
+            DataMaxima = DateTime.Now.AddYears(-15);
             var aux = DateTime.Now.Year - app._usuario.data_nascimento.Year;
-            DataSelecionada = (aux < 10 || aux > 100) ? DateTime.Now : app._usuario.data_nascimento;
+            DataSelecionada = (aux < 15 || aux > 100) ? DateTime.Now : app._usuario.data_nascimento;
 
             Bairros = App.BairroDatabase.GetAll();
             foreach (var b in Bairros)
@@ -167,15 +183,18 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             Debug.WriteLine("Bairro: " + Bairros[BairroSelecionado].bairro_id);
             Debug.WriteLine("Posto: " + Postos[PostoSelecionado].id);
+            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
+
             if (CrossConnectivity.Current.IsConnected)
             {
-                if (DataSelecionada.Year == DateTime.Now.Year)
+                if (DataSelecionada.Year == DateTime.Now.Year || DataSelecionada.AddYears(15).Year > DateTime.Now.Year)
                 {
+                    LoadingDialog.Hide();
                     await MessageService.AlertDialog("Selecione uma data válida.");
                 } else if (!Ferramentas.ValidarNomeRegex(Nome))
                 {
-                    await MessageService.AlertDialog("O nome da criança só pode conter letras.");
-
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("O nome pode conter apenas letras.");
                 } else
                 {
                     Usuario u = new Usuario();
@@ -203,15 +222,18 @@ namespace ProMama.ViewModels.Home.Paginas
                         app._usuario = u;
                         App.UsuarioDatabase.Save(u);
                         app._master.Load();
+
+                        LoadingDialog.Hide();
                         await Navigation.PopAsync();
-                    }
-                    else
+                    } else
                     {
+                        LoadingDialog.Hide();
                         await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
                     }
                 }
             } else
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
             }
         }

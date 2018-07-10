@@ -37,7 +37,7 @@
                             <fftransformations:CircleTransformation/>
                         </ffimageloading:CachedImage.Transformations>
                         <ffimageloading:CachedImage.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GaleriaCommand}"/>
+                            <TapGestureRecognizer Command="{Binding BackToHomeCommand}"/>
                         </ffimageloading:CachedImage.GestureRecognizers>
                     </ffimageloading:CachedImage>
 

@@ -1,4 +1,5 @@
 ﻿
+using Acr.UserDialogs;
 using Plugin.Connectivity;
 using ProMama.Components.Cryptography;
 using ProMama.Models;
@@ -32,24 +33,30 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Salvar()
         {
+            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
             if (!CrossConnectivity.Current.IsConnected)
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para trocar a senha.");
             }
-            else if (SenhaAtual.Equals(string.Empty) || NovaSenha.Equals(string.Empty) || NovaSenhaConfirmacao.Equals(string.Empty))
+            else if (string.IsNullOrEmpty(SenhaAtual) || string.IsNullOrEmpty(NovaSenha) || string.IsNullOrEmpty(NovaSenhaConfirmacao))
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
             }
             else if (NovaSenha.Length < 8)
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
             }
             else if (!NovaSenha.Equals(NovaSenhaConfirmacao))
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("As senhas não são iguais.");
             }
             else if (!PasswordHash.ValidatePassword(SenhaAtual, app._usuario.password))
             {
+                LoadingDialog.Hide();
                 await MessageService.AlertDialog("A senha atual inserida está incorreta.");
             }
             else
@@ -62,11 +69,14 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     App.UsuarioDatabase.Save(app._usuario);
                     await MessageService.AlertDialog("A senha foi atualizada com sucesso.");
+
+                    LoadingDialog.Hide();
                     await Navigation.PopAsync();
                 } else
                 {
                     app._usuario.password = senhaAntiga;
-                    await MessageService.AlertDialog("Algo de errado aconteceu. A senha não foi trocada.");
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("Algo de errado aconteceu. A senha não foi atualizada.");
                 }
             }
         }

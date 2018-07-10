@@ -14,6 +14,7 @@ namespace ProMama.Models
         public DateTime      data_nascimento { get; set; }
         public List<Crianca> criancas        { get; set; }
         public string        api_token       { get; set; }
+        public List<int>     notificacoes_oQuantoAntes { get; set; }
 
         public Usuario(string _email, string _password, int _bairro)
         {

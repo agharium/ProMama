@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using ProMama.Components;
 using System;
+using System.Collections.Generic;
 
 namespace ProMama.Models
 {
@@ -16,6 +17,8 @@ namespace ProMama.Models
         public string crianca_outrasInformacoes { get; set; }
         public int crianca_idade_gestacional { get; set; }
         public int crianca_tipo_parto { get; set; }
+
+        public List<int> notificacoesMarcadas { get; set; }
 
         // variáveis auxiliares
         [JsonIgnore]

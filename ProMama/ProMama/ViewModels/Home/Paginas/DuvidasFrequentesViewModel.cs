@@ -59,7 +59,5 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             await NavigationService.NavigateDuvidaFrequente(Navigation, duvidaFrequente);
         }
-
-        
     }
 }
