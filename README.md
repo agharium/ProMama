@@ -30,5 +30,8 @@ Exemplos utilizados:
 Autor:
 - [José Paulo Oliveira Filho](https://github.com/agharium/)
 
-Servidor(API RESTful + Dashboard):
+Tester:
+- [Max Carlesso](https://github.com/maxcarlesso)
+
+Server-side (API RESTful + Dashboard - desenvolvido por [Lucas Jardim](https://github.com/lucasjardi/)):
 - [Aplicação Web Pró-Mamá](https://github.com/lucasjardi/promama-alpha)
