@@ -134,15 +134,15 @@ namespace ProMama.Components
 
         public static async Task MarcarNotificacoes()
         {
-            if (app._usuario.criancas.Count != 0 && app._usuario.criancas != null)
+            if (app._usuario.criancas.Count > 0 && app._usuario.criancas != null)
             {
                 var notifications = App.NotificacaoDatabase.GetAll();
                 var idadeAtual = (DateTime.Now - app._crianca.crianca_dataNascimento).Days;
                 var oQuantoAntesCount = 1;
 
-                foreach (var n in notifications)
+                foreach (var c in app._usuario.criancas)
                 {
-                    foreach (var c in app._usuario.criancas)
+                    foreach (var n in notifications)
                     {
                         int nId = int.Parse(n.id.ToString() + c.crianca_id.ToString());
                         int notificacaoDias = (int)Math.Ceiling(n.semana / 0.1551871428571429);
@@ -153,18 +153,28 @@ namespace ProMama.Components
                         titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
                         texto = char.ToUpper(texto[0]) + texto.Substring(1);
 
+                        if (c.notificacoesMarcadas == null)
+                            c.notificacoesMarcadas = new List<int>();
+
+                        if (app._usuario.notificacoes_oQuantoAntes == null)
+                            app._usuario.notificacoes_oQuantoAntes = new List<int>();
+
                         if (!c.notificacoesMarcadas.Contains(n.id) && notificacaoDias >= idadeAtual)
                         {
                             CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddDays(notificacaoDias - idadeAtual));
                             c.notificacoesMarcadas.Add(n.id);
+                            Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddDays(notificacaoDias - idadeAtual).ToString());
                         } else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                         {
                             CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
                             app._usuario.notificacoes_oQuantoAntes.Add(n.id);
+                            Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddHours(oQuantoAntesCount).ToString());
                             oQuantoAntesCount++;
                         }
                     }
+                    App.CriancaDatabase.Save(c);
                 }
+                App.UsuarioDatabase.Save(app._usuario);
             }
         }
 
