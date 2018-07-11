@@ -45,11 +45,13 @@
     <Compile Include="Components\Checkbox.cs" />
     <Compile Include="Components\Cryptography\PasswordHash.cs" />
     <Compile Include="Components\Cryptography\Pbkdf.cs" />
-    <Compile Include="Components\EntryLengthValidatorBehavior.cs" />
+    <Compile Include="Components\Behaviors\EditorTextValidatorBehavior.cs" />
+    <Compile Include="Components\Behaviors\EntryLengthValidatorBehavior.cs" />
+    <Compile Include="Components\Behaviors\EntryNameValidatorBehavior.cs" />
     <Compile Include="Components\ExtendedWebView.cs" />
     <Compile Include="Components\Ferramentas.cs" />
     <Compile Include="Components\LongPressedEffect.cs" />
-    <Compile Include="Components\TextChangedBehavior.cs" />
+    <Compile Include="Components\Behaviors\SearchBarTextChangedBehavior.cs" />
     <Compile Include="Database\Controllers\AcompanhamentoDatabaseController.cs" />
     <Compile Include="Database\Controllers\BairroDatabaseController.cs" />
     <Compile Include="Database\Controllers\ConfigDatabaseController.cs" />

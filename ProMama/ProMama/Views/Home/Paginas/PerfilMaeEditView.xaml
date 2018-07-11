@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.PerfilMaeEditView"
              Title="Perfil da Mãe">
     <ContentPage.Content>
@@ -32,7 +33,11 @@
                         <Entry
                             Text="{Binding Nome}"
                             Grid.Row="0"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <behaviors:EntryNameValidatorBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
 
                         <Label 
                             Text="Data de nascimento:"

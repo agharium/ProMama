@@ -126,7 +126,7 @@ namespace ProMama.ViewModels.Home.Paginas
             Sexo              = app._crianca.crianca_sexo == 1 ? "Menina" : "Menino";
             PesoAoNascer      = app._crianca.crianca_pesoAoNascer != 0 ? app._crianca.crianca_pesoAoNascer.ToString() + "kg" : "";
             AlturaAoNascer    = app._crianca.crianca_alturaAoNascer != 0 ? app._crianca.crianca_alturaAoNascer.ToString() + "cm" : "";
-            TipoDeParto       = app._crianca.crianca_tipo_parto != -1 ? (app._crianca.crianca_tipo_parto == 1 ? "Cesária" : "Normal") : "";
+            TipoDeParto       = app._crianca.crianca_tipo_parto != -1 ? (app._crianca.crianca_tipo_parto == 1 ? "Cesáreo" : "Normal") : "";
             IdadeGestacional  = app._crianca.crianca_idade_gestacional != -1 ? app._crianca.crianca_idade_gestacional.ToString() + " semanas" : "";
             OutrasInformacoes = app._crianca.crianca_outrasInformacoes;
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ProMama.Components;assembly=ProMama"
+             xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.DuvidasFrequentesView"
              x:Name="this">
     <ContentPage.Content>
@@ -19,7 +19,7 @@
                                 SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
                                 Placeholder="Busca">
                             <SearchBar.Behaviors>
-                                <components:TextChangedBehavior />
+                                <behaviors:SearchBarTextChangedBehavior/>
                             </SearchBar.Behaviors>
                         </SearchBar>
                     </StackLayout>

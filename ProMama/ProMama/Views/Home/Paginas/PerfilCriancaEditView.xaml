@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ProMama.Components"
+             xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.PerfilCriancaEditView"
              Title="Perfil da Criança">
     <ContentPage.Content>
@@ -37,7 +37,11 @@
                         <Entry
                             Text="{Binding PrimeiroNome}"
                             Grid.Row="0"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <behaviors:EntryNameValidatorBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
 
                         <Label 
                             Text="Sobrenome da criança:"
@@ -49,7 +53,11 @@
                         <Entry
                             Text="{Binding Sobrenome}"
                             Grid.Row="1"
-                            Grid.Column="1"/>
+                            Grid.Column="1">
+                            <Entry.Behaviors>
+                                <behaviors:EntryNameValidatorBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
 
                         <Label 
                             Text="Data de nascimento da criança:"
@@ -94,7 +102,7 @@
                             Grid.Row="4"
                             Grid.Column="1">
                             <Entry.Behaviors>
-                                <components:EntryLengthValidatorBehavior MaxLength="4" />
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="4" />
                             </Entry.Behaviors>
                         </Entry>
 
@@ -111,7 +119,7 @@
                             Grid.Row="5"
                             Grid.Column="1">
                             <Entry.Behaviors>
-                                <components:EntryLengthValidatorBehavior MaxLength="3" />
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="3" />
                             </Entry.Behaviors>
                         </Entry>
 
@@ -128,7 +136,7 @@
                             Grid.Column="1">
                             <Picker.Items>
                                 <x:String>Normal</x:String>
-                                <x:String>Cesária</x:String>
+                                <x:String>Cesáreo</x:String>
                             </Picker.Items>
                         </Picker>
 
@@ -153,7 +161,11 @@
                         <Editor
                             HeightRequest = "85"
                             BackgroundColor="White"
-                            Text="{Binding OutrasInformacoes}"/>
+                            Text="{Binding OutrasInformacoes}">
+                            <Editor.Behaviors>
+                                <behaviors:EditorTextValidatorBehavior />
+                            </Editor.Behaviors>
+                        </Editor>
                     </Frame>
 
                     <Button

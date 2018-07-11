@@ -146,10 +146,6 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("O nome da criança é um campo obrigatório.");
-                } else if (!Ferramentas.ValidarNomeRegex(PrimeiroNome))
-                {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("O nome da criança só pode conter letras.");
                 } else {
                     Crianca c = new Crianca();
 
@@ -157,13 +153,13 @@ namespace ProMama.ViewModels.Home.Paginas
                     c.crianca_dataNascimento = app._crianca.crianca_dataNascimento;
 
                     c.crianca_primeiro_nome = PrimeiroNome;
-                    c.crianca_sobrenome = Sobrenome;
+                    c.crianca_sobrenome = string.IsNullOrEmpty(Sobrenome) ? "" : Sobrenome;
                     c.crianca_sexo = SexoSelecionado;
                     c.crianca_pesoAoNascer = string.IsNullOrEmpty(PesoAoNascer) ? 0 : Convert.ToDouble(PesoAoNascer);
                     c.crianca_alturaAoNascer = string.IsNullOrEmpty(AlturaAoNascer) ? 0 : Convert.ToDouble(AlturaAoNascer);
                     c.crianca_tipo_parto = PartoSelecionado;
                     c.crianca_idade_gestacional = IdadeGestacionalSelecionado + 20;
-                    c.crianca_outrasInformacoes = Ferramentas.StripUnicodeCharactersFromString(OutrasInformacoes);
+                    c.crianca_outrasInformacoes = string.IsNullOrEmpty(OutrasInformacoes) ? "" : OutrasInformacoes;
 
                     var result = await RestService.CriancaUpdate(c, app._usuario.api_token);
                     if (result.success)
@@ -181,48 +177,6 @@ namespace ProMama.ViewModels.Home.Paginas
                 }
             }
             else
-            {
-                LoadingDialog.Hide();
-                await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da criança.");
-            }
-
-
-            if (!Ferramentas.ValidarNomeRegex(PrimeiroNome))
-            {
-                LoadingDialog.Hide();
-                await MessageService.AlertDialog("O nome da criança só pode conter letras.");
-            } else if (CrossConnectivity.Current.IsConnected)
-            {
-                Crianca c = new Crianca();
-
-                c.crianca_id = app._crianca.crianca_id;
-                c.crianca_dataNascimento = app._crianca.crianca_dataNascimento;
-
-                c.crianca_primeiro_nome = PrimeiroNome;
-                c.crianca_sobrenome = Sobrenome;
-                c.crianca_sexo = SexoSelecionado;
-                c.crianca_pesoAoNascer = PesoAoNascer.Equals(string.Empty) ? 0 : Convert.ToDouble(PesoAoNascer);
-                c.crianca_alturaAoNascer = AlturaAoNascer.Equals(string.Empty) ? 0 : Convert.ToDouble(AlturaAoNascer);
-                c.crianca_tipo_parto = PartoSelecionado;
-                c.crianca_idade_gestacional = IdadeGestacionalSelecionado + 20;
-                c.crianca_outrasInformacoes = Ferramentas.StripUnicodeCharactersFromString(OutrasInformacoes);
-
-                var result = await RestService.CriancaUpdate(c, app._usuario.api_token);
-                if (result.success)
-                {
-                    app._crianca = c;
-                    App.CriancaDatabase.Save(c);
-                    app._master.Load();
-
-                    LoadingDialog.Hide();
-                    await Navigation.PopAsync();
-                }
-                else
-                {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
-                }
-            } else
             {
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da criança.");

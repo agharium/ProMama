@@ -1,22 +1,22 @@
 ﻿using Xamarin.Forms;
 
-namespace ProMama.Components
+namespace ProMama.Components.Behaviors
 {
-    public class TextChangedBehavior : Behavior<SearchBar>
+    public class SearchBarTextChangedBehavior : Behavior<SearchBar>
     {
         protected override void OnAttachedTo(SearchBar bindable)
         {
             base.OnAttachedTo(bindable);
-            bindable.TextChanged += Bindable_TextChanged;
+            bindable.TextChanged += OnSearchBarTextChanged;
         }
 
         protected override void OnDetachingFrom(SearchBar bindable)
         {
             base.OnDetachingFrom(bindable);
-            bindable.TextChanged -= Bindable_TextChanged;
+            bindable.TextChanged -= OnSearchBarTextChanged;
         }
 
-        private void Bindable_TextChanged(object sender, TextChangedEventArgs e)
+        private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
         {
             ((SearchBar)sender).SearchCommand?.Execute(e.NewTextValue);
         }

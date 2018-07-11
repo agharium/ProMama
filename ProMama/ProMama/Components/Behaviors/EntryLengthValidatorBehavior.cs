@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace ProMama.Components
+namespace ProMama.Components.Behaviors
 {
     // https://forums.xamarin.com/discussion/19285/max-length-on-entry
     public class EntryLengthValidatorBehavior : Behavior<Entry>

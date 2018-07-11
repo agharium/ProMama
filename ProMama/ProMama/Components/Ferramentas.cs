@@ -539,8 +539,14 @@ namespace ProMama.Components
         // https://pt.stackoverflow.com/a/15741
         public static bool ValidarNomeRegex(string nome)
         {
-            var NomePattern = "^[a-zA-Z\u00C0-\u00FF ]+$";
-            return Regex.IsMatch(nome, NomePattern);
+            if (!string.IsNullOrEmpty(nome))
+            {
+                var NomePattern = "^[a-zA-Z\u00C0-\u00FF ]+$";
+                return Regex.IsMatch(nome, NomePattern);
+            } else
+            {
+                return true;
+            }
         }
 
         // http://www.rhyous.com/2010/06/15/csharp-email-regular-expression
@@ -556,7 +562,10 @@ namespace ProMama.Components
         // http://codesnippets.fesslersoft.de/how-to-remove-unicode-characters-from-a-string-in-c-and-vb-net/
         public static string StripUnicodeCharactersFromString(string inputValue)
         {
-            return Regex.Replace(inputValue, @"[^\u0000-\u007F]", string.Empty);
+            if (!string.IsNullOrEmpty(inputValue))
+                return Regex.Replace(inputValue, @"[^\u0000-\u007F]", string.Empty);
+            else
+                return "";
         }
 
         // http://lukealderton.com/blog/posts/2016/may/autocustom-height-on-xamarin-forms-webview-for-android-and-ios/

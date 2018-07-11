@@ -1,6 +1,5 @@
 ﻿using Acr.UserDialogs;
 using Plugin.Connectivity;
-using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -191,10 +190,6 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("Selecione uma data válida.");
-                } else if (!Ferramentas.ValidarNomeRegex(Nome))
-                {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("O nome pode conter apenas letras.");
                 } else
                 {
                     Usuario u = new Usuario();
@@ -205,7 +200,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     u.api_token = app._usuario.api_token;
                     u.criancas = app._usuario.criancas;
 
-                    u.name = Nome;
+                    u.name = string.IsNullOrEmpty(Nome) ? "" : Nome;
                     u.data_nascimento = DataSelecionada;
                     u.bairro = Bairros[BairroSelecionado].bairro_id;
                     if (PostoSelecionado != -1)

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:ProMama.Components"
+             xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors"
              x:Class="ProMama.Views.Home.Paginas.AddAcompanhamentoView"
              Title="Adicionar Medição">
     <ContentPage.Content>
@@ -51,7 +52,7 @@
                             Grid.Row="1"
                             Grid.Column="1">
                             <Entry.Behaviors>
-                                <components:EntryLengthValidatorBehavior MaxLength="4" />
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="4" />
                             </Entry.Behaviors>
                         </Entry>
 
@@ -68,7 +69,7 @@
                             Grid.Row="2"
                             Grid.Column="1">
                             <Entry.Behaviors>
-                                <components:EntryLengthValidatorBehavior MaxLength="3" />
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="3" />
                             </Entry.Behaviors>
                         </Entry>
                     </Grid>

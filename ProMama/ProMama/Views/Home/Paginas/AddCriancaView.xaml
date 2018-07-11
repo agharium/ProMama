@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.AddCriancaView"
              Title="Adicionar criança">
     <ContentPage.Content>
@@ -11,7 +12,11 @@
                     Padding="20">
                     <Entry 
                         Placeholder="Primeiro nome da criança"
-                        Text="{Binding PrimeiroNome}"/>
+                        Text="{Binding PrimeiroNome}">
+                        <Entry.Behaviors>
+                            <behaviors:EntryNameValidatorBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
                     <Label
                         Text="Selecione a data de nascimento da criança:" 
                         HorizontalOptions="Center"/>
