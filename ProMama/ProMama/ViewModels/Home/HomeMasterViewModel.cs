@@ -80,6 +80,7 @@ namespace ProMama.ViewModels.Home
 
         public void Load(){
             Nome = app._crianca.crianca_primeiro_nome;
+            Nome += string.IsNullOrEmpty(app._crianca.crianca_sobrenome) ? "" : " " + app._crianca.crianca_sobrenome;
             Idade = app._crianca.IdadeExtenso;
             SetFoto();
 
