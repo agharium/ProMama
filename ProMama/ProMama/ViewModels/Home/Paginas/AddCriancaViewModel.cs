@@ -120,7 +120,9 @@ namespace ProMama.ViewModels.Home.Paginas
                 await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
             } else
             {
+                LoadingDialog.Hide();
                 if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
+                    LoadingDialog.Show();
                     var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
                     c.crianca_tipo_parto = -1;
                     c.crianca_idade_gestacional = -1;

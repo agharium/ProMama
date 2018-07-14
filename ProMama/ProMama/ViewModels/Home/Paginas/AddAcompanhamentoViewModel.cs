@@ -95,15 +95,19 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
 
-            if (!string.IsNullOrEmpty(Peso) &&
-                !string.IsNullOrEmpty(Altura) && (
+            if (!string.IsNullOrEmpty(Peso) && 
+                !Peso.Equals(",") &&
+                !string.IsNullOrEmpty(Altura) &&
+                !Altura.Equals(",") && (
                 Alimentacao1 || Alimentacao2 ||
                 Alimentacao3 || Alimentacao4 ||
                 Alimentacao5 || Alimentacao6 ||
                 Alimentacao7 || Alimentacao8))
             {
+                LoadingDialog.Hide();
                 if (await MessageService.ConfirmationDialog("Você tem certeza que as informações estão corretas? Esta medição não poderá ser alterada ou excluída posteriormente.", "Sim", "Não"))
                 {
+                    LoadingDialog.Show();
                     string alimentacoes = "";
                     if (Alimentacao1)
                         alimentacoes += "leite materno, ";
