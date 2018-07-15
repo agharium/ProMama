@@ -122,10 +122,6 @@ namespace ProMama.ViewModels.Home
         // Construtor
         public HomeDetailViewModel(INavigation _navigation)
         {
-            // Salva o login
-            Config cfg = new Config(app._usuario, app._crianca);
-            App.ConfigDatabase.Save(cfg);
-
             // Informações
             RestService = DependencyService.Get<IRestService>();
             Informacoes = new ObservableCollection<Informacao>();
@@ -204,7 +200,11 @@ namespace ProMama.ViewModels.Home
                     }
 
                     app._onThread = false;
-                    Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD");
+                    Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD, SALVANDO LOGIN");
+
+                    // Salva o login
+                    Config cfg = new Config(app._usuario, app._crianca);
+                    App.ConfigDatabase.Save(cfg);
                 }
             });
         }

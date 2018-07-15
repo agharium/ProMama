@@ -99,9 +99,17 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private void Buscar(string termo)
         {
-            Conversas = string.IsNullOrEmpty(termo) ? 
-                new ObservableCollection<Conversa>(ConversasAux) : 
-                new ObservableCollection<Conversa>(ConversasAux.Where(c => Ferramentas.RemoverAcentos(c.pergunta.ToLower()).Contains(Ferramentas.RemoverAcentos(termo.ToLower()))));
+            if (string.IsNullOrEmpty(termo))
+            {
+                Conversas = new ObservableCollection<Conversa>(ConversasAux);
+            }
+            else
+            {
+                termo = Ferramentas.RemoverAcentos(termo.ToLower());
+                var palavras = termo.Split(' ');
+
+                Conversas = new ObservableCollection<Conversa>(ConversasAux.Where(c => palavras.All(p => Ferramentas.RemoverAcentos(c.pergunta.ToLower()).Contains(p))));
+            }
             AvisoListaVazia = Conversas.Count == 0 ? true : false;
         }
 

@@ -50,9 +50,16 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private void Buscar(string termo)
         {
-            DuvidasFrequentes = string.IsNullOrEmpty(termo) ?
-                new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux) :
-                new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux.Where(df => Ferramentas.RemoverAcentos(df.titulo.ToLower()).Contains(Ferramentas.RemoverAcentos(termo.ToLower()))));
+            if (string.IsNullOrEmpty(termo))
+            {
+                DuvidasFrequentes = new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux);
+            } else
+            {
+                termo = Ferramentas.RemoverAcentos(termo.ToLower());
+                var palavras = termo.Split(' ');
+
+                DuvidasFrequentes = new ObservableCollection<DuvidaFrequente>(DuvidasFrequentesAux.Where(df => palavras.All(p => Ferramentas.RemoverAcentos(df.titulo.ToLower()).Contains(p))));
+            }
         }
 
         private async void AbrirDuvida(DuvidaFrequente duvidaFrequente)
