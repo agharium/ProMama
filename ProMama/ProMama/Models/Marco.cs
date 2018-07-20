@@ -36,7 +36,7 @@ namespace ProMama.Models
             Imagem = _imagem;
             TituloBackgroundColor = _tituloBackgroundColor;
 
-            Icone = _alcancado ? "fa-check-circle" : "fa-circle";
+            Icone = _alcancado ? "fas-check-circle" : "fas-circle";
             dataPorExtenso = "";
 
             uploaded = false;

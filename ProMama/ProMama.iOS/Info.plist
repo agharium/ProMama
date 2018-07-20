@@ -74,7 +74,7 @@
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>iconize-fontawesome.ttf</string>
+		<string>iconize-fontawesome-solid.otf</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>

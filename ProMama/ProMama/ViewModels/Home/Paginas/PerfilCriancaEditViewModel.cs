@@ -141,7 +141,12 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("O nome da criança é um campo obrigatório.");
-            } else {
+            } else if (PrimeiroNome.Length < 2)
+            {
+                LoadingDialog.Hide();
+                await MessageService.AlertDialog("O nome da criança deve ter no mínimo 2 caracteres.");
+            }
+            else {
                 Crianca c = new Crianca();
 
                 c.crianca_id = app._crianca.crianca_id;

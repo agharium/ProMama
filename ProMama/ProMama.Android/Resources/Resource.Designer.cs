@@ -64,7 +64,6 @@ namespace ProMama.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::ProMama.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::ProMama.Droid.Resource.Drawable.plugin_lc_smallicon;
-			global::Splat.Resource.String.library_name = global::ProMama.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::ProMama.Droid.Resource.Attribute.actionBarSize;
 		}
 		

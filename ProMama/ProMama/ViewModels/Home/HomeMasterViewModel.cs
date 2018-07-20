@@ -92,19 +92,19 @@ namespace ProMama.ViewModels.Home
 
             MenuItems = new ObservableCollection<HomeMenuItem>(new[]
                 {
-                    new HomeMenuItem(0, "Início", "fa-home", typeof(HomeDetail)),
-                    new HomeMenuItem(1, "Perfil da Criança", "fa-child", typeof(PerfilCriancaView)),
-                    new HomeMenuItem(2, "Perfil da Mãe", "fa-user", typeof(PerfilMaeView)),
-                    new HomeMenuItem(3, "Galeria", "fa-image", typeof(GaleriaView)),
-                    new HomeMenuItem(4, "Acompanhamento da Criança", "fa-table", typeof(AcompanhamentoView)),
-                    new HomeMenuItem(5, "Marcos do Desenvolvimento", "fa-trophy", typeof(MarcosView)),
-                    new HomeMenuItem(6, "Fale Conosco", "fa-comments", FaleConoscoType),
-                    new HomeMenuItem(7, "Dúvidas Frequentes", "fa-question-circle", typeof(DuvidasFrequentesView)),
-                    new HomeMenuItem(8, "Postos de Saúde", "fa-map", typeof(PostosSaudeView)),
-                    new HomeMenuItem(9, "Redes Sociais", "fa-globe", typeof(RedesSociaisView)),
-                    new HomeMenuItem(10, "Sobre", "fa-info-circle", typeof(SobreView)),
-                    new HomeMenuItem(11, "Selecionar Criança", "fa-exchange", typeof(SelecionarCriancaView)),
-                    new HomeMenuItem(12, "Sair", "fa-sign-out", typeof(LogoutView))
+                    new HomeMenuItem(0, "Início", "fas-home", typeof(HomeDetail)),
+                    new HomeMenuItem(1, "Perfil da Criança", "fas-child", typeof(PerfilCriancaView)),
+                    new HomeMenuItem(2, "Perfil da Mãe", "fas-user", typeof(PerfilMaeView)),
+                    new HomeMenuItem(3, "Galeria", "fas-image", typeof(GaleriaView)),
+                    new HomeMenuItem(4, "Acompanhamento da Criança", "fas-table", typeof(AcompanhamentoView)),
+                    new HomeMenuItem(5, "Marcos do Desenvolvimento", "fas-trophy", typeof(MarcosView)),
+                    new HomeMenuItem(6, "Fale Conosco", "fas-comments", FaleConoscoType),
+                    new HomeMenuItem(7, "Dúvidas Frequentes", "fas-question-circle", typeof(DuvidasFrequentesView)),
+                    new HomeMenuItem(8, "Postos de Saúde", "fas-map", typeof(PostosSaudeView)),
+                    new HomeMenuItem(9, "Redes Sociais", "fas-globe", typeof(RedesSociaisView)),
+                    new HomeMenuItem(10, "Sobre", "fas-info-circle", typeof(SobreView)),
+                    new HomeMenuItem(11, "Selecionar Criança", "fas-exchange-alt", typeof(SelecionarCriancaView)),
+                    new HomeMenuItem(12, "Sair", "fas-sign-out-alt", typeof(LogoutView))
                 }
             );
         }

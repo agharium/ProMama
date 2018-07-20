@@ -120,10 +120,13 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
+                } else if (PrimeiroNome.Length < 2) {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("O nome da criança deve ter no mínimo 2 caracteres.");
                 } else
                 {
                     LoadingDialog.Hide();
-                    if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
+                    if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")) {
                         LoadingDialog.Show();
                         var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
                         var result = await RestService.CriancaCreate(c, app._usuario.api_token);

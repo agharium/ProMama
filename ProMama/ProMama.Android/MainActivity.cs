@@ -32,7 +32,7 @@ namespace ProMama.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
             // Iconize
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
             // Acr.UserDialogs
             Acr.UserDialogs.UserDialogs.Init(this);

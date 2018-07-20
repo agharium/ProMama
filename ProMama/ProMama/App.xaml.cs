@@ -35,7 +35,7 @@ namespace ProMama
         public App()
         {
             // Iconize
-            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+            Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
             DependencyService.Register<INavigationService, NavigationService>();
             DependencyService.Register<IMessageService, MessageService>();

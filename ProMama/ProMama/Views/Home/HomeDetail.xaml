@@ -50,7 +50,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <iconize:IconButton
-                                    Text="fa-chevron-left"
+                                    Text="fas-chevron-left"
                                     Command="{Binding Source={x:Reference this}, Path=BindingContext.MenosIdadeCommand}"
                                     effects:LongPressedEffect.Command="{Binding Source={x:Reference this}, Path=BindingContext.IdadePickerCommand}"
                                     effects:LongPressedEffect.CommandParameter="{x:Reference IdadePicker}"
@@ -81,7 +81,7 @@
                                 </ffimageloading:CachedImage>
 
                                 <iconize:IconButton
-                                    Text="fa-chevron-right"
+                                    Text="fas-chevron-right"
                                     Command="{Binding Source={x:Reference this}, Path=BindingContext.MaisIdadeCommand}"
                                     effects:LongPressedEffect.Command="{Binding Source={x:Reference this}, Path=BindingContext.IdadePickerCommand}"
                                     effects:LongPressedEffect.CommandParameter="{x:Reference IdadePicker}"

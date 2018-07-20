@@ -21,7 +21,6 @@ namespace ProMama.Components.Cryptography
 {
     internal class Pbkdf2
     {
-
         private readonly IMac hMac = new HMac(new Sha1Digest());
 
         private void F(
