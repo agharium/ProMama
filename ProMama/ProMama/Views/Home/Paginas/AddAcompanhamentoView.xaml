@@ -53,6 +53,7 @@
                             Grid.Column="1">
                             <Entry.Behaviors>
                                 <behaviors:EntryLengthValidatorBehavior MaxLength="4" />
+                                <behaviors:IntegerValidatorBehavior/>
                             </Entry.Behaviors>
                         </Entry>
 
@@ -70,6 +71,7 @@
                             Grid.Column="1">
                             <Entry.Behaviors>
                                 <behaviors:EntryLengthValidatorBehavior MaxLength="3" />
+                                <behaviors:IntegerValidatorBehavior/>
                             </Entry.Behaviors>
                         </Entry>
                     </Grid>

@@ -64,7 +64,11 @@
                     <Entry
                         IsVisible="{Binding NumeroExtraAparece}"
                         Text="{Binding NumeroExtraInput}"
-                        Keyboard="Numeric"/>
+                        Keyboard="Numeric">
+                        <Entry.Behaviors>
+                            <behaviors:IntegerValidatorBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
                     <Button 
                         Style="{StaticResource MainButton}"
                         Text="Salvar"

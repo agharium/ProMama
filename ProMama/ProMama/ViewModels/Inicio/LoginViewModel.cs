@@ -142,7 +142,7 @@ namespace ProMama.ViewModels.Inicio
                         LoadingDialog.Hide();
                         await MessageService.AlertDialog("O campo de e-mail não pode estar vazio.");
                     }
-                    else if (!Ferramentas.VerificarEmailRegex(EmailRecuperacao))
+                    else if (!Ferramentas.ValidarEmailRegex(EmailRecuperacao))
                     {
                         LoadingDialog.Hide();
                         await MessageService.AlertDialog("O e-mail inserido não é válido.");

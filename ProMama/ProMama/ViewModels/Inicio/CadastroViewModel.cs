@@ -86,7 +86,7 @@ namespace ProMama.ViewModels.Inicio
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("A senha precisa ter no mínimo 6 caracteres.");
                 }
-                else if (!Ferramentas.VerificarEmailRegex(Email))
+                else if (!Ferramentas.ValidarEmailRegex(Email))
                 {
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("E-mail inválido.");

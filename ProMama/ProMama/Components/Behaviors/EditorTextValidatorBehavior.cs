@@ -19,7 +19,14 @@ namespace ProMama.Components.Behaviors
         void OnEditorTextChanged(object sender, TextChangedEventArgs e)
         {
             var editor = (Editor)sender;
-            editor.Text = Ferramentas.StripUnicodeCharactersFromString(editor.Text);
+            string editorText = editor.Text;
+
+            if (!Ferramentas.ValidarTextoRegex(editorText))
+            {
+                editor.TextChanged -= OnEditorTextChanged;
+                editor.Text = e.OldTextValue;
+                editor.TextChanged += OnEditorTextChanged;
+            }
         }
     }
 }

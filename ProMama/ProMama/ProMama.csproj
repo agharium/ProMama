@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Behaviors\IntegerValidatorBehavior.cs" />
     <Compile Include="Components\Carousel\Carousel.cs" />
     <Compile Include="Components\Carousel\CarouselContent.cs" />
     <Compile Include="Components\Carousel\DotButton.cs" />

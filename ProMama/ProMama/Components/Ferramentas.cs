@@ -596,33 +596,33 @@ namespace ProMama.Components
         // https://pt.stackoverflow.com/a/15741
         public static bool ValidarNomeRegex(string nome)
         {
-            if (!string.IsNullOrEmpty(nome))
-            {
-                var NomePattern = "^[a-zA-Z\u00C0-\u00FF ]+$";
-                return Regex.IsMatch(nome, NomePattern);
-            } else
-            {
+            if (string.IsNullOrEmpty(nome))
                 return true;
-            }
+
+            var NomePattern = "^[a-zA-Z\u00C0-\u00FF ]+$";
+            return Regex.IsMatch(nome, NomePattern);
         }
 
         // http://www.rhyous.com/2010/06/15/csharp-email-regular-expression
-        public static bool VerificarEmailRegex(string email)
+        public static bool ValidarEmailRegex(string email)
         {
+            if (string.IsNullOrEmpty(email))
+                return true;
+
             var RegexEmailPattern = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
                                   + "@"
                                   + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z";
-
             return Regex.IsMatch(email, RegexEmailPattern);
         }
 
-        // http://codesnippets.fesslersoft.de/how-to-remove-unicode-characters-from-a-string-in-c-and-vb-net/
-        public static string StripUnicodeCharactersFromString(string inputValue)
+        // https://stackoverflow.com/a/18017956 + http://aurelio.net/regex/guia/acentuacao.html
+        public static bool ValidarTextoRegex(string texto)
         {
-            if (!string.IsNullOrEmpty(inputValue))
-                return Regex.Replace(inputValue, @"[^\u0000-\u007F]", string.Empty);
-            else
-                return "";
+            if (string.IsNullOrEmpty(texto))
+                return true;
+
+            var RegexTextoPattern = "^[À-ú\x00-\x7F]+$";
+            return Regex.IsMatch(texto, RegexTextoPattern);
         }
 
         // http://lukealderton.com/blog/posts/2016/may/autocustom-height-on-xamarin-forms-webview-for-android-and-ios/
