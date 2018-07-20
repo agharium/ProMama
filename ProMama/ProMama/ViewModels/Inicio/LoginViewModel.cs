@@ -125,34 +125,36 @@ namespace ProMama.ViewModels.Inicio
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                var email = await UserDialogs.Instance.PromptAsync(new PromptConfig()
-                            .SetTitle("Insira o e-mail da sua conta")
-                            .SetPlaceholder("E-mail")
-                            .SetInputMode(InputType.Email)
-                            .SetText(EmailRecuperacao)
-                            .SetCancelText("Cancelar")
-                            .SetOkText("Confirmar"));
+                var prompt = await UserDialogs.Instance.PromptAsync(new PromptConfig()
+                                .SetTitle("Insira o e-mail da sua conta")
+                                .SetPlaceholder("E-mail")
+                                .SetInputMode(InputType.Email)
+                                .SetText(EmailRecuperacao)
+                                .SetCancelText("Cancelar")
+                                .SetOkText("Confirmar"));
 
-                EmailRecuperacao = email.Text;
-
-                IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
-                if (string.IsNullOrEmpty(EmailRecuperacao))
+                EmailRecuperacao = prompt.Text;
+                if (prompt.Ok)
                 {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("O campo de e-mail não pode estar vazio.");
-                }
-                else if (!Ferramentas.VerificarEmailRegex(EmailRecuperacao))
-                {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("O e-mail inserido não é válido.");
-                }
-                else
-                {
-                    JsonMessage msg = new JsonMessage(EmailRecuperacao);
-                    var result = await RestService.RecuperarSenha(msg);
-                    await MessageService.AlertDialog(result.message);
-                    EmailRecuperacao = result.success ? "" : EmailRecuperacao;
-                    LoadingDialog.Hide();
+                    IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
+                    if (string.IsNullOrEmpty(EmailRecuperacao))
+                    {
+                        LoadingDialog.Hide();
+                        await MessageService.AlertDialog("O campo de e-mail não pode estar vazio.");
+                    }
+                    else if (!Ferramentas.VerificarEmailRegex(EmailRecuperacao))
+                    {
+                        LoadingDialog.Hide();
+                        await MessageService.AlertDialog("O e-mail inserido não é válido.");
+                    }
+                    else
+                    {
+                        JsonMessage msg = new JsonMessage(EmailRecuperacao);
+                        var result = await RestService.RecuperarSenha(msg);
+                        await MessageService.AlertDialog(result.message);
+                        EmailRecuperacao = result.success ? "" : EmailRecuperacao;
+                        LoadingDialog.Hide();
+                    }
                 }
             } else
             {

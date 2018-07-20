@@ -56,12 +56,15 @@
                         HorizontalTextAlignment="Center"/>
                     <Entry
                         IsVisible="{Binding ExtraAparece}"
-                        Text="{Binding ExtraInput}"
-                        Keyboard="{Binding ExtraInputKeyboard}">
+                        Text="{Binding ExtraInput}">
                         <Entry.Behaviors>
                             <behaviors:EntryNameValidatorBehavior/>
                         </Entry.Behaviors>
                     </Entry>
+                    <Entry
+                        IsVisible="{Binding NumeroExtraAparece}"
+                        Text="{Binding NumeroExtraInput}"
+                        Keyboard="Numeric"/>
                     <Button 
                         Style="{StaticResource MainButton}"
                         Text="Salvar"

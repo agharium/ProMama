@@ -141,19 +141,21 @@ namespace ProMama.ViewModels.Home.Paginas
 
         public string ExtraInput { get; set; }
 
-        private Keyboard _extraInputKeyboard;
-        public Keyboard ExtraInputKeyboard
+        private bool _numeroExtraAparece;
+        public bool NumeroExtraAparece
         {
             get
             {
-                return _extraInputKeyboard;
+                return _numeroExtraAparece;
             }
             set
             {
-                _extraInputKeyboard = value;
-                Notify("ExtraInputKeyboard");
+                _numeroExtraAparece = value;
+                Notify("NumeroExtraAparece");
             }
         }
+
+        public string NumeroExtraInput { get; set; }
 
         private bool _dataAparece;
         public bool DataAparece
@@ -263,8 +265,9 @@ namespace ProMama.ViewModels.Home.Paginas
                             auxNome + " sentou-se sozinha pela primeira vez em " + auxData + ", quando " + fraseIdade + "!";
                         break;
                     case 5:
+                        var aux = Convert.ToInt32(Marco.extra) == 1 ? "mês" : "meses";
                         TextoAlcancado =
-                            auxNome + " parou de se alimentar exclusivamente de leite materno aos " + auxData + " meses!";
+                            auxNome + " parou de se alimentar exclusivamente de leite materno com " + Marco.extra + " " + aux + "!";
                         break;
                     case 6:
                         TextoAlcancado =
@@ -292,6 +295,7 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 TextoExtraAparece = false;
                 ExtraAparece = false;
+                NumeroExtraAparece = false;
                 DataAparece = true;
 
                 switch (Marco.marco)
@@ -316,8 +320,7 @@ namespace ProMama.ViewModels.Home.Paginas
                         break;
                     case 5:
                         DataAparece = false;
-                        ExtraAparece = true;
-                        ExtraInputKeyboard = Keyboard.Numeric;
+                        NumeroExtraAparece = true;
                         TextoNaoAlcancado =
                             "Com quantos meses " + auxNome + " parou de se alimentar exclusivamente de leite materno?";
                         break;
@@ -335,7 +338,6 @@ namespace ProMama.ViewModels.Home.Paginas
                         break;
                     case 9:
                         ExtraAparece = true;
-                        ExtraInputKeyboard = Keyboard.Text;
                         TextoExtraAparece = true;
                         TextoExtra = "E qual foi a primeira palavra?";
                         TextoNaoAlcancado =
@@ -353,11 +355,20 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Salvar()
         {
-            if ((ExtraAparece && !String.IsNullOrEmpty(ExtraInput)) || !ExtraAparece)
+            if (((ExtraAparece && !string.IsNullOrEmpty(ExtraInput)) || !ExtraAparece) ||
+                ((NumeroExtraAparece && !string.IsNullOrEmpty(NumeroExtraInput)) || !NumeroExtraAparece))
             {
+                if (!string.IsNullOrEmpty(NumeroExtraInput))
+                {
+                    if (Convert.ToInt32(NumeroExtraInput) < 0)
+                    {
+                        await MessageService.AlertDialog("O campo tem um valor inválido.");
+                        return;
+                    }
+                }
                 Marco.crianca = app._crianca.crianca_id;
                 Marco.data = DataSelecionada;
-                Marco.extra = ExtraInput;
+                Marco.extra = !string.IsNullOrEmpty(ExtraInput) ? ExtraInput : NumeroExtraInput;
                 Marco.Alcancado = true;
                 Marco.dataPorExtenso = Ferramentas.DaysToFullString((DataSelecionada - app._crianca.crianca_dataNascimento).Days, 2);
                 App.MarcoDatabase.SaveIncrementing(Marco);

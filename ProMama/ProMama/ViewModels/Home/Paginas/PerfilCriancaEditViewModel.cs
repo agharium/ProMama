@@ -1,6 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
-using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
