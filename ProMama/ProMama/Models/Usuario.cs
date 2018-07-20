@@ -29,7 +29,7 @@ namespace ProMama.Models
             posto_saude = -1;
             criancas = new List<int>();
             uploaded = true;
-            foto_caminho = "avatar_default.jpg";
+            foto_caminho = "mother_default.jpeg";
             foto_uploaded = true;
         }
 

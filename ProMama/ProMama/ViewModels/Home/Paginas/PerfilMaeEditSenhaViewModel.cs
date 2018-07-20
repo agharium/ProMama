@@ -75,7 +75,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     app._usuario.password = senhaAntiga;
                     LoadingDialog.Hide();
-                    await MessageService.AlertDialog("Algo de errado aconteceu. A senha não foi atualizada.");
+                    await MessageService.AlertDialog("Algo de errado aconteceu. A senha não foi atualizada. Tente novamente mais tarde.");
                 }
             }
         }
