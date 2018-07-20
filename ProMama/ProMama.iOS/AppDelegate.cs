@@ -49,6 +49,12 @@ namespace ProMama.iOS
                 UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
             }
 
+            // styles
+            UINavigationBar.Appearance.TintColor = UIColor.White;
+            UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(229, 57, 53);
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
+            UINavigationBar.Appearance.BarStyle = UIBarStyle.Black;
+            
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

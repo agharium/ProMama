@@ -1,4 +1,8 @@
 ﻿using Plugin.LocalNotifications;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -16,6 +20,7 @@ namespace ProMama.Components
         private static Aplicativo app = Aplicativo.Instance;
         private static readonly IRestService RestService = DependencyService.Get<IRestService>();
         private static readonly IFileService FileService = DependencyService.Get<IFileService>();
+        private static readonly IMessageService MessageService = DependencyService.Get<IMessageService>();
 
         public static readonly List<string> IdadesExtensoFotos = new List<string>() {
                 "recém-nascido",
@@ -132,7 +137,7 @@ namespace ProMama.Components
             App.SincronizacaoDatabase.Save(app._sync);
         }
 
-        public static async Task MarcarNotificacoes()
+        public static async Task AgendarNotificacoes()
         {
             if (app._usuario.criancas.Count > 0 && app._usuario.criancas != null)
             {
@@ -143,7 +148,7 @@ namespace ProMama.Components
                 if (app._usuario.notificacoes_oQuantoAntes == null)
                     app._usuario.notificacoes_oQuantoAntes = new List<int>();
 
-                foreach (var c in app._usuario.criancas)
+                foreach (var c in App.CriancaDatabase.GetCriancasByUser(app._usuario.id))
                 {
                     var idadeAtual = (DateTime.Now - c.crianca_dataNascimento).Days;
 
@@ -186,11 +191,13 @@ namespace ProMama.Components
             }
         }
 
-        public static async Task UploadInformacoesUser()
+        public static async Task UploadInformacoes()
         {
             var acompanhamentos = App.AcompanhamentoDatabase.GetAll();
             var fotos = App.FotoDatabase.GetAll();
             var marcos = App.MarcoDatabase.GetAll();
+            var criancas = App.CriancaDatabase.GetAll();
+            var usuarios = App.UsuarioDatabase.GetAll();
 
             foreach (var obj in acompanhamentos)
             {
@@ -219,7 +226,7 @@ namespace ProMama.Components
             {
                 if (!obj.uploaded)
                 {
-                    var result = await RestService.FotoUpload(obj, app._usuario.api_token);
+                    var result = await RestService.FotoCriancaUpload(obj, app._usuario.api_token);
                     if (result.success)
                     {
                         var aux = App.FotoDatabase.Find(result.id);
@@ -260,6 +267,42 @@ namespace ProMama.Components
                     }
                 }
             }
+
+            foreach (var obj in criancas)
+            {
+                if (!obj.uploaded)
+                {
+                    var result = await RestService.CriancaUpdate(obj, app._usuario.api_token);
+                    if (result.success)
+                    {
+                        obj.uploaded = true;
+                        App.CriancaDatabase.Save(obj);
+                    }
+                }
+            }
+
+            foreach (var obj in usuarios)
+            {
+                if (!obj.uploaded)
+                {
+                    var result = await RestService.UsuarioUpdate(obj);
+                    if (result.success)
+                    {
+                        obj.uploaded = true;
+                        App.UsuarioDatabase.Save(obj);
+                    }
+                }
+
+                if (!obj.foto_uploaded)
+                {
+                    var result = await RestService.FotoUserUpload(obj.foto_caminho, app._usuario.api_token);
+                    if (result.success)
+                    {
+                        obj.foto_uploaded = true;
+                        App.UsuarioDatabase.Save(obj);
+                    }
+                }
+            }
         }
 
         public static async Task DownloadInformacoesUser()
@@ -276,7 +319,7 @@ namespace ProMama.Components
 
             foreach (var obj in fotos)
             {
-                obj.caminho = FileService.DownloadFile(obj.url, app._usuario.api_token);
+                obj.caminho = FileService.DownloadFile(obj.url, app._usuario.api_token, 0);
                 obj.source = obj.caminho;
                 obj.uploaded = true;
                 obj.titulo = IdadesExtensoFotos[obj.mes];
@@ -287,6 +330,12 @@ namespace ProMama.Components
             {
                 obj.uploaded = true;
                 App.MarcoDatabase.Save(obj);
+            }
+
+            if (!string.IsNullOrEmpty(app._usuario.foto_url))
+            {
+                app._usuario.foto_caminho = FileService.DownloadFile(app._usuario.foto_url, app._usuario.api_token, 1);
+                App.UsuarioDatabase.Save(app._usuario);
             }
         }
 
@@ -592,6 +641,97 @@ namespace ProMama.Components
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
+        }
+
+        public static async Task<Foto> SelecionarFoto(Foto foto)
+        {
+            var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+            var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+
+            if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
+            {
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
+                cameraStatus = results[Permission.Camera];
+                storageStatus = results[Permission.Storage];
+            }
+
+            try
+            {
+                var escolha = await MessageService.ActionSheet("Escolher foto", new string[] { "Selecionar foto da galeria", "Abrir câmera" });
+
+                if (!escolha.Equals("Cancelar") && escolha != null)
+                {
+                    await CrossMedia.Current.Initialize();
+
+                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                    {
+                        Debug.WriteLine("No Camera", ":( No camera available.", "OK");
+                        return null;
+                    }
+
+                    MediaFile file = null;
+
+                    if (escolha.Equals("Selecionar foto da galeria"))
+                    {
+                        if (storageStatus == PermissionStatus.Granted)
+                        {
+                            file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                            {
+                                PhotoSize = PhotoSize.Medium,
+                                CompressionQuality = 90
+                            });
+                        }
+                        else
+                        {
+                            await MessageService.AlertDialog("O aplicativo não tem permissão para acessar o armazenamento do dispositivo. Por favor, conceda permissão.");
+                            CrossPermissions.Current.OpenAppSettings();
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
+                        {
+                            var filename = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 8);
+                            file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                            {
+                                AllowCropping = true,
+                                PhotoSize = PhotoSize.Medium,
+                                CompressionQuality = 90,
+                                Name = filename + ".jpg",
+                                SaveToAlbum = true,
+                                SaveMetaData = false
+                            });
+                        }
+                        else
+                        {
+                            await MessageService.AlertDialog("O aplicativo não tem permissão para acessar a câmera e/ou o armazenamento do dispositivo. Por favor, conceda permissão.");
+                            CrossPermissions.Current.OpenAppSettings();
+                            return null;
+                        }
+                    }
+
+                    if (file == null)
+                        return null;
+
+                    Debug.WriteLine("File Location", file.Path, "OK");
+
+                    foto.source = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+                    foto.caminho = file.Path;
+
+                    return foto;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                Debug.WriteLine("Usuário tocou fora do ActionSheet.");
+            }
+            return null;
         }
     }
 }

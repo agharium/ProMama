@@ -2,6 +2,8 @@
 using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProMama.Database.Controllers
 {
@@ -26,6 +28,11 @@ namespace ProMama.Database.Controllers
         public Usuario Find(int id)
         {
             return UsuarioCollection.Find(id);
+        }
+
+        public List<Usuario> GetAll()
+        {
+            return UsuarioCollection.All.ToList();
         }
 
         public void Delete(int id)

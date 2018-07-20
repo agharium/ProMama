@@ -81,10 +81,10 @@ namespace ProMama.ViewModels.Inicio
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("Você precisa selecionar um bairro.");
                 }
-                else if (Senha.Length < 8)
+                else if (Senha.Length < 6)
                 {
                     LoadingDialog.Hide();
-                    await MessageService.AlertDialog("A senha precisa ter no mínimo 8 caracteres.");
+                    await MessageService.AlertDialog("A senha precisa ter no mínimo 6 caracteres.");
                 }
                 else if (!Ferramentas.VerificarEmailRegex(Email))
                 {
@@ -104,8 +104,6 @@ namespace ProMama.ViewModels.Inicio
                     {
                         u.id = result.id;
                         u.api_token = result.message;
-                        u.posto_saude = -1;
-                        u.criancas = new List<Crianca>();
 
                         app._usuario = u;
                         App.UsuarioDatabase.Save(app._usuario);

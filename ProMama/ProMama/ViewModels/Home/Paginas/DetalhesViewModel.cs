@@ -36,6 +36,25 @@ namespace ProMama.ViewModels.Home.Paginas
             AbrirLinkCommand = new Command<Link>(AbrirLink);
         }
 
+        public DetalhesViewModel(Conversa c)
+        {
+            Titulo = c.pergunta;
+            ImagemVisivel = false;
+            //Texto = c.resposta;
+            LinksVisivel = false;
+        }
+
+        public DetalhesViewModel(DuvidaFrequente df)
+        {
+            Titulo = df.titulo;
+            ImagemVisivel = false;
+            //Texto = df.texto;
+            Links = df.links;
+            LinksVisivel = Links.Count == 0 ? false : true;
+
+            AbrirLinkCommand = new Command<Link>(AbrirLink);
+        }
+
         private void AbrirLink(Link l)
         {
             if (l.url.Contains("DUVIDAFREQUENTE:"))
@@ -65,22 +84,6 @@ namespace ProMama.ViewModels.Home.Paginas
                     Debug.WriteLine(ex.ToString());
                 }
             }
-        }
-
-        public DetalhesViewModel(Conversa c)
-        {
-            Titulo = c.pergunta;
-            ImagemVisivel = false;
-            //Texto = c.resposta;
-            LinksVisivel = false;
-        }
-
-        public DetalhesViewModel(DuvidaFrequente df)
-        {
-            Titulo = df.titulo;
-            ImagemVisivel = false;
-            //Texto = df.texto;
-            LinksVisivel = false;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
 namespace ProMama.Models
 {
@@ -8,6 +8,7 @@ namespace ProMama.Models
         public string titulo { get; set; }
         public string texto { get; set; }
         public string resumo { get; set; }
+        public List<Link> links { get; set; }
 
         public DuvidaFrequente() { }
     }

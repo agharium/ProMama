@@ -10,17 +10,18 @@ namespace ProMama.iOS.Services
 {
     class FileService_iOS : IFileService
     {
-        private readonly string FileUrl = "http://promama.cf/api/file/";
+        private readonly string FileUrlCrianca = "http://promama.cf/api/foto-crianca/";
+        private readonly string FileUrlUser = "http://promama.cf/api/foto-user/";
 
         public byte[] ReadAllBytes(string path)
         {
             return File.ReadAllBytes(path);
         }
 
-        public string DownloadFile(string url, string api_token)
+        public string DownloadFile(string url, string api_token, int type)
         {
             string localFilename = url;
-            url = FileUrl + url + "?api_token=" + api_token;
+            url = type == 0 ? FileUrlCrianca + url + "?api_token=" + api_token : FileUrlUser + url + "?api_token=" + api_token;
 
             var webClient = new WebClient();
             string localPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), localFilename);

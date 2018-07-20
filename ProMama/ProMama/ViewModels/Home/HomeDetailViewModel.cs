@@ -1,9 +1,7 @@
 ﻿using Plugin.Connectivity;
-using Plugin.LocalNotifications;
 using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -195,8 +193,8 @@ namespace ProMama.ViewModels.Home
                     if (CrossConnectivity.Current.IsConnected)
                     {
                         await Ferramentas.SincronizarBanco();
-                        await Ferramentas.UploadInformacoesUser();
-                        await Ferramentas.MarcarNotificacoes();
+                        await Ferramentas.UploadInformacoes();
+                        await Ferramentas.AgendarNotificacoes();
                     }
 
                     app._onThread = false;

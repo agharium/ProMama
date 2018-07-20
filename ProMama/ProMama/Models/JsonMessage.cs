@@ -7,6 +7,7 @@
         public string password { get; set; }
         public int id { get; set; }
         public Usuario user { get; set; }
+        public string senha_reserva { get; set; }
 
         public JsonMessage(bool success, string message, int id)
         {

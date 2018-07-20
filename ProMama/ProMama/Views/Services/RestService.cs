@@ -14,7 +14,7 @@ namespace ProMama.Views.Services
     class RestService : IRestService
     {
         private readonly string ApiUrl = "http://promama.cf/api";
-        private readonly string TokenPadrao = "token1";
+        private readonly string TokenPadrao = "PRO:7B68D5409F4E2A0F3F224F0C2E5D58FE7F6607EB6D9CEB1891033272CE263F44";
 
         public async Task<JsonMessage> UsuarioCreate(Usuario u)
         {
@@ -104,6 +104,7 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return null;
             }
         }
@@ -147,6 +148,25 @@ namespace ProMama.Views.Services
             catch (Exception e)
             {
                 return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
+
+        public async Task<List<Crianca>> CriancasReadByUser(Usuario u)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync(ApiUrl + "/criancas-user?api_token=" + u.api_token);
+                var obj = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine("API: LEITURA DE CRIANÇAS DO USUÁRIO");
+                Debug.WriteLine(obj.ToString());
+
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+
+                return string.IsNullOrEmpty(obj.ToString()) ? new List<Crianca>() : JsonConvert.DeserializeObject<List<Crianca>>(obj, settings);
             }
         }
 
@@ -283,6 +303,7 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return null;
             }
         }
@@ -338,7 +359,7 @@ namespace ProMama.Views.Services
             }
         }
 
-        public async Task<JsonMessage> FotoUpload(Foto foto, string token)
+        public async Task<JsonMessage> FotoCriancaUpload(Foto foto, string token)
         {
             IFileService File = DependencyService.Get<IFileService>();
             try
@@ -355,9 +376,35 @@ namespace ProMama.Views.Services
                     content.Add(crianca, "crianca");
                     content.Add(mes, "mes");
 
-                    var result = await client.PostAsync(ApiUrl + "/uploadfoto?api_token=" + token, content);
+                    var result = await client.PostAsync(ApiUrl + "/upload-foto-crianca?api_token=" + token, content);
                     var obj = await result.Content.ReadAsStringAsync();
-                    Debug.WriteLine("API: UPLOAD DE IMAGEM");
+                    Debug.WriteLine("API: UPLOAD DE IMAGEM DA CRIANÇA");
+                    Debug.WriteLine(obj.ToString());
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + ex.ToString());
+            }
+        }
+
+        public async Task<JsonMessage> FotoUserUpload(string foto, string token)
+        {
+            IFileService File = DependencyService.Get<IFileService>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    MultipartFormDataContent content = new MultipartFormDataContent();
+
+                    ByteArrayContent imagem = new ByteArrayContent(File.ReadAllBytes(foto));
+
+                    content.Add(imagem, "foto", foto);
+
+                    var result = await client.PostAsync(ApiUrl + "/upload-foto-user?api_token=" + token, content);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: UPLOAD DE IMAGEM DO USUÁRIO");
                     Debug.WriteLine(obj.ToString());
                     return JsonConvert.DeserializeObject<JsonMessage>(obj);
                 }
@@ -444,6 +491,33 @@ namespace ProMama.Views.Services
                 Debug.WriteLine(obj.ToString());
 
                 return string.IsNullOrEmpty(obj.ToString()) ? new List<Marco>() : JsonConvert.DeserializeObject<List<Marco>>(obj);
+            }
+        }
+
+        public async Task<JsonMessage> RecuperarSenha(JsonMessage msg)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(msg), Encoding.UTF8, "application/json");
+                    var result = await client.PostAsync(ApiUrl + "/recuperar-senha?api_token=" + TokenPadrao, content);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: RECUPERAÇÃO DE SENHA");
+                    Debug.WriteLine(obj.ToString());
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (Exception e)
+            {
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
             }
         }
     }

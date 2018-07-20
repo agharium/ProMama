@@ -1,4 +1,5 @@
-﻿using ProMama.Models;
+﻿using Plugin.Connectivity;
+using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -19,13 +20,15 @@ namespace ProMama.ViewModels.Home.Paginas
         // Navigation
         private INavigation Navigation { get; set; }
         private readonly INavigationService NavigationService;
+        private readonly IMessageService MessageService;
 
         public SelecionarCriancaViewModel(INavigation _navigation)
         {
-            Criancas = app._usuario.criancas;
+            Criancas = App.CriancaDatabase.GetCriancasByUser(app._usuario.id);
 
             Navigation = _navigation;
             NavigationService = DependencyService.Get<INavigationService>();
+            MessageService = DependencyService.Get<IMessageService>();
 
             SelecionarCriancaCommand = new Command<Crianca>(SelecionarCrianca);
             AddCriancaCommand = new Command(AddCrianca);
@@ -40,7 +43,13 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void AddCrianca()
         {
-            await NavigationService.NavigateAddCriancaPush(Navigation);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                await NavigationService.NavigateAddCriancaPush(Navigation);
+            } else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para adicionar uma criança.");
+            }
         }
     }
 }

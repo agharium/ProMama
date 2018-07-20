@@ -2,6 +2,8 @@
 using MarcelloDB.Collections;
 using Newtonsoft.Json;
 using ProMama.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProMama.Database.Controllers
 {
@@ -23,9 +25,33 @@ namespace ProMama.Database.Controllers
             CriancaCollection.Persist(obj);
         }
 
+        public void SaveList(List<Crianca> list)
+        {
+            foreach (var obj in list)
+            {
+                Save(obj);
+            }
+        }
+
         public Crianca Find(int id)
         {
             return CriancaCollection.Find(id);
+        }
+
+        public List<Crianca> GetAll()
+        {
+            return CriancaCollection.All.ToList();
+        }
+
+        public List<Crianca> GetCriancasByUser(int id)
+        {
+            var retorno = new List<Crianca>();
+            foreach (var obj in GetAll())
+            {
+                if (obj.user_id == id)
+                    retorno.Add(obj);
+            }
+            return retorno;
         }
 
         public void Delete(int id)

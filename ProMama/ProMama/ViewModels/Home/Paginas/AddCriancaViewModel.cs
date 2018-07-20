@@ -1,5 +1,5 @@
 ﻿using Acr.UserDialogs;
-using ProMama.Components;
+using Plugin.Connectivity;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -112,43 +112,49 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void AddCrianca()
         {
-            IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
-
-            if (string.IsNullOrEmpty(PrimeiroNome) || SexoSelecionado == -1)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                LoadingDialog.Hide();
-                await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
-            } else
-            {
-                LoadingDialog.Hide();
-                if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
-                    LoadingDialog.Show();
-                    var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
-                    c.crianca_tipo_parto = -1;
-                    c.crianca_idade_gestacional = -1;
-                    var result = await RestService.CriancaCreate(c, app._usuario.api_token);
+                IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
 
-                    if (result.success)
-                    {
-                        c.crianca_id = result.id;
-                        App.CriancaDatabase.Save(c);
+                if (string.IsNullOrEmpty(PrimeiroNome) || SexoSelecionado == -1)
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
+                } else
+                {
+                    LoadingDialog.Hide();
+                    if (await MessageService.ConfirmationDialog("Você tem certeza que esta é a data de nascimento da criança? Você não poderá alterar esta informação posteriormente.", "Continuar", "Voltar")){
+                        LoadingDialog.Show();
+                        var c = new Crianca(PrimeiroNome, DataSelecionada, SexoSelecionado);
+                        var result = await RestService.CriancaCreate(c, app._usuario.api_token);
 
-                        if (app._usuario.criancas == null)
-                            app._usuario.criancas = new List<Crianca>();
+                        if (result.success)
+                        {
+                            c.crianca_id = result.id;
+                            c.user_id = app._usuario.id;
+                            App.CriancaDatabase.Save(c);
 
-                        app._usuario.criancas.Add(c);
-                        App.UsuarioDatabase.Save(app._usuario);
-                        app._crianca = c;
+                            if (app._usuario.criancas == null)
+                                app._usuario.criancas = new List<int>();
 
-                        LoadingDialog.Hide();
-                        NavigationService.NavigateHome();
-                    }
-                    else
-                    {
-                        LoadingDialog.Hide();
-                        await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                            app._usuario.criancas.Add(c.crianca_id);
+                            App.UsuarioDatabase.Save(app._usuario);
+                            app._crianca = c;
+
+                            LoadingDialog.Hide();
+                            NavigationService.NavigateHome();
+                        }
+                        else
+                        {
+                            LoadingDialog.Hide();
+                            await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                        }
                     }
                 }
+            }
+            else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para adicionar uma criança.");
             }
         }
     }

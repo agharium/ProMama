@@ -7,9 +7,21 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <StackLayout 
+                <StackLayout
                     Padding="20"
                     Spacing="20">
+
+                    <Frame Padding="0">
+                        <Image 
+                            Source="{Binding Foto}"
+                            Aspect="AspectFill"
+                            HeightRequest="200"/>
+                    </Frame>
+
+                    <Button 
+                        Style="{StaticResource GrayButton}"
+                        Text="Trocar Foto"
+                        Command="{Binding TrocarFotoCommand}"/>
 
                     <Grid RowSpacing="20">
                         <Grid.RowDefinitions>

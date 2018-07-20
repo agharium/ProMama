@@ -78,5 +78,10 @@ namespace ProMama.Views.Services
         {
             await Navigation.PushAsync(new PerfilMaeEditSenhaView());
         }
+
+        public void NavigateNovaSenha()
+        {
+            Application.Current.MainPage = new NavigationPage(new NovaSenhaView());
+        }
     }
 }

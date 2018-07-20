@@ -204,7 +204,7 @@
                             LineBreakMode="WordWrap"
                             FontAttributes="Bold"/>
                         <Label
-                            Text="Aluno do curso de Análise e Desenvolvimento de Sistemas do Instituto Federal do Rio Grande do Sul do IFRS - Campus Osório/RS.&#x0a;Responsável pelos testes de software do aplicativo e da aplicação web (backend)."
+                            Text="Aluno do curso de Análise e Desenvolvimento de Sistemas do Instituto Federal do Rio Grande do Sul do IFRS - Campus Osório/RS.&#x0a;Responsável pelos testes de software do aplicativo móvel e da aplicação web (backend)."
                             TextColor="#262626"
                             HorizontalOptions="StartAndExpand"
                             HorizontalTextAlignment="Start"

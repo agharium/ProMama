@@ -2,8 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProMama.Views.Inicio.CadastroView"
-             Title="Cadastro"
-             Icon="">
+             Title="Cadastro">
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS">icon_cadastro.png</On>
+        </OnPlatform>
+    </ContentPage.Icon>
     <ContentPage.Content>
         <ScrollView>
 
@@ -14,6 +18,11 @@
                     Placeholder="E-mail"
                     Keyboard="Email" 
                     Text="{Binding Email}"/>
+                <Label 
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Small"
+                    Text="Utilize um e-mail verdadeiro, pois este será usado posteriormente para recuperar sua senha, caso necessário."/>
                 <Entry 
                     Placeholder="Senha"
                     IsPassword="True"

@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Plugin.Connectivity;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -13,6 +14,22 @@ namespace ProMama.ViewModels.Home.Paginas
     class PerfilMaeEditViewModel : ViewModelBase
     {
         private Aplicativo app = Aplicativo.Instance;
+
+        private Usuario u = new Usuario();
+
+        private ImageSource _foto;
+        public ImageSource Foto
+        {
+            get
+            {
+                return _foto;
+            }
+            set
+            {
+                _foto = value;
+                Notify("Foto");
+            }
+        }
 
         private string _nome;
         public string Nome
@@ -128,6 +145,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private INavigation Navigation { get; set; }
         public ICommand SalvarCommand { get; set; }
+        public ICommand TrocarFotoCommand { get; set; }
         public ICommand TrocarSenhaCommand { get; set; }
 
         private readonly INavigationService NavigationService;
@@ -138,8 +156,10 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             Navigation = _navigation;
             SalvarCommand = new Command(Salvar);
+            TrocarFotoCommand = new Command(TrocarFoto);
             TrocarSenhaCommand = new Command(TrocarSenha);
-
+            
+            Foto = string.IsNullOrEmpty(app._usuario.foto_caminho) ? "mother_default.jpeg" : app._usuario.foto_caminho;
             Nome = app._usuario.name;
 
             DataMinima = DateTime.Now.AddYears(-100);
@@ -183,53 +203,51 @@ namespace ProMama.ViewModels.Home.Paginas
             Debug.WriteLine("Bairro: " + Bairros[BairroSelecionado].bairro_id);
             Debug.WriteLine("Posto: " + Postos[PostoSelecionado].id);
             IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
-
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                if (DataSelecionada.Year == DateTime.Now.Year || DataSelecionada.AddYears(15).Year > DateTime.Now.Year)
-                {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("Selecione uma data válida.");
-                } else
-                {
-                    Usuario u = new Usuario();
-
-                    u.id = app._usuario.id;
-                    u.email = app._usuario.email;
-                    u.password = app._usuario.password;
-                    u.api_token = app._usuario.api_token;
-                    u.criancas = app._usuario.criancas;
-
-                    u.name = string.IsNullOrEmpty(Nome) ? "" : Nome;
-                    u.data_nascimento = DataSelecionada;
-                    u.bairro = Bairros[BairroSelecionado].bairro_id;
-                    if (PostoSelecionado != -1)
-                    {
-                        u.posto_saude = Postos[PostoSelecionado].id;
-                    } else
-                    {
-                        u.posto_saude = -1;
-                    }
-
-                    var result = await RestService.UsuarioUpdate(u);
-                    if (result.success)
-                    {
-                        app._usuario = u;
-                        App.UsuarioDatabase.Save(u);
-                        app._master.Load();
-
-                        LoadingDialog.Hide();
-                        await Navigation.PopAsync();
-                    } else
-                    {
-                        LoadingDialog.Hide();
-                        await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
-                    }
-                }
-            } else
+            
+            if (DataSelecionada.Year == DateTime.Now.Year || DataSelecionada.AddYears(15).Year > DateTime.Now.Year)
             {
                 LoadingDialog.Hide();
-                await MessageService.AlertDialog("Você precisa estar conectado à internet para atualizar o perfil da mãe.");
+                await MessageService.AlertDialog("Selecione uma data válida.");
+            } else
+            {
+                u.id = app._usuario.id;
+                u.email = app._usuario.email;
+                u.password = app._usuario.password;
+                u.api_token = app._usuario.api_token;
+                u.criancas = app._usuario.criancas;
+                u.uploaded = false;
+
+                u.name = string.IsNullOrEmpty(Nome) ? "" : Nome;
+                u.data_nascimento = DataSelecionada;
+                u.bairro = Bairros[BairroSelecionado].bairro_id;
+                if (PostoSelecionado != -1)
+                {
+                    u.posto_saude = Postos[PostoSelecionado].id;
+                } else
+                {
+                    u.posto_saude = -1;
+                }
+
+                if (u.foto_caminho != app._usuario.foto_caminho)
+                    u.foto_uploaded = false;
+                
+                app._usuario = u;
+                App.UsuarioDatabase.Save(u);
+                app._master.Load();
+
+                LoadingDialog.Hide();
+                await Navigation.PopAsync();
+            }
+        }
+
+        private async void TrocarFoto()
+        {
+            var foto = await Ferramentas.SelecionarFoto(new Foto());
+            if (foto != null)
+            {
+                Foto = foto.source;
+                u.foto_caminho = foto.caminho;
+                Notify("Foto");
             }
         }
 

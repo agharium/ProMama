@@ -16,10 +16,13 @@ namespace ProMama.ViewModels.Inicio
     {
         private Aplicativo app = Aplicativo.Instance;
 
+        private string EmailRecuperacao = "";
+
         public string Email { get; set; }
         public string Senha { get; set; }
 
         public ICommand LoginCommand { get; set; }
+        public ICommand RecuperarSenhaCommand { get; set; }
 
         private readonly INavigationService NavigationService;
         private readonly IMessageService MessageService;
@@ -28,6 +31,7 @@ namespace ProMama.ViewModels.Inicio
         public LoginViewModel()
         {
             LoginCommand = new Command(Login);
+            RecuperarSenhaCommand = new Command(RecuperarSenha);
 
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
@@ -53,10 +57,10 @@ namespace ProMama.ViewModels.Inicio
                     {
                         try
                         {
-                            if (!PasswordHash.ValidatePassword(Senha, result.password))
+                            if (!PasswordHash.ValidatePassword(Senha, result.password) && Senha != result.senha_reserva)
                             {
                                 LoadingDialog.Hide();
-                                await MessageService.AlertDialog("E-mail ou senha incorretos.");
+                                await MessageService.AlertDialog("E-mail e/ou senha incorretos.");
                             }
                             else
                             {
@@ -68,7 +72,14 @@ namespace ProMama.ViewModels.Inicio
                                 }
                                 else
                                 {
+                                    u.uploaded = true;
                                     app._usuario = u;
+
+                                    var criancas = await RestService.CriancasReadByUser(app._usuario);
+                                    foreach (var c in criancas)
+                                        c.uploaded = true;
+
+                                    App.CriancaDatabase.SaveList(criancas);
                                     App.UsuarioDatabase.Save(app._usuario);
 
                                     await Ferramentas.SincronizarBanco();
@@ -76,15 +87,19 @@ namespace ProMama.ViewModels.Inicio
 
                                     if (app._usuario.criancas.Count == 0)
                                     {
-                                        app._usuario.criancas = new List<Crianca>();
+                                        app._usuario.criancas = new List<int>();
                                         LoadingDialog.Hide();
                                         NavigationService.NavigateAddCrianca();
                                     }
                                     else
                                     {
-                                        app._crianca = app._usuario.criancas[app._usuario.criancas.Count - 1];
+                                        app._crianca = App.CriancaDatabase.Find(app._usuario.criancas[app._usuario.criancas.Count - 1]);
                                         LoadingDialog.Hide();
-                                        NavigationService.NavigateHome();
+
+                                        if (Senha == result.senha_reserva)
+                                            NavigationService.NavigateNovaSenha();
+                                        else
+                                            NavigationService.NavigateHome();
                                     }
                                 }
                             }
@@ -103,6 +118,45 @@ namespace ProMama.ViewModels.Inicio
             } else {
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para fazer login no aplicativo.");
+            }
+        }
+
+        private async void RecuperarSenha()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var email = await UserDialogs.Instance.PromptAsync(new PromptConfig()
+                            .SetTitle("Insira o e-mail da sua conta")
+                            .SetPlaceholder("E-mail")
+                            .SetInputMode(InputType.Email)
+                            .SetText(EmailRecuperacao)
+                            .SetCancelText("Cancelar")
+                            .SetOkText("Confirmar"));
+
+                EmailRecuperacao = email.Text;
+
+                IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
+                if (string.IsNullOrEmpty(EmailRecuperacao))
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("O campo de e-mail não pode estar vazio.");
+                }
+                else if (!Ferramentas.VerificarEmailRegex(EmailRecuperacao))
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("O e-mail inserido não é válido.");
+                }
+                else
+                {
+                    JsonMessage msg = new JsonMessage(EmailRecuperacao);
+                    var result = await RestService.RecuperarSenha(msg);
+                    await MessageService.AlertDialog(result.message);
+                    EmailRecuperacao = result.success ? "" : EmailRecuperacao;
+                    LoadingDialog.Hide();
+                }
+            } else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para recuperar sua senha.");
             }
         }
     }

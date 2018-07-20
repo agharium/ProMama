@@ -11,6 +11,20 @@ namespace ProMama.ViewModels.Home.Paginas
     {
         private Aplicativo app = Aplicativo.Instance;
 
+        private ImageSource _foto;
+        public ImageSource Foto
+        {
+            get
+            {
+                return _foto;
+            }
+            set
+            {
+                _foto = value;
+                Notify("Foto");
+            }
+        }
+
         private string _nome;
         public string Nome
         {
@@ -75,6 +89,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         public PerfilMaeViewModel(INavigation _navigation)
         {
+            Foto = string.IsNullOrEmpty(app._usuario.foto_caminho) ? "mother_default.jpeg" : app._usuario.foto_caminho;
             Nome = app._usuario.name;
             var aux = (DateTime.Now.Year - app._usuario.data_nascimento.Year);
             Idade = (aux < 15 || aux > 100) ? "" : aux + " anos";

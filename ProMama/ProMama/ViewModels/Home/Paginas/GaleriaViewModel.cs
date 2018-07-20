@@ -1,11 +1,8 @@
-﻿using Plugin.Media;
-using Plugin.Media.Abstractions;
-using ProMama.Components;
+﻿using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -73,65 +70,15 @@ namespace ProMama.ViewModels.Home.Paginas
             }
             else
             {
-                try
+                foto = await Ferramentas.SelecionarFoto(foto);
+                if (foto != null)
                 {
-                    var escolha = await MessageService.ActionSheet("Escolher foto", new string[] { "Selecionar foto da galeria", "Abrir câmera" });
+                    Notify("Fotos");
 
-                    if (!escolha.Equals("Cancelar") && escolha != null)
-                    {
-                        await CrossMedia.Current.Initialize();
+                    App.FotoDatabase.SaveIncrementing(foto);
+                    app._master.SetFoto();
 
-                        if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-                        {
-                            Debug.WriteLine("No Camera", ":( No camera available.", "OK");
-                            return;
-                        }
-
-                        MediaFile file = null;
-
-                        if (escolha.Equals("Selecionar foto da galeria"))
-                        {
-                            file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-                            {
-                                PhotoSize = PhotoSize.Medium,
-                                CompressionQuality = 92
-                            });
-                        }
-                        else
-                        {
-                            file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                            {
-                                AllowCropping = true,
-                                PhotoSize = PhotoSize.Medium,
-                                CompressionQuality = 92,
-                                Directory = "Sample",
-                                Name = "sample.jpg"
-                            });
-                        }
-
-                        if (file == null)
-                            return;
-
-                        Debug.WriteLine("File Location", file.Path, "OK");
-
-                        foto.source = ImageSource.FromStream(() =>
-                        {
-                            var stream = file.GetStream();
-                            return stream;
-                        });
-                        Notify("Fotos");
-                        foto.caminho = file.Path;
-
-                        App.FotoDatabase.SaveIncrementing(foto);
-                        app._master.SetFoto();
-                        
-                        await NavigationService.NavigateFoto(Navigation, foto);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.ToString());
-                    Debug.WriteLine("Usuário tocou fora do ActionSheet.");
+                    await NavigationService.NavigateFoto(Navigation, foto);
                 }
             }
         }

@@ -2,8 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProMama.Views.Inicio.LoginView"
-             Title="Login"
-             Icon="">
+             Title="Login">
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS">icon_login.png</On>
+        </OnPlatform>
+    </ContentPage.Icon>
     <ContentPage.Content>
         <ScrollView>
             
@@ -14,7 +18,7 @@
                     Placeholder="E-mail"
                     Keyboard="Email"
                     Text="{Binding Email}"/>
-                <Entry 
+                <Entry
                     Placeholder="Senha"
                     IsPassword="True"
                     Text="{Binding Senha}"/>
@@ -22,6 +26,10 @@
                     Style="{StaticResource MainButton}"
                     Text="Entrar"
                     Command="{Binding LoginCommand}"/>
+                <Button 
+                    Style="{StaticResource GrayButton}"
+                    Text="Esqueci minha senha"
+                    Command="{Binding RecuperarSenhaCommand}"/>
                 <!--<Button 
                     Style="{StaticResource FacebookButton}"
                     Text="Entrar com o Facebook"/>-->

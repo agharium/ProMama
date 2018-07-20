@@ -6,31 +6,31 @@ using ProMama.ViewModels.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace ProMama.ViewModels.Home.Paginas
+namespace ProMama.ViewModels.Inicio
 {
-    class PerfilMaeEditSenhaViewModel : ViewModelBase
+    class NovaSenhaViewModel
     {
         private Aplicativo app = Aplicativo.Instance;
 
-        public string SenhaAtual { get; set; }
         public string NovaSenha { get; set; }
         public string NovaSenhaConfirmacao { get; set; }
 
-        private INavigation Navigation { get; set; }
-        public ICommand SalvarCommand { get; set; }
+        public ICommand AtualizarSenhaCommand { get; set; }
 
         private readonly IMessageService MessageService;
+        private readonly INavigationService NavigationService;
         private readonly IRestService RestService;
 
-        public PerfilMaeEditSenhaViewModel(INavigation _navigation)
+        public NovaSenhaViewModel()
         {
-            Navigation = _navigation;
-            SalvarCommand = new Command(Salvar);
+            AtualizarSenhaCommand = new Command(AtualizarSenha);
+
             MessageService = DependencyService.Get<IMessageService>();
+            NavigationService = DependencyService.Get<INavigationService>();
             RestService = DependencyService.Get<IRestService>();
         }
 
-        private async void Salvar()
+        private async void AtualizarSenha()
         {
             IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
             if (!CrossConnectivity.Current.IsConnected)
@@ -38,7 +38,7 @@ namespace ProMama.ViewModels.Home.Paginas
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("Você precisa estar conectado à internet para trocar a senha.");
             }
-            else if (string.IsNullOrEmpty(SenhaAtual) || string.IsNullOrEmpty(NovaSenha) || string.IsNullOrEmpty(NovaSenhaConfirmacao))
+            else if (string.IsNullOrEmpty(NovaSenha) || string.IsNullOrEmpty(NovaSenhaConfirmacao))
             {
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
@@ -53,11 +53,6 @@ namespace ProMama.ViewModels.Home.Paginas
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("As senhas não são iguais.");
             }
-            else if (!PasswordHash.ValidatePassword(SenhaAtual, app._usuario.password))
-            {
-                LoadingDialog.Hide();
-                await MessageService.AlertDialog("A senha atual inserida está incorreta.");
-            }
             else
             {
                 var senhaAntiga = app._usuario.password;
@@ -70,8 +65,9 @@ namespace ProMama.ViewModels.Home.Paginas
                     await MessageService.AlertDialog("A senha foi atualizada com sucesso.");
 
                     LoadingDialog.Hide();
-                    await Navigation.PopAsync();
-                } else
+                    NavigationService.NavigateHome();
+                }
+                else
                 {
                     app._usuario.password = senhaAntiga;
                     LoadingDialog.Hide();

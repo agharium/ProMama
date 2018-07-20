@@ -8,6 +8,7 @@ namespace ProMama.Models
     public class Crianca
     {
         public int crianca_id { get; set; }
+        public int user_id { get; set; }
         public string crianca_primeiro_nome { get; set; }
         public string crianca_sobrenome { get; set; }
         public DateTime crianca_dataNascimento { get; set; }
@@ -17,6 +18,7 @@ namespace ProMama.Models
         public string crianca_outrasInformacoes { get; set; }
         public int crianca_idade_gestacional { get; set; }
         public int crianca_tipo_parto { get; set; }
+        public bool uploaded { get; set; }
 
         public List<int> notificacoesMarcadas { get; set; }
 
@@ -33,6 +35,9 @@ namespace ProMama.Models
             crianca_primeiro_nome = primeiro_nome;
             crianca_dataNascimento = data_nascimento;
             crianca_sexo = sexo;
+            crianca_tipo_parto = -1;
+            crianca_idade_gestacional = -1;
+            uploaded = true;
         }
 
         public Crianca() {}

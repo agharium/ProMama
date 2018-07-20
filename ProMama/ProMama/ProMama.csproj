@@ -60,7 +60,6 @@
     <Compile Include="Database\Controllers\DuvidaFrequenteDatabaseController.cs" />
     <Compile Include="Database\Controllers\FotoDatabaseController.cs" />
     <Compile Include="Database\Controllers\MarcoDatabaseController.cs" />
-    <Compile Include="Database\Controllers\ImagemDatabaseController.cs" />
     <Compile Include="Database\IMarcelloDB.cs" />
     <Compile Include="Database\Controllers\InformacaoDatabaseController.cs" />
     <Compile Include="Database\Controllers\NotificacaoDatabaseController.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Models\Aplicativo.cs" />
     <Compile Include="Models\DuvidaFrequente.cs" />
     <Compile Include="Models\Foto.cs" />
-    <Compile Include="Models\Imagem.cs" />
     <Compile Include="Models\Informacao.cs" />
     <Compile Include="Models\JsonMessage.cs" />
     <Compile Include="Models\Link.cs" />
@@ -109,6 +107,7 @@
     <Compile Include="ViewModels\Inicio\CadastroViewModel.cs" />
     <Compile Include="ViewModels\Inicio\IntroducaoViewModel.cs" />
     <Compile Include="ViewModels\Inicio\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Inicio\NovaSenhaViewModel.cs" />
     <Compile Include="ViewModels\Services\IFileService.cs" />
     <Compile Include="ViewModels\Services\IMessageService.cs" />
     <Compile Include="ViewModels\Services\IRestService.cs" />
@@ -185,6 +184,9 @@
     <Compile Include="Views\Home\Paginas\SobreView.xaml.cs">
       <DependentUpon>SobreView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inicio\NovaSenhaView.xaml.cs">
+      <DependentUpon>NovaSenhaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Services\MessageService.cs" />
     <Compile Include="Views\Services\NavigationService.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -255,10 +257,10 @@
       <HintPath>..\..\packages\Xam.Plugin.Iconize.FontAwesome.2.0.0.37-beta\lib\netstandard1.0\Plugin.Iconize.FontAwesome.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.LocalNotifications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build24\lib\netstandard1.0\Plugin.LocalNotifications.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build25\lib\netstandard1.0\Plugin.LocalNotifications.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.LocalNotifications.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build24\lib\netstandard1.0\Plugin.LocalNotifications.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build25\lib\netstandard1.0\Plugin.LocalNotifications.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.4.0.1.1\lib\netstandard1.0\Plugin.Media.dll</HintPath>
@@ -450,6 +452,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Home\Paginas\RedesSociaisView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Inicio\NovaSenhaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

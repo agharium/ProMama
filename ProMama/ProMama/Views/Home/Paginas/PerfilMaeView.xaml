@@ -19,7 +19,7 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Image 
-                            Source="mother.jpeg" 
+                            Source="{Binding Foto}"
                             Aspect="AspectFill"
                             Grid.Column="0"
                             Grid.Row="0" />

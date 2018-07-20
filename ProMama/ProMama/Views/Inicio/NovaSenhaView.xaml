@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProMama.Views.Inicio.NovaSenhaView"
+             Title="Atualize a sua senha">
+    <ContentPage.Content>
+        <StackLayout
+            Spacing="20"
+            Padding="20">
+            <Entry
+                Placeholder="Senha"
+                IsPassword="True"
+                Text="{Binding NovaSenha}"/>
+            <Entry
+                Placeholder="Confirme a senha"
+                IsPassword="True"
+                Text="{Binding NovaSenhaConfirmacao}"/>
+            <Button 
+                Style="{StaticResource MainButton}"
+                Text="Atualizar senha"
+                Command="{Binding AtualizarSenhaCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
