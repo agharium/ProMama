@@ -59,23 +59,23 @@ namespace ProMama.Views.Inicio
 
             page1.Content1 = "Bem-vindo ao Aplicativo Pró-Mamá!";
             page1.Content2 = "O leite materno é o melhor alimento para o seu bebê, porém amamentar pode não ser tão simples assim! Com o apoio deste aplicativo tudo vai ficar mais fácil! ";
-            page1.Image = "intro_bebe1.png";
+            page1.Image = "intro_baby1.png";
 
             page2.Content1 = "O que o aplicativo faz?";
             page2.Content2 = "Preencha seus dados corretamente e você receberá notícias semanais sobre o aleitamento materno, a alimentação e o desenvolvimento do seu bebê de acordo com a idade dele.";
-            page2.Image = "intro_bebe2.png";
+            page2.Image = "intro_baby2.png";
 
             page3.Content1 = "Fotos e marcos de desenvolvimento!";
             page3.Content2 = "Você vai poder registrar os melhores momentos do seu bebê e guardar para sempre! Vai poder acompanhar o desenvolvimento do seu bebê através de fotos mensais, peso, altura e gravar as datas mais importantes para vocês, como por exemplo: o primeiro sorriso!";
-            page3.Image = "intro_bebe3.png";
+            page3.Image = "intro_baby3.png";
 
             page4.Content1 = "Aproveite esses dois anos!";
             page4.Content2 = "Estaremos bem pertinho de vocês porque o aplicativo Pró-Mamá acompanha seu bebê de zero a 2 anos de idade. Todo seu conteúdo foi pensado por profissionais da saúde pensando no melhor para vocês!";
-            page4.Image = "intro_bebe4.png";
+            page4.Image = "intro_baby4.png";
 
             page5.Content1 = "";
-            page5.Content2 = "Desenvolvido em parceria com";
-            page5.Image = "ifrs_logo.png";
+            page5.Content2 = "Uma parceria";
+            page5.Image = "logos_parceria.png";
 
             var pages = new ObservableCollection<CarouselContent>
             {

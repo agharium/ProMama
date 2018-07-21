@@ -3008,22 +3008,22 @@ namespace ProMama.Droid
 			public const int icon = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int ifrs_logo = 2130837780;
+			public const int intro_baby1 = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int intro_bebe1 = 2130837781;
+			public const int intro_baby2 = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int intro_bebe2 = 2130837782;
+			public const int intro_baby3 = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int intro_bebe3 = 2130837783;
+			public const int intro_baby4 = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int intro_bebe4 = 2130837784;
+			public const int loading = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int loading = 2130837785;
+			public const int logos_parceria = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
 			public const int marco1 = 2130837786;
