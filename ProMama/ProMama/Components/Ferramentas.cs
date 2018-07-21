@@ -656,11 +656,11 @@ namespace ProMama.Components
                 cameraStatus = results[Permission.Camera];
                 storageStatus = results[Permission.Storage];
             }
-            
-            var escolha = await UserDialogs.Instance.ActionSheetAsync("Escolher foto", "Cancelar", null, null, "Selecionar foto da galeria", "Abrir câmera");
+
+            var escolha = await UserDialogs.Instance.ActionSheetAsync("Escolher foto", "Cancelar", "", null, "Selecionar foto da galeria", "Abrir câmera");
             //var escolha = await MessageService.ActionSheet("Escolher foto", new string[] { "Selecionar foto da galeria", "Abrir câmera" });
 
-            if (!escolha.Equals("Cancelar") && escolha != null)
+            if (escolha.Equals("Selecionar foto da galeria") || escolha.Equals("Abrir câmera"))
             {
                 await CrossMedia.Current.Initialize();
 

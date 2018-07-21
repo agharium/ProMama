@@ -48,10 +48,13 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             Foto = await Ferramentas.SelecionarFoto(Foto);
 
-            App.FotoDatabase.Save(Foto);
-            app._master.SetFoto();
+            if (Foto != null)
+            {
+                App.FotoDatabase.Save(Foto);
+                app._master.SetFoto();
 
-            Caminho = Foto.source;
+                Caminho = Foto.source;
+            }
         }
     }
 }
