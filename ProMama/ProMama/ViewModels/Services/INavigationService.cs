@@ -32,6 +32,8 @@ namespace ProMama.ViewModels.Services
 
         Task NavigateDuvidaFrequente(INavigation Navigation, DuvidaFrequente duvidaFrequente);
 
+        Task NavigateTrocarEmail(INavigation Navigation);
+
         Task NavigateTrocarSenha(INavigation Navigation);
 
         void NavigateNovaSenha();

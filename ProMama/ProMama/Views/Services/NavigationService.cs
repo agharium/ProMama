@@ -74,6 +74,11 @@ namespace ProMama.Views.Services
             await Navigation.PushAsync(new DetalhesView(duvidaFrequente));
         }
 
+        public async Task NavigateTrocarEmail(INavigation Navigation)
+        {
+            await Navigation.PushAsync(new PerfilMaeEditEmailView());
+        }
+
         public async Task NavigateTrocarSenha(INavigation Navigation)
         {
             await Navigation.PushAsync(new PerfilMaeEditSenhaView());

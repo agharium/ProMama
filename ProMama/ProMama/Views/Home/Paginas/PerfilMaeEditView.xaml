@@ -104,6 +104,11 @@
 
                     <Button 
                         Style="{StaticResource GrayButton}"
+                        Text="Trocar Email"
+                        Command="{Binding TrocarEmailCommand}"/>
+
+                    <Button 
+                        Style="{StaticResource GrayButton}"
                         Text="Trocar Senha"
                         Command="{Binding TrocarSenhaCommand}"/>
                 </StackLayout>

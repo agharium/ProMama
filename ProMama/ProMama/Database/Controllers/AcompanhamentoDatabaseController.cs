@@ -50,7 +50,11 @@ namespace ProMama.Database.Controllers
             foreach (var obj in GetAll())
             {
                 if (obj.crianca == id)
+                {
+                    obj.alturaExtenso = obj.altura + "cm";
+                    obj.pesoExtenso = obj.peso + "g";
                     retorno.Add(obj);
+                } 
             }
             return retorno;
         }

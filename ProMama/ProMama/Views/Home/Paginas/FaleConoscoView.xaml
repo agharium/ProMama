@@ -4,7 +4,7 @@
              xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.FaleConoscoView"
              x:Name="this"
-             Title="Minhas dúvidas">
+             Title="Minhas Conversas">
     <ContentPage.Content>
         <StackLayout>
             <ListView
@@ -18,7 +18,7 @@
                             BackgroundColor="#F44336">
                             <Button 
                                 Style="{StaticResource ClearButton}"
-                                Text="Ver dúvidas já respondidas"
+                                Text="Ver outras conversas"
                                 Command="{Binding OutrasConversasCommand}"/>
                         </StackLayout>
                         <StackLayout
@@ -46,7 +46,7 @@
                             Padding="20"
                             IsVisible="{Binding AvisoListaVazia}">
                             <Label 
-                                Text="Não há nenhuma dúvida para ser mostrada."
+                                Text="Não há nenhuma conversa para ser mostrada."
                                 HorizontalOptions="Center"
                                 IsVisible="{Binding AvisoListaVazia}"/>
                         </StackLayout>

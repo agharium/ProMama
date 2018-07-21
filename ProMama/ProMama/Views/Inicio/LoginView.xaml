@@ -10,7 +10,6 @@
     </ContentPage.Icon>
     <ContentPage.Content>
         <ScrollView>
-            
             <StackLayout 
                 Padding="20" 
                 Spacing="20">
@@ -38,7 +37,6 @@
                     Text="Ainda não tem cadastro?"
                     Clicked="ChangeToCadastro"/>
             </StackLayout>
-            
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

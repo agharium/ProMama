@@ -125,7 +125,7 @@ namespace ProMama.ViewModels.Home.Paginas
             PesoAoNascer = app._crianca.crianca_pesoAoNascer != 0 ? app._crianca.crianca_pesoAoNascer.ToString() : "";
             AlturaAoNascer = app._crianca.crianca_alturaAoNascer != 0 ? app._crianca.crianca_alturaAoNascer.ToString(): "";
             PartoSelecionado = app._crianca.crianca_tipo_parto;
-            IdadeGestacionalSelecionado = app._crianca.crianca_idade_gestacional != -1 ? app._crianca.crianca_idade_gestacional - 20 : -1;
+            IdadeGestacionalSelecionado = app._crianca.crianca_idade_gestacional >= 20 ? app._crianca.crianca_idade_gestacional - 20 : -1;
             OutrasInformacoes = app._crianca.crianca_outrasInformacoes;
 
             Navigation = _navigation;
@@ -157,8 +157,8 @@ namespace ProMama.ViewModels.Home.Paginas
                 c.crianca_primeiro_nome = PrimeiroNome;
                 c.crianca_sobrenome = string.IsNullOrEmpty(Sobrenome) ? "" : Sobrenome;
                 c.crianca_sexo = SexoSelecionado;
-                c.crianca_pesoAoNascer = string.IsNullOrEmpty(PesoAoNascer) || PesoAoNascer.Equals(",") ? 0 : Convert.ToDouble(PesoAoNascer);
-                c.crianca_alturaAoNascer = string.IsNullOrEmpty(AlturaAoNascer) || AlturaAoNascer.Equals(",") ? 0 : Convert.ToDouble(AlturaAoNascer);
+                c.crianca_pesoAoNascer = string.IsNullOrEmpty(PesoAoNascer) || PesoAoNascer.Equals(",") ? 0 : Convert.ToInt32(PesoAoNascer);
+                c.crianca_alturaAoNascer = string.IsNullOrEmpty(AlturaAoNascer) || AlturaAoNascer.Equals(",") ? 0 : Convert.ToInt32(AlturaAoNascer);
                 c.crianca_tipo_parto = PartoSelecionado;
                 c.crianca_idade_gestacional = IdadeGestacionalSelecionado == -1 ? -1 : IdadeGestacionalSelecionado + 20;
                 c.crianca_outrasInformacoes = string.IsNullOrEmpty(OutrasInformacoes) ? "" : OutrasInformacoes;

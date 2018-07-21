@@ -146,6 +146,7 @@ namespace ProMama.ViewModels.Home.Paginas
         private INavigation Navigation { get; set; }
         public ICommand SalvarCommand { get; set; }
         public ICommand TrocarFotoCommand { get; set; }
+        public ICommand TrocarEmailCommand { get; set; }
         public ICommand TrocarSenhaCommand { get; set; }
 
         private readonly INavigationService NavigationService;
@@ -157,6 +158,7 @@ namespace ProMama.ViewModels.Home.Paginas
             Navigation = _navigation;
             SalvarCommand = new Command(Salvar);
             TrocarFotoCommand = new Command(TrocarFoto);
+            TrocarEmailCommand = new Command(TrocarEmail);
             TrocarSenhaCommand = new Command(TrocarSenha);
             
             Foto = string.IsNullOrEmpty(app._usuario.foto_caminho) ? "mother_default.jpeg" : app._usuario.foto_caminho;
@@ -248,6 +250,18 @@ namespace ProMama.ViewModels.Home.Paginas
                 Foto = foto.source;
                 u.foto_caminho = foto.caminho;
                 Notify("Foto");
+            }
+        }
+
+        private async void TrocarEmail()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                await NavigationService.NavigateTrocarEmail(Navigation);
+            }
+            else
+            {
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para trocar o e-mail.");
             }
         }
 

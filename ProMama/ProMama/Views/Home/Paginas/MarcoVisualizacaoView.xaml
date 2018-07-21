@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.MarcoVisualizacaoView"
-             Title="Marco de Desenvolvimento">
+             Title="{Binding Titulo}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout

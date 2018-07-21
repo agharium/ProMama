@@ -13,8 +13,8 @@ namespace ProMama.Models
         public string crianca_sobrenome { get; set; }
         public DateTime crianca_dataNascimento { get; set; }
         public int crianca_sexo { get; set; }
-        public double crianca_pesoAoNascer { get; set; }
-        public double crianca_alturaAoNascer { get; set; }
+        public int crianca_pesoAoNascer { get; set; }
+        public int crianca_alturaAoNascer { get; set; }
         public string crianca_outrasInformacoes { get; set; }
         public int crianca_idade_gestacional { get; set; }
         public int crianca_tipo_parto { get; set; }

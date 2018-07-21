@@ -186,7 +186,7 @@
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="CenterAndExpand">
                                                 <Label 
-                                                    Text="{Binding peso}"
+                                                    Text="{Binding pesoExtenso}"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"/>
                                             </StackLayout>
@@ -209,7 +209,7 @@
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="CenterAndExpand">
                                                 <Label 
-                                                    Text="{Binding altura}"
+                                                    Text="{Binding alturaExtenso}"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"/>
                                             </StackLayout>

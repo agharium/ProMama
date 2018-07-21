@@ -142,7 +142,7 @@
                             </Picker.Items>
                         </Picker>
 
-                        <Label 
+                        <Label
                             Text="Idade gestacional no momento do parto:"
                             LineBreakMode="WordWrap"
                             VerticalOptions="Center"

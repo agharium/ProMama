@@ -26,6 +26,8 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 if (p.nome.Equals("Outro"))
                     indexToRemove = postos.IndexOf(p);
+                else
+                    p.MostraTelefone = string.IsNullOrEmpty(p.telefone) ? false : true;
             }
 
             if (indexToRemove != -1)

@@ -95,10 +95,8 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
 
-            if (!string.IsNullOrEmpty(Peso) && 
-                !Peso.Equals(",") &&
-                !string.IsNullOrEmpty(Altura) &&
-                !Altura.Equals(",") && (
+            if (!string.IsNullOrEmpty(Peso) &&
+                !string.IsNullOrEmpty(Altura) && (
                 Alimentacao1 || Alimentacao2 ||
                 Alimentacao3 || Alimentacao4 ||
                 Alimentacao5 || Alimentacao6 ||
@@ -128,7 +126,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
                     alimentacoes = char.ToUpper(alimentacoes[0]) + alimentacoes.Substring(1, alimentacoes.Length - 3);
 
-                    var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Peso + "g", Altura + "cm", alimentacoes);
+                    var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Convert.ToInt32(Peso), Convert.ToInt32(Altura), alimentacoes);
                     App.AcompanhamentoDatabase.SaveIncrementing(acompanhamento);
 
                     LoadingDialog.Hide();

@@ -84,11 +84,17 @@ namespace ProMama.ViewModels.Home
             Idade = app._crianca.IdadeExtenso;
             SetFoto();
 
+            string FaleConoscoTitle = "";
             Type FaleConoscoType = null;
             if (App.BairroDatabase.Find(app._usuario.bairro).bairro_nome.Equals("Não moro em Osório"))
+            {
+                FaleConoscoTitle = "Dúvidas Respondidas";
                 FaleConoscoType = typeof(FaleConoscoOutrosView);
-            else
+            } else
+            {
+                FaleConoscoTitle = "Fale Conosco";
                 FaleConoscoType = typeof(FaleConoscoView);
+            }
 
             MenuItems = new ObservableCollection<HomeMenuItem>(new[]
                 {

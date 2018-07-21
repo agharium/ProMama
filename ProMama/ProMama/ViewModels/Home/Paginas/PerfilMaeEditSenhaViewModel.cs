@@ -36,7 +36,7 @@ namespace ProMama.ViewModels.Home.Paginas
             if (!CrossConnectivity.Current.IsConnected)
             {
                 LoadingDialog.Hide();
-                await MessageService.AlertDialog("Você precisa estar conectado à internet para trocar a senha.");
+                await MessageService.AlertDialog("Você precisa estar conectado à internet para trocar sua senha.");
             }
             else if (string.IsNullOrEmpty(SenhaAtual) || string.IsNullOrEmpty(NovaSenha) || string.IsNullOrEmpty(NovaSenhaConfirmacao))
             {

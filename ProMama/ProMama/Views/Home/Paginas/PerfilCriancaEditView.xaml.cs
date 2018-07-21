@@ -11,12 +11,12 @@ namespace ProMama.Views.Home.Paginas
         {
             InitializeComponent();
 
-            BindingContext = new PerfilCriancaEditViewModel(Navigation);
-
             for (int i = 20; i <= 42; i++)
             {
                 idadeGestacionalPicker.Items.Add(i + " semanas");
             }
+
+            BindingContext = new PerfilCriancaEditViewModel(Navigation);
         }
     }
 }

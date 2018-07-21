@@ -4,10 +4,10 @@
              xmlns:behaviors="clr-namespace:ProMama.Components.Behaviors;assembly=ProMama"
              x:Class="ProMama.Views.Home.Paginas.FaleConoscoOutrosView"
              x:Name="this"
-             Title="Dúvidas respondidas">
+             Title="Dúvidas Respondidas">
     <ContentPage.Content>
         <StackLayout>
-            <ListView 
+            <ListView
                 SeparatorVisibility="None"
                 HasUnevenRows="true"
                 ItemsSource="{Binding Conversas}">
@@ -29,7 +29,7 @@
                             Padding="20"
                             IsVisible="{Binding AvisoListaVazia}">
                             <Label 
-                                Text="Não há nenhuma dúvida para ser mostrada."
+                                Text="Não há nenhuma conversa para ser mostrada."
                                 HorizontalOptions="Center"
                                 IsVisible="{Binding AvisoListaVazia}"/>
                         </StackLayout>
