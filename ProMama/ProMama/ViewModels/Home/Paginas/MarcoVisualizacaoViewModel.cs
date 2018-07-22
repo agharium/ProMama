@@ -13,6 +13,8 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private Marco Marco { get; set; }
 
+        private bool Editando { get; set; }
+
         private string _titulo;
         public string Titulo
         {
@@ -218,6 +220,7 @@ namespace ProMama.ViewModels.Home.Paginas
         private readonly IMessageService MessageService;
 
         public ICommand SalvarCommand { get; set; }
+        public ICommand EditarCommand { get; set; }
 
         public MarcoVisualizacaoViewModel(INavigation _navigation, Marco _marco)
         {
@@ -225,6 +228,15 @@ namespace ProMama.ViewModels.Home.Paginas
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
 
+            Editando = false;
+            CarregarPagina(_marco);
+
+            SalvarCommand = new Command(Salvar);
+            EditarCommand = new Command(Editar);
+        }
+
+        private void CarregarPagina(Marco _marco)
+        {
             DataMinima = app._crianca.crianca_dataNascimento;
             DataMaxima = DateTime.Now;
             DataSelecionada = DateTime.Now;
@@ -239,7 +251,7 @@ namespace ProMama.ViewModels.Home.Paginas
             var auxData = Marco.data.ToString("dd/MM/yyyy");
             var auxNome = app._crianca.crianca_primeiro_nome;
             var fraseIdade = Marco.dataPorExtenso.Equals("recém-nascido") ?
-                (app._crianca.crianca_sexo == 0 ? "era recém-nascido" : "era recém-nascida") : 
+                (app._crianca.crianca_sexo == 0 ? "era recém-nascido" : "era recém-nascida") :
                 "tinha " + Marco.dataPorExtenso + " de vida";
             if (Alcancado)
             {
@@ -349,8 +361,6 @@ namespace ProMama.ViewModels.Home.Paginas
                         break;
                 }
             }
-
-            SalvarCommand = new Command(Salvar);
         }
 
         private async void Salvar()
@@ -366,18 +376,29 @@ namespace ProMama.ViewModels.Home.Paginas
                         return;
                     }
                 }
+
                 Marco.crianca = app._crianca.crianca_id;
                 Marco.data = DataSelecionada;
                 Marco.extra = !string.IsNullOrEmpty(ExtraInput) ? ExtraInput : NumeroExtraInput;
                 Marco.Alcancado = true;
                 Marco.dataPorExtenso = Ferramentas.DaysToFullString((DataSelecionada - app._crianca.crianca_dataNascimento).Days, 2);
-                App.MarcoDatabase.SaveIncrementing(Marco);
+                if (Editando)
+                    App.MarcoDatabase.Save(Marco);
+                else
+                    App.MarcoDatabase.SaveIncrementing(Marco);
                 await Navigation.PopAsync();
             }
             else
             {
                 await MessageService.AlertDialog("Nenhum campo pode estar vazio.");
             }
+        }
+
+        private void Editar()
+        {
+            Marco.Alcancado = false;
+            Editando = true;
+            CarregarPagina(Marco);
         }
     }
 }

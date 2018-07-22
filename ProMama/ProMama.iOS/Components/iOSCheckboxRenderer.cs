@@ -19,7 +19,6 @@ namespace ProMama.iOS.Components
             // intentionally empty
         }
 
-
         public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint)
         {
             var sizeConstraint = base.GetDesiredSize(widthConstraint, heightConstraint);

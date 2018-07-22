@@ -25,7 +25,7 @@ namespace ProMama.Views.Home
                 return;
 
             var page = (Page)Activator.CreateInstance(item.Pagina);
-            page.Title = item.Titulo;
+            //page.Title = item.Titulo;
 
             Detail = new NavigationPage(page);
             IsPresented = false;

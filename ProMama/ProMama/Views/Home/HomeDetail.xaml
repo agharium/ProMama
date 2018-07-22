@@ -59,11 +59,16 @@
                                     BorderColor="Transparent"
                                     BackgroundColor="Transparent"
                                     FontSize="45"
-                                    Margin="0, 15, 0, 0"
                                     TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaEsquerdaCor}">
                                     <iconize:IconButton.Effects>
                                         <effects:LongPressedEffect />
                                     </iconize:IconButton.Effects>
+                                    <iconize:IconButton.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="iOS" Value="10, 15, 0, 0" />
+                                            <On Platform="Android" Value="0, 15, 0, 0" />
+                                        </OnPlatform>
+                                    </iconize:IconButton.Margin>
                                 </iconize:IconButton>
 
                                 <ffimageloading:CachedImage 
@@ -90,11 +95,16 @@
                                     BorderColor="Transparent"
                                     BackgroundColor="Transparent"
                                     FontSize="45"
-                                    Margin="0, 15, 0, 0"
                                     TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaDireitaCor}">
                                     <iconize:IconButton.Effects>
                                         <effects:LongPressedEffect />
                                     </iconize:IconButton.Effects>
+                                    <iconize:IconButton.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="iOS" Value="0, 15, 10, 0" />
+                                            <On Platform="Android" Value="0, 15, 0, 0" />
+                                        </OnPlatform>
+                                    </iconize:IconButton.Margin>
                                 </iconize:IconButton>
                             </Grid>
 

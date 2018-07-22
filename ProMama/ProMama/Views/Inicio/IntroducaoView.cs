@@ -73,8 +73,8 @@ namespace ProMama.Views.Inicio
             page4.Content2 = "Estaremos bem pertinho de vocês porque o aplicativo Pró-Mamá acompanha seu bebê de zero a 2 anos de idade. Todo seu conteúdo foi pensado por profissionais da saúde pensando no melhor para vocês!";
             page4.Image = "intro_baby4.png";
 
-            page5.Content1 = "";
-            page5.Content2 = "Uma parceria";
+            page5.Content1 = "Uma parceria";
+            page5.Content2 = "";
             page5.Image = "logos_parceria.png";
 
             var pages = new ObservableCollection<CarouselContent>

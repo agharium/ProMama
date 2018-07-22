@@ -18,11 +18,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <Button 
-                        Style="{StaticResource MainButton}"
-                        Text="Adicionar uma criança"
-                        Command="{Binding AddCriancaCommand}"
-                        Margin="20"/>
+                    <StackLayout Padding="10">
+                        <Button 
+                            Style="{StaticResource MainButton}"
+                            Text="Adicionar uma criança"
+                            Command="{Binding AddCriancaCommand}"
+                            Margin="10"/>
+                    </StackLayout>
                 </ListView.Footer>
             </ListView>
         </StackLayout>

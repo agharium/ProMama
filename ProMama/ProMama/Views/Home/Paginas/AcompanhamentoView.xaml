@@ -245,13 +245,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-
-                    <Button
-                        Style="{StaticResource MainButton}"
-                        Text="Adicionar nova medição"
-                        Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"
-                        Margin="15"/>
-
+                    <StackLayout Padding="10">
+                        <Button
+                            Style="{StaticResource MainButton}"
+                            Text="Adicionar nova medição"
+                            Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"
+                            Margin="10"/>
+                    </StackLayout>
                 </ListView.Footer>
             </ListView>
 

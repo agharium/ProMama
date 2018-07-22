@@ -11,10 +11,12 @@
                 <Entry
                     Placeholder="Novo e-mail"
                     Text="{Binding NovoEmail}"
-                    Keyboard="Email"
-                    Grid.Row="0"
-                    Grid.Column="1"/>
-
+                    Keyboard="Email"/>
+                <Label 
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Small"
+                    Text="Utilize um e-mail verdadeiro, pois este será usado posteriormente para recuperar sua senha, caso necessário."/>
                 <Button 
                     Style="{StaticResource MainButton}"
                     Text="Salvar"

@@ -78,7 +78,7 @@
                         <Picker
                             ItemsSource="{Binding Bairros}"
                             ItemDisplayBinding="{Binding bairro_nome}"
-                            SelectedIndex="{Binding BairroSelecionado}"
+                            SelectedIndex="{Binding BairroSelecionadoIndex}"
                             Grid.Row="2"
                             Grid.Column="1"/>
 
@@ -92,7 +92,7 @@
                         <Picker
                             ItemsSource="{Binding Postos}"
                             ItemDisplayBinding="{Binding nome}"
-                            SelectedIndex="{Binding PostoSelecionado}"
+                            SelectedIndex="{Binding PostoSelecionadoIndex}"
                             Grid.Row="3"
                             Grid.Column="1"/>
                     </Grid>

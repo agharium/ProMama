@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-using ProMama.Models;
+﻿using ProMama.Models;
 using ProMama.ViewModels.Services;
 using Xamarin.Forms;
 

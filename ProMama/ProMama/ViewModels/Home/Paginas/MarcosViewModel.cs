@@ -52,7 +52,7 @@ namespace ProMama.ViewModels.Home.Paginas
             foreach (var obj in App.MarcoDatabase.GetAllByChildId(app._crianca.crianca_id))
             {
                 list[obj.marco - 1].Alcancado = true;
-                list[obj.marco - 1].Icone = "fa-check-circle";
+                list[obj.marco - 1].Icone = "circle_checked.png"; //"fas-check-circle";
                 list[obj.marco - 1].id = obj.id;
                 list[obj.marco - 1].crianca = obj.crianca;
                 list[obj.marco - 1].data = obj.data;

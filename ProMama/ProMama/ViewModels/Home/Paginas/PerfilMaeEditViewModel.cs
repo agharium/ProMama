@@ -101,17 +101,17 @@ namespace ProMama.ViewModels.Home.Paginas
             }
         }
 
-        private int _bairroSelecionado;
-        public int BairroSelecionado
+        private int _bairroSelecionadoIndex;
+        public int BairroSelecionadoIndex
         {
             get
             {
-                return _bairroSelecionado;
+                return _bairroSelecionadoIndex;
             }
             set
             {
-                _bairroSelecionado = value;
-                Notify("BairroSelecionado");
+                _bairroSelecionadoIndex = value;
+                Notify("BairroSelecionadoIndex");
             }
         }
 
@@ -129,17 +129,17 @@ namespace ProMama.ViewModels.Home.Paginas
             }
         }
 
-        private int _postoSelecionado;
-        public int PostoSelecionado
+        private int _postoSelecionadoIndex;
+        public int PostoSelecionadoIndex
         {
             get
             {
-                return _postoSelecionado;
+                return _postoSelecionadoIndex;
             }
             set
             {
-                _postoSelecionado = value;
-                Notify("PostoSelecionado");
+                _postoSelecionadoIndex = value;
+                Notify("PostoSelecionadoIndex");
             }
         }
 
@@ -174,7 +174,7 @@ namespace ProMama.ViewModels.Home.Paginas
             {
                 if (b.bairro_id == app._usuario.bairro)
                 {
-                    BairroSelecionado = Bairros.IndexOf(b);
+                    BairroSelecionadoIndex = Bairros.IndexOf(b);
                     break;
                 }
             }
@@ -182,14 +182,14 @@ namespace ProMama.ViewModels.Home.Paginas
             Postos = App.PostoDatabase.GetAll();
             if (app._usuario.posto_saude == -1)
             {
-                PostoSelecionado = -1;
+                PostoSelecionadoIndex = -1;
             } else
             {
                 foreach (var p in Postos)
                 {
                     if (p.id == app._usuario.posto_saude)
                     {
-                        PostoSelecionado = Postos.IndexOf(p);
+                        PostoSelecionadoIndex = Postos.IndexOf(p);
                         break;
                     }
                 }
@@ -202,14 +202,18 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Salvar()
         {
-            Debug.WriteLine("Bairro: " + Bairros[BairroSelecionado].bairro_id);
-            Debug.WriteLine("Posto: " + Postos[PostoSelecionado].id);
+            Debug.WriteLine("Bairro: " + Bairros[BairroSelecionadoIndex].bairro_id);
+            Debug.WriteLine("Posto: " + Postos[PostoSelecionadoIndex].id);
             IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
             
             if (DataSelecionada.Year == DateTime.Now.Year || DataSelecionada.AddYears(15).Year > DateTime.Now.Year)
             {
                 LoadingDialog.Hide();
                 await MessageService.AlertDialog("Selecione uma data válida.");
+            } else if (!string.IsNullOrEmpty(Nome) && Nome.Length < 2)
+            {
+                LoadingDialog.Hide();
+                await MessageService.AlertDialog("O nome deve ter no mínimo 2 caracteres.");
             } else
             {
                 u.id = app._usuario.id;
@@ -221,10 +225,10 @@ namespace ProMama.ViewModels.Home.Paginas
 
                 u.name = string.IsNullOrEmpty(Nome) ? "" : Nome;
                 u.data_nascimento = DataSelecionada;
-                u.bairro = Bairros[BairroSelecionado].bairro_id;
-                if (PostoSelecionado != -1)
+                u.bairro = Bairros[BairroSelecionadoIndex].bairro_id;
+                if (PostoSelecionadoIndex != -1)
                 {
-                    u.posto_saude = Postos[PostoSelecionado].id;
+                    u.posto_saude = Postos[PostoSelecionadoIndex].id;
                 } else
                 {
                     u.posto_saude = -1;

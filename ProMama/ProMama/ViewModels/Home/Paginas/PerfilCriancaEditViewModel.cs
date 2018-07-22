@@ -44,14 +44,14 @@ namespace ProMama.ViewModels.Home.Paginas
             }
         }
 
-        private int _sexoSelecionado;
-        public int SexoSelecionado
+        private int _sexoSelecionadoIndex;
+        public int SexoSelecionadoIndex
         {
-            get { return _sexoSelecionado; }
+            get { return _sexoSelecionadoIndex; }
             set
             {
-                _sexoSelecionado = value;
-                Notify("SexoSelecionado");
+                _sexoSelecionadoIndex = value;
+                Notify("SexoSelecionadoIndex");
             }
         }
 
@@ -77,25 +77,25 @@ namespace ProMama.ViewModels.Home.Paginas
             }
         }
 
-        private int _partoSelecionado;
-        public int PartoSelecionado
+        private int _partoSelecionadoIndex;
+        public int PartoSelecionadoIndex
         {
-            get { return _partoSelecionado; }
+            get { return _partoSelecionadoIndex; }
             set
             {
-                _partoSelecionado = value;
-                Notify("PartoSelecionado");
+                _partoSelecionadoIndex = value;
+                Notify("PartoSelecionadoIndex");
             }
         }
 
-        private int _idadeGestacionalSelecionado;
-        public int IdadeGestacionalSelecionado
+        private int _idadeGestacionalSelecionadoIndex;
+        public int IdadeGestacionalSelecionadoIndex
         {
-            get { return _idadeGestacionalSelecionado; }
+            get { return _idadeGestacionalSelecionadoIndex; }
             set
             {
-                _idadeGestacionalSelecionado = value;
-                Notify("IdadeGestacionalSelecionado");
+                _idadeGestacionalSelecionadoIndex = value;
+                Notify("IdadeGestacionalSelecionadoIndex");
             }
         }
 
@@ -121,11 +121,11 @@ namespace ProMama.ViewModels.Home.Paginas
             PrimeiroNome = app._crianca.crianca_primeiro_nome;
             Sobrenome = app._crianca.crianca_sobrenome;
             DataNascimento = app._crianca.crianca_dataNascimento.ToString("dd/MM/yyyy");
-            SexoSelecionado = app._crianca.crianca_sexo;
+            SexoSelecionadoIndex = app._crianca.crianca_sexo;
             PesoAoNascer = app._crianca.crianca_pesoAoNascer != 0 ? app._crianca.crianca_pesoAoNascer.ToString() : "";
             AlturaAoNascer = app._crianca.crianca_alturaAoNascer != 0 ? app._crianca.crianca_alturaAoNascer.ToString(): "";
-            PartoSelecionado = app._crianca.crianca_tipo_parto;
-            IdadeGestacionalSelecionado = app._crianca.crianca_idade_gestacional >= 20 ? app._crianca.crianca_idade_gestacional - 20 : -1;
+            PartoSelecionadoIndex = app._crianca.crianca_tipo_parto;
+            IdadeGestacionalSelecionadoIndex = app._crianca.crianca_idade_gestacional >= 20 ? app._crianca.crianca_idade_gestacional - 20 : -1;
             OutrasInformacoes = app._crianca.crianca_outrasInformacoes;
 
             Navigation = _navigation;
@@ -156,11 +156,11 @@ namespace ProMama.ViewModels.Home.Paginas
 
                 c.crianca_primeiro_nome = PrimeiroNome;
                 c.crianca_sobrenome = string.IsNullOrEmpty(Sobrenome) ? "" : Sobrenome;
-                c.crianca_sexo = SexoSelecionado;
+                c.crianca_sexo = SexoSelecionadoIndex;
                 c.crianca_pesoAoNascer = string.IsNullOrEmpty(PesoAoNascer) || PesoAoNascer.Equals(",") ? 0 : Convert.ToInt32(PesoAoNascer);
                 c.crianca_alturaAoNascer = string.IsNullOrEmpty(AlturaAoNascer) || AlturaAoNascer.Equals(",") ? 0 : Convert.ToInt32(AlturaAoNascer);
-                c.crianca_tipo_parto = PartoSelecionado;
-                c.crianca_idade_gestacional = IdadeGestacionalSelecionado == -1 ? -1 : IdadeGestacionalSelecionado + 20;
+                c.crianca_tipo_parto = PartoSelecionadoIndex;
+                c.crianca_idade_gestacional = IdadeGestacionalSelecionadoIndex == -1 ? -1 : IdadeGestacionalSelecionadoIndex + 20;
                 c.crianca_outrasInformacoes = string.IsNullOrEmpty(OutrasInformacoes) ? "" : OutrasInformacoes;
                 
                 app._crianca = c;

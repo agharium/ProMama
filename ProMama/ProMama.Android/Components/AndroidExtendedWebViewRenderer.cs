@@ -20,7 +20,7 @@ namespace ProMama.Droid.Components
                 {
                     int i = 10;
                     while (view.ContentHeight == 0 && i-- > 0) // wait here till content is rendered
-                        await System.Threading.Tasks.Task.Delay(100);
+                        await System.Threading.Tasks.Task.Delay(10);
                     _xwebView.HeightRequest = view.ContentHeight;
                 }
                 base.OnPageFinished(view, url);

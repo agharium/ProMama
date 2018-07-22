@@ -80,7 +80,7 @@
                             Grid.Row="3"
                             Grid.Column="0"/>
                         <Picker
-                            SelectedIndex="{Binding SexoSelecionado}"
+                            SelectedIndex="{Binding SexoSelecionadoIndex}"
                             Grid.Row="3"
                             Grid.Column="1">
                             <Picker.Items>
@@ -133,7 +133,7 @@
                             Grid.Row="6"
                             Grid.Column="0"/>
                         <Picker
-                            SelectedIndex="{Binding PartoSelecionado}"
+                            SelectedIndex="{Binding PartoSelecionadoIndex}"
                             Grid.Row="6"
                             Grid.Column="1">
                             <Picker.Items>
@@ -151,7 +151,7 @@
                             Grid.Column="0"/>
                         <Picker
                             x:Name="idadeGestacionalPicker"
-                            SelectedIndex="{Binding IdadeGestacionalSelecionado}"
+                            SelectedIndex="{Binding IdadeGestacionalSelecionadoIndex}"
                             Grid.Row="7"
                             Grid.Column="1"/>
                     </Grid>

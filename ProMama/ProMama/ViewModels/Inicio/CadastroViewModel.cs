@@ -4,7 +4,9 @@ using ProMama.Components;
 using ProMama.Components.Cryptography;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -33,8 +35,10 @@ namespace ProMama.ViewModels.Inicio
         }
 
         public Bairro BairroSelecionado { get; set; }
+        public bool TermosDeUso { get; set; }
 
         public ICommand CadastroCommand { get; set; }
+        public ICommand AcessarTermosDeUsoCommand { get; set; }
 
         private readonly INavigationService NavigationService;
         private readonly IMessageService MessageService;
@@ -43,10 +47,13 @@ namespace ProMama.ViewModels.Inicio
         public CadastroViewModel()
         {
             CadastroCommand = new Command(Cadastro);
+            AcessarTermosDeUsoCommand = new Command(AcessarTermosDeUso);
 
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
             RestService = DependencyService.Get<IRestService>();
+
+            TermosDeUso = false;
 
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -90,6 +97,11 @@ namespace ProMama.ViewModels.Inicio
                 {
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("E-mail inválido.");
+                }
+                else if (!TermosDeUso)
+                {
+                    LoadingDialog.Hide();
+                    await MessageService.AlertDialog("Para criar uma conta, é preciso aceitar os termos de uso.");
                 }
                 else
                 {
@@ -137,6 +149,18 @@ namespace ProMama.ViewModels.Inicio
             }
 
             app._sync.bairro = syncBairro;
+        }
+
+        private void AcessarTermosDeUso()
+        {
+            try
+            {
+                Device.OpenUri(new Uri("https://www.google.com.br"));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }

@@ -24,15 +24,11 @@
     <!--<item name="android:datepickerdialogtheme">@style/appcompatdialogstyle</item>-->
 
     <!-- LISTVIEW COLORS-->
-    <item name="android:colorPressedHighlight">@color/ListViewSelected</item>
-    <item name="android:colorLongPressedHighlight">@color/ListViewHighlighted</item>
-    <item name="android:colorFocusedHighlight">@color/ListViewSelected</item>
-    <item name="android:colorActivatedHighlight">@color/ListViewSelected</item>
+    <item name="android:colorPressedHighlight">#00000000</item>
+    <item name="android:colorLongPressedHighlight">#00000000</item>
+    <item name="android:colorFocusedHighlight">#00000000</item>
+    <item name="android:colorActivatedHighlight">#00000000</item>
   </style>
-  
-  <!-- LISTVIEW COLORS -->
-  <color name="ListViewSelected">#00000000</color>
-  <color name="ListViewHighlighted">#00000000</color>
 
   <!-- NÃO SEI -->
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
