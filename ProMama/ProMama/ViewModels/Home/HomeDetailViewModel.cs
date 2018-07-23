@@ -194,8 +194,8 @@ namespace ProMama.ViewModels.Home
                     {
                         await Ferramentas.SincronizarBanco();
                         await Ferramentas.UploadInformacoes();
-                        await Ferramentas.AgendarNotificacoes();
                     }
+                    await Ferramentas.AgendarNotificacoes();
 
                     app._onThread = false;
                     Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD, SALVANDO LOGIN");
