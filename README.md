@@ -14,6 +14,7 @@ Plugins utilizados:
 - [Xam.Plugin.Media](http://www.nuget.org/packages/Xam.Plugin.Media)
 - [Xam.Plugins.Forms.ImageCircle](https://www.nuget.org/packages/Xam.Plugins.Forms.ImageCircle)
 - [Xam.Plugins.Notifier](https://www.nuget.org/packages/Xam.Plugins.Notifier/)
+- [Xam.Plugins.Settings](https://www.nuget.org/packages/Xam.Plugins.Settings)
 - [Xamarin.FFImageLoading](https://www.nuget.org/packages/Xamarin.FFImageLoading)
 - [Xamarin.FFImageLoading.Transformations](https://www.nuget.org/packages/Xamarin.FFImageLoading.Transformations)
 - [Xamarin.Forms.CarouselView](https://www.nuget.org/packages/Xamarin.Forms.CarouselView/)
