@@ -201,8 +201,8 @@ namespace ProMama.ViewModels.Home
                     Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD, SALVANDO LOGIN");
 
                     // Salva o login
-                    Config cfg = new Config(app._usuario, app._crianca);
-                    App.ConfigDatabase.Save(cfg);
+                    App.UltimoUsuario = app._usuario.id;
+                    App.UltimaCrianca = app._crianca.crianca_id;
                 }
             });
         }

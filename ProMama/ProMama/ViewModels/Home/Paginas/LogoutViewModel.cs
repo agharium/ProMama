@@ -25,10 +25,8 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             if (await _messageService.ConfirmationDialog("Você tem certeza que deseja sair?", "Sair", "Voltar"))
             {
-                App.ConfigDatabase.Delete();
-
-                app._crianca = null;
-                app._usuario = null;
+                App.UltimaCrianca = 0;
+                App.UltimoUsuario = 0;
                 _navigationService.NavigateCadastroLogin();
             }
             else

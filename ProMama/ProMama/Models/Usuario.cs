@@ -26,8 +26,8 @@ namespace ProMama.Models
             email = _email;
             password = _password;
             bairro = _bairro;
-            posto_saude = -1;
             criancas = new List<int>();
+            posto_saude = -1;
             uploaded = true;
             foto_caminho = "mother_default.jpeg";
             foto_uploaded = true;

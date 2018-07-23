@@ -9,14 +9,14 @@ using ProMama.Views.Inicio;
 using ProMama.Views.Services;
 using ProMama.ViewModels.Services;
 using Xamarin.Forms;
+using Plugin.Settings;
 
 namespace ProMama
 {
     public partial class App : Application
     {
         static Session _db;
-
-        static ConfigDatabaseController _configDatabase;
+        
         static UsuarioDatabaseController _usuarioDatabase;
         static CriancaDatabaseController _criancaDatabase;
         static BairroDatabaseController _bairroDatabase;
@@ -48,18 +48,29 @@ namespace ProMama
 
             // verifica se usuário já está logado
             app._sync = SincronizacaoDatabase.Find();
-            var cfg = ConfigDatabase.Find();
 
-            if (cfg != null)
+            if (UltimoUsuario != 0 && UltimaCrianca != 0)
             {
-                app._usuario = cfg.config_usuario;
-                app._crianca = cfg.config_crianca;
+                app._usuario = UsuarioDatabase.Find(UltimoUsuario);
+                app._crianca = CriancaDatabase.Find(UltimaCrianca);
                 MainPage = new Home();
             }
             else
             {
                 MainPage = new IntroducaoView();
             }
+        }
+
+        public static int UltimoUsuario
+        {
+            get => CrossSettings.Current.GetValueOrDefault(nameof(UltimoUsuario), 0);
+            set => CrossSettings.Current.AddOrUpdateValue(nameof(UltimoUsuario), value);
+        }
+
+        public static int UltimaCrianca
+        {
+            get => CrossSettings.Current.GetValueOrDefault(nameof(UltimaCrianca), 0);
+            set => CrossSettings.Current.AddOrUpdateValue(nameof(UltimaCrianca), value);
         }
 
         protected override void OnStart()
@@ -86,18 +97,6 @@ namespace ProMama
                     _db = DependencyService.Get<IMarcelloDB>().GetSession();
                 }
                 return _db;
-            }
-        }
-
-        public static ConfigDatabaseController ConfigDatabase
-        {
-            get
-            {
-                if (_configDatabase == null)
-                {
-                    _configDatabase = new ConfigDatabaseController();
-                }
-                return _configDatabase;
             }
         }
 
