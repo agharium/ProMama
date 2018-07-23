@@ -95,7 +95,6 @@
     <Compile Include="Components\iOSLongPressedEffect.cs" />
     <Compile Include="Components\iOSMaterialFrameRenderer.cs" />
     <Compile Include="Components\iOSTransparentViewCellRenderer.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Services\MarcelloDB_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -159,8 +158,8 @@
       <HintPath>..\..\packages\MarcelloDB.1.0.8\lib\Xamarin.iOS\MarcelloDB.netfx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK-1.0" />
     <Reference Include="Plugin.Connectivity, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
