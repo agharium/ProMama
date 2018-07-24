@@ -34,7 +34,10 @@ namespace ProMama.Droid
             Acr.UserDialogs.UserDialogs.Init(this);
 
             // Notification Icon
-            Plugin.LocalNotifications.LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.notification;
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+                Plugin.LocalNotifications.LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.notification;
+            else
+                Plugin.LocalNotifications.LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.icon;
 
             LoadApplication(new ProMama.App());
 
