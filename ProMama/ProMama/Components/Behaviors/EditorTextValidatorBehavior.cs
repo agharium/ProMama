@@ -19,9 +19,8 @@ namespace ProMama.Components.Behaviors
         void OnEditorTextChanged(object sender, TextChangedEventArgs e)
         {
             var editor = (Editor)sender;
-            string editorText = editor.Text;
 
-            if (!Ferramentas.ValidarTextoRegex(editorText))
+            if (!Ferramentas.ValidarTextoRegex(editor.Text))
             {
                 editor.TextChanged -= OnEditorTextChanged;
                 editor.Text = e.OldTextValue;

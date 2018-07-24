@@ -23,8 +23,10 @@ namespace ProMama.Components.Behaviors
         {
             var entry = (Entry)sender;
 
-            // if Entry text is longer then valid length
-            if (entry.Text.Length > this.MaxLength)
+            if (entry.Text == null)
+                return;
+
+            if (entry.Text.Length > MaxLength)
             {
                 string entryText = entry.Text;
                 entry.TextChanged -= OnEntryTextChanged;

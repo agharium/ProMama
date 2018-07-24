@@ -662,9 +662,17 @@ namespace ProMama.Components
         {
             if (string.IsNullOrEmpty(texto))
                 return true;
+            
+            return Regex.IsMatch(texto, "^[À-ú\x00-\x7F]+$");
+        }
 
-            var RegexTextoPattern = "^[À-ú\x00-\x7F]+$";
-            return Regex.IsMatch(texto, RegexTextoPattern);
+        // https://stackoverflow.com/questions/19715303/regex-that-accepts-only-numbers-0-9-and-no-characters
+        public static bool ValidarNumeroRegex(string texto)
+        {
+            if (string.IsNullOrEmpty(texto))
+                return true;
+
+            return Regex.IsMatch(texto, "^[0-9]*$");
         }
 
         // http://lukealderton.com/blog/posts/2016/may/autocustom-height-on-xamarin-forms-webview-for-android-and-ios/

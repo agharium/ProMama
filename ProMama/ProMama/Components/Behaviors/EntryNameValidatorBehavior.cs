@@ -19,9 +19,8 @@ namespace ProMama.Components.Behaviors
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = (Entry)sender;
-            string entryText = entry.Text;
 
-            if (!Ferramentas.ValidarNomeRegex(entryText))
+            if (!Ferramentas.ValidarNomeRegex(entry.Text))
             {
                 entry.TextChanged -= OnEntryTextChanged;
                 entry.Text = e.OldTextValue;
