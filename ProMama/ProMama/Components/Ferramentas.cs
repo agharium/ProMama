@@ -140,7 +140,7 @@ namespace ProMama.Components
 
         public static async Task AgendarNotificacoes()
         {
-            if (app._usuario != null)
+           if (app._usuario != null)
             {
                 if (app._usuario.criancas.Count > 0 && app._usuario.criancas != null)
                 {
