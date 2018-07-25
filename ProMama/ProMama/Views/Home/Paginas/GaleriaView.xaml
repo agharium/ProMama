@@ -27,15 +27,28 @@
                             <Frame
                                 x:Name="Imagem"
                                 Padding="0"
-                                Margin="20, 10, 20, 10"
-                                HeightRequest="150">
-                                <Grid>
+                                Margin="20, 10, 20, 10">
+                                <Grid RowSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="70*"/>
-                                        <RowDefinition Height="30*"/>
+                                        <RowDefinition>
+                                            <RowDefinition.Height>
+                                                <OnIdiom 
+                                                    x:TypeArguments="GridLength"
+                                                    Phone="75*"
+                                                    Tablet="85*"/>
+                                            </RowDefinition.Height>
+                                        </RowDefinition>
+                                        <RowDefinition>
+                                            <RowDefinition.Height>
+                                                <OnIdiom 
+                                                    x:TypeArguments="GridLength"
+                                                    Phone="25*"
+                                                    Tablet="15*"/>
+                                            </RowDefinition.Height>
+                                        </RowDefinition>
                                     </Grid.RowDefinitions>
 
                                     <Image
@@ -43,22 +56,32 @@
                                         Aspect="AspectFill"
                                         Grid.Column="0"
                                         Grid.Row="0"/>
-                                    <Label 
-                                        Text="{Binding titulo}"
-                                        FontSize="Small"
-                                        Margin="5"
-                                        HorizontalOptions="Center"
-                                        HorizontalTextAlignment="Center"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center"
+                                    <StackLayout
                                         Grid.Column="0"
-                                        Grid.Row="1"/>
+                                        Grid.Row="1"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand">
+                                        <Label 
+                                            Text="{Binding titulo}"
+                                            FontSize="Small"
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalOptions="CenterAndExpand"
+                                            VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    
                                 </Grid>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
                                         Command="{Binding Source={x:Reference this}, Path=BindingContext.FotoCommand}"
                                         CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
+                                <Frame.HeightRequest>
+                                    <OnIdiom 
+                                        x:TypeArguments="x:Double"
+                                        Phone="150"
+                                        Tablet="250"/>
+                                </Frame.HeightRequest>
                             </Frame>
                         </Grid>
                     </DataTemplate>

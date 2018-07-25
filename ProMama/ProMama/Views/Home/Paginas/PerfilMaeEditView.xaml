@@ -14,8 +14,14 @@
                     <Frame Padding="0">
                         <Image 
                             Source="{Binding Foto}"
-                            Aspect="AspectFill"
-                            HeightRequest="200"/>
+                            Aspect="AspectFill">
+                            <Image.HeightRequest>
+                                <OnIdiom 
+                                    x:TypeArguments="x:Double"
+                                    Phone="200"
+                                    Tablet="300"/>
+                            </Image.HeightRequest>
+                        </Image>
                     </Frame>
 
                     <Button 

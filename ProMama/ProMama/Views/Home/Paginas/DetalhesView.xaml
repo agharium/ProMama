@@ -30,12 +30,18 @@
                                     CacheDuration="365"
                                     HorizontalOptions="Fill"
                                     VerticalOptions="Fill"
-                                    HeightRequest="200"
 			                        DownsampleToViewSize="true"
                                     Aspect="AspectFill"
 			                        Source="{Binding Imagem}"
                                     Grid.Column="0"
-                                    Grid.Row="2" />
+                                    Grid.Row="2">
+                                    <ffimageloading:CachedImage.HeightRequest>
+                                        <OnIdiom 
+                                            x:TypeArguments="x:Double"
+                                            Phone="200"
+                                            Tablet="350"/>
+                                    </ffimageloading:CachedImage.HeightRequest>
+                                </ffimageloading:CachedImage>
                             </Frame>
                         </StackLayout>
 

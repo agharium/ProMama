@@ -15,8 +15,15 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="225" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition>
+                                <RowDefinition.Height>
+                                    <OnIdiom 
+                                        x:TypeArguments="GridLength"
+                                        Phone="250"
+                                        Tablet="400"/>
+                                </RowDefinition.Height>
+                            </RowDefinition>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Image 
                             Source="{Binding Foto}"

@@ -162,12 +162,17 @@
                                         CacheDuration="730"
                                         HorizontalOptions="Fill"
                                         VerticalOptions="Fill"
-                                        HeightRequest="150"
 			                            DownsampleToViewSize="true"
                                         Aspect="AspectFill"
 			                            Source="{Binding informacao_foto}"
                                         Grid.Column="0"
-                                        Grid.Row="2" />
+                                        Grid.Row="2">
+                                        <ffimageloading:CachedImage.HeightRequest>
+                                            <OnIdiom x:TypeArguments="x:Double"
+                                                Phone="150"
+                                                Tablet="250"/>
+                                        </ffimageloading:CachedImage.HeightRequest>
+                                    </ffimageloading:CachedImage>
                                 </Grid>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer 
