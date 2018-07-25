@@ -13,7 +13,7 @@ namespace ProMama.Views.Services
 {
     class RestService : IRestService
     {
-        private readonly string ApiUrl = "http://promama.cf/api";
+        private readonly string ApiUrl = "http://saude.osorio.rs.gov.br:7083/api";
         private readonly string TokenPadrao = "PRO:7B68D5409F4E2A0F3F224F0C2E5D58FE7F6607EB6D9CEB1891033272CE263F44";
 
         public async Task<JsonMessage> UsuarioCreate(Usuario u)

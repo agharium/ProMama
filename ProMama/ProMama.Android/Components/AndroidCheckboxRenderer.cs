@@ -79,9 +79,8 @@ namespace ProMama.Droid.Components
                     {
                         var backgroundColor = GetBackgroundColorStateList(Element.OutlineColor);
                         checkBox.SupportButtonTintList = backgroundColor;
-                        checkBox.BackgroundTintList = GetBackgroundColorStateList(Element.InnerColor);
-                        checkBox.ForegroundTintList = GetBackgroundColorStateList(Element.OutlineColor);
-
+                        /*checkBox.BackgroundTintList = GetBackgroundColorStateList(Element.InnerColor);
+                        checkBox.ForegroundTintList = GetBackgroundColorStateList(Element.OutlineColor);*/
                     }
                     checkBox.SetOnCheckedChangeListener(this);
                     SetNativeControl(checkBox);
@@ -103,8 +102,8 @@ namespace ProMama.Droid.Components
             {
                 var backgroundColor = GetBackgroundColorStateList(Element.CheckColor);
                 Control.SupportButtonTintList = backgroundColor;
-                Control.BackgroundTintList = GetBackgroundColorStateList(Element.InnerColor);
-                Control.ForegroundTintList = GetBackgroundColorStateList(Element.OutlineColor);
+                /*Control.BackgroundTintList = GetBackgroundColorStateList(Element.InnerColor);
+                Control.ForegroundTintList = GetBackgroundColorStateList(Element.OutlineColor);*/
             }
         }
 

@@ -11,8 +11,8 @@ namespace ProMama.iOS.Services
 {
     class FileService_iOS : IFileService
     {
-        private readonly string FileUrlCrianca = "http://promama.cf/api/foto-crianca/";
-        private readonly string FileUrlUser = "http://promama.cf/api/foto-user/";
+        private readonly string FileUrlCrianca = "http://saude.osorio.rs.gov.br:7083/api/read-foto-crianca/";
+        private readonly string FileUrlUser = "http://saude.osorio.rs.gov.br:7083/api/read-foto-user/";
 
         public byte[] ReadAllBytes(string path)
         {

@@ -81,7 +81,7 @@
                                         </StackLayout>
                                         <StackLayout IsVisible="{Binding MostraTelefone}">
                                             <StackLayout
-                                                HeightRequest="0.25"
+                                                HeightRequest="0.1"
                                                 BackgroundColor="White"/>
                                             <StackLayout
                                                 BackgroundColor="#E53935"

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:ProMama.Components"
              x:Class="ProMama.Views.Inicio.CadastroView"
              Title="Cadastro">
     <ContentPage.Icon>
@@ -32,36 +31,28 @@
                     Placeholder="Confirme a senha"
                     IsPassword="True"
                     Text="{Binding SenhaConfirmacao}"/>
-                <Picker 
+                <Picker
                     Title="Em qual bairro de Osório você mora?"
                     ItemsSource="{Binding Bairros}"
                     ItemDisplayBinding="{Binding bairro_nome}"
-                    SelectedItem="{Binding BairroSelecionado}" />
-                <StackLayout 
-                    Orientation="Horizontal"
-                    Spacing="10">
-                    <components:Checkbox
-                        IsChecked="{Binding TermosDeUso}"
-                        VerticalOptions="Center"
-                        OutlineColor="#262626" 
-                        CheckedOutlineColor="#E53935" 
-                        CheckColor="#E53935"
-                        Margin="0"/>
-                    <Label
-                        Text="Eu aceito os termos de uso encontrados aqui."
-                        FontSize="Small"
-                        VerticalOptions="Center"
-                        TextColor="Blue"
-                        LineBreakMode="WordWrap">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding AcessarTermosDeUsoCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
-                <Button 
+                    SelectedItem="{Binding BairroSelecionado}"/>
+                <Button
                     Style="{StaticResource MainButton}"
                     Text="Continuar"
                     Command="{Binding CadastroCommand}"/>
+                <Label
+                    Text="Ao tocar no botão acima, você concorda com os nossos termos de uso encontrados neste link."
+                    FontSize="Small"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="#2980b9"
+                    LineBreakMode="WordWrap">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AcessarTermosDeUsoCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
                 <Button 
                     Style="{StaticResource GrayButton}"
                     Text="Já tem cadastro?"
