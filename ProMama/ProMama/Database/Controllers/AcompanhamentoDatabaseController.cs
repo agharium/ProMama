@@ -69,6 +69,18 @@ namespace ProMama.Database.Controllers
             AcompanhamentoCollection.Destroy(id);
         }
 
+        public void DeleteByUserId(int id)
+        {
+            foreach(var obj in GetAll())
+            {
+                var crianca = App.CriancaDatabase.Find(obj.crianca);
+                if (crianca.user_id == id)
+                {
+                    Delete(obj.id);
+                }
+            }
+        }
+
         public void WipeTable()
         {
             foreach (var obj in GetAll())

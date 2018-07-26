@@ -30,8 +30,12 @@ namespace ProMama.ViewModels.Home.Paginas
                 Task.Run(async () =>
                 {
                     await Ferramentas.CancelarNotificacoes(app._usuario.id);
+                    
                 });
 
+                App.AcompanhamentoDatabase.DeleteByUserId(app._usuario.id);
+                App.FotoDatabase.DeleteByUserId(app._usuario.id);
+                App.MarcoDatabase.DeleteByUserId(app._usuario.id);
                 App.UltimaCrianca = 0;
                 App.UltimoUsuario = 0;
                 app._usuario = null;

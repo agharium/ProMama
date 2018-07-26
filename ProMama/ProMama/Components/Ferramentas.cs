@@ -239,7 +239,6 @@ namespace ProMama.Components
             var fotos = App.FotoDatabase.GetAll();
             var marcos = App.MarcoDatabase.GetAll();
             var criancas = App.CriancaDatabase.GetAll();
-            var usuarios = App.UsuarioDatabase.GetAll();
 
             foreach (var obj in acompanhamentos)
             {
@@ -323,26 +322,24 @@ namespace ProMama.Components
                 }
             }
 
-            foreach (var obj in usuarios)
+            // usuario
+            if (!app._usuario.uploaded)
             {
-                if (!obj.uploaded)
+                var result = await RestService.UsuarioUpdate(app._usuario);
+                if (result.success)
                 {
-                    var result = await RestService.UsuarioUpdate(obj);
-                    if (result.success)
-                    {
-                        obj.uploaded = true;
-                        App.UsuarioDatabase.Save(obj);
-                    }
+                    app._usuario.uploaded = true;
+                    App.UsuarioDatabase.Save(app._usuario);
                 }
+            }
 
-                if (!obj.foto_uploaded)
+            if (!app._usuario.foto_uploaded)
+            {
+                var result = await RestService.FotoUserUpload(app._usuario.foto_caminho, app._usuario.api_token);
+                if (result.success)
                 {
-                    var result = await RestService.FotoUserUpload(obj.foto_caminho, app._usuario.api_token);
-                    if (result.success)
-                    {
-                        obj.foto_uploaded = true;
-                        App.UsuarioDatabase.Save(obj);
-                    }
+                    app._usuario.foto_uploaded = true;
+                    App.UsuarioDatabase.Save(app._usuario);
                 }
             }
         }
@@ -707,73 +704,81 @@ namespace ProMama.Components
             }
 
             var escolha = await UserDialogs.Instance.ActionSheetAsync("Escolher foto", "Cancelar", "", null, "Selecionar foto da galeria", "Abrir câmera");
-            //var escolha = await MessageService.ActionSheet("Escolher foto", new string[] { "Selecionar foto da galeria", "Abrir câmera" });
 
-            if (escolha.Equals("Selecionar foto da galeria") || escolha.Equals("Abrir câmera"))
+            try
             {
-                await CrossMedia.Current.Initialize();
-
-                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                if (escolha.Equals("Selecionar foto da galeria") || escolha.Equals("Abrir câmera"))
                 {
-                    Debug.WriteLine("No Camera", ":( No camera available.", "OK");
-                    return null;
-                }
 
-                MediaFile file = null;
+                    await CrossMedia.Current.Initialize();
 
-                if (escolha.Equals("Selecionar foto da galeria"))
-                {
-                    if (storageStatus == PermissionStatus.Granted)
+                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                     {
-                        file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                        Debug.WriteLine("No Camera", ":( No camera available.", "OK");
+                        return null;
+                    }
+
+                    MediaFile file = null;
+
+                    if (escolha.Equals("Selecionar foto da galeria"))
+                    {
+                        if (storageStatus == PermissionStatus.Granted)
                         {
-                            PhotoSize = PhotoSize.Medium,
-                            CompressionQuality = 75
-                        });
+                            file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                            {
+                                PhotoSize = PhotoSize.Medium,
+                                CompressionQuality = 75
+                            });
+                        }
+                        else
+                        {
+                            await MessageService.AlertDialog("O aplicativo não tem permissão para acessar o armazenamento do dispositivo. Por favor, conceda permissão.");
+                            CrossPermissions.Current.OpenAppSettings();
+                            return null;
+                        }
                     }
                     else
                     {
-                        await MessageService.AlertDialog("O aplicativo não tem permissão para acessar o armazenamento do dispositivo. Por favor, conceda permissão.");
-                        CrossPermissions.Current.OpenAppSettings();
-                        return null;
-                    }
-                }
-                else
-                {
-                    if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
-                    {
-                        var filename = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 8);
-                        file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                        if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
                         {
-                            AllowCropping = true,
-                            PhotoSize = PhotoSize.Medium,
-                            CompressionQuality = 75,
-                            Name = filename + ".jpg",
-                            SaveToAlbum = true,
-                            SaveMetaData = false
-                        });
+                            var filename = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 8);
+                            file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                            {
+                                AllowCropping = true,
+                                PhotoSize = PhotoSize.Medium,
+                                CompressionQuality = 75,
+                                Name = filename + ".jpg",
+                                SaveToAlbum = true,
+                                SaveMetaData = false
+                            });
+                        }
+                        else
+                        {
+                            await MessageService.AlertDialog("O aplicativo não tem permissão para acessar a câmera e/ou o armazenamento do dispositivo. Por favor, conceda permissão.");
+                            CrossPermissions.Current.OpenAppSettings();
+                            return null;
+                        }
                     }
-                    else
-                    {
-                        await MessageService.AlertDialog("O aplicativo não tem permissão para acessar a câmera e/ou o armazenamento do dispositivo. Por favor, conceda permissão.");
-                        CrossPermissions.Current.OpenAppSettings();
+
+                    if (file == null)
                         return null;
-                    }
+
+                    Debug.WriteLine("File Location", file.Path, "OK");
+
+                    foto.source = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+                    foto.caminho = file.Path;
+
+                    return foto;
                 }
-
-                if (file == null)
-                    return null;
-
-                Debug.WriteLine("File Location", file.Path, "OK");
-
-                foto.source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-                foto.caminho = file.Path;
-
-                return foto;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("ERRO AO SELECIONAR/CAPTURAR FOTO: " + ex);
+                await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
             }
             return null;
         }

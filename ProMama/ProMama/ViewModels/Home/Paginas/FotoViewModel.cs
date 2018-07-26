@@ -50,6 +50,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
             if (Foto != null)
             {
+                Foto.uploaded = false;
                 App.FotoDatabase.Save(Foto);
                 app._master.SetFoto();
 
