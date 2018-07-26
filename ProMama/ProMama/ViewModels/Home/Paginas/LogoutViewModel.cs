@@ -1,4 +1,5 @@
-﻿using ProMama.Components;
+﻿using Acr.UserDialogs;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Threading.Tasks;
@@ -30,8 +31,10 @@ namespace ProMama.ViewModels.Home.Paginas
                 Task.Run(async () =>
                 {
                     await Ferramentas.CancelarNotificacoes(app._usuario.id);
-                    
+
                 });
+
+                IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
 
                 App.AcompanhamentoDatabase.DeleteByUserId(app._usuario.id);
                 App.FotoDatabase.DeleteByUserId(app._usuario.id);
@@ -40,6 +43,8 @@ namespace ProMama.ViewModels.Home.Paginas
                 App.UltimoUsuario = 0;
                 app._usuario = null;
                 app._crianca = null;
+
+                LoadingDialog.Hide();
                 _navigationService.NavigateCadastroLogin();
             }
             else
