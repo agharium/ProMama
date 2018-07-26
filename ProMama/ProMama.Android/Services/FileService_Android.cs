@@ -12,7 +12,7 @@ namespace ProMama.Droid.Services
     class FileService_Android : IFileService
     {
         private readonly string FileUrlCrianca = "http://saude.osorio.rs.gov.br:7083/api/read-foto-crianca/";
-        private readonly string FileUrlUser = "http://saude.osorio.rs.gov.br:7083/api/read-foto-user/";
+        private readonly string FileUrlUser = "http://saude.osorio.rs.gov.br:7083/api/read-foto-user";
 
         public byte[] ReadAllBytes(string path)
         {
@@ -21,9 +21,10 @@ namespace ProMama.Droid.Services
 
         public string DownloadFile(string url, string api_token, int type)
         {
-            var urlAux = url;
-            string localFilename = urlAux.Substring(urlAux.LastIndexOf('/') + 1);
-            url = type == 0 ? FileUrlCrianca + url + "?api_token=" + api_token : FileUrlUser + url + "?api_token=" + api_token;
+            string localFilename = url.Substring(url.LastIndexOf('/') + 1);
+            url = type == 0 ? FileUrlCrianca + url + "?api_token=" + api_token : FileUrlUser + "?api_token=" + api_token;
+
+            Debug.WriteLine(url);
 
             var webClient = new WebClient();
             string localPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), localFilename);

@@ -35,7 +35,6 @@ namespace ProMama.ViewModels.Inicio
         }
 
         public Bairro BairroSelecionado { get; set; }
-        public bool TermosDeUso { get; set; }
 
         public ICommand CadastroCommand { get; set; }
         public ICommand AcessarTermosDeUsoCommand { get; set; }
@@ -52,8 +51,6 @@ namespace ProMama.ViewModels.Inicio
             NavigationService = DependencyService.Get<INavigationService>();
             MessageService = DependencyService.Get<IMessageService>();
             RestService = DependencyService.Get<IRestService>();
-
-            TermosDeUso = false;
 
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -97,11 +94,6 @@ namespace ProMama.ViewModels.Inicio
                 {
                     LoadingDialog.Hide();
                     await MessageService.AlertDialog("E-mail inválido.");
-                }
-                else if (!TermosDeUso)
-                {
-                    LoadingDialog.Hide();
-                    await MessageService.AlertDialog("Para criar uma conta, é preciso aceitar os termos de uso.");
                 }
                 else
                 {
