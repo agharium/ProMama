@@ -105,7 +105,6 @@
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
-    <Compile Include="Services\Notifications_iOS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />

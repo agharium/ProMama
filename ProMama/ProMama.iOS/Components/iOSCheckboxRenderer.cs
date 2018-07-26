@@ -3,6 +3,7 @@ using SaturdayMP.XPlugins.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using ProMama.Components;
+using ProMama.iOS.Components;
 
 [assembly: ExportRenderer(typeof(Checkbox), typeof(iOSCheckboxRenderer))]
 namespace ProMama.iOS.Components
