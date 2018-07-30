@@ -96,7 +96,8 @@ namespace ProMama.ViewModels.Home.Paginas
             IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
 
             if (!string.IsNullOrEmpty(Peso) &&
-                !string.IsNullOrEmpty(Altura) && (
+                !string.IsNullOrEmpty(Altura) &&
+                !Peso.Equals("0") && !Altura.Equals("0") && (
                 Alimentacao1 || Alimentacao2 ||
                 Alimentacao3 || Alimentacao4 ||
                 Alimentacao5 || Alimentacao6 ||
