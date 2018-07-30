@@ -28,10 +28,10 @@ Exemplos utilizados:
 - [Max Length Behavior](https://forums.xamarin.com/discussion/19285/max-length-on-entry)
 - [Password Hash on PCL](www.thomas-weller.de/en/a-secure-password-hashing-implementation-for-pcls/)
 
-Autor:
+Desenvolvedor:
 - [José Paulo Oliveira Filho](https://github.com/agharium/)
 
-Tester:
+Testador:
 - [Max Carlesso dos Santos](https://github.com/maxcarlesso)
 
 Server-side (API RESTful + Dashboard - desenvolvido por [Lucas Jardim](https://github.com/lucasjardi/)):
