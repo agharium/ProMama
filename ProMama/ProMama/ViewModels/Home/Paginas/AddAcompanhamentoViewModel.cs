@@ -97,7 +97,8 @@ namespace ProMama.ViewModels.Home.Paginas
 
             if (!string.IsNullOrEmpty(Peso) &&
                 !string.IsNullOrEmpty(Altura) &&
-                !Peso.Equals("0") && !Altura.Equals("0") && (
+                Convert.ToInt32(Peso) != 0 &&
+                Convert.ToInt32(Altura) != 0 && (
                 Alimentacao1 || Alimentacao2 ||
                 Alimentacao3 || Alimentacao4 ||
                 Alimentacao5 || Alimentacao6 ||
