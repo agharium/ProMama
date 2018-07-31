@@ -29,6 +29,7 @@ namespace ProMama
         static AcompanhamentoDatabaseController _acompanhamentoDatabase;
         static MarcoDatabaseController _marcoDatabase;
         static DuvidaFrequenteDatabaseController _duvidaFrequenteDatabase;
+        static ExcluirDatabaseController _excluirDatabase;
 
         private Aplicativo app = Aplicativo.Instance;
 
@@ -71,6 +72,20 @@ namespace ProMama
         {
             get => CrossSettings.Current.GetValueOrDefault(nameof(UltimaCrianca), 0);
             set => CrossSettings.Current.AddOrUpdateValue(nameof(UltimaCrianca), value);
+        }
+
+        private static Excluir _excluir;
+        public static Excluir Excluir
+        {
+            get
+            {
+                if (_excluir == null)
+                {
+                    var del = ExcluirDatabase.Find();
+                    _excluir = del ?? new Excluir(1);
+                }
+                return _excluir;
+            }
         }
 
         protected override void OnStart()
@@ -241,6 +256,18 @@ namespace ProMama
                     _duvidaFrequenteDatabase = new DuvidaFrequenteDatabaseController();
                 }
                 return _duvidaFrequenteDatabase;
+            }
+        }
+
+        public static ExcluirDatabaseController ExcluirDatabase
+        {
+            get
+            {
+                if (_excluirDatabase == null)
+                {
+                    _excluirDatabase = new ExcluirDatabaseController();
+                }
+                return _excluirDatabase;
             }
         }
     }

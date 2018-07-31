@@ -520,5 +520,59 @@ namespace ProMama.Views.Services
                 return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
             }
         }
+
+        public async Task<JsonMessage> RemoverFoto(int foto, string token)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var result = await client.DeleteAsync(ApiUrl + "/fotos/" + foto + "/remover?api_token=" + token);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: EXCLUSÃO DE FOTO");
+                    Debug.WriteLine(obj.ToString());
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
+        
+        public async Task<JsonMessage> RemoverCrianca(int crianca, string token)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var result = await client.DeleteAsync(ApiUrl + "/criancas/" + crianca + "/remover?api_token=" + token);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: EXCLUSÃO DE CRIANÇA");
+                    Debug.WriteLine(obj.ToString());
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    return JsonConvert.DeserializeObject<JsonMessage>(obj);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+            }
+        }
     }
 }

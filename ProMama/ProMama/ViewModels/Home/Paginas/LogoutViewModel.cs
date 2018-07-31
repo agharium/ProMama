@@ -1,8 +1,8 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ProMama.ViewModels.Home.Paginas
@@ -28,13 +28,11 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             if (await _messageService.ConfirmationDialog("Você tem certeza que deseja sair?", "Sair", "Voltar"))
             {
-                Task.Run(async () =>
-                {
-                    await Ferramentas.CancelarNotificacoes(app._usuario.id);
-
-                });
-
                 IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
+
+                await Ferramentas.CancelarNotificacoes(app._usuario.id);
+                if (CrossConnectivity.Current.IsConnected)
+                    await Ferramentas.UploadInformacoes();
 
                 App.AcompanhamentoDatabase.DeleteByUserId(app._usuario.id);
                 App.FotoDatabase.DeleteByUserId(app._usuario.id);

@@ -1,4 +1,5 @@
-﻿using ProMama.Components;
+﻿using Acr.UserDialogs;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -70,15 +71,19 @@ namespace ProMama.ViewModels.Home.Paginas
             }
             else
             {
-                foto = await Ferramentas.SelecionarFoto(foto);
-                if (foto != null)
+                int escolha = await Ferramentas.FotoActionSheet(1);
+                if (escolha == 1 || escolha == 2)
                 {
-                    Notify("Fotos");
+                    foto = await Ferramentas.SelecionarFoto(foto, escolha);
+                    if (foto != null)
+                    {
+                        Notify("Fotos");
 
-                    App.FotoDatabase.SaveIncrementing(foto);
-                    app._master.SetFoto();
+                        App.FotoDatabase.SaveIncrementing(foto);
+                        app._master.SetFoto();
 
-                    await NavigationService.NavigateFoto(Navigation, foto);
+                        await NavigationService.NavigateFoto(Navigation, foto);
+                    }
                 }
             }
         }

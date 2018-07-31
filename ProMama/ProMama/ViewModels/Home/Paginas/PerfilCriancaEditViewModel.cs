@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -112,8 +113,10 @@ namespace ProMama.ViewModels.Home.Paginas
         
         private INavigation Navigation { get; set; }
         public ICommand SalvarCommand { get; set; }
+        public ICommand ExcluirCommand { get; set; }
 
         private readonly IMessageService MessageService;
+        private readonly INavigationService NavigationService;
         private readonly IRestService RestService;
 
         public PerfilCriancaEditViewModel(INavigation _navigation)
@@ -130,7 +133,9 @@ namespace ProMama.ViewModels.Home.Paginas
 
             Navigation = _navigation;
             SalvarCommand = new Command(Salvar);
+            ExcluirCommand = new Command(Excluir);
             MessageService = DependencyService.Get<IMessageService>();
+            NavigationService = DependencyService.Get<INavigationService>();
             RestService = DependencyService.Get<IRestService>();
         }
 
@@ -169,6 +174,44 @@ namespace ProMama.ViewModels.Home.Paginas
 
                 LoadingDialog.Hide();
                 await Navigation.PopAsync();
+            }
+        }
+
+        private async void Excluir()
+        {
+            if (await MessageService.ConfirmationDialog("Você tem certeza que deseja excluir esta criança?", "Sim", "Não"))
+            {
+                var prompt = await UserDialogs.Instance.PromptAsync(new PromptConfig()
+                                .SetTitle("Insira o primeiro nome da criança para confirmar")
+                                .SetPlaceholder("Nome da criança")
+                                .SetInputMode(InputType.Name)
+                                .SetCancelText("Cancelar")
+                                .SetOkText("Confirmar"));
+                if (prompt.Ok)
+                {
+                    if (prompt.Text.ToLower().Equals(app._crianca.crianca_primeiro_nome.ToLower()))
+                    {
+                        App.Excluir.Criancas.Add(app._crianca.crianca_id);
+                        App.ExcluirDatabase.Save(App.Excluir);
+
+                        app._usuario.criancas.Remove(app._crianca.crianca_id);
+                        App.UsuarioDatabase.Save(app._usuario);
+
+                        Ferramentas.DeletarCrianca(app._crianca.crianca_id);
+
+                        App.UltimaCrianca = 0;
+
+                        if (app._usuario.criancas.Count == 0)
+                        {
+                            app._crianca = null;
+                            NavigationService.NavigateAddCrianca();
+                        } else
+                        {
+                            app._crianca = App.CriancaDatabase.Find(app._usuario.criancas[app._usuario.criancas.Count - 1]);
+                            NavigationService.NavigateHome();
+                        }
+                    }
+                }
             }
         }
     }

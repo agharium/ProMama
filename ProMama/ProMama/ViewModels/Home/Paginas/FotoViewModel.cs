@@ -29,10 +29,11 @@ namespace ProMama.ViewModels.Home.Paginas
 
         public ICommand EditarCommand { get; set; }
 
+        private INavigation Navigation;
         private readonly IMessageService MessageService;
         private readonly IRestService RestService;
 
-        public FotoViewModel(Foto _foto)
+        public FotoViewModel(Foto _foto, INavigation _navigation)
         {
             Foto = _foto;
             Titulo = Foto.titulo;
@@ -40,21 +41,37 @@ namespace ProMama.ViewModels.Home.Paginas
 
             EditarCommand = new Command(Editar);
 
+            Navigation = _navigation;
             MessageService = DependencyService.Get<IMessageService>();
             RestService = DependencyService.Get<IRestService>();
         }
 
         private async void Editar()
         {
-            Foto = await Ferramentas.SelecionarFoto(Foto);
-
-            if (Foto != null)
+            int escolha = await Ferramentas.FotoActionSheet(2);
+            if (escolha == 1 || escolha == 2)
             {
-                Foto.uploaded = false;
-                App.FotoDatabase.Save(Foto);
-                app._master.SetFoto();
+                Foto = await Ferramentas.SelecionarFoto(Foto, escolha);
 
-                Caminho = Foto.source;
+                if (Foto != null)
+                {
+                    Foto.uploaded = false;
+                    App.FotoDatabase.Save(Foto);
+                    app._master.SetFoto();
+
+                    Caminho = Foto.source;
+                }
+            }
+            else if (escolha == 3)
+            {
+                if (await MessageService.ConfirmationDialog("Você tem certeza que deseja excluir esta foto?", "Sim", "Não"))
+                {
+                    App.FotoDatabase.Delete(Foto.id);
+                    App.Excluir.Fotos.Add(Foto.id);
+                    App.ExcluirDatabase.Save(App.Excluir);
+                    app._master.SetFoto();
+                    await Navigation.PopAsync();
+                }
             }
         }
     }

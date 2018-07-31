@@ -12,7 +12,7 @@ namespace ProMama.Views.Home.Paginas
         {
             InitializeComponent();
 
-            BindingContext = new FotoViewModel(foto);
+            BindingContext = new FotoViewModel(foto, Navigation);
         }
     }
 }

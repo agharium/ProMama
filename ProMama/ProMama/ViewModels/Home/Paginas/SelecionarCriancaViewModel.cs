@@ -13,6 +13,9 @@ namespace ProMama.ViewModels.Home.Paginas
 
         public List<Crianca> Criancas { get; set; }
 
+        public bool AddCriancaVisible { get; set; }
+        public bool MaxCriancasVisible { get; set; }
+
         // Commands
         public ICommand SelecionarCriancaCommand { get; set; }
         public ICommand AddCriancaCommand { get; set; }
@@ -25,6 +28,9 @@ namespace ProMama.ViewModels.Home.Paginas
         public SelecionarCriancaViewModel(INavigation _navigation)
         {
             Criancas = App.CriancaDatabase.GetCriancasByUser(app._usuario.id);
+
+            AddCriancaVisible = (Criancas.Count >= 10) ? false : true;
+            MaxCriancasVisible = !AddCriancaVisible;
 
             Navigation = _navigation;
             NavigationService = DependencyService.Get<INavigationService>();

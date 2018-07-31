@@ -18,12 +18,24 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout Padding="10">
-                        <Button 
+                    <StackLayout 
+                        Padding="20"
+                        Spacing="5">
+                        <Button
                             Style="{StaticResource MainButton}"
                             Text="Adicionar uma criança"
                             Command="{Binding AddCriancaCommand}"
-                            Margin="10"/>
+                            IsVisible="{Binding AddCriancaVisible}"/>
+                        <Button
+                            Text="Adicionar uma criança"
+                            IsEnabled="False"
+                            IsVisible="{Binding MaxCriancasVisible}"/>
+                        <Label
+                            Text="O número máximo de crianças por usuário é 10."
+                            FontSize="13"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding MaxCriancasVisible}"/>
                     </StackLayout>
                 </ListView.Footer>
             </ListView>

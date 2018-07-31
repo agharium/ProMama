@@ -175,6 +175,10 @@
                         Text="Salvar"
                         Command="{Binding SalvarCommand}"/>
 
+                    <Button 
+                        Text="Excluir esta criança"
+                        Command="{Binding ExcluirCommand}"/>
+
                 </StackLayout>
             </ScrollView>
         </StackLayout>

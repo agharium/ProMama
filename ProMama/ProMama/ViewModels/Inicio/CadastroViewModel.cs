@@ -147,7 +147,7 @@ namespace ProMama.ViewModels.Inicio
         {
             try
             {
-                Device.OpenUri(new Uri("https://www.google.com.br"));
+                Device.OpenUri(new Uri("http://saude.osorio.rs.gov.br:7083/termos-de-uso"));
             }
             catch (Exception ex)
             {

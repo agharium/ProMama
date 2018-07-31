@@ -56,5 +56,9 @@ namespace ProMama.ViewModels.Services
         Task<List<Marco>> MarcoRead(string token);
 
         Task<JsonMessage> RecuperarSenha(JsonMessage msg);
+
+        Task<JsonMessage> RemoverFoto(int foto, string token);
+
+        Task<JsonMessage> RemoverCrianca(int crianca, string token);
     }
 }

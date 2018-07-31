@@ -17,6 +17,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private Usuario u = new Usuario();
 
+        private string _fotoString { get; set; }
         private ImageSource _foto;
         public ImageSource Foto
         {
@@ -161,6 +162,7 @@ namespace ProMama.ViewModels.Home.Paginas
             TrocarEmailCommand = new Command(TrocarEmail);
             TrocarSenhaCommand = new Command(TrocarSenha);
             
+            _fotoString = string.IsNullOrEmpty(app._usuario.foto_caminho) ? "mother_default.jpeg" : app._usuario.foto_caminho;
             Foto = string.IsNullOrEmpty(app._usuario.foto_caminho) ? "mother_default.jpeg" : app._usuario.foto_caminho;
             Nome = app._usuario.name;
 
@@ -233,9 +235,11 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     u.posto_saude = -1;
                 }
-
-                if (u.foto_caminho != app._usuario.foto_caminho)
+                
+                if (app._usuario.foto_caminho != u.foto_caminho)
+                {
                     u.foto_uploaded = false;
+                }
                 
                 app._usuario = u;
                 App.UsuarioDatabase.Save(u);
@@ -248,12 +252,28 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void TrocarFoto()
         {
-            var foto = await Ferramentas.SelecionarFoto(new Foto());
-            if (foto != null)
+            int escolha = await Ferramentas.FotoActionSheet(_fotoString.Equals("mother_default.jpeg") ? 1 : 2);
+            if (escolha == 1 || escolha == 2)
             {
-                Foto = foto.source;
-                u.foto_caminho = foto.caminho;
-                Notify("Foto");
+                var foto = await Ferramentas.SelecionarFoto(new Foto(), escolha);
+                if (foto != null)
+                {
+                    _fotoString = foto.caminho;
+                    Foto = foto.source;
+                    u.foto_caminho = foto.caminho;
+                    Notify("Foto");
+                }
+            }
+            else if (escolha == 3)
+            {
+                if (await MessageService.ConfirmationDialog("Você tem certeza que deseja excluir esta foto?", "Sim", "Não"))
+                {
+                    _fotoString = "mother_default.jpeg";
+                    Foto = "mother_default.jpeg";
+                    u.foto_caminho = null;
+                    u.foto_uploaded = true;
+                    u.foto_url = null;
+                }
             }
         }
 

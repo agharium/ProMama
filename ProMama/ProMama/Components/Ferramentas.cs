@@ -235,6 +235,35 @@ namespace ProMama.Components
 
         public static async Task UploadInformacoes()
         {
+            // EXCLUSÃO DE OBJETOS NO SERVIDOR
+            List<int> toRemove = new List<int>();
+            foreach(var obj in App.Excluir.Criancas)
+            {
+                var result = await RestService.RemoverCrianca(obj, app._usuario.api_token);
+                if (result.success)
+                    toRemove.Add(obj);
+            }
+
+            foreach(var obj in toRemove)
+                App.Excluir.Criancas.Remove(obj);
+
+            App.ExcluirDatabase.Save(App.Excluir);
+            toRemove.Clear();
+
+            foreach (var obj in App.Excluir.Fotos)
+            {
+                var result = await RestService.RemoverFoto(obj, app._usuario.api_token);
+                if (result.success)
+                    toRemove.Add(obj);
+            }
+
+            foreach (var obj in toRemove)
+                App.Excluir.Fotos.Remove(obj);
+
+            App.ExcluirDatabase.Save(App.Excluir);
+            toRemove = null;
+            // FIM DA EXCLUSÃO DE OBJETOS NO SERVIDOR
+            
             var acompanhamentos = App.AcompanhamentoDatabase.GetAll();
             var fotos = App.FotoDatabase.GetAll();
             var marcos = App.MarcoDatabase.GetAll();
@@ -376,6 +405,33 @@ namespace ProMama.Components
                 app._usuario.foto_caminho = FileService.DownloadFile(app._usuario.foto_url, app._usuario.api_token, 1);
                 App.UsuarioDatabase.Save(app._usuario);
             }
+        }
+
+        public static void DeletarCrianca(int id)
+        {
+            var acompanhamentos = App.AcompanhamentoDatabase.GetAll();
+            var fotos = App.FotoDatabase.GetAll();
+            var marcos = App.MarcoDatabase.GetAll();
+
+            foreach(var obj in acompanhamentos)
+            {
+                if (obj.crianca == id)
+                    App.AcompanhamentoDatabase.Delete(obj.id);
+            }
+
+            foreach (var obj in fotos)
+            {
+                if (obj.crianca == id)
+                    App.FotoDatabase.Delete(obj.id);
+            }
+
+            foreach (var obj in marcos)
+            {
+                if (obj.crianca == id)
+                    App.MarcoDatabase.Delete(obj.id);
+            }
+
+            App.CriancaDatabase.Delete(id);
         }
 
         public static string CriarResumo(string texto)
@@ -690,8 +746,11 @@ namespace ProMama.Components
             };
         }
 
-        public static async Task<Foto> SelecionarFoto(Foto foto)
+        public static async Task<Foto> SelecionarFoto(Foto foto, int escolha) // 1 - galeria, 2 - camera
         {
+            if (escolha != 1 && escolha != 2)
+                return null;
+
             var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
             var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
 
@@ -703,77 +762,71 @@ namespace ProMama.Components
                 storageStatus = results[Permission.Storage];
             }
 
-            var escolha = await UserDialogs.Instance.ActionSheetAsync("Escolher foto", "Cancelar", "", null, "Selecionar foto da galeria", "Abrir câmera");
-
             try
             {
-                if (escolha.Equals("Selecionar foto da galeria") || escolha.Equals("Abrir câmera"))
+                await CrossMedia.Current.Initialize();
+
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                 {
+                    Debug.WriteLine("No Camera", ":( No camera available.", "OK");
+                    return null;
+                }
 
-                    await CrossMedia.Current.Initialize();
+                MediaFile file = null;
 
-                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                if (escolha == 1)
+                {
+                    if (storageStatus == PermissionStatus.Granted)
                     {
-                        Debug.WriteLine("No Camera", ":( No camera available.", "OK");
-                        return null;
-                    }
-
-                    MediaFile file = null;
-
-                    if (escolha.Equals("Selecionar foto da galeria"))
-                    {
-                        if (storageStatus == PermissionStatus.Granted)
+                        file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
                         {
-                            file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-                            {
-                                PhotoSize = PhotoSize.Medium,
-                                CompressionQuality = 75
-                            });
-                        }
-                        else
-                        {
-                            await MessageService.AlertDialog("O aplicativo não tem permissão para acessar o armazenamento do dispositivo. Por favor, conceda permissão.");
-                            CrossPermissions.Current.OpenAppSettings();
-                            return null;
-                        }
+                            PhotoSize = PhotoSize.Medium,
+                            CompressionQuality = 85
+                        });
                     }
                     else
                     {
-                        if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
-                        {
-                            var filename = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 8);
-                            file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                            {
-                                AllowCropping = true,
-                                PhotoSize = PhotoSize.Medium,
-                                CompressionQuality = 75,
-                                Name = filename + ".jpg",
-                                SaveToAlbum = true,
-                                SaveMetaData = false
-                            });
-                        }
-                        else
-                        {
-                            await MessageService.AlertDialog("O aplicativo não tem permissão para acessar a câmera e/ou o armazenamento do dispositivo. Por favor, conceda permissão.");
-                            CrossPermissions.Current.OpenAppSettings();
-                            return null;
-                        }
-                    }
-
-                    if (file == null)
+                        await MessageService.AlertDialog("O aplicativo não tem permissão para acessar o armazenamento do dispositivo. Por favor, conceda permissão.");
+                        CrossPermissions.Current.OpenAppSettings();
                         return null;
-
-                    Debug.WriteLine("File Location", file.Path, "OK");
-
-                    foto.source = ImageSource.FromStream(() =>
-                    {
-                        var stream = file.GetStream();
-                        return stream;
-                    });
-                    foto.caminho = file.Path;
-
-                    return foto;
+                    }
                 }
+                else if (escolha == 2)
+                {
+                    if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
+                    {
+                        var filename = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 8);
+                        file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                        {
+                            AllowCropping = true,
+                            PhotoSize = PhotoSize.Medium,
+                            CompressionQuality = 85,
+                            Name = filename + ".jpg",
+                            SaveToAlbum = true,
+                            SaveMetaData = false
+                        });
+                    }
+                    else
+                    {
+                        await MessageService.AlertDialog("O aplicativo não tem permissão para acessar a câmera e/ou o armazenamento do dispositivo. Por favor, conceda permissão.");
+                        CrossPermissions.Current.OpenAppSettings();
+                        return null;
+                    }
+                }
+
+                if (file == null)
+                    return null;
+
+                Debug.WriteLine("File Location", file.Path, "OK");
+
+                foto.source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+                foto.caminho = file.Path;
+
+                return foto;
             }
             catch (Exception ex)
             {
@@ -781,6 +834,24 @@ namespace ProMama.Components
                 await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
             }
             return null;
+        }
+
+        public static async Task<int> FotoActionSheet(int tipo) // 1 - sem excluir, 2 - com excluir
+        {
+            string prompt = "";
+            if (tipo == 1)
+                prompt = await UserDialogs.Instance.ActionSheetAsync("Escolher foto", "Cancelar", "", null, "Selecionar foto da galeria", "Abrir câmera");
+            else if (tipo == 2)
+                prompt = await UserDialogs.Instance.ActionSheetAsync("Escolher foto", "Cancelar", "", null, "Selecionar foto da galeria", "Abrir câmera", "Excluir foto");
+
+            if (prompt.Equals("Selecionar foto da galeria"))
+                return 1;
+            else if (prompt.Equals("Abrir câmera"))
+                return 2;
+            else if (prompt.Equals("Excluir foto"))
+                return 3;
+            else
+                return 0;
         }
     }
 }
