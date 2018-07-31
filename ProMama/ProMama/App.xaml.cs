@@ -50,11 +50,18 @@ namespace ProMama
             // verifica se usuário já está logado
             app._sync = SincronizacaoDatabase.Find();
 
-            if (UltimoUsuario != 0 && UltimaCrianca != 0)
+            if (UltimoUsuario != 0)
             {
                 app._usuario = UsuarioDatabase.Find(UltimoUsuario);
-                app._crianca = CriancaDatabase.Find(UltimaCrianca);
-                MainPage = new Home();
+                if (UltimaCrianca != 0){
+                    app._crianca = CriancaDatabase.Find(UltimaCrianca);
+                    MainPage = new Home();
+                }
+                else
+                {
+                    app._crianca = null;
+                    NavigationService.NavigateAddCrianca();
+                }                
             }
             else
             {
