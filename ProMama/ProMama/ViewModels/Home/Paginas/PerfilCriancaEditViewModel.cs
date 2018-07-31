@@ -210,6 +210,8 @@ namespace ProMama.ViewModels.Home.Paginas
                             app._crianca = App.CriancaDatabase.Find(app._usuario.criancas[app._usuario.criancas.Count - 1]);
                             NavigationService.NavigateHome();
                         }
+                    } else {
+                        UserDialogs.Instance.Toast(new ToastConfig("Nome da criança incorreto."));
                     }
                 }
             }
