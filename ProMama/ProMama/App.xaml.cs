@@ -60,7 +60,7 @@ namespace ProMama
                 else
                 {
                     app._crianca = null;
-                    NavigationService.NavigateAddCrianca();
+                    MainPage = new Views.Home.Paginas.AddCriancaView();
                 }                
             }
             else
