@@ -14,9 +14,4 @@
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
-    <MasterDetailPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource">
-            <On Platform="iOS">Menu.png</On>
-        </OnPlatform>
-    </MasterDetailPage.Icon>
 </MasterDetailPage>
