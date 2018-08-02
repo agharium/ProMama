@@ -10,6 +10,7 @@ using ProMama.Views.Services;
 using ProMama.ViewModels.Services;
 using Xamarin.Forms;
 using Plugin.Settings;
+using ProMama.Views.Home.Paginas;
 
 namespace ProMama
 {
@@ -60,7 +61,7 @@ namespace ProMama
                 else
                 {
                     app._crianca = null;
-                    MainPage = new Views.Home.Paginas.AddCriancaView();
+                    MainPage = new NavigationPage(new AddCriancaView());
                 }                
             }
             else
