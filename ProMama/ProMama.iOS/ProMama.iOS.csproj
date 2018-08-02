@@ -265,9 +265,6 @@
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\AppIcon.appiconset\Icon-29%402x.png" />
-    <ImageAsset Include="Media.xcassets\AppIcon.appiconset\Icon-40%402x.png" />
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Default1920x1080.png" />
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Default3840x2160.png" />
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Default1125x2436.png" />
