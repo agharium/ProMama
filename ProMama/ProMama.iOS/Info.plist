@@ -34,44 +34,6 @@
 	<string>br.gov.rs.osorio.promama</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Default</string>
-		<string>Default@2x</string>
-		<string>Default@3x</string>
-		<string>Icon</string>
-		<string>Icon-20</string>
-		<string>Icon-20@2x</string>
-		<string>Icon-20@3x</string>
-		<string>Icon-29</string>
-		<string>Icon-29@2x</string>
-		<string>Icon-29@3x</string>
-		<string>Icon-40</string>
-		<string>Icon-40@2x</string>
-		<string>Icon-40@3x</string>
-		<string>Icon-50</string>
-		<string>Icon-50@2x</string>
-		<string>Icon-50@3x</string>
-		<string>Icon-57</string>
-		<string>Icon-57@2x</string>
-		<string>Icon-57@3x</string>
-		<string>Icon-60</string>
-		<string>Icon-60@2x</string>
-		<string>Icon-60@3x</string>
-		<string>Icon-72</string>
-		<string>Icon-72@2x</string>
-		<string>Icon-72@3x</string>
-		<string>Icon-76</string>
-		<string>Icon-76@2x</string>
-		<string>Icon-76@3x</string>
-		<string>Icon-83.5@2x</string>
-		<string>Icon-120</string>
-		<string>Icon-Small</string>
-		<string>Icon-Small@2x</string>
-		<string>Icon-Small@3x</string>
-	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-fontawesome-solid.otf</string>
@@ -82,14 +44,16 @@
 		<true/>
 	</dict>
 	<key>XSLaunchImageAssets</key>
-	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
+	<string>Media.xcassets/LaunchImages.launchimage</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>CFBundleName</key>
+	<string>Pró-Mamá</string>
+	<key>XSAppIconAssets</key>
+	<string>Media.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
