@@ -14,7 +14,7 @@
                             Detail="{Binding IdadeExtenso}"
                             Command="{Binding Source={x:Reference this}, Path=BindingContext.SelecionarCriancaCommand}"
                             CommandParameter="{Binding .}"
-                            DetailColor="#F44336">
+                            TextColor="#F44336">
                         </TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
