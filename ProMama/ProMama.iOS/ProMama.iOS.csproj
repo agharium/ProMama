@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\Xamarin.Forms.3.1.0.637273\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('..\..\packages\Xamarin.Forms.3.1.0.637273\build\netstandard2.0\Xamarin.Forms.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -108,10 +108,6 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <None Include="packages.config" />
     <BundleResource Include="Resources\iconize-fontawesome-solid.otf" />
-    <BundleResource Include="Resources\splash.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LaunchScreen.old" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -247,21 +243,6 @@
     <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -279,6 +260,20 @@
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Default1024x768.png" />
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Default2048x1536.png" />
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Default320x480.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-20x20%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-20x20%403x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-29%403x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-20x20%401x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Icon-App-1024x1024%401x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\avatar_default.png" />
@@ -402,108 +397,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\marco9.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-40x40%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-60x60%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-60x60%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-76x76%401x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-76x76%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-83.5x83.5%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default320x480.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default640x960.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default640x1136.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default750x1334.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default768x1024.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default1024x768.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default1125x2436.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default1242x2208.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default1536x2048.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default1920x1080.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default2048x1536.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default2208x1242.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default2436x1125.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default3840x2160.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-24%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-27.5%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-29%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-44%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-86%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-98%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-20x20%401x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-20x20%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-20x20%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-29x29%401x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-29x29%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-29x29%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-40x40%401x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Icon-App-40x40%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
