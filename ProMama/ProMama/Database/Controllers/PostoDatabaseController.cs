@@ -44,14 +44,7 @@ namespace ProMama.Database.Controllers
 
             if (postos.Count() > 0)
             {
-                int outroIndex = -1;
-
-                foreach (var obj in postos)
-                {
-                    if (obj.nome.Equals("Outro"))
-                        outroIndex = postos.IndexOf(obj);
-                }
-                
+                var outroIndex = postos.FindIndex(obj => obj.nome.Equals("Outro"));
                 if (outroIndex != -1)
                 {
                     var outroObj = postos[outroIndex];
