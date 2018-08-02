@@ -821,7 +821,7 @@ namespace ProMama.Components
                         {
                             AllowCropping = true,
                             PhotoSize = PhotoSize.Medium,
-                            CompressionQuality = 85,
+                            CompressionQuality = 90,
                             Name = filename + ".jpg",
                             SaveToAlbum = true,
                             SaveMetaData = false
