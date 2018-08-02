@@ -802,7 +802,7 @@ namespace ProMama.Components
                         file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
                         {
                             PhotoSize = PhotoSize.Medium,
-                            CompressionQuality = 85
+                            CompressionQuality = 90
                         });
                     }
                     else
