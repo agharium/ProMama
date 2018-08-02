@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Plugin.LocalNotifications;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -231,6 +232,26 @@ namespace ProMama.Components
                     App.CriancaDatabase.Save(c);
                 }
             }
+        }
+
+        public static async Task UploadThread()
+        {
+            Task.Run(async () =>
+            {
+                if (!app._onThread)
+                {
+                    app._onThread = true;
+                    Debug.WriteLine("INÍCIO DA TENTATIVA DE UPLOAD DE INFORMAÇÕES EM THREAD");
+
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await UploadInformacoes();
+                    }
+
+                    app._onThread = false;
+                    Debug.WriteLine("FIM DA TENTATIVA DE UPLOAD DE INFORMAÇÕES EM THREAD");
+                }
+            });
         }
 
         public static async Task UploadInformacoes()
@@ -736,7 +757,7 @@ namespace ProMama.Components
                 Source = new HtmlWebViewSource()
                 {
                     Html = "<html>" +
-                                "<body style=\"text-align: justify; font-size: 90%; background-color: #00000000; padding: 0; margin: 0\">" +
+                                "<body style=\"text-align: justify; font-size: 90%; background-color: #00000000; padding: 0; margin: 0; font-family: 'Trebuchet MS', Helvetica, sans-serif\">" +
                                     String.Format("<p>{0}</p>", text) +
                                 "</body>" +
                             "</html>"

@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-using ProMama.Components;
+﻿using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -81,6 +80,8 @@ namespace ProMama.ViewModels.Home.Paginas
 
                         App.FotoDatabase.SaveIncrementing(foto);
                         app._master.SetFoto();
+
+                        Ferramentas.UploadThread();
 
                         await NavigationService.NavigateFoto(Navigation, foto);
                     }

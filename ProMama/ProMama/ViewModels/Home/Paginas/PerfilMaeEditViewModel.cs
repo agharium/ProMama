@@ -245,6 +245,8 @@ namespace ProMama.ViewModels.Home.Paginas
                 App.UsuarioDatabase.Save(u);
                 app._master.Load();
 
+                Ferramentas.UploadThread();
+
                 LoadingDialog.Hide();
                 await Navigation.PopAsync();
             }

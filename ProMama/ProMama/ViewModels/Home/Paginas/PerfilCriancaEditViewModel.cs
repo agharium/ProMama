@@ -117,7 +117,6 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private readonly IMessageService MessageService;
         private readonly INavigationService NavigationService;
-        private readonly IRestService RestService;
 
         public PerfilCriancaEditViewModel(INavigation _navigation)
         {
@@ -136,7 +135,6 @@ namespace ProMama.ViewModels.Home.Paginas
             ExcluirCommand = new Command(Excluir);
             MessageService = DependencyService.Get<IMessageService>();
             NavigationService = DependencyService.Get<INavigationService>();
-            RestService = DependencyService.Get<IRestService>();
         }
 
         private async void Salvar()
@@ -172,6 +170,8 @@ namespace ProMama.ViewModels.Home.Paginas
                 App.CriancaDatabase.Save(c);
                 app._master.Load();
 
+                Ferramentas.UploadThread();
+
                 LoadingDialog.Hide();
                 await Navigation.PopAsync();
             }
@@ -200,6 +200,8 @@ namespace ProMama.ViewModels.Home.Paginas
                         Ferramentas.DeletarCrianca(app._crianca.crianca_id);
 
                         App.UltimaCrianca = 0;
+                        
+                        Ferramentas.UploadThread();
 
                         if (app._usuario.criancas.Count == 0)
                         {

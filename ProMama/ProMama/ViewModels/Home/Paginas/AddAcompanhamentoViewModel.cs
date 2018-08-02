@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System;
@@ -130,6 +131,8 @@ namespace ProMama.ViewModels.Home.Paginas
 
                     var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Convert.ToInt32(Peso), Convert.ToInt32(Altura), alimentacoes);
                     App.AcompanhamentoDatabase.SaveIncrementing(acompanhamento);
+
+                    Ferramentas.UploadThread();
 
                     LoadingDialog.Hide();
                     await Navigation.PopAsync();

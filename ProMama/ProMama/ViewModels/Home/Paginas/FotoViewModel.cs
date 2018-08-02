@@ -69,6 +69,9 @@ namespace ProMama.ViewModels.Home.Paginas
                     App.FotoDatabase.Delete(Foto.id);
                     App.Excluir.Fotos.Add(Foto.id);
                     App.ExcluirDatabase.Save(App.Excluir);
+
+                    Ferramentas.UploadThread();
+
                     app._master.SetFoto();
                     await Navigation.PopAsync();
                 }

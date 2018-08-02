@@ -386,6 +386,9 @@ namespace ProMama.ViewModels.Home.Paginas
                     App.MarcoDatabase.Save(Marco);
                 else
                     App.MarcoDatabase.SaveIncrementing(Marco);
+
+                Ferramentas.UploadThread();
+
                 await Navigation.PopAsync();
             }
             else

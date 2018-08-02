@@ -105,13 +105,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Editar()
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                await NavigationService.NavigatePerfilMaeEdit(Navigation);
-            } else
-            {
-                await MessageService.AlertDialog("Você precisa estar conectado à internet para editar o perfil da mãe.");
-            }
+            await MessageService.AlertDialog("Você precisa estar conectado à internet para editar o perfil da mãe.");
         }
     }
 }

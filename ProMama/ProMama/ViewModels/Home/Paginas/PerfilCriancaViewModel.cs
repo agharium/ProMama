@@ -1,5 +1,4 @@
-﻿using Plugin.Connectivity;
-using ProMama.Models;
+﻿using ProMama.Models;
 using ProMama.ViewModels.Services;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -139,14 +138,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Editar()
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                await NavigationService.NavigatePerfilCriancaEdit(Navigation);
-            }
-            else
-            {
-                await MessageService.AlertDialog("Você precisa estar conectado à internet para editar o perfil da criança.");
-            }
+            await NavigationService.NavigatePerfilCriancaEdit(Navigation);
         }
     }
 }
