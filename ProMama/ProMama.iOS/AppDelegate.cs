@@ -60,7 +60,7 @@ namespace ProMama.iOS
             UIAlertView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
             UIDatePicker.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
             UIInputView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
-            UITabBar.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
+            //UITabBar.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
 
             LoadApplication(new App());
 
