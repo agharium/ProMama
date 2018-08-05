@@ -105,7 +105,7 @@ namespace ProMama.ViewModels.Home.Paginas
 
         private async void Editar()
         {
-            await MessageService.AlertDialog("Você precisa estar conectado à internet para editar o perfil da mãe.");
+            await NavigationService.NavigatePerfilMaeEdit(Navigation);
         }
     }
 }
