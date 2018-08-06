@@ -168,9 +168,9 @@ namespace ProMama.Components
                                 (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id)))
                             {
                                 var artigo = c.crianca_sexo == 0 ? "o" : "a";
-                                var usuario = !string.IsNullOrEmpty(app._usuario.name) ? app._usuario.name : "mãe";
-                                var titulo = n.titulo.Replace("%NOMEDACRIANCA%", c.crianca_primeiro_nome).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
-                                var texto = n.texto.Replace("%NOMEDACRIANCA%", c.crianca_primeiro_nome).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                                var usuario = !string.IsNullOrEmpty(app._usuario.name) ? char.ToUpper(app._usuario.name[0]) + app._usuario.name.Substring(1) : "mãe";
+                                var titulo = n.titulo.Replace("%NOMEDACRIANCA%", char.ToUpper(c.crianca_primeiro_nome[0]) + c.crianca_primeiro_nome.Substring(1)).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                                var texto = n.texto.Replace("%NOMEDACRIANCA%", char.ToUpper(c.crianca_primeiro_nome[0]) + c.crianca_primeiro_nome.Substring(1)).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
                                 titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
                                 texto = char.ToUpper(texto[0]) + texto.Substring(1);
 
