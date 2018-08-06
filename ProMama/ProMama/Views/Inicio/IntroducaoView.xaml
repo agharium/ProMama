@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ProMama.Components"
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             x:Class="ProMama.Views.Inicio.IntroducaoView">
+    <ContentPage.Content>
+        <StackLayout 
+            Spacing="20"
+            Padding="20">
+            <control:CarouselView 
+                ItemsSource="{Binding PaginasCarousel}" 
+                Position="{Binding Position, Mode=TwoWay}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <control:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Spacing="10"
+                            Padding="0, 0, 0, 10"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                VerticalOptions="StartAndExpand"
+                                Text="{Binding Titulo}"
+                                FontSize="Medium"
+                                FontAttributes="Bold"/>
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                VerticalOptions="StartAndExpand"
+                                Text="{Binding Subtitulo}"
+                                FontSize="Small"/>
+                            <Image
+                                Source="{Binding Imagem}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </control:CarouselView.ItemTemplate>
+            </control:CarouselView>
+            <components:CarouselIndicators
+                IndicatorHeight="16" 
+                IndicatorWidth="16" 
+                UnselectedIndicator="red_circle_unchecked" 
+                SelectedIndicator="red_circle_checked" 
+                Position="{Binding Position}" 
+                ItemsSource="{Binding PaginasCarousel}"/>
+            <Button 
+                Style="{StaticResource MainButton}"
+                Text="Vamos lá!"
+                Command="{Binding NavigateToCadastroLoginCommand}"
+                Margin="0, 10, 0, 0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

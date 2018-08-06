@@ -21,9 +21,6 @@ namespace ProMama.Droid
             var cv = typeof(Xamarin.Forms.CarouselView);
             var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
-            // ImageCircle
-            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
-
             // FFImageLoading
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 

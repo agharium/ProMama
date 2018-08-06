@@ -25,9 +25,6 @@ namespace ProMama.iOS
             var cv = typeof(Xamarin.Forms.CarouselView);
             var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
-            // ImageCircle
-            ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
-
             // FFImageLoading
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
