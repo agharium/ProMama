@@ -12,7 +12,6 @@ Plugins utilizados:
 - [SaturdayMP.XPlugins.iOS.BEMCheckBox](https://www.nuget.org/packages/SaturdayMP.XPlugins.iOS.BEMCheckBox/)
 - [Xam.Plugin.Connectivity](http://www.nuget.org/packages/Xam.Plugin.Connectivity)
 - [Xam.Plugin.Media](http://www.nuget.org/packages/Xam.Plugin.Media)
-- [Xam.Plugins.Forms.ImageCircle](https://www.nuget.org/packages/Xam.Plugins.Forms.ImageCircle)
 - [Xam.Plugins.Notifier](https://www.nuget.org/packages/Xam.Plugins.Notifier/)
 - [Xam.Plugins.Settings](https://www.nuget.org/packages/Xam.Plugins.Settings)
 - [Xamarin.FFImageLoading](https://www.nuget.org/packages/Xamarin.FFImageLoading)
@@ -20,7 +19,7 @@ Plugins utilizados:
 - [Xamarin.Forms.CarouselView](https://www.nuget.org/packages/Xamarin.Forms.CarouselView/)
 
 Exemplos utilizados:
-- [Carousel](http://hot-totem.com/blog/post/carouselview-pageindicators-xamarinforms)
+- [Carousel with indicators](https://xamarinhelp.com/carousel-view-page-indicators/)
 - [Checkbox](https://alexdunn.org/2018/04/10/xamarin-tip-build-your-own-checkbox-in-xamarin-forms/)
 - [ExtendedWebView - WebView with auto height](http://lukealderton.com/blog/posts/2016/may/autocustom-height-on-xamarin-forms-webview-for-android-and-ios/)
 - [iOS Material Frame Renderer](https://alexdunn.org/2017/05/01/xamarin-tips-making-your-ios-frame-shadows-more-material/)
