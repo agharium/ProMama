@@ -178,13 +178,13 @@ namespace ProMama.Components
                                 {
                                     CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.AddDays(notificacaoDias - idadeAtual));
                                     c.notificacoesMarcadas.Add(notificacaoCriancaId);
-                                    Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddDays(notificacaoDias - idadeAtual).ToString());
+                                    //Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddDays(notificacaoDias - idadeAtual).ToString());
                                 }
                                 else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                                 {
                                     CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddSeconds(oQuantoAntesCount * 3600));
                                     app._usuario.notificacoes_oQuantoAntes.Add(n.id);
-                                    Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddSeconds(oQuantoAntesCount * 3600).ToString());
+                                    //Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddSeconds(oQuantoAntesCount * 3600).ToString());
                                     oQuantoAntesCount++;
                                 }
                             }
@@ -200,17 +200,10 @@ namespace ProMama.Components
         {
             var user = App.UsuarioDatabase.Find(userId);
             var criancas = App.CriancaDatabase.GetCriancasByUser(userId);
-
+            
             foreach (var n in user.notificacoes_oQuantoAntes)
             {
-                try
-                {
-                    CrossLocalNotifications.Current.Cancel(n);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
+                CrossLocalNotifications.Current.Cancel(n);
             }
 
             if (criancas.Count > 0 && criancas != null)
@@ -219,14 +212,7 @@ namespace ProMama.Components
                 {
                     foreach (var n in c.notificacoesMarcadas)
                     {
-                        try
-                        {
-                            CrossLocalNotifications.Current.Cancel(n);
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine(ex);
-                        }
+                        CrossLocalNotifications.Current.Cancel(n);
                     }
                     c.notificacoesMarcadas = new List<int>();
                     App.CriancaDatabase.Save(c);
@@ -258,7 +244,9 @@ namespace ProMama.Components
         {
             // EXCLUSÃO DE OBJETOS NO SERVIDOR
             List<int> toRemove = new List<int>();
-            foreach(var obj in App.Excluir.Criancas)
+            var excluir = App.Excluir;
+
+            foreach(var obj in excluir.Criancas)
             {
                 var result = await RestService.RemoverCrianca(obj, app._usuario.api_token);
                 if (result.success)
@@ -266,12 +254,13 @@ namespace ProMama.Components
             }
 
             foreach(var obj in toRemove)
-                App.Excluir.Criancas.Remove(obj);
+                excluir.Criancas.Remove(obj);
 
-            App.ExcluirDatabase.Save(App.Excluir);
+
+            App.ExcluirDatabase.Save(excluir);
             toRemove.Clear();
 
-            foreach (var obj in App.Excluir.Fotos)
+            foreach (var obj in excluir.Fotos)
             {
                 var result = await RestService.RemoverFoto(obj, app._usuario.api_token);
                 if (result.success)
@@ -279,9 +268,9 @@ namespace ProMama.Components
             }
 
             foreach (var obj in toRemove)
-                App.Excluir.Fotos.Remove(obj);
+                excluir.Fotos.Remove(obj);
 
-            App.ExcluirDatabase.Save(App.Excluir);
+            App.ExcluirDatabase.Save(excluir);
             toRemove = null;
             // FIM DA EXCLUSÃO DE OBJETOS NO SERVIDOR
             

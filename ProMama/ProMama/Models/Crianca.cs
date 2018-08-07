@@ -24,9 +24,9 @@ namespace ProMama.Models
 
         // variáveis auxiliares
         [JsonIgnore]
-        public double IdadeSemanas { get { return (DateTime.Now - crianca_dataNascimento).Days * 0.1551871428571429; } set { } }
+        public double IdadeSemanas { get { return (((DateTime.Now.Date - crianca_dataNascimento).Days) * 0.1551871428571429) + 0.01; } set { } }
         [JsonIgnore]
-        public double IdadeMeses { get { return (DateTime.Now - crianca_dataNascimento).Days / 30.4167; } set { } }
+        public double IdadeMeses { get { return ((DateTime.Now.Date - crianca_dataNascimento).Days) / 30.4167; } set { } }
         [JsonIgnore]
         public string IdadeExtenso { get { return Ferramentas.DaysToFullString((DateTime.Now - crianca_dataNascimento).Days, 1); } set { } }
 
@@ -37,6 +37,7 @@ namespace ProMama.Models
             crianca_sexo = sexo;
             crianca_tipo_parto = -1;
             crianca_idade_gestacional = -1;
+            notificacoesMarcadas = new List<int>();
             uploaded = true;
         }
 

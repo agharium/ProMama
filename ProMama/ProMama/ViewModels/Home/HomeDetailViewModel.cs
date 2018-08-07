@@ -18,6 +18,8 @@ namespace ProMama.ViewModels.Home
 
         // Criança
         public string Nome { get; set; }
+        private double CriancaIdadeSemanas { get; set; }
+        private string CriancaIdadeExtenso { get; set; }
 
         // Foto da Criança
         private ImageSource _foto { get; set; }
@@ -162,11 +164,13 @@ namespace ProMama.ViewModels.Home
 
             // Criança
             Nome = app._crianca.crianca_primeiro_nome;
-            IdadeAuxIndex = IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso);
+            CriancaIdadeSemanas = app._crianca.IdadeSemanas;
+            CriancaIdadeExtenso = app._crianca.IdadeExtenso;
+            IdadeAuxIndex = IdadesExtensoLista.IndexOf(CriancaIdadeExtenso);
 
             // Idades picker
             IdadesPickerLista = new List<string>();
-            for (int i = 0; i <= IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso); i++)
+            for (int i = 0; i <= IdadesExtensoLista.IndexOf(CriancaIdadeExtenso); i++)
             {
                 IdadesPickerLista.Add(IdadesExtensoLista[i]);
             }
@@ -234,7 +238,7 @@ namespace ProMama.ViewModels.Home
         // Organiza o display as setas
         private void OrganizaSetas()
         {
-            if (IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso) == 0)
+            if (IdadesExtensoLista.IndexOf(CriancaIdadeExtenso) == 0)
             {
                 SetaEsquerdaCor = "#FF8A80";
                 SetaDireitaCor = "#FF8A80";
@@ -245,7 +249,7 @@ namespace ProMama.ViewModels.Home
                     SetaEsquerdaCor = "#FF8A80";
                     SetaDireitaCor = "#EEEEEE";
                 }
-                else if (IdadeAuxIndex == 27 || IdadeAuxIndex == IdadesExtensoLista.IndexOf(app._crianca.IdadeExtenso))
+                else if (IdadeAuxIndex == 27 || IdadeAuxIndex == IdadesExtensoLista.IndexOf(CriancaIdadeExtenso))
                 {
                     SetaEsquerdaCor = "#EEEEEE";
                     SetaDireitaCor = "#FF8A80";
@@ -264,8 +268,7 @@ namespace ProMama.ViewModels.Home
             foreach (var info in InformacoesAux)
             {
                 KeyValuePair<double, int> idade = IdadeAuxIndexador.FirstOrDefault(x => x.Key == info.informacao_idadeSemanasInicio);
-
-                if ((idade.Value == IdadeAuxIndex) && (app._crianca.IdadeSemanas >= info.informacao_idadeSemanasInicio))
+                if ((idade.Value == IdadeAuxIndex) && (CriancaIdadeSemanas >= info.informacao_idadeSemanasInicio))
                     AdicionarInfo(info);
                 else
                     RemoverInfo(info);
@@ -285,12 +288,7 @@ namespace ProMama.ViewModels.Home
 
         private void InformacoesRead()
         {
-            var informacoes = App.InformacaoDatabase.GetAll();
-            foreach (var i in informacoes)
-            {
-                
-                InformacoesAux.Add(i);
-            }
+            InformacoesAux = new List<Informacao>(App.InformacaoDatabase.GetAll());
         }
 
         private void AdicionarInfo(Informacao info)
@@ -310,11 +308,11 @@ namespace ProMama.ViewModels.Home
             IdadeAuxIndexador = new Dictionary<double, int>()
             {
                 {0, 0},
-                {0.31037428571429, 0},
-                {0.46556142857143, 0},
-                {0.62074857142857, 0},
-                {0.77593571428571, 0},
-                {0.93112285714286, 0},
+                {0.310374285714286, 0},
+                {0.465561428571429, 0},
+                {0.620748571428572, 0},
+                {0.775935714285715, 0},
+                {0.931122857142857, 0},
                 {1.08631, 1},
                 {2.17262, 2},
                 {3.25893, 3},
@@ -392,16 +390,14 @@ namespace ProMama.ViewModels.Home
 
         private int DefineIdadeAux()
         {
-            if (app._crianca.IdadeExtenso.Equals("2 anos"))
+            if (CriancaIdadeExtenso.Equals("2 anos"))
                 return IdadesExtensoLista.Count() - 1;
-
-            var idadeSemanas = app._crianca.IdadeSemanas;
 
             for (var i=0; i<IdadeAuxIndexador.Count()-1; i++)
             {
                 var firstPair = IdadeAuxIndexador.ElementAt(i);
                 var secondPair = IdadeAuxIndexador.ElementAt(i+1);
-                if (firstPair.Key <= idadeSemanas && secondPair.Key > idadeSemanas)
+                if (firstPair.Key <= CriancaIdadeSemanas && secondPair.Key > CriancaIdadeSemanas)
                 {
                     return firstPair.Value;
                 }

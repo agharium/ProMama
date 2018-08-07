@@ -29,8 +29,9 @@ namespace ProMama.ViewModels.Home.Paginas
             if (await _messageService.ConfirmationDialog("Você tem certeza que deseja sair?", "Sair", "Voltar"))
             {
                 IProgressDialog LoadingDialog = UserDialogs.Instance.Loading("Por favor, aguarde...", null, null, true, MaskType.Black);
-
+                
                 await Ferramentas.CancelarNotificacoes(app._usuario.id);
+                
                 if (CrossConnectivity.Current.IsConnected)
                     await Ferramentas.UploadInformacoes();
 

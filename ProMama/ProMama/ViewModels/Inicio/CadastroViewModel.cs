@@ -108,6 +108,7 @@ namespace ProMama.ViewModels.Inicio
                     {
                         u.id = result.id;
                         u.api_token = result.message;
+                        u.notificacoes_oQuantoAntes = new List<int>();
 
                         app._usuario = u;
                         App.UsuarioDatabase.Save(app._usuario);

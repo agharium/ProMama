@@ -73,11 +73,15 @@ namespace ProMama.ViewModels.Inicio
                                 else
                                 {
                                     u.uploaded = true;
+                                    u.notificacoes_oQuantoAntes = new List<int>();
                                     app._usuario = u;
 
                                     var criancas = await RestService.CriancasReadByUser(app._usuario);
                                     foreach (var c in criancas)
+                                    {
+                                        c.notificacoesMarcadas = new List<int>();
                                         c.uploaded = true;
+                                    }
 
                                     App.CriancaDatabase.SaveList(criancas);
                                     App.UsuarioDatabase.Save(app._usuario);
