@@ -152,7 +152,9 @@ namespace ProMama.Components
                     if (app._usuario.notificacoes_oQuantoAntes == null)
                         app._usuario.notificacoes_oQuantoAntes = new List<int>();
 
-                    foreach (var c in App.CriancaDatabase.GetCriancasByUser(app._usuario.id))
+                    var criancas = App.CriancaDatabase.GetCriancasByUser(app._usuario.id);
+
+                    foreach (var c in criancas)
                     {
                         var idadeAtual = (DateTime.Now - c.crianca_dataNascimento).Days;
 
@@ -169,7 +171,7 @@ namespace ProMama.Components
                             {
                                 var artigo = c.crianca_sexo == 0 ? "o" : "a";
                                 var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
-                                var crianca = CapitalizarPrimeirasLetras(app._crianca_primeiro_nome);
+                                var crianca = CapitalizarPrimeirasLetras(c.crianca_primeiro_nome);
                                 var titulo = n.titulo.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
                                 var texto = n.texto.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
                                 titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
@@ -179,13 +181,13 @@ namespace ProMama.Components
                                 {
                                     CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
                                     c.notificacoesMarcadas.Add(notificacaoCriancaId);
-                                    //Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddDays(notificacaoDias - idadeAtual).ToString());
+                                    //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12).ToString());
                                 }
                                 else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                                 {
                                     CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
                                     app._usuario.notificacoes_oQuantoAntes.Add(n.id);
-                                    //Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddSeconds(oQuantoAntesCount * 3600).ToString());
+                                    //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.AddHours(oQuantoAntesCount).ToString());
                                     oQuantoAntesCount++;
                                 }
                             }
