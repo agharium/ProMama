@@ -164,25 +164,26 @@ namespace ProMama.Components
                             int notificacaoDias = (int)Math.Ceiling(n.semana / 0.1551871428571429);
                             int notificacaoCriancaId = int.Parse(c.crianca_id.ToString() + n.id.ToString());
 
-                            if ((!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias >= idadeAtual) ||
+                            if ((!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias > idadeAtual) ||
                                 (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id)))
                             {
                                 var artigo = c.crianca_sexo == 0 ? "o" : "a";
-                                var usuario = !string.IsNullOrEmpty(app._usuario.name) ? char.ToUpper(app._usuario.name[0]) + app._usuario.name.Substring(1) : "mãe";
-                                var titulo = n.titulo.Replace("%NOMEDACRIANCA%", char.ToUpper(c.crianca_primeiro_nome[0]) + c.crianca_primeiro_nome.Substring(1)).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
-                                var texto = n.texto.Replace("%NOMEDACRIANCA%", char.ToUpper(c.crianca_primeiro_nome[0]) + c.crianca_primeiro_nome.Substring(1)).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                                var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
+                                var crianca = CapitalizarPrimeirasLetras(app._crianca_primeiro_nome);
+                                var titulo = n.titulo.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                                var texto = n.texto.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
                                 titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
                                 texto = char.ToUpper(texto[0]) + texto.Substring(1);
 
-                                if (!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias >= idadeAtual)
+                                if (!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias > idadeAtual)
                                 {
-                                    CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.AddDays(notificacaoDias - idadeAtual));
+                                    CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
                                     c.notificacoesMarcadas.Add(notificacaoCriancaId);
                                     //Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddDays(notificacaoDias - idadeAtual).ToString());
                                 }
                                 else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                                 {
-                                    CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddSeconds(oQuantoAntesCount * 3600));
+                                    CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
                                     app._usuario.notificacoes_oQuantoAntes.Add(n.id);
                                     //Debug.WriteLine("Notificação '" + titulo + "' marcada para " + DateTime.Now.AddSeconds(oQuantoAntesCount * 3600).ToString());
                                     oQuantoAntesCount++;
@@ -736,6 +737,33 @@ namespace ProMama.Components
                 return true;
 
             return Regex.IsMatch(texto, "^[0-9]*$");
+        }
+        
+        // https://www.c-sharpcorner.com/blogs/first-letter-in-uppercase-in-c-sharp1
+        public static string CapitalizarPrimeirasLetras(string value)
+        {
+            char[] array = value.ToCharArray();
+            // Handle the first letter in the string.
+            if (array.Length >= 1)
+            {
+                if (char.IsLower(array[0]))
+                {
+                    array[0] = char.ToUpper(array[0]);
+                }
+            }
+            // Scan through the letters, checking for spaces.
+            // ... Uppercase the lowercase letters following spaces.
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i - 1] == ' ')
+                {
+                    if (char.IsLower(array[i]))
+                    {
+                        array[i] = char.ToUpper(array[i]);
+                    }
+                }
+            }
+            return new string(array);
         }
 
         // http://lukealderton.com/blog/posts/2016/may/autocustom-height-on-xamarin-forms-webview-for-android-and-ios/
