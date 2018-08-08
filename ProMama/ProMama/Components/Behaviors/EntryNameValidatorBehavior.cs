@@ -25,6 +25,14 @@ namespace ProMama.Components.Behaviors
                 entry.TextChanged -= OnEntryTextChanged;
                 entry.Text = e.OldTextValue;
                 entry.TextChanged += OnEntryTextChanged;
+            } else
+            {
+                if (entry.Text.Length == 1)
+                {
+                    entry.TextChanged -= OnEntryTextChanged;
+                    entry.Text = entry.Text.ToUpper();
+                    entry.TextChanged += OnEntryTextChanged;
+                }
             }
         }
     }
