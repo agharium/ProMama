@@ -50,6 +50,7 @@ namespace ProMama
 
             // verifica se usuário já está logado
             app._sync = SincronizacaoDatabase.Find();
+            app._onThread = false;
 
             if (UltimoUsuario != 0)
             {

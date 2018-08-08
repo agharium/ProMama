@@ -186,6 +186,10 @@ namespace ProMama.ViewModels.Home
             Navigation = _navigation;
             NavigationService = DependencyService.Get<INavigationService>();
 
+            // Salva o login
+            App.UltimoUsuario = app._usuario.id;
+            App.UltimaCrianca = app._crianca.crianca_id;
+
             // Sincronizando banco em thread
             Task.Run(async () =>
             {
@@ -202,11 +206,7 @@ namespace ProMama.ViewModels.Home
                     await Ferramentas.AgendarNotificacoes();
 
                     app._onThread = false;
-                    Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD, SALVANDO LOGIN");
-
-                    // Salva o login
-                    App.UltimoUsuario = app._usuario.id;
-                    App.UltimaCrianca = app._crianca.crianca_id;
+                    Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD");
                 }
             });
         }
