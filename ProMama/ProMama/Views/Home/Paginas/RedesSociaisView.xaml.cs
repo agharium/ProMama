@@ -18,7 +18,7 @@ namespace ProMama.Views.Home.Paginas
         {
             try
             {
-                Device.OpenUri(new Uri("https://www.facebook.com/promama.osorio.3/"));
+                Device.OpenUri(new Uri("fb://profile/100018379265466/"));
             }
             catch (Exception ex)
             {
