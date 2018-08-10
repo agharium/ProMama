@@ -16,8 +16,11 @@ namespace ProMama.Views.Home.Paginas
             InitializeComponent();
 
             if (app._easterEggCount == 3)
+            {
+                app._easterEggCount = 0;
                 EasterEgg();
-
+            }
+            
             Texto.Children.Add(
                 Ferramentas.CreateBrowser(
                     "Com o objetivo de aumentar os índices de aleitamento materno, qualificar a assistência no município de Osório e nortear a conduta dos profissionais da Atenção Básica, a equipe de fonoaudiologia e o NASF criaram com o apoio do Secretário Emerson Arli Magni da Silva e o Prefeito Eduardo Aluísio Cardoso Abrahão o Programa Municipal de Aleitamento Materno intitulado PRÓ-MAMÁ."
@@ -53,7 +56,6 @@ namespace ProMama.Views.Home.Paginas
 
         private async void EasterEgg()
         {
-            app._easterEggCount = 0;
             await Navigation.PushModalAsync(new EasterEggView());
         }
     }
