@@ -234,7 +234,7 @@
                             LineBreakMode="WordWrap"/>
                     </StackLayout>
                 </StackLayout>
-
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

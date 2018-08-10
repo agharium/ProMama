@@ -26,5 +26,6 @@ namespace ProMama.Models
         public Home _home { get; set; }
         public Sincronizacao _sync { get; set; }
         public bool _onThread { get; set; }
+        public int _easterEggCount { get; set; }
     }
 }

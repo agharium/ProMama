@@ -457,6 +457,15 @@
   <ItemGroup>
     <BundleResource Include="Resources\red_circle_checked.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\jose.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lucas.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\max.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

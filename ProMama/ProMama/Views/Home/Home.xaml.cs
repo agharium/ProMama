@@ -24,6 +24,11 @@ namespace ProMama.Views.Home
             if (!(e.SelectedItem is HomeMenuItem item))
                 return;
 
+            if (item.Id == 10)
+                app._easterEggCount++;
+            else
+                app._easterEggCount = 0;
+
             var page = (Page)Activator.CreateInstance(item.Pagina);
             //page.Title = item.Titulo;
 

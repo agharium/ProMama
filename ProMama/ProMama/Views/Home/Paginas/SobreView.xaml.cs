@@ -10,9 +10,13 @@ namespace ProMama.Views.Home.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SobreView : ContentPage
     {
+        private Aplicativo app = Aplicativo.Instance;
         public SobreView()
         {
             InitializeComponent();
+
+            if (app._easterEggCount == 3)
+                EasterEgg();
 
             Texto.Children.Add(
                 Ferramentas.CreateBrowser(
@@ -45,6 +49,12 @@ namespace ProMama.Views.Home.Paginas
             Aplicativo app = Aplicativo.Instance;
             app._home.Detail_Home();
             return true;
+        }
+
+        private async void EasterEgg()
+        {
+            app._easterEggCount = 0;
+            await Navigation.PushModalAsync(new EasterEggView());
         }
     }
 }
