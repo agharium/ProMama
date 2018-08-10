@@ -50,15 +50,15 @@ namespace ProMama.iOS
             UINavigationBar.Appearance.TintColor = UIColor.White;
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(229, 57, 53);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
-            UINavigationBar.Appearance.BarStyle = UIBarStyle.Black;
-            UIButton.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
+            //UINavigationBar.Appearance.BarStyle = UIBarStyle.Black;
+            //UIButton.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
             UIPickerView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
-            UIActionSheet.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
-            UIAlertView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
+            //UIActionSheet.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
+            //UIAlertView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
             UIDatePicker.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
-            UIInputView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
-            //UITabBar.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
-
+            //UIInputView.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
+            UITabBar.Appearance.TintColor = UIColor.FromRGB(244, 67, 54);
+           
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -27,7 +27,7 @@ namespace ProMama.Components.Behaviors
                 editor.TextChanged += OnEditorTextChanged;
             } else
             {
-                if (editor.Text.Length == 1)
+                if (editor.Text != null && editor.Text.Length == 1)
                 {
                     editor.TextChanged -= OnEditorTextChanged;
                     editor.Text = editor.Text.ToUpper();

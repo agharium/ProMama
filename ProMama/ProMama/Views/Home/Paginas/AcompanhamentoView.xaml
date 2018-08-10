@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProMama.Views.Home.Paginas.AcompanhamentoView"
@@ -13,7 +13,7 @@
                 ItemsSource="{Binding Medicoes}">
                 <ListView.Header>
 
-                    <StackLayout Margin="15, 15, 15, 0">
+                    <StackLayout Padding="15, 15, 15, 0">
                         <Label
                             Margin="0, 0, 0, 10"
                             Text="Medições anteriores:" 
@@ -135,7 +135,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Margin="15, 0, 15, 0">
+                            <StackLayout Padding="15, 0, 15, 0">
                                 <Grid ColumnSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -245,16 +245,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout Padding="10">
+                    <StackLayout>
                         <Button
                             Style="{StaticResource MainButton}"
                             Text="Adicionar nova medição"
                             Command="{Binding Source={x:Reference this}, Path=BindingContext.NavigationCommand}"
-                            Margin="10"/>
+                            Margin="20"/>
                     </StackLayout>
                 </ListView.Footer>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
