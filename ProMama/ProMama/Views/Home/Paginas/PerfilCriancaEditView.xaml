@@ -176,6 +176,7 @@
                         Command="{Binding SalvarCommand}"/>
 
                     <Button 
+                        Style="{StaticResource GrayButton}"
                         Text="Excluir esta criança"
                         Command="{Binding ExcluirCommand}"/>
 

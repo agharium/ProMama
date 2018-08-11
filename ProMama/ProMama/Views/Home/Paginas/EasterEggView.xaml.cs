@@ -53,5 +53,10 @@ namespace ProMama.Views.Home.Paginas
         {
             OpenUrl("https://linkedin.com/in/maxcsantos");
         }
+
+        private void Voltar_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }
