@@ -18,7 +18,8 @@
                         <ViewCell>
                             <Frame 
                                 Padding="0"
-                                Margin="20, 10, 20, 10">
+                                Margin="20, 10, 20, 10"
+                                BackgroundColor="White">
                                 <Grid RowSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -32,7 +33,6 @@
                                     <Image 
                                         Source="{Binding image_path}"
                                         Aspect="AspectFill"
-                                        Opacity="0.5"
                                         HeightRequest="125"
                                         Grid.Column="0"
                                         Grid.Row="0"
@@ -81,12 +81,9 @@
                                         </StackLayout>
                                         <StackLayout IsVisible="{Binding MostraTelefone}">
                                             <StackLayout
-                                                HeightRequest="0.1"
-                                                BackgroundColor="White"/>
-                                            <StackLayout
                                                 BackgroundColor="#E53935"
                                                 Padding="10"
-                                                Margin="0">
+                                                Margin="0, 2, 0, 0">
                                                 <Label
                                                     Text="Ligar"
                                                     TextColor="White"

@@ -8,7 +8,7 @@
         <ScrollView>
             <StackLayout Spacing="10">
                 <Label
-                    Text="¯\_(ツ)_/¯"
+                    Text="Desenvolvedores"
                     FontSize="Large"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
@@ -22,7 +22,7 @@
                         Source="jose"
                         HeightRequest="125">
                         <ffimageloading:CachedImage.Transformations>
-                            <fftransformations:CircleTransformation BorderSize="10" BorderHexColor="#333"/>
+                            <fftransformations:CircleTransformation BorderSize="10" BorderHexColor="#333333"/>
                         </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
                     <StackLayout>
@@ -33,7 +33,7 @@
                             FontSize="Medium"
                             FontAttributes="Bold"/>
                         <Label
-                            Text="Desenvolvedor do app (Xamarin.Forms) e do banco de dados remoto (MySQL)"
+                            Text="Desenvolvedor do aplicativo (Xamarin.Forms) e do banco de dados remoto (MySQL)"
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Center"/>
                     </StackLayout>
@@ -60,7 +60,7 @@
                         Source="lucas"
                         HeightRequest="125">
                         <ffimageloading:CachedImage.Transformations>
-                            <fftransformations:CircleTransformation BorderSize="10" BorderHexColor="#333"/>
+                            <fftransformations:CircleTransformation BorderSize="10" BorderHexColor="#333333"/>
                         </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
                     <StackLayout>
@@ -71,7 +71,7 @@
                             FontSize="Medium"
                             FontAttributes="Bold"/>
                         <Label
-                            Text="Desenvolvedor da API REST, Web Dashboard (PHP Laravel), banco de dados remoto (MySQL) e responsável pela configuração de servidor (Linux)"
+                            Text="Desenvolvedor da API REST e Web Dashboard (PHP Laravel), do banco de dados remoto (MySQL) e responsável pela configuração de servidor (Linux)"
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Center"/>
                     </StackLayout>
@@ -98,7 +98,7 @@
                         Source="max"
                         HeightRequest="125">
                         <ffimageloading:CachedImage.Transformations>
-                            <fftransformations:CircleTransformation BorderSize="10" BorderHexColor="#333"/>
+                            <fftransformations:CircleTransformation BorderSize="10" BorderHexColor="#333333"/>
                         </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
                     <StackLayout>
@@ -128,13 +128,18 @@
                             TextColor="White"/>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Padding="20">
-                    <Button
-                        Style="{StaticResource GrayButton}"
-                        Text="Voltar"
-                        Clicked="Voltar_Clicked"/>
+                <Label
+                    Text="¯\_(ツ)_/¯"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    FontAttributes="Bold"/>
+                <Button
+                    Margin="20"
+                    Style="{StaticResource GrayButton}"
+                    Text="Voltar"
+                    Clicked="Voltar_Clicked"/>
                 </StackLayout>
-            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

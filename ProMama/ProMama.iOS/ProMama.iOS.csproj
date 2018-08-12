@@ -365,51 +365,6 @@
     <BundleResource Include="Resources\marco1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\posto_atlantida.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_baixada.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_borussia.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_caravagio.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_central.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_gloria.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_laranjeiras.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_palmital.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_passinhos.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_primavera.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_santaluzia.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_serramar.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_aguapes.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_albatroz.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\posto_arroio.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_cadastro.png" />
   </ItemGroup>
   <ItemGroup>
@@ -465,6 +420,51 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\max.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_atlantida.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_baixada.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_borussia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_caravagio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_central.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_gloria.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_laranjeiras.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_palmital.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_passinhos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_primavera.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_santaluzia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_serramar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_albatroz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_arroio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\posto_aguapes.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
