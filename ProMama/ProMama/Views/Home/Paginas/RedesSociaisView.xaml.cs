@@ -23,6 +23,14 @@ namespace ProMama.Views.Home.Paginas
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
+                try
+                {
+                    Device.OpenUri(new Uri("https://www.facebook.com/promama.osorio.3"));
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.ToString());
+                }
             }
         }
 
