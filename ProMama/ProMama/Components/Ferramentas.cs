@@ -425,8 +425,9 @@ namespace ProMama.Components
             var acompanhamentos = App.AcompanhamentoDatabase.GetAll();
             var fotos = App.FotoDatabase.GetAll();
             var marcos = App.MarcoDatabase.GetAll();
+            var crianca = App.CriancaDatabase.Find(id);
 
-            foreach(var obj in acompanhamentos)
+            foreach (var obj in acompanhamentos)
             {
                 if (obj.crianca == id)
                     App.AcompanhamentoDatabase.Delete(obj.id);
@@ -442,6 +443,11 @@ namespace ProMama.Components
             {
                 if (obj.crianca == id)
                     App.MarcoDatabase.Delete(obj.id);
+            }
+            
+            foreach (var obj in crianca.notificacoesMarcadas)
+            {
+                CrossLocalNotifications.Current.Cancel(obj);
             }
 
             App.CriancaDatabase.Delete(id);
