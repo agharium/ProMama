@@ -8,8 +8,8 @@
 	<string>Este aplicativo precisa de acesso às fotos.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Este aplicativo precisa de acesso à galeria de fotos.</string>
-  <key>NSCalendarsUsageDescription</key>
-  <string>Este aplicativo precisa de acesso ao calendário para gerenciar o agendamento de notificações.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Este aplicativo precisa de acesso ao calendário para gerenciar o agendamento de notificações.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -35,7 +35,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>br.gov.rs.osorio.promama</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.3</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-fontawesome-solid.otf</string>
@@ -53,7 +53,7 @@
 	<string>Pró-Mamá</string>
 	<key>XSAppIconAssets</key>
 	<string>Media.xcassets/AppIcons.appiconset</string>
-  <key>UIRequiresFullScreen</key>
-  <true/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
