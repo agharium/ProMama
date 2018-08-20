@@ -23,8 +23,14 @@
                                 VerticalOptions="StartAndExpand"
                                 Text="{Binding Titulo}"
                                 FontSize="Medium"
-                                FontAttributes="Bold"
-                                Margin="20, 20, 20, 0"/>
+                                FontAttributes="Bold">
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="iOS" Value="20, 30, 20, 0"/>
+                                        <On Platform="Android" Value="20, 20, 20, 0"/>
+                                    </OnPlatform>
+                                </Label.Margin>
+                            </Label>
                             <Label
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
