@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProMama.Android", "ProMama\ProMama.Android\ProMama.Android.csproj", "{542DD27A-39F0-4F29-BF50-71A06CA78046}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProMama", "ProMama\ProMama\ProMama.csproj", "{425CF9B3-2954-4411-BDEA-AD33AE23223D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProMama", "ProMama\ProMama\ProMama.csproj", "{425CF9B3-2954-4411-BDEA-AD33AE23223D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProMama.iOS", "ProMama\ProMama.iOS\ProMama.iOS.csproj", "{2FDA4A84-2ADA-47E6-8BA3-FE34E3E67040}"
 EndProject
