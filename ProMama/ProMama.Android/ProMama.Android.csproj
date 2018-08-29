@@ -132,16 +132,13 @@
       <HintPath>..\..\packages\Xam.Plugin.Iconize.FontAwesome.3.0.0.67\lib\monoandroid80\Plugin.Iconize.FontAwesome.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.LocalNotifications, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build26\lib\MonoAndroid10\Plugin.LocalNotifications.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build30\lib\MonoAndroid10\Plugin.LocalNotifications.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.LocalNotifications.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build26\lib\MonoAndroid10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1-pr42-build30\lib\MonoAndroid10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.4.0.1.5\lib\monoandroid71\Plugin.Media.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Notifications, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugin.Notifications.5.0.0-beta3\lib\monoandroid80\Plugin.Notifications.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Permissions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Plugin.Permissions.3.0.0.12\lib\monoandroid71\Plugin.Permissions.dll</HintPath>

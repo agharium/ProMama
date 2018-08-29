@@ -171,8 +171,11 @@
     <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.4.0.1.5\lib\xamarinios10\Plugin.Media.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Notifications, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugin.Notifications.5.0.0-beta3\lib\xamarinios10\Plugin.Notifications.dll</HintPath>
+    <Reference Include="Plugin.Notifications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.Notifications.4.0.2\lib\Xamarin.iOS10\Plugin.Notifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Notifications.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.Notifications.4.0.2\lib\Xamarin.iOS10\Plugin.Notifications.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Permissions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Plugin.Permissions.3.0.0.12\lib\xamarinios10\Plugin.Permissions.dll</HintPath>
