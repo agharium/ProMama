@@ -120,7 +120,7 @@ namespace ProMama.ViewModels.Home
         // Rest
         private readonly IRestService RestService;
 
-        /*private async void TesteNotificacoesIOS()
+        private async void TesteNotificacoesIOS()
         {
             await CrossNotifications.Current.Send(new Notification
             {
@@ -141,15 +141,15 @@ namespace ProMama.ViewModels.Home
                 Message = "1 minuto",
                 Date = System.DateTime.Now.AddSeconds(60)
             });
-        }*/
+        }
 
         // Construtor
         public HomeDetailViewModel(INavigation _navigation)
         {
-            /*if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 TesteNotificacoesIOS();
-            }*/
+            }
 
             // Informações
             RestService = DependencyService.Get<IRestService>();
