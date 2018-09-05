@@ -1,5 +1,4 @@
 ﻿using Plugin.Connectivity;
-using Plugin.LocalNotifications;
 using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
@@ -123,8 +122,6 @@ namespace ProMama.ViewModels.Home
         // Construtor
         public HomeDetailViewModel(INavigation _navigation)
         {
-            CrossLocalNotifications.Current.Show("18:30 reiniciado", "18:30 reiniciado", 455, System.DateTime.Now.Date.AddHours(18).AddMinutes(30));
-
             // Informações
             RestService = DependencyService.Get<IRestService>();
             Informacoes = new ObservableCollection<Informacao>();
