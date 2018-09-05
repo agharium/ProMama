@@ -1,5 +1,5 @@
 ﻿using Plugin.Connectivity;
-using Plugin.Notifications;
+using Plugin.LocalNotifications;
 using ProMama.Components;
 using ProMama.Models;
 using ProMama.ViewModels.Services;
@@ -120,36 +120,10 @@ namespace ProMama.ViewModels.Home
         // Rest
         private readonly IRestService RestService;
 
-        private async void TesteNotificacoesIOS()
-        {
-            await CrossNotifications.Current.Send(new Notification
-            {
-                Title = "Samples",
-                Message = "Starting Sample Schedule Notifications"
-            });
-
-            await CrossNotifications.Current.Send(new Notification
-            {
-                Title = "10 segundos",
-                Message = "10 segundos",
-                Date = System.DateTime.Now.AddSeconds(10)
-            });
-
-            await CrossNotifications.Current.Send(new Notification
-            {
-                Title = "1 minuto",
-                Message = "1 minuto",
-                Date = System.DateTime.Now.AddSeconds(60)
-            });
-        }
-
         // Construtor
         public HomeDetailViewModel(INavigation _navigation)
         {
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                TesteNotificacoesIOS();
-            }
+            CrossLocalNotifications.Current.Show("18:30 reiniciado", "18:30 reiniciado", 455, System.DateTime.Now.Date.AddHours(18).AddMinutes(30));
 
             // Informações
             RestService = DependencyService.Get<IRestService>();

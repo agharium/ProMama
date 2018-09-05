@@ -3,7 +3,6 @@ using Plugin.Connectivity;
 using Plugin.LocalNotifications;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Notifications;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using ProMama.Models;
@@ -144,6 +143,12 @@ namespace ProMama.Components
         {
            if (app._usuario != null)
             {
+                if (Device.RuntimePlatform == Device.Android && App.Update_NotificacoesCanceladas == false)
+                {
+                    await CancelarNotificacoes(app._usuario.id);
+                    App.Update_NotificacoesCanceladas = true;
+                }
+
                 if (app._usuario.criancas.Count > 0 && app._usuario.criancas != null)
                 {
                     var notifications = App.NotificacaoDatabase.GetAll();
@@ -180,27 +185,13 @@ namespace ProMama.Components
 
                                 if (!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias > idadeAtual)
                                 {
-                                    if (Device.RuntimePlatform == Device.iOS)
-                                    {
-                                        await CrossNotifications.Current.Send(new Notification() { Id = notificacaoCriancaId, Title = titulo, Message = texto, Date = DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12) });
-                                    }
-                                    else if (Device.RuntimePlatform == Device.Android)
-                                    {
-                                        CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
-                                    }
+                                    CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
                                     c.notificacoesMarcadas.Add(notificacaoCriancaId);
                                     //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12).ToString());
                                 }
                                 else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                                 {
-                                    if (Device.RuntimePlatform == Device.iOS)
-                                    {
-                                        await CrossNotifications.Current.Send(new Notification() { Id = n.id, Title = titulo, Message = texto, Date = DateTime.Now.AddHours(oQuantoAntesCount) });
-                                    }
-                                    else if (Device.RuntimePlatform == Device.Android)
-                                    {
-                                        CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
-                                    }
+                                    CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
                                     app._usuario.notificacoes_oQuantoAntes.Add(n.id);
                                     //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.AddHours(oQuantoAntesCount).ToString());
                                     oQuantoAntesCount++;
@@ -216,31 +207,24 @@ namespace ProMama.Components
 
         public static async Task CancelarNotificacoes(int userId)
         {
-            if (Device.RuntimePlatform == Device.iOS)
+            var user = App.UsuarioDatabase.Find(userId);
+            var criancas = App.CriancaDatabase.GetCriancasByUser(userId);
+
+            foreach (var n in user.notificacoes_oQuantoAntes)
             {
-                await CrossNotifications.Current.CancelAll();
+                CrossLocalNotifications.Current.Cancel(n);
             }
-            else if (Device.RuntimePlatform == Device.Android)
+
+            if (criancas.Count > 0 && criancas != null)
             {
-                var user = App.UsuarioDatabase.Find(userId);
-                var criancas = App.CriancaDatabase.GetCriancasByUser(userId);
-
-                foreach (var n in user.notificacoes_oQuantoAntes)
+                foreach (var c in criancas)
                 {
-                    CrossLocalNotifications.Current.Cancel(n);
-                }
-
-                if (criancas.Count > 0 && criancas != null)
-                {
-                    foreach (var c in criancas)
+                    foreach (var n in c.notificacoesMarcadas)
                     {
-                        foreach (var n in c.notificacoesMarcadas)
-                        {
-                            CrossLocalNotifications.Current.Cancel(n);
-                        }
-                        c.notificacoesMarcadas = new List<int>();
-                        App.CriancaDatabase.Save(c);
+                        CrossLocalNotifications.Current.Cancel(n);
                     }
+                    c.notificacoesMarcadas = new List<int>();
+                    App.CriancaDatabase.Save(c);
                 }
             }
         }

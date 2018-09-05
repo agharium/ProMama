@@ -83,6 +83,12 @@ namespace ProMama
             set => CrossSettings.Current.AddOrUpdateValue(nameof(UltimaCrianca), value);
         }
 
+        public static bool Update_NotificacoesCanceladas
+        {
+            get => CrossSettings.Current.GetValueOrDefault(nameof(Update_NotificacoesCanceladas), false);
+            set => CrossSettings.Current.AddOrUpdateValue(nameof(Update_NotificacoesCanceladas), value);
+        }
+
         private static Excluir _excluir;
         public static Excluir Excluir
         {

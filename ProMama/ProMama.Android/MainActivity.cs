@@ -37,27 +37,7 @@ namespace ProMama.Droid
                 Plugin.LocalNotifications.LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.icon;
 
             LoadApplication(new ProMama.App());
-
-            //Log.WriteLine(LogPriority.Debug, "BOOT PERMISSION", Application.Context.CheckSelfPermission("RECEIVE_BOOT_COMPLETED").ToString());
-
-            //await GetReceivedBootCompletePermission();
         }
-
-        /*async Task GetReceivedBootCompletePermission()
-        {
-            string[] BootPermission = { Manifest.Permission.ReceiveBootCompleted };
-
-            if (CheckSelfPermission(BootPermission[0]) != (int)Permission.Granted && (int)Build.VERSION.SdkInt >= 23)
-            {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetTitle("Permissão de inicialização");
-                alert.SetMessage("O aplicativo precisa da permissão de inicialização para enviar notificações corretamente.");
-                Dialog dialog = alert.Create();
-                dialog.Show();
-
-                RequestPermissions(BootPermission, 0);
-            }
-        }*/
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
