@@ -110,7 +110,7 @@
 
                     <Button 
                         Style="{StaticResource GrayButton}"
-                        Text="Trocar Email"
+                        Text="Trocar E-mail"
                         Command="{Binding TrocarEmailCommand}"/>
 
                     <Button 
