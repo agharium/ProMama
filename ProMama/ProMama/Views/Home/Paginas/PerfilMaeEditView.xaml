@@ -110,12 +110,12 @@
 
                     <Button 
                         Style="{StaticResource GrayButton}"
-                        Text="Trocar E-mail"
+                        Text="Trocar e-mail"
                         Command="{Binding TrocarEmailCommand}"/>
 
                     <Button 
                         Style="{StaticResource GrayButton}"
-                        Text="Trocar Senha"
+                        Text="Trocar senha"
                         Command="{Binding TrocarSenhaCommand}"/>
                 </StackLayout>
             </ScrollView>
