@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace ProMama.Views.Home.Paginas
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EasterEggView : ContentPage
+	public partial class DesenvolvedoresView : ContentPage
 	{
-		public EasterEggView ()
+		public DesenvolvedoresView ()
 		{
 			InitializeComponent();
         }

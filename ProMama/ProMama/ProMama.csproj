@@ -8,23 +8,26 @@
     <PackageReference Include="MarcelloDB" Version="1.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
-    <PackageReference Include="Portable.BouncyCastle" Version="1.8.3" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.4" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
-    <PackageReference Include="Xam.Plugin.Iconize" Version="3.0.0.67" />
-    <PackageReference Include="Xam.Plugin.Iconize.FontAwesome" Version="3.0.0.67" />
+    <PackageReference Include="Xam.Plugin.Iconize" Version="3.3.0.93" />
+    <PackageReference Include="Xam.Plugin.Iconize.FontAwesome" Version="3.3.0.93" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1-pr42-build30" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
     <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Home\Paginas\DesenvolvedoresView.xaml.cs">
+      <DependentUpon>DesenvolvedoresView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Home\Paginas\PerfilMaeEditEmailView.xaml.cs">
       <DependentUpon>PerfilMaeEditEmailView.xaml</DependentUpon>
     </Compile>
@@ -33,7 +36,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Views\Home\Paginas\EasterEggView.xaml">
+    <EmbeddedResource Update="Views\Home\Paginas\DesenvolvedoresView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Home\Paginas\PerfilMaeEditEmailView.xaml">

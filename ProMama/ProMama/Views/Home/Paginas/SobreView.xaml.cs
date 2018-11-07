@@ -14,12 +14,6 @@ namespace ProMama.Views.Home.Paginas
         public SobreView()
         {
             InitializeComponent();
-
-            if (app._easterEggCount == 3)
-            {
-                app._easterEggCount = 0;
-                EasterEgg();
-            }
             
             Texto.Children.Add(
                 Ferramentas.CreateBrowser(
@@ -35,6 +29,13 @@ namespace ProMama.Views.Home.Paginas
                 );
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Aplicativo app = Aplicativo.Instance;
+            app._home.Detail_Home();
+            return true;
+        }
+
         void OnDecretoTapped(object sender, EventArgs args)
         {
             try
@@ -47,16 +48,9 @@ namespace ProMama.Views.Home.Paginas
             }
         }
 
-        protected override bool OnBackButtonPressed()
+        void OnDesenvolvedoresTapped(object sender, EventArgs args)
         {
-            Aplicativo app = Aplicativo.Instance;
-            app._home.Detail_Home();
-            return true;
-        }
-
-        private async void EasterEgg()
-        {
-            await Navigation.PushModalAsync(new EasterEggView());
+            Navigation.PushModalAsync(new DesenvolvedoresView());
         }
     }
 }

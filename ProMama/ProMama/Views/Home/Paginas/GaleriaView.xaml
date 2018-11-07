@@ -27,28 +27,15 @@
                             <Frame
                                 x:Name="Imagem"
                                 Padding="0"
-                                Margin="20, 10, 20, 10">
+                                Margin="20, 10, 20, 10"
+                                HeightRequest="{OnIdiom Phone=150, Tablet=250}">
                                 <Grid RowSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition>
-                                            <RowDefinition.Height>
-                                                <OnIdiom 
-                                                    x:TypeArguments="GridLength"
-                                                    Phone="75*"
-                                                    Tablet="85*"/>
-                                            </RowDefinition.Height>
-                                        </RowDefinition>
-                                        <RowDefinition>
-                                            <RowDefinition.Height>
-                                                <OnIdiom 
-                                                    x:TypeArguments="GridLength"
-                                                    Phone="25*"
-                                                    Tablet="15*"/>
-                                            </RowDefinition.Height>
-                                        </RowDefinition>
+                                        <RowDefinition Height="{OnIdiom Phone=75*, Tablet=85*}" />
+                                        <RowDefinition Height="{OnIdiom Phone=25*, Tablet=15*}" />
                                     </Grid.RowDefinitions>
 
                                     <Image
@@ -76,12 +63,6 @@
                                         Command="{Binding Source={x:Reference this}, Path=BindingContext.FotoCommand}"
                                         CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
-                                <Frame.HeightRequest>
-                                    <OnIdiom 
-                                        x:TypeArguments="x:Double"
-                                        Phone="150"
-                                        Tablet="250"/>
-                                </Frame.HeightRequest>
                             </Frame>
                         </Grid>
                     </DataTemplate>

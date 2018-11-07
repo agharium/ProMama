@@ -1,4 +1,5 @@
 ﻿using ProMama.ViewModels.Inicio;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,15 +15,15 @@ namespace ProMama.Views.Inicio
             BindingContext = new CadastroViewModel();
         }
 
-        private void ChangeToLogin()
+        private void ChangeToLogin(object sender, EventArgs e)
         {
-            var tabbedPage = this.Parent as LoginCadastroTabbedView;
+            var tabbedPage = Parent as LoginCadastroTabbedView;
             tabbedPage.ChangeToLogin();
         }
 
         protected override bool OnBackButtonPressed()
         {
-            ChangeToLogin();
+            ChangeToLogin(null, null);
             return true;
         }
     }

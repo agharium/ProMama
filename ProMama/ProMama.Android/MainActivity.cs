@@ -22,7 +22,7 @@ namespace ProMama.Droid
             var assembly = System.Reflection.Assembly.Load(cv.FullName);
 
             // FFImageLoading
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(false);
 
             // Iconize
             Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());

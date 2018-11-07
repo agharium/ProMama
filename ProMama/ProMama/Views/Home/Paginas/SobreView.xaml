@@ -233,6 +233,11 @@
                             VerticalTextAlignment="Start"
                             LineBreakMode="WordWrap"/>
                     </StackLayout>
+
+                    <Button 
+                        Style="{StaticResource MainButton}"
+                        Text="Desenvolvedores"
+                        Clicked="OnDesenvolvedoresTapped"/>
                 </StackLayout>
                 
             </StackLayout>

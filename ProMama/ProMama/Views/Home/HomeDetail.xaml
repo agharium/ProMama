@@ -59,16 +59,11 @@
                                     BorderColor="Transparent"
                                     BackgroundColor="Transparent"
                                     FontSize="45"
-                                    TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaEsquerdaCor}">
+                                    TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaEsquerdaCor}"
+                                    Margin="{OnPlatform Android='0, 15, 10, 0', iOS='0, 15, 10, 0'}">
                                     <iconize:IconButton.Effects>
                                         <effects:LongPressedEffect />
                                     </iconize:IconButton.Effects>
-                                    <iconize:IconButton.Margin>
-                                        <OnPlatform x:TypeArguments="Thickness">
-                                            <On Platform="iOS" Value="10, 15, 0, 0" />
-                                            <On Platform="Android" Value="0, 15, 0, 0" />
-                                        </OnPlatform>
-                                    </iconize:IconButton.Margin>
                                 </iconize:IconButton>
 
                                 <ffimageloading:CachedImage 
@@ -95,16 +90,11 @@
                                     BorderColor="Transparent"
                                     BackgroundColor="Transparent"
                                     FontSize="45"
-                                    TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaDireitaCor}">
+                                    TextColor="{Binding Source={x:Reference this}, Path=BindingContext.SetaDireitaCor}"
+                                    Margin="{OnPlatform Android='0, 15, 10, 0', iOS='0, 15, 10, 0'}">
                                     <iconize:IconButton.Effects>
                                         <effects:LongPressedEffect />
                                     </iconize:IconButton.Effects>
-                                    <iconize:IconButton.Margin>
-                                        <OnPlatform x:TypeArguments="Thickness">
-                                            <On Platform="iOS" Value="0, 15, 10, 0" />
-                                            <On Platform="Android" Value="0, 15, 0, 0" />
-                                        </OnPlatform>
-                                    </iconize:IconButton.Margin>
                                 </iconize:IconButton>
                             </Grid>
 
@@ -115,9 +105,13 @@
                                 Grid.Column="0"
                                 Grid.Row="1">
                                 <Label 
-                                    Text="{Binding Nome, StringFormat='{0} - '}"
+                                    Text="{Binding Nome}"
                                     TextColor="White"
-                                    FontSize="Small"/>
+                                    FontSize="Small" />
+                                <Label
+                                    Text=" - "
+                                    TextColor="White"
+                                    FontSize="Small" />
                                 <Label 
                                     Text="{Binding IdadeExtenso}"
                                     TextColor="White"
@@ -166,12 +160,8 @@
                                         Aspect="AspectFill"
 			                            Source="{Binding informacao_foto}"
                                         Grid.Column="0"
-                                        Grid.Row="2">
-                                        <ffimageloading:CachedImage.HeightRequest>
-                                            <OnIdiom x:TypeArguments="x:Double"
-                                                Phone="150"
-                                                Tablet="250"/>
-                                        </ffimageloading:CachedImage.HeightRequest>
+                                        Grid.Row="2"
+                                        HeightRequest="{OnIdiom Phone=150, Tablet=250}">
                                     </ffimageloading:CachedImage>
                                 </Grid>
                                 <Frame.GestureRecognizers>

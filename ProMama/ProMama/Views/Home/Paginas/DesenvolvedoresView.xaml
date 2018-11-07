@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="ProMama.Views.Home.Paginas.EasterEggView">
+             x:Class="ProMama.Views.Home.Paginas.DesenvolvedoresView">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="10">
