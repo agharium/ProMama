@@ -189,6 +189,9 @@ namespace ProMama.ViewModels.Home
             // Salva o login
             App.UltimoUsuario = app._usuario.id;
             App.UltimaCrianca = app._crianca.crianca_id;
+            
+            // Verificar permissão do GPS
+            PermissaoLocalizacao();
 
             // Sincronizando banco em thread
             Task.Run(async () =>
@@ -209,6 +212,18 @@ namespace ProMama.ViewModels.Home
                     Debug.WriteLine("FIM DA TENTATIVA DE SINCRONIZAÇÃO EM THREAD");
                 }
             });
+        }
+        
+        // Verifica e pede permissão de localização
+        private async void PermissaoLocalizacao()
+        {
+            var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+
+            if (locationStatus != PermissionStatus.Granted)
+            {
+                await MessageService.AlertDialog("A seguir será requisitado permissão para acessar a sua localização. Não é obrigatório conceder esta permissão, mas se concedida, o aplicativo poderá utilizar sua localização para lhe sugerir a unidade de saúde mais próxima de você na tela \"Postos de Saúde\".");
+                await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
+            }
         }
 
         // Botão da seta pra direita
