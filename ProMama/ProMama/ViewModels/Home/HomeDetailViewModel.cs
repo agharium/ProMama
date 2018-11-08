@@ -190,7 +190,7 @@ namespace ProMama.ViewModels.Home
             App.UltimoUsuario = app._usuario.id;
             App.UltimaCrianca = app._crianca.crianca_id;
             
-            // Verificar permissão do GPS
+            // Verifica e pede permissão de acesso à localização
             PermissaoLocalizacao();
 
             // Sincronizando banco em thread
@@ -214,7 +214,7 @@ namespace ProMama.ViewModels.Home
             });
         }
         
-        // Verifica e pede permissão de localização
+        // Verifica e pede permissão de acesso à localização
         private async void PermissaoLocalizacao()
         {
             var locationStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
