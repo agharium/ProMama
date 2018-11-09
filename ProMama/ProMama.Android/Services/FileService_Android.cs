@@ -32,7 +32,8 @@ namespace ProMama.Droid.Services
             try
             {
                 webClient.DownloadFile(new Uri(url), localPath);
-            } catch (Exception ex)
+            } 
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
