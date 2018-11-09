@@ -24,8 +24,6 @@ namespace ProMama.Droid.Services
             string localFilename = url.Substring(url.LastIndexOf('/') + 1);
             url = type == 0 ? FileUrlCrianca + url + "?api_token=" + api_token : FileUrlUser + "?api_token=" + api_token;
 
-            Debug.WriteLine(url);
-
             var webClient = new WebClient();
             string localPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), localFilename);
 
