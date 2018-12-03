@@ -185,8 +185,10 @@ namespace ProMama.Components
 
                                 if (!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias > idadeAtual)
                                 {
-                                    CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
-                                    c.notificacoesMarcadas.Add(notificacaoCriancaId);
+                                    if (notificacaoDias - idadeAtual <= 15){
+                                        CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
+                                        c.notificacoesMarcadas.Add(notificacaoCriancaId);
+                                    }
                                     //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12).ToString());
                                 }
                                 else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
