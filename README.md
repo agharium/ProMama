@@ -9,6 +9,7 @@ Plugins utilizados:
 - [DLToolkit.Forms.Controls.FlowListView](https://www.nuget.org/packages/DLToolkit.Forms.Controls.FlowListView)
 - [MarcelloDB](https://www.nuget.org/packages/MarcelloDB/)
 - [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)
+- [Plugin.XSnack](https://www.nuget.org/packages/Plugin.XSnack/)
 - [SaturdayMP.XPlugins.iOS.BEMCheckBox](https://www.nuget.org/packages/SaturdayMP.XPlugins.iOS.BEMCheckBox/)
 - [Xam.Plugin.Connectivity](http://www.nuget.org/packages/Xam.Plugin.Connectivity)
 - [Xam.Plugin.Media](http://www.nuget.org/packages/Xam.Plugin.Media)
