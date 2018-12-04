@@ -52,7 +52,7 @@
                             Grid.Row="1"
                             Grid.Column="1">
                             <Entry.Behaviors>
-                                <behaviors:EntryLengthValidatorBehavior MaxLength="4" />
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="5" />
                                 <behaviors:IntegerValidatorBehavior/>
                             </Entry.Behaviors>
                         </Entry>

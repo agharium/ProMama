@@ -1,5 +1,9 @@
-﻿using ProMama.Models;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using ProMama.Models;
 using ProMama.ViewModels.Home.Paginas;
+using ProMama.ViewModels.Services;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

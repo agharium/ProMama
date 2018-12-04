@@ -89,6 +89,18 @@ namespace ProMama
             set => CrossSettings.Current.AddOrUpdateValue(nameof(Update_NotificacoesCanceladas), value);
         }
 
+        public static bool NaoPerguntePermissaoLocalizacao
+        {
+            get => CrossSettings.Current.GetValueOrDefault(nameof(NaoPerguntePermissaoLocalizacao), false);
+            set => CrossSettings.Current.AddOrUpdateValue(nameof(NaoPerguntePermissaoLocalizacao), value);
+        }
+
+        public static int VezesPerguntadoPermissaoLocalizacao
+        {
+            get => CrossSettings.Current.GetValueOrDefault(nameof(VezesPerguntadoPermissaoLocalizacao), 0);
+            set => CrossSettings.Current.AddOrUpdateValue(nameof(VezesPerguntadoPermissaoLocalizacao), value);
+        }
+
         private static Excluir _excluir;
         public static Excluir Excluir
         {

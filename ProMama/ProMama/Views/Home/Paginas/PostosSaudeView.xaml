@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="ProMama.Views.Home.Paginas.PostosSaudeView"
              x:Name="this"
              Title="Postos de Saúde">
@@ -11,7 +12,17 @@
                 HasUnevenRows="true"
                 ItemsSource="{Binding PostosSaude}">
                 <ListView.Header>
-                    <StackLayout HeightRequest="10"/>
+                    <StackLayout 
+                        Padding="5"
+                        IsVisible="{Binding Source={x:Reference this}, Path=BindingContext.PermissaoLocalizacaoConcedida}">
+                        <Label 
+                            Text="Unidades de Saúde por ordem de proximidade:"
+                            FontSize="16"
+                            TextColor="#262626"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            IsVisible="{Binding Source={x:Reference this}, Path=BindingContext.PermissaoLocalizacaoConcedida}"/>
+                    </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -30,30 +41,30 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image 
+                                    <ffimageloading:CachedImage
                                         Source="{Binding image_path}"
                                         Aspect="AspectFill"
                                         HeightRequest="125"
                                         Grid.Column="0"
                                         Grid.Row="0"
-                                        Grid.RowSpan="3"/>
+                                        Grid.RowSpan="3" />
                                     <Label
                                         Text="{Binding nome}"
-                                        TextColor="Black"
+                                        TextColor="#262626"
                                         FontSize="24"
                                         Margin="10, 10, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="0"/>
                                     <Label
                                         Text="{Binding endereco}"
-                                        TextColor="Black"
+                                        TextColor="#262626"
                                         FontSize="18"
                                         Margin="10, 5, 10, 0"
                                         Grid.Column="0"
                                         Grid.Row="1"/>
                                     <Label
                                         Text="{Binding telefone}"
-                                        TextColor="Black"
+                                        TextColor="#262626"
                                         FontSize="18"
                                         Margin="10, 5, 10, 0"
                                         Grid.Column="0"

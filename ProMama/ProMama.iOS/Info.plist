@@ -10,6 +10,8 @@
 	<string>Este aplicativo precisa de acesso à galeria de fotos.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Este aplicativo precisa de acesso ao calendário para gerenciar o agendamento de notificações.</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Este aplicativo precisa de acesso à localização para verificar qual é a unidade de saúde mais próxima.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

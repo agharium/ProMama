@@ -279,7 +279,7 @@ namespace ProMama.ViewModels.Home.Paginas
                     case 5:
                         var aux = Convert.ToInt32(Marco.extra) == 1 ? "mês" : "meses";
                         TextoAlcancado =
-                            auxNome + " parou de se alimentar exclusivamente de leite materno com " + Marco.extra + " " + aux + "!";
+                            auxNome + " parou de se alimentar exclusivamente de leite materno com " + Marco.extra + " " + aux + " de idade!";
                         break;
                     case 6:
                         TextoAlcancado =
