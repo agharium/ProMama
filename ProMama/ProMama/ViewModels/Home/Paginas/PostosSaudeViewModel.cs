@@ -163,14 +163,15 @@ namespace ProMama.ViewModels.Home.Paginas
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 100;
 
-                position = await locator.GetLastKnownLocationAsync();
+                // Descomentar seção abaixo para ligar o cache de localização.
+                /*position = await locator.GetLastKnownLocationAsync();
 
                 if (position != null)
                 {
                     //got a cached position, so let's use it.
                     //return position;
                     return new Coordinates(position.Latitude, position.Longitude);
-                }
+                }*/
 
                 if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
                 {
