@@ -34,7 +34,8 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -56,7 +57,8 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -76,7 +78,8 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -127,7 +130,8 @@ namespace ProMama.Views.Services
             }
             catch (JsonReaderException e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -147,7 +151,8 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -192,7 +197,7 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
                 return new List<Informacao>();
             }
         }
@@ -213,7 +218,8 @@ namespace ProMama.Views.Services
             }
             catch (JsonReaderException e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -303,7 +309,7 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine(e);
                 return null;
             }
         }
@@ -323,7 +329,8 @@ namespace ProMama.Views.Services
             }
             catch (JsonReaderException e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -383,9 +390,10 @@ namespace ProMama.Views.Services
                     return JsonConvert.DeserializeObject<JsonMessage>(obj);
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + ex.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -409,9 +417,10 @@ namespace ProMama.Views.Services
                     return JsonConvert.DeserializeObject<JsonMessage>(obj);
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + ex.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -444,7 +453,8 @@ namespace ProMama.Views.Services
             }
             catch (JsonReaderException e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -477,7 +487,8 @@ namespace ProMama.Views.Services
             }
             catch (JsonReaderException e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -517,7 +528,8 @@ namespace ProMama.Views.Services
             }
             catch (Exception e)
             {
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                Debug.WriteLine(e);
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
 
@@ -544,7 +556,7 @@ namespace ProMama.Views.Services
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
         
@@ -571,7 +583,7 @@ namespace ProMama.Views.Services
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                return new JsonMessage(false, "Ocorreu um erro inesperado. Para propósitos de debug: " + e.ToString());
+                return new JsonMessage(false, "Ocorreu um erro inesperado. Tente novamente mais tarde.");
             }
         }
     }
