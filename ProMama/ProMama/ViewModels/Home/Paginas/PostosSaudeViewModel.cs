@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -70,7 +71,11 @@ namespace ProMama.ViewModels.Home.Paginas
                 {
                     p.MostraTelefone = string.IsNullOrEmpty(p.telefone) ? false : true;
                     string[] coords = p.lat_long.Split(',');
-                    p.Coordinates = new Coordinates(Convert.ToDouble(coords[0]), Convert.ToDouble(coords[1]));
+
+                    var latitude = double.Parse(coords[0], CultureInfo.InvariantCulture);
+                    var longitude = double.Parse(coords[1], CultureInfo.InvariantCulture);
+
+                    p.Coordinates = new GeoCoordinate(latitude, longitude);
                 }
             }
 
@@ -96,12 +101,9 @@ namespace ProMama.ViewModels.Home.Paginas
                 var currentLocation = GetCurrentPosition().Result;
                 if (currentLocation != null)
                 {
-                    postos = postos.OrderBy(x => Coordinates.DistanceBetween(x.Coordinates, currentLocation)).ToList();
+                    postos = postos.OrderBy(x => x.Coordinates.GetDistanceTo(currentLocation)).ToList();
                     PostosSaude = new ObservableCollection<Posto>(postos);
                 }
-
-                Acr.UserDialogs.UserDialogs.Instance.Alert("" + currentLocation, "Coordenadas");
-                Debug.WriteLine("COORDENADAS: " + currentLocation);
             }
         }
 
@@ -163,7 +165,7 @@ namespace ProMama.ViewModels.Home.Paginas
         }
 
         // https://jamesmontemagno.github.io/GeolocatorPlugin/CurrentLocation.html
-        private static async Task<Coordinates> GetCurrentPosition()
+        private static async Task<GeoCoordinate> GetCurrentPosition()
         {
             Position position = null;
             try
@@ -204,8 +206,8 @@ namespace ProMama.ViewModels.Home.Paginas
                     position.Altitude, position.AltitudeAccuracy, position.Accuracy, position.Heading, position.Speed);
 
             Debug.WriteLine(output);
-            
-            return new Coordinates(position.Latitude, position.Longitude);
+
+            return new GeoCoordinate(position.Latitude, position.Longitude);
         }
     }
 }
