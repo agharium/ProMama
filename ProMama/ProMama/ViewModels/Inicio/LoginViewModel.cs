@@ -114,7 +114,7 @@ namespace ProMama.ViewModels.Inicio
                         {
                             Debug.WriteLine(ex);
                             LoadingDialog.Hide();
-                            await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                            await MessageService.AlertDialog("Ocorreu um erro inesperado. Tente novamente mais tarde.");
                         }
                     } else
                     {
