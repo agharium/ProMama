@@ -1,4 +1,5 @@
-﻿using Plugin.Geolocator;
+﻿using Acr.UserDialogs;
+using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
@@ -97,7 +98,7 @@ namespace ProMama.ViewModels.Home.Paginas
         {
             if (VerificaPermissao().Result == PermissionStatus.Granted)
             {
-                CrossXSnack.Current.ShowMessage("Obtendo sua localização e organizando os postos de acordo com os mais próximos de você...", 3);
+                UserDialogs.Instance.Toast(new ToastConfig("Organizando lista..."));
                 var currentLocation = GetCurrentPosition().Result;
                 if (currentLocation != null)
                 {
