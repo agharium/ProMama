@@ -263,14 +263,20 @@ namespace ProMama.Views.Services
 
         public async Task<List<Bairro>> BairrosRead()
         {
-            using (var client = new HttpClient())
+            try
             {
-                var result = await client.GetAsync(ApiUrl + "/bairros?api_token=" + TokenPadrao);
-                var obj = await result.Content.ReadAsStringAsync();
-                Debug.WriteLine("API: LEITURA DE BAIRROS");
-                Debug.WriteLine(obj.ToString());
+                using (var client = new HttpClient())
+                {
+                    var result = await client.GetAsync(ApiUrl + "/bairros?api_token=" + TokenPadrao);
+                    var obj = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("API: LEITURA DE BAIRROS");
+                    Debug.WriteLine(obj.ToString());
 
-                return string.IsNullOrEmpty(obj.ToString()) ? new List<Bairro>() : JsonConvert.DeserializeObject<List<Bairro>>(obj);
+                    return string.IsNullOrEmpty(obj.ToString()) ? new List<Bairro>() : JsonConvert.DeserializeObject<List<Bairro>>(obj);
+                }
+            } catch (Exception e)
+            {
+                return new List<Bairro>();
             }
         }
 

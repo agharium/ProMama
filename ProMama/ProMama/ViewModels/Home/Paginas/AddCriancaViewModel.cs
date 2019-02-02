@@ -150,7 +150,7 @@ namespace ProMama.ViewModels.Home.Paginas
                         else
                         {
                             LoadingDialog.Hide();
-                            await MessageService.AlertDialog("Ocorreu um erro. Tente novamente mais tarde.");
+                            await MessageService.AlertDialog(result.message);
                         }
                     }
                 }

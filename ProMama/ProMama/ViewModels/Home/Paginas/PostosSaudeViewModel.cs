@@ -76,27 +76,30 @@ namespace ProMama.ViewModels.Home.Paginas
 
             if (indexToRemove != -1)
                 postos.RemoveAt(indexToRemove);
-
-            OrdenaPostosPorProximidade();
+            
+            PostosSaude = new ObservableCollection<Posto>(postos);
+            Task.Run(async () =>
+            {
+                OrdenaPostosPorProximidade();
+            });
 
             if (VerificaPermissao().Result != PermissionStatus.Granted && App.NaoPerguntePermissaoLocalizacao == false)
                 CrossXSnack.Current.ShowMessage("Permissão de localização é necessária para mostrar os postos mais próximos.", 10, "OK", PermissaoLocalizacaoCommand);
         }
 
+        // Verificação do posto de saúde mais próximo + reordenação
         private void OrdenaPostosPorProximidade()
         {
-            // Verificação do posto de saúde mais próximo + reordenação
-            PermissionStatus permissaoStatus = VerificaPermissao().Result;
-            PermissaoLocalizacaoConcedida = permissaoStatus == PermissionStatus.Granted;
-
-            if (permissaoStatus == PermissionStatus.Granted)
+            if (VerificaPermissao().Result == PermissionStatus.Granted)
             {
+                CrossXSnack.Current.ShowMessage("Obtendo sua localização e organizando os postos de acordo com os mais próximos de você...", 3);
                 var currentLocation = GetCurrentPosition().Result;
                 if (currentLocation != null)
+                {
                     postos = postos.OrderBy(x => Coordinates.DistanceBetween(x.Coordinates, currentLocation)).ToList();
+                    PostosSaude = new ObservableCollection<Posto>(postos);
+                }
             }
-
-            PostosSaude = new ObservableCollection<Posto>(postos);
         }
 
         private async Task<PermissionStatus> VerificaPermissao()
@@ -121,9 +124,11 @@ namespace ProMama.ViewModels.Home.Paginas
                 else
                     App.NaoPerguntePermissaoLocalizacao = true;
             }
-            
 
-            OrdenaPostosPorProximidade();
+            Task.Run(async () =>
+            {
+                OrdenaPostosPorProximidade();
+            });
         }
 
         private void VerMapa(Posto obj)

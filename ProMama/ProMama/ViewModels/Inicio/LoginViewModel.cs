@@ -68,7 +68,7 @@ namespace ProMama.ViewModels.Inicio
                                 if (u == null)
                                 {
                                     LoadingDialog.Hide();
-                                    await MessageService.AlertDialog("Algo de errado não está certo.");
+                                    await MessageService.AlertDialog("Ocorreu um erro inesperado. Tente novamente mais tarde.");
                                 }
                                 else
                                 {
@@ -77,9 +77,12 @@ namespace ProMama.ViewModels.Inicio
                                     app._usuario = u;
 
                                     var criancas = await RestService.CriancasReadByUser(app._usuario);
+                                    if (criancas == null)
+                                    {
+                                        throw new Exception();
+                                    }
                                     foreach (var c in criancas)
                                     {
-                                        c.notificacoesMarcadas = new List<int>();
                                         c.uploaded = true;
                                     }
 

@@ -213,7 +213,7 @@ namespace ProMama.ViewModels.Home.Paginas
                             NavigationService.NavigateHome();
                         }
                     } else {
-                        UserDialogs.Instance.Toast(new ToastConfig("Nome da criança incorreto"));
+                        UserDialogs.Instance.Toast(new ToastConfig("Nome incorreto."));
                     }
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ProMama.Components;
 using System;
-using System.Collections.Generic;
 
 namespace ProMama.Models
 {
@@ -20,8 +19,6 @@ namespace ProMama.Models
         public int crianca_tipo_parto { get; set; }
         public bool uploaded { get; set; }
 
-        public List<int> notificacoesMarcadas { get; set; }
-
         // variáveis auxiliares
         [JsonIgnore]
         public double IdadeSemanas { get { return (((DateTime.Now.Date - crianca_dataNascimento).Days) * 0.1551871428571429) + 0.01; } set { } }
@@ -37,7 +34,6 @@ namespace ProMama.Models
             crianca_sexo = sexo;
             crianca_tipo_parto = -1;
             crianca_idade_gestacional = -1;
-            notificacoesMarcadas = new List<int>();
             uploaded = true;
         }
 

@@ -26,6 +26,7 @@ namespace ProMama
         static InformacaoDatabaseController _informacaoDatabase;
         static SincronizacaoDatabaseController _sincronizacaoDatabase;
         static NotificacaoDatabaseController _notificacaoDatabase;
+        static NotificacaoAtivaDatabaseController _notificacaoAtivaDatabase;
         static FotoDatabaseController _fotoDatabase;
         static AcompanhamentoDatabaseController _acompanhamentoDatabase;
         static MarcoDatabaseController _marcoDatabase;
@@ -83,11 +84,11 @@ namespace ProMama
             set => CrossSettings.Current.AddOrUpdateValue(nameof(UltimaCrianca), value);
         }
 
-        public static bool Update_NotificacoesCanceladas
+        /*public static bool Update_NotificacoesCanceladas
         {
             get => CrossSettings.Current.GetValueOrDefault(nameof(Update_NotificacoesCanceladas), false);
             set => CrossSettings.Current.AddOrUpdateValue(nameof(Update_NotificacoesCanceladas), value);
-        }
+        }*/
 
         public static bool NaoPerguntePermissaoLocalizacao
         {
@@ -235,6 +236,18 @@ namespace ProMama
                     _notificacaoDatabase = new NotificacaoDatabaseController();
                 }
                 return _notificacaoDatabase;
+            }
+        }
+
+        public static NotificacaoAtivaDatabaseController NotificacaoAtivaDatabase
+        {
+            get
+            {
+                if (_notificacaoAtivaDatabase == null)
+                {
+                    _notificacaoAtivaDatabase = new NotificacaoAtivaDatabaseController();
+                }
+                return _notificacaoAtivaDatabase;
             }
         }
 

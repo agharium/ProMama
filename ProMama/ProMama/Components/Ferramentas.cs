@@ -78,7 +78,7 @@ namespace ProMama.Components
                 var infos = await RestService.InformacoesRead(app._usuario.api_token);
                 foreach (var i in infos)
                 {
-                    i.informacao_imagem_visivel = !String.IsNullOrEmpty(i.informacao_foto);
+                    i.informacao_imagem_visivel = !string.IsNullOrEmpty(i.informacao_foto);
                     i.informacao_resumo = CriarResumo(i.informacao_corpo);
                 }
 
@@ -117,7 +117,7 @@ namespace ProMama.Components
                     }
                     foreach (var c in conversasUser)
                     {
-                        if (String.IsNullOrEmpty(c.resposta))
+                        if (string.IsNullOrEmpty(c.resposta))
                         {
                             c.resposta = "Aguardando resposta.";
                             c.resumo = "Aguardando resposta.";
@@ -143,64 +143,63 @@ namespace ProMama.Components
         {
            if (app._usuario != null)
             {
-                if (Device.RuntimePlatform == Device.Android && App.Update_NotificacoesCanceladas == false)
+                /*if (Device.RuntimePlatform == Device.Android && App.Update_NotificacoesCanceladas == false)
                 {
                     await CancelarNotificacoes(app._usuario.id);
                     App.Update_NotificacoesCanceladas = true;
-                }
+                }*/
 
-                if (app._usuario.criancas.Count > 0 && app._usuario.criancas != null)
+                var notifications = App.NotificacaoDatabase.GetAll();
+                var criancas = App.CriancaDatabase.GetCriancasByUser(app._usuario.id);
+
+                if (app._usuario.notificacoes_oQuantoAntes == null)
+                    app._usuario.notificacoes_oQuantoAntes = new List<int>();
+
+                var oQuantoAntesCount = 1;
+
+                foreach (var n in notifications)
                 {
-                    var notifications = App.NotificacaoDatabase.GetAll();
+                    int notificacaoDias = (int)Math.Ceiling(n.semana / 0.1551871428571429);
 
-                    var oQuantoAntesCount = 1;
-
-                    if (app._usuario.notificacoes_oQuantoAntes == null)
-                        app._usuario.notificacoes_oQuantoAntes = new List<int>();
-
-                    var criancas = App.CriancaDatabase.GetCriancasByUser(app._usuario.id);
-
-                    foreach (var c in criancas)
+                    if (n.semana == -1)
                     {
-                        var idadeAtual = (DateTime.Now - c.crianca_dataNascimento).Days;
-
-                        if (c.notificacoesMarcadas == null)
-                            c.notificacoesMarcadas = new List<int>();
-
-                        foreach (var n in notifications)
+                        if (!app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                         {
-                            int notificacaoDias = (int)Math.Ceiling(n.semana / 0.1551871428571429);
-                            int notificacaoCriancaId = int.Parse(c.crianca_id.ToString() + n.id.ToString());
+                            var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
+                            var titulo = n.titulo.Replace("%NOMEDOUSUARIO%", usuario);
+                            var texto = n.texto.Replace("%NOMEDOUSUARIO%", usuario);
+                            titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
+                            texto = char.ToUpper(texto[0]) + texto.Substring(1);
 
-                            if ((!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias > idadeAtual) ||
-                                (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id)))
-                            {
-                                var artigo = c.crianca_sexo == 0 ? "o" : "a";
-                                var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
-                                var crianca = CapitalizarPrimeirasLetras(c.crianca_primeiro_nome);
-                                var titulo = n.titulo.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
-                                var texto = n.texto.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
-                                titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
-                                texto = char.ToUpper(texto[0]) + texto.Substring(1);
-
-                                if (!c.notificacoesMarcadas.Contains(notificacaoCriancaId) && notificacaoDias > idadeAtual)
-                                {
-                                    if (notificacaoDias - idadeAtual <= 15){
-                                        CrossLocalNotifications.Current.Show(titulo, texto, notificacaoCriancaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
-                                        c.notificacoesMarcadas.Add(notificacaoCriancaId);
-                                    }
-                                    //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12).ToString());
-                                }
-                                else if (n.semana == -1 && !app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
-                                {
-                                    CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
-                                    app._usuario.notificacoes_oQuantoAntes.Add(n.id);
-                                    //Debug.WriteLine("Notificação '" + texto + "' marcada para " + DateTime.Now.AddHours(oQuantoAntesCount).ToString());
-                                    oQuantoAntesCount++;
-                                }
-                            }
+                            CrossLocalNotifications.Current.Show(titulo, texto, n.id, DateTime.Now.AddHours(oQuantoAntesCount));
+                            app._usuario.notificacoes_oQuantoAntes.Add(n.id);
+                            Debug.WriteLine("[DEBUG] Notificação urgente '" + texto + "' marcada para " + DateTime.Now.AddHours(oQuantoAntesCount).ToString());
+                            oQuantoAntesCount++;
                         }
-                        App.CriancaDatabase.Save(c);
+                    } else
+                    {
+                        foreach (var c in criancas)
+                        {
+                            var idadeAtual = (DateTime.Now - c.crianca_dataNascimento).Days;
+
+                            /*Debug.WriteLine("[DEBUG] NOTIFICAÇÃO JÁ MARCADA: " + App.NotificacaoAtivaDatabase.CheckIfExists(c.crianca_id, n.id).ToString());
+                            Debug.WriteLine("[DEBUG] NOTIFICAÇÃO PRA ANTES DA IDADE ATUAL: " + (notificacaoDias <= idadeAtual).ToString());
+                            Debug.WriteLine("[DEBUG] NOTIFICAÇÃO PRA DAQUI A MAIS DE 30 DIAS: " + (notificacaoDias - idadeAtual > 30).ToString());*/
+                            if (App.NotificacaoAtivaDatabase.CheckIfExists(c.crianca_id, n.id) || notificacaoDias <= idadeAtual || notificacaoDias - idadeAtual > 30)
+                                continue;
+
+                            var artigo = c.crianca_sexo == 0 ? "o" : "a";
+                            var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
+                            var crianca = CapitalizarPrimeirasLetras(c.crianca_primeiro_nome);
+                            var titulo = n.titulo.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                            var texto = n.texto.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                            titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
+                            texto = char.ToUpper(texto[0]) + texto.Substring(1);
+
+                            int notificacaoAtivaId = App.NotificacaoAtivaDatabase.SaveIncrementing(new NotificacaoAtiva(c.crianca_id, n.id));
+                            CrossLocalNotifications.Current.Show(titulo, texto, notificacaoAtivaId, DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12));
+                            Debug.WriteLine("[DEBUG] Notificação '" + texto + "' marcada para " + DateTime.Now.Date.AddDays(notificacaoDias - idadeAtual).AddHours(12).ToString() + " sob a id " + notificacaoAtivaId);
+                        }
                     }
                     App.UsuarioDatabase.Save(app._usuario);
                 }
@@ -221,12 +220,12 @@ namespace ProMama.Components
             {
                 foreach (var c in criancas)
                 {
-                    foreach (var n in c.notificacoesMarcadas)
+                    foreach (var n in App.NotificacaoAtivaDatabase.GetAllByChildId(c.crianca_id))
                     {
-                        CrossLocalNotifications.Current.Cancel(n);
+                        CrossLocalNotifications.Current.Cancel(n.id);
                     }
-                    c.notificacoesMarcadas = new List<int>();
-                    App.CriancaDatabase.Save(c);
+                    
+                    App.NotificacaoAtivaDatabase.DeleteByChildId(c.crianca_id);
                 }
             }
         }
@@ -385,11 +384,14 @@ namespace ProMama.Components
 
             if (!app._usuario.foto_uploaded)
             {
-                var result = await RestService.FotoUserUpload(app._usuario.foto_caminho, app._usuario.api_token);
-                if (result.success)
+                if (!string.IsNullOrEmpty(app._usuario.foto_caminho))
                 {
-                    app._usuario.foto_uploaded = true;
-                    App.UsuarioDatabase.Save(app._usuario);
+                    var result = await RestService.FotoUserUpload(app._usuario.foto_caminho, app._usuario.api_token);
+                    if (result.success)
+                    {
+                        app._usuario.foto_uploaded = true;
+                        App.UsuarioDatabase.Save(app._usuario);
+                    }
                 }
             }
         }
@@ -430,40 +432,33 @@ namespace ProMama.Components
 
         public static void DeletarCrianca(int id)
         {
-            var acompanhamentos = App.AcompanhamentoDatabase.GetAll();
-            var fotos = App.FotoDatabase.GetAll();
-            var marcos = App.MarcoDatabase.GetAll();
-            var crianca = App.CriancaDatabase.Find(id);
-
-            foreach (var obj in acompanhamentos)
+            foreach (var obj in App.AcompanhamentoDatabase.GetAll())
             {
                 if (obj.crianca == id)
                     App.AcompanhamentoDatabase.Delete(obj.id);
             }
 
-            foreach (var obj in fotos)
+            foreach (var obj in App.FotoDatabase.GetAll())
             {
                 if (obj.crianca == id)
                     App.FotoDatabase.Delete(obj.id);
             }
 
-            foreach (var obj in marcos)
+            foreach (var obj in App.MarcoDatabase.GetAll())
             {
                 if (obj.crianca == id)
                     App.MarcoDatabase.Delete(obj.id);
             }
             
-            foreach (var obj in crianca.notificacoesMarcadas)
-            {
-                CrossLocalNotifications.Current.Cancel(obj);
-            }
+            foreach (var obj in App.NotificacaoAtivaDatabase.GetAllByChildId(id))
+                CrossLocalNotifications.Current.Cancel(obj.id);
 
             App.CriancaDatabase.Delete(id);
         }
 
         public static string CriarResumo(string texto)
         {
-            var resumo = String.Join(" ", texto.Split().Take(20).ToArray());
+            var resumo = string.Join(" ", texto.Split().Take(20).ToArray());
             resumo.Remove(resumo.Length - 1, 1);
             resumo += "...";
 
