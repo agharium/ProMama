@@ -88,12 +88,12 @@ namespace ProMama.ViewModels.Home.Paginas
         }
 
         // Verificação do posto de saúde mais próximo + reordenação
-        private void OrdenaPostosPorProximidade()
+        private async void OrdenaPostosPorProximidade()
         {
             if (VerificaPermissao().Result == PermissionStatus.Granted)
             {
                 CrossXSnack.Current.ShowMessage("Obtendo sua localização e organizando os postos de acordo com os mais próximos de você...", 3);
-                var currentLocation = GetCurrentPosition().Result;
+                var currentLocation = await GetCurrentPosition();
                 if (currentLocation != null)
                 {
                     postos = postos.OrderBy(x => Coordinates.DistanceBetween(x.Coordinates, currentLocation)).ToList();
