@@ -88,17 +88,20 @@ namespace ProMama.ViewModels.Home.Paginas
         }
 
         // Verificação do posto de saúde mais próximo + reordenação
-        private async void OrdenaPostosPorProximidade()
+        private void OrdenaPostosPorProximidade()
         {
             if (VerificaPermissao().Result == PermissionStatus.Granted)
             {
                 CrossXSnack.Current.ShowMessage("Obtendo sua localização e organizando os postos de acordo com os mais próximos de você...", 3);
-                var currentLocation = await GetCurrentPosition();
+                var currentLocation = GetCurrentPosition().Result;
                 if (currentLocation != null)
                 {
                     postos = postos.OrderBy(x => Coordinates.DistanceBetween(x.Coordinates, currentLocation)).ToList();
                     PostosSaude = new ObservableCollection<Posto>(postos);
                 }
+
+                Acr.UserDialogs.UserDialogs.Instance.Alert("" + currentLocation, "Coordenadas");
+                Debug.WriteLine("COORDENADAS: " + currentLocation);
             }
         }
 
