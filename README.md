@@ -32,7 +32,7 @@ Desenvolvedor:
 - [José Paulo Oliveira Filho](https://github.com/agharium/)
 
 Testador:
-- [Max Carlesso dos Santos](https://github.com/maxcarlesso)
+- [Max Carlesso dos Santos](https://github.com/maxxcs)
 
 Server-side (API RESTful + Dashboard - desenvolvido por [Lucas Jardim](https://github.com/lucasjardi/)):
 - [Aplicação Web Pró-Mamá](https://github.com/lucasjardi/promama-alpha)
