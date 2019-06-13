@@ -170,7 +170,9 @@ namespace ProMama.ViewModels.Home.Paginas
                 App.CriancaDatabase.Save(c);
                 app._master.Load();
 
+#pragma warning disable CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
                 Ferramentas.UploadThread();
+#pragma warning restore CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
 
                 LoadingDialog.Hide();
                 await Navigation.PopAsync();
@@ -200,8 +202,10 @@ namespace ProMama.ViewModels.Home.Paginas
                         Ferramentas.DeletarCrianca(app._crianca.crianca_id);
 
                         App.UltimaCrianca = 0;
-                        
+
+#pragma warning disable CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
                         Ferramentas.UploadThread();
+#pragma warning restore CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
 
                         if (app._usuario.criancas.Count == 0)
                         {

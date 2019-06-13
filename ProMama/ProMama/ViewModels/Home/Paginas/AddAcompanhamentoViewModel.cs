@@ -132,7 +132,9 @@ namespace ProMama.ViewModels.Home.Paginas
                     var acompanhamento = new Acompanhamento(app._crianca.crianca_id, DataSelecionada, Convert.ToInt32(Peso), Convert.ToInt32(Altura), alimentacoes);
                     App.AcompanhamentoDatabase.SaveIncrementing(acompanhamento);
 
+#pragma warning disable CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
                     Ferramentas.UploadThread();
+#pragma warning restore CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
 
                     LoadingDialog.Hide();
                     await Navigation.PopAsync();

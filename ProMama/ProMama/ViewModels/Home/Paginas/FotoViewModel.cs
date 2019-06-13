@@ -70,7 +70,9 @@ namespace ProMama.ViewModels.Home.Paginas
                     App.Excluir.Fotos.Add(Foto.id);
                     App.ExcluirDatabase.Save(App.Excluir);
 
+#pragma warning disable CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
                     Ferramentas.UploadThread();
+#pragma warning restore CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
 
                     app._master.SetFoto();
                     await Navigation.PopAsync();

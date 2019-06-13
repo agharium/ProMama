@@ -84,7 +84,9 @@ namespace ProMama.ViewModels.Home.Paginas
                 postos.RemoveAt(indexToRemove);
             
             PostosSaude = new ObservableCollection<Posto>(postos);
+#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
             Task.Run(async () =>
+#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
             {
                 OrdenaPostosPorProximidade();
             });
@@ -131,10 +133,14 @@ namespace ProMama.ViewModels.Home.Paginas
                     App.NaoPerguntePermissaoLocalizacao = true;
             }
 
+#pragma warning disable CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
+#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
             Task.Run(async () =>
+#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
             {
                 OrdenaPostosPorProximidade();
             });
+#pragma warning restore CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
         }
 
         private void VerMapa(Posto obj)
