@@ -25,7 +25,16 @@ namespace ProMama.Models
         [JsonIgnore]
         public double IdadeMeses { get { return ((DateTime.Now.Date - crianca_dataNascimento).Days) / 30.4167; } set { } }
         [JsonIgnore]
-        public string IdadeExtenso { get { return Ferramentas.DaysToFullString((DateTime.Now - crianca_dataNascimento).Days, 1); } set { } }
+        public string IdadeExtenso {
+            get
+            {
+                var aux = (DateTime.Now - crianca_dataNascimento).Days;
+                if (aux > 745)
+                    return "2 anos";
+                else
+                    return Ferramentas.DaysToFullString(aux, 1);            }
+            set {}
+        }
 
         public Crianca(string primeiro_nome, DateTime data_nascimento, int sexo)
         {

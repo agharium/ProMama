@@ -139,7 +139,9 @@ namespace ProMama.Components
             App.SincronizacaoDatabase.Save(app._sync);
         }
 
+#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
         public static async Task AgendarNotificacoes()
+#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
         {
            if (app._usuario != null)
             {
@@ -206,7 +208,9 @@ namespace ProMama.Components
             }
         }
 
+#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
         public static async Task CancelarNotificacoes(int userId)
+#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
         {
             var user = App.UsuarioDatabase.Find(userId);
             var criancas = App.CriancaDatabase.GetCriancasByUser(userId);
@@ -230,8 +234,11 @@ namespace ProMama.Components
             }
         }
 
+#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
         public static async Task UploadThread()
+#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
         {
+#pragma warning disable CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
             Task.Run(async () =>
             {
                 if (!app._onThread)
@@ -248,6 +255,7 @@ namespace ProMama.Components
                     Debug.WriteLine("FIM DA TENTATIVA DE UPLOAD DE INFORMAÇÕES EM THREAD");
                 }
             });
+#pragma warning restore CS4014 // Como esta chamada não é esperada, a execução do método atual continua antes de a chamada ser concluída
         }
 
         public static async Task UploadInformacoes()

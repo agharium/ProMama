@@ -299,9 +299,10 @@ namespace ProMama.Views.Services
             {
                 using (var client = new HttpClient())
                 {
-                    var result = await client.GetAsync(ApiUrl + "/sync?api_token=" + token);
+                    var url = ApiUrl + "/sync?api_token=" + token;
+                    var result = await client.GetAsync(url);
                     var obj = await result.Content.ReadAsStringAsync();
-                    Debug.WriteLine("API: LEITURA DE SINCRONIZAÇÃO");
+                    Debug.WriteLine("API: LEITURA DE SINCRONIZAÇÃO [" + url + "]");
                     Debug.WriteLine(obj.ToString());
 
                     var settings = new JsonSerializerSettings
