@@ -10,8 +10,8 @@
 	<string>Este aplicativo precisa de acesso à galeria de fotos.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Este aplicativo precisa de acesso ao calendário para gerenciar o agendamento de notificações.</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Este aplicativo precisa de acesso à localização para verificar qual é a unidade de saúde mais próxima.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Este aplicativo precisa de acesso à localização para verificar qual é a unidade de saúde mais próxima.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -37,7 +37,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>br.gov.rs.osorio.promama</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.1.1</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-fontawesome-solid.otf</string>
