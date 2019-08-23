@@ -168,8 +168,8 @@ namespace ProMama.Components
                         if (!app._usuario.notificacoes_oQuantoAntes.Contains(n.id))
                         {
                             var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
-                            var titulo = n.titulo.Replace("%NOMEDOUSUARIO%", usuario);
-                            var texto = n.texto.Replace("%NOMEDOUSUARIO%", usuario);
+                            var titulo = n.titulo.Replace("%NOMEDOUSUARIO%", usuario).Replace("%nomedousuario%", usuario);
+                            var texto = n.texto.Replace("%NOMEDOUSUARIO%", usuario).Replace("%nomedousuario%", usuario);
                             titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
                             texto = char.ToUpper(texto[0]) + texto.Substring(1);
 
@@ -193,8 +193,12 @@ namespace ProMama.Components
                             var artigo = c.crianca_sexo == 0 ? "o" : "a";
                             var usuario = !string.IsNullOrEmpty(app._usuario.name) ? CapitalizarPrimeirasLetras(app._usuario.name) : "mãe";
                             var crianca = CapitalizarPrimeirasLetras(c.crianca_primeiro_nome);
-                            var titulo = n.titulo.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
-                            var texto = n.texto.Replace("%NOMEDACRIANCA%", crianca).Replace("%ARTIGO%", artigo).Replace("%NOMEDOUSUARIO%", usuario);
+                            var titulo = n.titulo.Replace("%NOMEDACRIANCA%", crianca).Replace("%nomedacrianca%", crianca)
+                                            .Replace("%ARTIGO%", artigo).Replace("%artigo", artigo)
+                                            .Replace("%NOMEDOUSUARIO%", usuario).Replace("%nomedousuario%", usuario);
+                            var texto = n.texto.Replace("%NOMEDACRIANCA%", crianca).Replace("%nomedacrianca%", crianca)
+                                            .Replace("%ARTIGO%", artigo).Replace("%artigo", artigo)
+                                            .Replace("%NOMEDOUSUARIO%", usuario).Replace("%nomedousuario%", usuario);
                             titulo = char.ToUpper(titulo[0]) + titulo.Substring(1);
                             texto = char.ToUpper(texto[0]) + texto.Substring(1);
 
