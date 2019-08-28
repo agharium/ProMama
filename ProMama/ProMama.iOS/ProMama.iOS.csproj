@@ -477,6 +477,18 @@
   <ItemGroup>
     <BundleResource Include="Resources\posto_aguapes.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_ifrs_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\selo_fbb.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_prefeitura_osorio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_promama.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

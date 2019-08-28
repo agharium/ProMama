@@ -7,7 +7,8 @@
         <ScrollView>
             <StackLayout
                 Padding="20"
-                Spacing="20">
+                Spacing="20"
+                BackgroundColor="White">
                 <Label 
                     Text="PRÓ-MAMÁ Osório"
                     HorizontalTextAlignment="Center"
@@ -42,6 +43,49 @@
                     Style="{StaticResource MainButton}"
                     Text="Acessar o decreto 193/2017"
                     Clicked="OnDecretoTapped"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="End"
+                        Source="logo_promama"
+                        Aspect="AspectFill"
+                        HeightRequest="150"/>
+                    <Image 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        Source="selo_fbb"
+                        Aspect="AspectFill"
+                        HeightRequest="150"/>
+                    <Image 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="Center"
+                        Source="logo_prefeitura_osorio"
+                        Aspect="AspectFit"
+                        WidthRequest="300"/>
+                    <Image 
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="Center"
+                        Source="logo_ifrs_horizontal"
+                        Aspect="AspectFit"
+                        WidthRequest="300"/>
+                </Grid>
 
                 <StackLayout
                     Spacing="10">
