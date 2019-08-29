@@ -37,7 +37,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>br.gov.rs.osorio.promama</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>iconize-fontawesome-solid.otf</string>
