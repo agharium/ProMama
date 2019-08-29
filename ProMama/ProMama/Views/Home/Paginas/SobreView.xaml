@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="ProMama.Views.Home.Paginas.SobreView"
              Title="Sobre">
     <ContentPage.Content>
@@ -55,34 +56,34 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image 
+                    <ffimageloading:CachedImage 
                         Grid.Row="0"
                         Grid.Column="0"
                         HorizontalOptions="End"
-                        Source="logo_promama"
+                        Source="logo_promama.png"
                         Aspect="AspectFill"
                         HeightRequest="150"/>
-                    <Image 
+                    <ffimageloading:CachedImage 
                         Grid.Row="0"
                         Grid.Column="1"
                         HorizontalOptions="Start"
-                        Source="selo_fbb"
+                        Source="selo_fbb.jpg"
                         Aspect="AspectFill"
                         HeightRequest="150"/>
-                    <Image 
+                    <ffimageloading:CachedImage 
                         Grid.Row="1"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         HorizontalOptions="Center"
-                        Source="logo_prefeitura_osorio"
+                        Source="logo_prefeitura_osorio.png"
                         Aspect="AspectFit"
                         WidthRequest="300"/>
-                    <Image 
+                    <ffimageloading:CachedImage 
                         Grid.Row="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         HorizontalOptions="Center"
-                        Source="logo_ifrs_horizontal"
+                        Source="logo_ifrs_horizontal.png"
                         Aspect="AspectFit"
                         WidthRequest="300"/>
                 </Grid>
