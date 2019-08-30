@@ -45,48 +45,26 @@
                     Text="Acessar o decreto 193/2017"
                     Clicked="OnDecretoTapped"/>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <ffimageloading:CachedImage 
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        HorizontalOptions="End"
-                        Source="logo_promama.png"
-                        Aspect="AspectFill"
-                        HeightRequest="150"/>
-                    <ffimageloading:CachedImage 
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        HorizontalOptions="Start"
-                        Source="selo_fbb.jpg"
-                        Aspect="AspectFill"
-                        HeightRequest="150"/>
-                    <ffimageloading:CachedImage 
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        HorizontalOptions="Center"
-                        Source="logo_prefeitura_osorio.png"
-                        Aspect="AspectFit"
-                        WidthRequest="300"/>
-                    <ffimageloading:CachedImage 
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        HorizontalOptions="Center"
-                        Source="logo_ifrs_horizontal.png"
-                        Aspect="AspectFit"
-                        WidthRequest="300"/>
-                </Grid>
+                <ffimageloading:CachedImage
+                    Source="logo_promama.png"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFill"
+                    HeightRequest="150"/>
+                <ffimageloading:CachedImage
+                    Source="selo_fbb.jpg"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFill"
+                    HeightRequest="150"/>
+                <ffimageloading:CachedImage
+                    Source="logo_prefeitura_osorio.png"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFit"
+                    WidthRequest="300"/>
+                <ffimageloading:CachedImage
+                    Source="logo_ifrs_horizontal.png"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFit"
+                    WidthRequest="300"/>
 
                 <StackLayout
                     Spacing="10">
