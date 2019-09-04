@@ -48,6 +48,18 @@ namespace ProMama.Views.Home.Paginas
             }
         }
 
+        private void OnSeloFBBTapped(object sender, EventArgs e)
+        {
+            try
+            {
+                Device.OpenUri(new Uri("http://tecnologiasocial.fbb.org.br/tecnologiasocial/banco-de-tecnologias-sociais/pesquisar-tecnologias/detalhar-tecnologia-823.htm"));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
         void OnDesenvolvedoresTapped(object sender, EventArgs args)
         {
             Navigation.PushModalAsync(new DesenvolvedoresView());

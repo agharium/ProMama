@@ -54,7 +54,11 @@
                     Source="selo_fbb.jpg"
                     HorizontalOptions="Center"
                     Aspect="AspectFill"
-                    HeightRequest="150"/>
+                    HeightRequest="150">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSeloFBBTapped" />
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
                 <ffimageloading:CachedImage
                     Source="logo_prefeitura_osorio.png"
                     HorizontalOptions="Center"
