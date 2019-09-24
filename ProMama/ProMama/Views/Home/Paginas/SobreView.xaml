@@ -47,12 +47,12 @@
 
                 <ffimageloading:CachedImage
                     Source="logo_promama.png"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
                     Aspect="AspectFill"
                     HeightRequest="150"/>
                 <ffimageloading:CachedImage
                     Source="selo_fbb.jpg"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
                     Aspect="AspectFill"
                     HeightRequest="150">
                     <ffimageloading:CachedImage.GestureRecognizers>
